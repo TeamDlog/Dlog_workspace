@@ -7,6 +7,7 @@
 	</settings>
 	
 	<typeAliases>
+		<typeAlias type="com.kh.dlog.mainmenu.account.model.vo.Account" alias="Account"/>
 		<typeAlias type="com.kh.dlog.mainmenu.freenote.model.vo.Freenote" alias="Freenote"/>
 		<typeAlias type="com.kh.dlog.mainmenu.freenote.model.vo.Reply" alias="Reply" />
 		<typeAlias type="com.kh.dlog.mainmenu.freenote.model.vo.SearchCondition" alias="SearchCondition" />
@@ -36,6 +37,7 @@
  	-->
  	
  	<mappers>
+ 		<mapper resource="/mappers/account-mapper.xml" />
  		<mapper resource="/mappers/freenote-mapper.xml" />
  		<mapper resource="/mappers/calendar-mapper.xml" />
  		<mapper resource="/mappers/memo-mapper.xml" />

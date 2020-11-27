@@ -16,7 +16,7 @@
 
 <body>
 
-<jsp:include page="../common/diaryHeader.jsp" />
+<jsp:include page="../../common/diaryHeader.jsp" />
 
   <!--**********************************
       Content body start
@@ -50,7 +50,7 @@
 								        <option value="11">11월</option>
 								        <option value="12">12월</option> 
 								 </select>
-								<input id="enroll" type="button" value="등록" onclick="location.href='accountEnrollForm.ac';">
+								<input id="enroll" type="button" class="btn btn-success" value="등록" onclick="location.href='accountEnrollForm.ac';">
                               	<br><br>
                              	<table id="accountList" class="table">
                              			<c:set var="resultIncome" value="0" />
@@ -86,7 +86,7 @@
 							                        <td>${a.accountStatus }</td>
 							                        <td>${a.accountMoney }</td>
 							                        <td>${a.accountDataIls }</td> 
-							                        <td><a href="#"  role="button" onclick="location.href='accountDelete.ac?bno=' +${a.accountNo }" >삭제</a></td>
+							                        <td><a href="#"  role="button" class="btn btn-danger btn-sm"onclick="location.href='accountDelete.ac?bno=' +${a.accountNo }" >삭제</a></td>
 							                        <c:choose>
 							                        <c:when test="${a.accountStatus =='SPEND' }">
 							                        	<c:set var="resultSpend" value="${a.accountMoney+ resultSpend}" />
@@ -122,8 +122,8 @@
       Content body end
   ***********************************-->  
   
-	<jsp:include page="../common/diaryWidget.jsp" />
-	<jsp:include page="../common/diaryFooter.jsp" />
+	<jsp:include page="../../common/diaryWidget.jsp" />
+	<jsp:include page="../../common/diaryFooter.jsp" />
 	
 	<script>
 	       $(document).ready(function() {

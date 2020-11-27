@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="accountMapper">
+	<resultMap type="Account" id="accountResultSet">
+		<id column = "account_no" property="accountNo" />
+		<result column="account_Detail_Item" property="accountDetailItem" />
+		<result column="account_writer" property="accountWriter" />
+		<result column="account_Item" property="accountItem" />
+		<result column="account_Date" property="accountDate" />
+		<result column="account_Division" property="accountDivision" />
+		<result column="account_Money" property="accountMoney" />
+		<result column="account_DataIls" property="accountDataIls" />
+		<result column="account_Status" property="accountStatus" />
+		<result column="status" property="status" />		
+	</resultMap>
+	
+	<select id="selectList" resultMap="accountResultSet">
+		select
+		        account_no
+		        , account_writer
+		        , account_Item
+		        , to_char(account_Date, 'YYYY-MM-DD') account_Date
+		        , account_Money
+		        , account_DataIls
+		        , account_Detail_Item
+		        , account_Status
+		        , account_Division
+		    from account
+		    where status='Y'
+		    order 
+		        by account_no desc
+	</select>
+	
+	<update id="deleteAccount" parameterType="_int">
+		update
+		        account
+		    set status='N'
+		    where account_no=#{bno}
+	</update>
+	<insert id="insertAccount" parameterType="account">
+		insert
+		        into account
+		        (
+		             account_no
+			        , account_writer
+			        , account_Item
+			        , account_Date
+			        , account_Money
+			        , account_DataIls
+			        , account_Detail_Item
+			        , account_Status
+			        , account_Division
+		        )
+		        values
+		        (
+		            SEQ_ACCOUNTNO.nextval
+		            , #{accountWriter}
+		            , #{accountItem}
+		            , #{accountDate}
+		            , #{accountMoney}
+		            , #{accountDataIls}
+		            , #{accountDetailItem}
+		            , #{accountStatus}
+		            , #{accountDivision}
+		            
+		        )
+				
+	</insert>
+	
+	<select id="selectAccountList" resultMap="accountResultSet" parameterType="_int">
+		select * 
+				from(
+				    select 
+				         account_no
+				        , account_writer
+				        , account_Item
+				        , to_char(account_Date, 'YYYY-MM-DD') account_Date
+				        , account_Money
+				        , account_DataIls
+				        , account_Detail_Item
+				        , account_Status
+				        , account_Division 
+				    from account
+				    order by ROWNUM DESC)
+				where ROWNUM = 1
+	</select>
+	
+</mapper>
+

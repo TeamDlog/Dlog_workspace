@@ -23,7 +23,7 @@
 </head>
 <body>
 
-<jsp:include page="../common/diaryHeader.jsp" />
+<jsp:include page="../../common/diaryHeader.jsp" />
 
   <!--**********************************
       Content body start
@@ -38,14 +38,14 @@
       <div class="container-fluid">
           <div class="row">
               <div class="col-12">
-                  <div class="card" style="width:985px;">
+                  <div class="card" style="width:900px;">
                       <div class="card-body" >
                           <div class="table-responsive">
                               <!-- 검색영역 -->
                               	
                               	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                            
-                             	<input type="hidden" name="accountWriter" value="${loginUser.userId }">
+                             	<input type="hidden" name="accountWriter" value="${loginUser.memberNo }">
                              	<table id="accountList" class="table" >
                              		
 						                	<thead>
@@ -128,7 +128,7 @@
 							                     
 								               </tr>
 								                <tr>
-									               <td colspan="7" align="center"><button type="submit" onclick="addAccount();">입력하기</button></td>
+									               <td colspan="7" align="center"><button type="submit" class="btn btn-success"onclick="addAccount();">입력하기</button></td>
 									           </tr>
 							          
 							                </tbody>
@@ -150,8 +150,8 @@
       Content body end
   ***********************************-->  
   
-	<jsp:include page="../common/diaryWidget.jsp" />
-	<jsp:include page="../common/diaryFooter.jsp" />
+	<jsp:include page="../../common/diaryWidget.jsp" />
+	<jsp:include page="../../common/diaryFooter.jsp" />
 	
 	
 	<script>
@@ -222,7 +222,7 @@
 			data:{
 				accountDate:$("#Date").val(),
 				accountItem:$("#accountItem").val(),
-				accountWriter:"${loginUser.userId}",
+				accountWriter:"${loginUser.memberNo}",
 				accountDetailItem:result,
 				accountDivision:$("#accountDivision").val(),
 				accountStatus:$("#accountStatus").val(),
