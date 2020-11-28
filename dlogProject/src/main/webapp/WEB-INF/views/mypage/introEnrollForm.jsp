@@ -50,7 +50,7 @@
                           <div class="introEnroll"> 
                               <div class="introEnrollForm">
                                   
-                                  <form id="enrollForm" action="introInsert.it" method="post"> 
+                                  <form id="enrollForm" action="introInsert.my" method="post"> 
                                   <input type="hidden"  name="memberNo" value="${loginUser.memberNo} }">
 								  <input type="hidden"  name="memberName" value="${loginUser.memberName} }">
 								  <input type="hidden"  name="memberId" value="${loginUser.memberId} }">
@@ -64,14 +64,14 @@
                                           <td style="font-size:30px;">&nbsp;</td>
                                       </tr>
                                       <tr>
-                                          <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp;<input type="text" name="title" style="border:0px; background-color:transparent;" value="${loginUser.introductionTitle} "></th>
+                                          <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp;<input type="text" name="title" style="border:0px; background-color:transparent;" value=" "></th>
                                       </tr>
                                       <tr>
                                           <td><hr id="line"></td>
                                       </tr>
                                       <tr>
                                           <td id="content">
-                                              <textarea name="content" cols="88" rows="10" style="resize:none;  margin-bottom:10px; border:0px; background-color:transparent;" required>${loginUser.introductionContent }</textarea>
+                                              <textarea name="content" cols="88" rows="10" style="resize:none;  margin-bottom:10px; border:0px; background-color:transparent;" required></textarea>
                                           </td>
                                       </tr>
                                       

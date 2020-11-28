@@ -50,14 +50,14 @@
                              8자리부터 최소 10자리 이상만 사용하실 수 있습니다.</b></p>
                         <!-- 2_1. 입력을 받는 input요소들이 위치할 영역 -->
                              
-                            <form action="" id="updatePwd" method="post">
+                            <form action="updatePwd.my" id="updatePwd" method="post">
                                     <!-- 3_1. ID/PWD input요소가 들어갈 div -->
                                    
                                     <table align="center"  id="updatePwdForm">
-                                     <input type="hidden" name="memberNo" class="form-control" value="${memberNo}">
+                                     <input type="hidden" name="memberNo" class="form-control" value="${loginUser.memberNo}">
                                         <tr>
                                             <td style="font-size:12px;"><br>기존 비밀번호 : &nbsp;&nbsp;&nbsp; </td>
-                                            <td><br><input id="original" type="password" name="memberPwd" maxlength="18" class="form-control" style="height:10px;" placeholder="password"required></td>
+                                            <td><br><input id="original" type="password" name="original" maxlength="18" class="form-control" style="height:10px;" placeholder="password"required></td>
                                             <td></td>
                                         </tr>
                                         <tr>
@@ -65,19 +65,19 @@
                                         </tr>
                                         <tr>
                                             <td style="font-size:12px;"><br>새 비밀번호 : &nbsp;&nbsp;&nbsp; </td>
+                                            <td><br><input type="password" name="memberPwd" maxlength="18" class="form-control" style="height:10px;" placeholder="password" required></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                        	<td colspan="3" id="checkPwd1" ><div id="checkPwd1" style="font-size:0.6em;"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size:12px;"><br>비밀번호 확인 : &nbsp;&nbsp;&nbsp; </td>
                                             <td><br><input type="password" name="checkPwd" maxlength="18" class="form-control" style="height:10px;" placeholder="password" required></td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                        	<td colspan="3"><div id="checkPwd1"></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-size:12px;"><br>비밀번호 확인 : &nbsp;&nbsp;&nbsp; </td>
-                                            <td><br><input type="password" name="checkPassPwd" maxlength="18" class="form-control" style="height:10px;" placeholder="password" required></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                        	<td colspan="3" id="checkPwd2"><div id="checkPwd2"></div></td>
+                                        	<td colspan="3" id="checkPwd2"><div id="checkPwd2" style="font-size:0.6em;"></div></td>
                                         </tr>
                                         <tr align="center">
                                             <td colspan="3">
@@ -134,7 +134,7 @@
 						-->
                        
                        //새 비밀번호 유효한지 확인
-				        var $pwdCheck = $("#updatePwd input[name=checkPwd]");
+				        var $pwdCheck = $("#updatePwd input[name=memberPwd]");
 						
 						$pwdCheck.keyup(function(){
 							
@@ -142,12 +142,12 @@
 								
 								$.ajax({
 									url:"pwdCheck2.my",
-									data:{checkPwd:$pwdCheck.val()},
+									data:{memberPwd:$pwdCheck.val()},
 									success:function(result){
 										
 										if(result != 'true'){
 				                            
-				                        	$("#").show();
+				                        	$("#checkPwd1").show();
 				    						$("#checkPwd1").css("color", "red").text("비밀번호가 유효하지 않습니다.다시 입력해 주세요.");
 				                            
 				                        }else{
@@ -172,7 +172,7 @@
 				
 						})//비밀번호 체크
 						
-						var $pwdCompare = $("#updatePwd input[name=checkPassPwd]");
+						var $pwdCompare = $("#updatePwd input[name=checkPwd]");
 						
 						$pwdCompare.keyup(function(){
 							
@@ -199,36 +199,6 @@
 							}
 							
 						})
-						
-						//비밀번호 동일 체크
-						function validate(){
-					         // 유효성 검사 :  이메일, 비밀번호일치, 닉네임
-					          var memberPwd = document.getElementById("memberPwd");
-					         var checkPwd = document.getElementById("checkPwd");
-					         var checkPassPwd = document.getElementById("checkPassPwd");
-					    	 
-					        
-					         var pwd1 = /^[a-z\d!@#$%^&*]{8,11}$/i;  //특수문자(!@#$%^&*)
-					   
-					         if(memberPwd.value != checkPwd.value){
-					             alert("동일한 비밀번호를 입력하세요!");
-					             checkPwd.value = "";
-					             checkPwd.focus(); 
-
-					             return false; 
-					         }
-					         
-					         if(memberPwd.value != checkPassPwd.value){
-					             alert("동일한 비밀번호를 입력하세요!");
-					             checkPassPwd.value = "";
-					             checkPassPwd.focus(); 
-
-					             return false; 
-					         }
-					        
-					         
-					  	 }
-					 
 						
 						
 					

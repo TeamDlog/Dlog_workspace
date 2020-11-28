@@ -56,11 +56,13 @@
                          <div class="infoSelectForm" align="center">
                          
                              <table class="infoSelectTable" >  
+                                    <c:if test="${loginUser.profile == null}">
                                      <div class="card-body">
-                                         <div class="text-center">
-                                             <img alt="" class="rounded-circle mt-4" src="images/default-profile-pic.jpg" width="90px">
+                                         <div class="text-center" Style=border1px solid black">
+                                             <img alt="" class="rounded-circle mt-4" src="resources/images/default-profile-pic.jpg" width="90px">
                                          </div>
                                      </div>
+                                     </c:if>
                                  <tr>
                                     <td> 이름 &nbsp; : </td>
                                     <td>${loginUser.memberName }</td>
@@ -130,7 +132,7 @@
 	                                                  
 	                                    </b>
 	
-	                                    <form action="infoUpdate1.in" method="post">
+	                                    <form action="infoUpdate.my" method="post">
 	                                      	  비밀번호 : 
 	                                    <input type="password" name="memberPwd" required>
 	                                        

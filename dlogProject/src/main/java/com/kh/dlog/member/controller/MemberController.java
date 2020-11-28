@@ -10,12 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
@@ -245,7 +241,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("infoList.in")
+	@RequestMapping("infoList.my")
 	public String infoList(HttpSession session, Model model) {
 		
 		ArrayList<Member> list = mService.infoList();
@@ -257,7 +253,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("infoUpdate.in")
+	@RequestMapping("infoUpdate.my")
 	public String updateMember(Member m, HttpSession session, Model model) {
 		
 		int result = mService.infoUpdate(m);
@@ -276,7 +272,7 @@ public class MemberController {
 	
 
 	}
-	 @RequestMapping("introList.it")
+	 @RequestMapping("introList.my")
 	 public String introList(Member m, HttpSession session, Model model) {
 		 
 		 ArrayList<Member> list = mService.introList(m);
@@ -286,7 +282,7 @@ public class MemberController {
 		 return "mypage/introListView";
 	 }
 	 
-	 @RequestMapping("introListMn.it")
+	 @RequestMapping("introListMn.my")
 	 public String introListMn(Member m, HttpSession session, Model model) {
 		 
 		 ArrayList<Member> list = mService.introListMn(m);
@@ -298,7 +294,7 @@ public class MemberController {
 	 
 	 
 	 
-	 @RequestMapping("enrollForm.it")
+	 @RequestMapping("enrollForm.my")
 		public String enrollForm() {
 			return "mypage/introEnrollForm";
 		}
@@ -319,14 +315,14 @@ public class MemberController {
 			}
 	 }
 	 
-	 @RequestMapping("updateForm.it")
+	 @RequestMapping("updateForm.my")
 		public String updateForm (){
 		
 			return "mypage/introUpdateForm";
 		}
 	 
 	 
-	 @RequestMapping("introUpdate.it")
+	 @RequestMapping("introUpdate.my")
 	 public String introUpdate(Member m, HttpSession session, Model model) {
 		 
 		 int result = mService.introUpdate(m);
@@ -351,10 +347,8 @@ public class MemberController {
 	 }
 	 
 	 @RequestMapping("updatePwd.my")
-	 	public String updatePwd(String memberPwd, Member m, HttpSession session) {
+	 	public String updatePwd(String original,Member m, HttpSession session) {
 		 
-		 	Member loginUser = (Member)session.getAttribute("loginUser");
-
 			String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
 			
 			m.setMemberPwd(encPwd);
@@ -364,7 +358,7 @@ public class MemberController {
 			if(result > 0) {
 				
 				session.setAttribute("alertMsg", "성공적으로 비밀번호가 변경되었습니다.");
-				return "redirect:updatePwdForm";
+				return "redirect:updatePwd.my";
 				
 			}else {
 				

@@ -21,7 +21,7 @@
          }
          #line{
             border:gray 2px dashed;
-            width:100%;
+            width:605px;
             
          }
         
@@ -51,15 +51,21 @@
                                  <div class="introSelect">
                                      <div class="introSelectForm">
                                           <table>
+                                          <c:if test="${loginUser.introductionTitle == null and loginUser.introductionContent == null }">
+                                          	
+                                          		<td colspan="4" style="font-size:1em;">준비된 소개글이 없습니다.</td>
+                                          	
+                                          </c:if>	
                                           	<tr>
-                                                 <th style="font-size:30px;">&nbsp;</th>
+                                                 <td style="font-size:30px;">&nbsp;</td>
                                              
-                                                 <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp; ${ loginUser.introductionTitle } </th>
+                                                 <td style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp; ${ loginUser.introductionTitle } </td>
                                              
-                                                 <td><hr id="line"></td>
+                                                 <td><div id="line"></div></td>
                                             
                                                  <td id="content">${ loginUser.introductionContent } </td>
                                              </tr>
+                                             
                                          </table>
                                      </div>
                                      <br>
