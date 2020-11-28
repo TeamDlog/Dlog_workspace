@@ -330,7 +330,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card" style="width:290px; float: left; margin-right: 15px; height: 400px;">
+                            <div class="card" style="width:290px; float: left; margin-right: 15px; height: 450px;">
                                 <div class="card-body" >
                                 
                                 <!-- 여기다가 작성 -->
@@ -339,6 +339,7 @@
                                     <option value="1">다이어리 표시</option>
                                     <option value="2">친구 공개</option>
                                 </select>
+                                <br><br>
                                 <h4>
                                     <i class="icon-clock menu-icon"></i><span class="nav-text">&nbsp;&nbsp;&nbsp;디데이 </span>
                                     <div class='toggleBG widgetController ddayCheck'>
@@ -366,11 +367,11 @@
                                         <button id="" class='toggleFG widgetController timetableCheck'></button>
                                     </div>
                                 </h4>
-
+								
                                 </div>
                             </div>
 
-                            <div class="card" style="width:290px; float: left;  margin-right: 15px; height: 400px;">
+                            <div class="card" style="width:290px; float: left;  margin-right: 15px; height: 450px;">
                                 <div class="card-body" >
                                	<div style="float:right"><h4>메뉴 관리</h4></div>
                                 <!-- 여기다가 작성 -->
@@ -402,11 +403,17 @@
                                         <button class='toggleFG photoCheck'></button>
                                     </div>
                                 </h4>
-
+                                <br><br>
+                                <h4>
+                                    <i class="icon-wallet menu-icon"></i><span class="nav-text">&nbsp;&nbsp;&nbsp;가계부</span>
+                                    <div class='toggleBG accountCheck'>
+                                        <button class='toggleFG accountCheck'></button>
+                                    </div>
+                                </h4>
                                 </div>
                             </div>
 
-                            <div class="card" style="width:290px; float: left; height: 400px;">
+                            <div class="card" style="width:290px; float: left; height: 450px;">
                                 <div class="card-body" >
                                 <!-- 여기다가 작성 -->
                                 <div style="float:right"><h4>테마 관리</h4></div>
@@ -437,6 +444,7 @@
                                             </th>
                                         </tr>
                                     </table>
+                                    <br><br><br>
                                     <div style="float: right;">
                                         <button onclick="changeMyColor();" type="button" class="btn btn-success" >테마적용</button>
                                         <button type="button" class="btn btn-danger" >초기화</button>
@@ -792,6 +800,17 @@
 				
 				$("div.photoCheck").css('background', '#CCCCCC');
 				$("button.photoCheck").css("left","0px");  
+				
+			}
+			if('${ca.privacyAccount}' == 'Y'){
+
+	            $("div.accountCheck").css('background', '#53FF4C');
+				$("button.accountCheck").css("left","40px");    
+				
+			}else if('${ca.privacyAccount}' == 'N'){
+				
+				$("div.accountCheck").css('background', '#CCCCCC');
+				$("button.accountCheck").css("left","0px");  
 				
 			}
 			/* 메뉴관리 */
