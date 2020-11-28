@@ -28,6 +28,9 @@ public class ControlAll {
 	private String privacyTimetable;
 	private String myColorLogo;
 	private String myColorBackground;
-	private String myColorMebubar;
+	private String myColorMenubar;
 	private String myColorFont;
+	private String widget;
+	private String status;
+	private String menu;
 }
