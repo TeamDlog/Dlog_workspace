@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="faqMapper">
+	<resultMap type="Faq" id="faqResultSet">
+		<id column = "faq_no" property="faqNo" />
+		<result column="faq_content" property="faqContent" />
+		<result column="faq_title" property="faqTitle" />
+		<result column="faq_date" property="faqDate" />
+		<result column="faq_count" property="faqCount"/>
+	</resultMap>
+	
+	<select id="selectListCount" resultType="_int">
+		select
+	        count(*)
+	    from faq
+	    where faq_status='Y'
+	</select>
+	<select id="serviceMain" resultMap="faqResultSet">
+		select
+		      	*
+		    from (select faq_no, faq_title, faq_content from faq where faq_status='Y'  order by faq_count desc)
+		    where ROWNUM <![CDATA[ < ]]> 6	
+	</select>
+	<select id="selectList" resultMap="faqResultSet">
+		select
+		        faq_no
+		        , faq_title
+		        , faq_content
+		        , to_char(faq_date, 'YYYY/MM/DD') faq_date
+		        , faq_count
+		    from faq
+		    where faq_status='Y'
+		    order 
+		        by faq_no desc
+	</select>
+	<update id="increaseCount" parameterType="_int">
+		update
+		        faq
+		    set faq_count = faq_count + 1
+		    where faq_no = #{bno}
+		    and faq_status = 'Y'
+	</update>
+	
+	<select id="selectFaq" resultMap="faqResultSet" parameterType="_int">
+		select 
+		        faq_no
+		        , faq_title
+		        , to_char(faq_date, 'YYYY/MM/DD') faq_date
+		        , faq_content
+		        , faq_count
+		    from faq
+		    where faq_no = #{bno}
+	</select>
+	<select id="searchListCount_title" resultType="_int">
+		select
+	        count(*)
+	    from faq
+	    where faq_status='Y'
+	    and faq_title like '%' ||  #{keyword} || '%'
+	</select>
+	<select id="searchListCount_content" resultType="_int">
+		select
+	        count(*)
+	    from faq
+	    where faq_status='Y'
+	    and faq_content like '%' ||  #{keyword} || '%'
+	</select>
+	<select id="searchList_title" resultMap="faqResultSet">
+		select
+		        faq_no
+		        , faq_title
+		        , faq_content
+		        , to_char(faq_date, 'YYYY/MM/DD') faq_date
+		        , faq_count
+		    from faq
+		    where faq_status='Y'
+		    and faq_title like '%' ||  #{keyword} || '%'
+		    order 
+		        by faq_no desc
+	</select>
+	<select id="searchList_content" resultMap="faqResultSet">
+		select
+		        faq_no
+		        , faq_title
+		        , faq_content
+		        , to_char(faq_date, 'YYYY/MM/DD') faq_date
+		        , faq_count
+		    from faq
+		    where faq_status='Y'
+		    and faq_content like '%' ||  #{keyword} || '%'
+		    order 
+		        by faq_no desc
+	</select>
+	<update id="deleteFaq" parameterType="_int">
+		update
+		        faq
+		    set faq_status='N'
+		    where faq_no=#{bno}
+	</update>
+	
+	<insert id="insertFaq" parameterType="Faq">
+		insert
+		        into faq
+		        (
+		            faq_no
+		            , faq_title
+		            , faq_content
+		            , faq_count
+		        )
+		        values
+		        (
+		            seq_faqno.nextval
+		            , #{faqTitle}
+		            , #{faqContent}
+		            , #{faqCount}
+		        )
+				
+	</insert>
+	
+</mapper>

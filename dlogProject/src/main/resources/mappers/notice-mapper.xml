@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+	<resultMap type="Notice" id="noticeResultSet">
+		<id column = "notice_no" property="noticeNo" />
+		<result column="notice_content" property="noticeContent" />
+		<result column="notice_title" property="noticeTitle" />
+		<result column="notice_date" property="noticeDate" />
+		<result column="notice_originName" property="noticeOriginName"/>
+		<result column="notice_changeName" property="noticeChangeName"/>
+		
+	</resultMap>
+	
+	<select id="selectListCount" resultType="_int">
+		select
+	        count(*)
+	    from notice
+	    where notice_status='Y'
+	</select>
+	<select id="selectList" resultMap="noticeResultSet">
+		select
+		        notice_no
+		        , notice_title
+		        , notice_content
+		        , to_char(notice_date, 'YYYY/MM/DD') notice_date
+		        , notice_originName
+		    from notice
+		    where notice_status='Y'
+		    order 
+		        by notice_no desc
+	</select>
+	
+	
+	<select id="selectNotice" resultMap="noticeResultSet" parameterType="_int">
+		select 
+		        notice_no
+		        , notice_title
+		        , to_char(notice_date, 'YYYY.MM.DD') notice_date
+		        , notice_content
+		        , notice_originName
+		        , notice_changeName
+		    from notice
+		    where notice_no = #{bno}
+	</select>
+	<select id="searchListCount_title" resultType="_int">
+		select
+	        count(*)
+	    from notice
+	    where notice_status='Y'
+	    and notice_title like '%' ||  #{keyword} || '%'
+	</select>
+	<select id="searchListCount_content" resultType="_int">
+		select
+	        count(*)
+	    from notice
+	    where notice_status='Y'
+	    and notice_content like '%' ||  #{keyword} || '%'
+	</select>
+	<select id="searchList_title" resultMap="noticeResultSet">
+		select
+		        notice_no
+		        , notice_title
+		        , notice_content
+		        , to_char(notice_date, 'YYYY/MM/DD') notice_date
+		        , notice_originName
+		    from notice
+		    where notice_status='Y'
+		    and notice_title like '%' ||  #{keyword} || '%'
+		    order 
+		        by notice_no desc
+	</select>
+	<select id="searchList_content" resultMap="noticeResultSet">
+		select
+		        notice_no
+		        , notice_title
+		        , notice_content
+		        , to_char(notice_date, 'YYYY/MM/DD') notice_date
+		        , notice_originName
+		    from notice
+		    where notice_status='Y'
+		    and notice_content like '%' ||  #{keyword} || '%'
+		    order 
+		        by notice_no desc
+	</select>
+	
+	<update id="deleteNotice" parameterType="_int">
+		update
+		        notice
+		    set notice_status='N'
+		    where notice_no=#{bno}
+	</update>
+	
+	<insert id="insertNotice" parameterType="Notice">
+		insert
+		        into notice
+		        (
+		            notice_no
+		            , notice_title
+		            , notice_content
+		            , notice_originName
+		            , notice_changeName
+		        )
+		        values
+		        (
+		            SEQ_NOTICENO.nextval
+		            , #{noticeTitle}
+		            , #{noticeContent}
+		            , #{noticeOriginName}
+		            , #{noticeChangeName}
+		        )
+				
+	</insert>
+	
+</mapper>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="controlAllMapper">
-	<resultMap type="Ca" id="CaResultSet">
+	<resultMap type="Ca" id="caResultSet">
 		<id column="member_no" property="memberNo"/>
 		<result column="active_dday" property="activeDday" />
 		<result column="active_voca" property="activeVoca" />
-		<result column="active-memo" property="activeMemo" />
+		<result column="active_memo" property="activeMemo" />
 		<result column="active_timetable" property="activeTimetable" />
 		<result column="privacy_calendar" property="privacyCalendar" />
-		<result column="privacy_diary" property="privacyDiray" />
+		<result column="privacy_diary" property="privacyDiary" />
 		<result column="privacy_freenote" property="privacyFreenote" />
 		<result column="privacy_photo" property="privacyPhoto" />
 		<result column="privacy_account" property="privacyAccount" />
 		<result column="privacy_dday" property="privacyDday" />
 		<result column="privacy_voca" property="privacyVoca" />
-		<result column="privacy_memo" property="privacyMomo" />
+		<result column="privacy_memo" property="privacyMemo" />
 		<result column="privacy_timetable" property="privacyTimetable" />
 		<result column="my_color_logo" property="myColorLogo" />
 		<result column="my_color_background" property="myColorBackground" />
@@ -22,6 +22,45 @@
 		<result column="my_color_font" property="myColorFont" />
 	</resultMap>
 	
+	<select id="controlAllMain" parameterType="string" resultMap="caResultSet">
+		select
+		        a.member_no member_no
+		      , active_dday
+		      , active_voca
+		      , active_memo
+		      , active_timetable
+		      , privacy_calendar
+		      , privacy_diary
+		      , privacy_freenote
+		      , privacy_photo
+		      , privacy_account
+		      , privacy_dday
+		      , privacy_voca
+		      , privacy_memo
+		      , privacy_timetable
+		      , my_color_logo
+		      , my_color_background
+		      , my_color_menubar
+		      , my_color_font
+		  from active a
+		  join privacy p on(a.member_no = p.member_no)
+		  join my_color m on(a.member_no = m.member_no)
+		where a.member_no = #{memberNo}
+	</select>
+	
+	<update id="activeWidget">
+		update 
+		       active
+		   set ${widget} = '${status}'
+		 where member_no = ${memberNo}
+	</update>
+	
+	<update id="privacyWidget">
+		update
+		       privacy
+		   set ${widget} = '${status}'
+		 where member_no = ${memberNo} 
+	</update>
 	
 	
 	
