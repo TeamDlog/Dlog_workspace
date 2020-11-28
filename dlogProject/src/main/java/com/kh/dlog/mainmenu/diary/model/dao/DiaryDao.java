@@ -29,7 +29,7 @@ public class DiaryDao {
 	}
 	
 	public int insertDiary(SqlSessionTemplate sqlSession, Diary d) {
-		return sqlSession.insert("DiaryMapper.insertDiary", d);
+		return sqlSession.insert("diaryMapper.insertDiary", d);
 	}
 	
 	public Diary detailDiary(SqlSessionTemplate sqlSession, int dno) {

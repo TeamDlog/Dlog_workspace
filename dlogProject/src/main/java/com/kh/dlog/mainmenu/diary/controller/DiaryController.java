@@ -14,7 +14,6 @@ import com.kh.dlog.common.model.vo.PageInfo;
 import com.kh.dlog.common.template.Pagination;
 import com.kh.dlog.mainmenu.diary.model.service.DiaryService;
 import com.kh.dlog.mainmenu.diary.model.vo.Diary;
-import com.kh.dlog.mainmenu.freenote.model.vo.Freenote;
 
 
 @Controller
@@ -40,23 +39,23 @@ public class DiaryController {
 	
 	 @RequestMapping("enrollForm.di")
 	public String enrollForm() {
-		
-		 
 		return "mainmenu/diary/diaryEnrollForm";
 	}
 	
 	 @RequestMapping("insert.di")
-	public String insertDiary(Diary dn, Model model, HttpSession session) {
+	public String insertDiary(Diary d, Model model, HttpSession session) {
 		
-		
-		int result = dService.insertDiary(dn);
+		int result = dService.insertDiary(d);
 	
 		if(result>0) {
+			
 			session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
 			return "redirect:list.di";
 		}else {
-			model.addAttribute("errorMsg", "게시글 등록 실패");
+			model.addAttribute("errorMsg", "등록 실패했습니다.");
 			return "common/errorPage";
+			
+			
 		}
 	}
 	
@@ -67,7 +66,7 @@ public class DiaryController {
 		Diary dn = dService.detailDiary(dno);
 		
 		model.addAttribute("dn", dn);
-		return "main/diary/diaryDetailView";
+		return "mainmenu/diary/diaryDetailView";
 		
 	}
 	
@@ -90,8 +89,8 @@ public class DiaryController {
 	@RequestMapping("updateForm.di")
 	public String updateForm (int dno, Model model){
 	
-		Diary d = dService.detailDiary(dno);
-		model.addAttribute("d",d);
+		Diary dn = dService.detailDiary(dno);
+		model.addAttribute("dn",dn);
 		
 		return "mainmenu/diary/diaryUpdateForm";
 	}
@@ -104,10 +103,12 @@ public class DiaryController {
 		if(result>0) {
 			session.setAttribute("alertMsg", "수정되었습니다.");
 			model.addAttribute("dno", dn.getDiaryNo());
-			return "redirect:detail.di";
+			return "redirect:list.di";
 		}else {
 			//에러페이지
+			model.addAttribute("errorMsg", "수정 실패했습니다.");
 			return "common/errorPage";
+			
 		}
 	}
 	

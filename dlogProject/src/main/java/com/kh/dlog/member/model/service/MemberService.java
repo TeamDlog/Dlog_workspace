@@ -43,7 +43,7 @@ public interface MemberService {
 
 	int deleteMember(String memberId);
 
-	
+	int updatePwd(Member m);
 	
 	
 	

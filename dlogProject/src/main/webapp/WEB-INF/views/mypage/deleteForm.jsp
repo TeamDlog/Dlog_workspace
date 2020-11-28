@@ -43,29 +43,22 @@
                     <div class="card-body" >
                         
                     <!-- 여기다가 작성 -->
-                    <div class="deleteForm">
-                        
-                        <br>
-                        <p align="center">회원탈퇴를 진행하시려면 비밀번호를 입력해주세요!  </p>
-                         <form action="delete.me" method="post">
-                                    <table align="center"  id="deleteMemForm">
-                                     <input type="hidden" name="userId" class="form-control" value="${loginUser.memberId }">
-                                        <tr>
-                                            <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 비밀번호 : &nbsp;&nbsp;&nbsp; </td>
-                                            <td><br><input type="password" name="userPwd" maxlength="15" class="form-control" style="height:30px;" placeholder="password"required></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr align="center">
+                    <div class="deleteForm" align="center">
+                        <br><br>
+                         		<p style="font-size:16px;">	탈퇴를 하시겠습니까?   </p>
+                        <p style=" font-size:11px; font-weight:bolder;" >*탈퇴를 하게 될 시 30일동안 재가입이 불가능합니다.*</p>
+                         			<table align="center" id="deleteMemForm">
+                                      <tr>
                                             <td colspan="3">
-                                               <br><br>
-                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                               <input align="center" type="button" onclick="return validatePwd();"class="btn btn-success" id="deleteMemBtn" data-toggle="modal" data-target="#deleteForm" value="탈퇴하기">
+                                               <br><input type="button"class="btn btn-success" id="deleteMemBtn" data-toggle="modal" data-target="#deleteForm" value="탈퇴하기">
                                               </td>
                                           </tr>
                                       </table>
-                             </form>
+                             
+                             
                 
                       </div>   
+                     
                      <br><br><br><br><br><br>
                     <!-- 회원탈퇴 버튼 클릭시 보여질 Modal -->
                     <div class="modal" id="deleteForm">
@@ -88,29 +81,23 @@
 
                                     <form action="deleteMember.me" method="post">
                                       	  비밀번호 : 
-                                        <input type="password" name="userPwd" required><!-- 사용자가 입력한 평문 그대로의 비밀번호가 넘어감 ,,값을 입력안하면 요청안돼-->
+                                        <input type="password" name="memberPwd" required>
                                         
                                         <button type="submit" class="btn btn-danger btn-sm" >탈퇴</button>
-                                        <button onclick="history.back();" class="btn btn-dark btn-sm">취소</button>
-                                    
+                                        <button type="button" id="cancle" class="btn btn-dark btn-sm" >취소</button>
+			                      <script>
+			                      $('#cancle').click(function(){
+				                      $( '#deleteForm' ).modal("hide");
+			                    	  
+			                      });
+			                    	  
+			                      </script>
                                     </form>
                                 </div>
                                 
                             </div>
                         </div>
                     </div>
-                    <script>
-
-                        function validatePwd(){
-                            if($("input[name=userPwd]").val() == ${loginUser.memberPwd}){
-                            }else{
-                                alert("비밀번호가 일치하지 않습니다.");
-                                $("input[name=userPwd]").focus();
-                                return false;
-                            }
-                        }
-                        
-                        </script>
 
                     </div>
                 </div>

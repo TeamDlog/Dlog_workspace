@@ -10,7 +10,7 @@ public interface DiaryService {
 	int selectListCount();
 	ArrayList<Diary> selectList(PageInfo pi);
 	
-	int insertDiary(Diary dn);
+	int insertDiary(Diary d);
 	
 	Diary detailDiary(int dno);
 	

@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Dlog</title>
+<style>
+a {
+	cursor:pointer;
+}
+</style>
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16" href="resources/images/DlogLogo-title.png">
 
@@ -44,7 +49,7 @@
                               <br><br>
 								
                               <!-- 목록 -->
-                              <table class="table table-hover">
+                              <table class="table table-hover" id="list"> 
                                   <thead align="center">
                                       <tr>
                                           <th>글번호</th>
@@ -56,15 +61,27 @@
                                   <tbody align="center">
                                   	  <c:forEach var="d" items="${ list }">
 	                                      <tr>
-	                                          <th class="dno">${ d.diaryNo }</th>
+	                                          <td >${ d.diaryNo }</td>
 	                                          <td>${ d.diaryTitle }</td>
 	                                          <td>${ d.diaryDate }</td>
-	                                          <td><a onclick="noticeUpdate(this); event.stopImmediatePropagation();">수정</a>&nbsp;&nbsp;
-												  <a onclick="noticeDelete(this); event.stopImmediatePropagation();">삭제</a></td>
+	                                          <td><a onclick="diaryUpdate(this); event.stopImmediatePropagation();">수정</a>&nbsp;&nbsp;
+												  <a onclick="diaryDelete(this); event.stopImmediatePropagation();">삭제</a></td>
 	                                      </tr>
                                       </c:forEach>
+                                      <c:if test="${ empty list }">
+                                      	<td colspan="4">조회된 글이 없습니다.</td>
+                                      </c:if>
                                   </tbody>
                               </table>
+                                      <div width="100" align="right">
+                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
+                                      </div>
+                            	<script>
+	                           	$("#list>tbody>tr").click(function(){
+	           				    	var dno = $(this).children().eq(0).text();
+	           					 	location.href="detail.di?dno="+ $(this).children().eq(0).text();    	
+	           				     });
+	           					</script>
                               <br>
                               <!-- 페이징 -->
                               <table align="center">
@@ -75,7 +92,7 @@
                                           
                                           <c:choose>
                                           	  <c:when test="${ pi.currentPage eq 1} }">
-                                              	<li class="page-item disaled"><a class="page-link" href="#">Previous</a></li>
+                                              	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                                               </c:when>
                                               <c:otherwise>
                                               	<li class="page-item"><a class="page-link" href="list.di?currentPage=${ pi.currentPage-1 }">Previous</a></li>
@@ -85,7 +102,7 @@
                                               
                                               
                                             <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">  
-                                              <li class="page-item active"><a class="page-link" href="list.di?currentPage=${ P }">${ p }</a></li>
+                                              <li class="page-item active"><a class="page-link" href="list.di?currentPage=${ p }">${ p }</a></li>
                                          	</c:forEach>
                                               
                                               
@@ -99,9 +116,7 @@
                                             </c:choose> 
                                           </ul>
                                       </td>
-                                      <td width="100" align="center">
-                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
-                                      </td>
+                                     
                                   </tr>
                               </table>
                           </div>                                

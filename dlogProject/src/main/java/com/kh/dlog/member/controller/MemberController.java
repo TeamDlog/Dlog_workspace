@@ -1,25 +1,24 @@
 package com.kh.dlog.member.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
-import com.kh.dlog.template.Coolsms;
 
 
 @Controller
@@ -346,29 +345,122 @@ public class MemberController {
 	
 	 }
 	 
-	 @RequestMapping("deleteMember.me")
-	 public String deleteMember(Member m, HttpSession session, Model model) {
+	 @RequestMapping("updatePwdForm.my")
+	 	public String updatePwdForm(HttpSession session) {
+		 return "mypage/pwdUpdateForm";
+	 }
+	 
+	 @RequestMapping("updatePwd.my")
+	 	public String updatePwd(String memberPwd, Member m, HttpSession session) {
 		 
-		 
-		 Member loginUser = (Member)session.getAttribute("loginUser");
-		 
-		 int result = mService.deleteMember(loginUser.getMemberId());
-		 
-		 if(result > 0) {
+		 	Member loginUser = (Member)session.getAttribute("loginUser");
+
+			String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
+			
+			m.setMemberPwd(encPwd);
+			
+			int result = mService.updatePwd(m);
+			
+			if(result > 0) {
 				
-			 	session.removeAttribute("loginUser"); 
-				session.setAttribute("alertMsg", "성공적으로 탈퇴되었습니다. 그동안 이용해주셔서 감사합니다.");
+				session.setAttribute("alertMsg", "성공적으로 비밀번호가 변경되었습니다.");
+				return "redirect:updatePwdForm";
 				
-				return"redirect:/";
+			}else {
 				
-				
-			}else { // 실패 => 에러문구 담아서 에러페이지 포워딩 
-				
-				model.addAttribute("errorMsg", "회원탈퇴 실패");
+				session.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
 				return "common/errorPage";
 				
 			}
+		
 	 }
+	 
+	/* 
+	 @GetMapping("updatePwdForm.my")
+	 public ModelAndView pwChange() {
+	 	return new ModelAndView ("mypage/pwdUpdateForm");
+	 }
+	 
+	//비밀번호 확인 처리 요청
+	 @PostMapping("/checkPw")
+	 public String checkPw(@RequestBody String memberPwd, HttpSession session) throws Exception {
+	 	
+	 	loginUser.info("비밀번호 확인 요청 발생");
+	 	
+	 	String result = null;
+	 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	 	
+	 	Member loginUser = (Member)session.getAttribute("loginUser");
+	 	loginUser.info("DB 회원의 비밀번호 : " + loginUser.getMemberPwd());
+	 	loginUser.info("폼에서 받아온 비밀번호 : " + memberPwd);
+	 	
+	 	if(bcryptPasswordEncoder.matches(pw, loginUser.getMemberPwd())) {
+	 		result = "pwConfirmOK";
+	 	} else {
+	 		result = "pwConfirmNO";
+	 	}
+	 	
+	 	return result;
+	 	
+	 }
+	 */
+	 @RequestMapping("pwdCheck2.my")
+	 public String pwdCheck2(String memberPwd) {
+		 
+		 String regExp = "^(?=.*[a-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\\\"+=])[a-z[0-9]$@$!%*?&`~'\\\"+=]{8,15}$";
+		 
+		 Pattern pSymbol = Pattern.compile(regExp);
+		 Matcher mSymbol = pSymbol.matcher(memberPwd);
+		 
+		 if(mSymbol.find()) {
+			 return "true";
+		 }else {
+			 return "false";
+		 }
+		 
+	 }
+	 
+	 @RequestMapping("deleteForm.me")
+		public String deleteForm(HttpSession session) {
+		 
+			return "mypage/deleteForm";
+		}
+	 
+	 
+	 @RequestMapping("deleteMember.me")
+	 public String deleteMember(String memberPwd, HttpSession session, Model model) {
+		 
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			
+			if(bcryptPasswordEncoder.matches(memberPwd, loginUser.getMemberPwd())) {
+				
+				int result = mService.deleteMember(loginUser.getMemberId()); 
+				
+				
+				if(result > 0) { 
+					
+					session.removeAttribute("loginUser");
+					session.setAttribute("alertMsg", "성공적으로 탈퇴되었습니다.");
+					
+					return"redirect:/";
+					
+					
+				}else {
+					
+					model.addAttribute("errorMsg", "회원탈퇴를 실패했습니다.");
+					return "common/errorPage";
+					
+				}
+				
+			}else {
+				// 비밀번호 틀림!!
+				session.setAttribute("alertMsg", "비밀번호가 틀렸습니다.");
+				return "redirect:deleteForm.me"; // 마이페이지상에서 !
+			
+			}
+		
+		}
+	 
 }
 	 
 	 

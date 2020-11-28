@@ -133,6 +133,7 @@
                         <input type="password" class="form-control" id="comparePwd" name="comparePwd" placeholder="새 비밀번호를 입력하세요" required>
                         <div id="comparePwdResult" style="font-size:0.8em; padding-top: 5px"></div>
                       </div>
+                      
                       <button id="pwdChange" type="button" class="btn" disabled>변경</button>
                       <div class="modal fade" id="exampleModalCenter">
                         <div class="modal-dialog modal-dialog-centered" role="document" style="width: 400px;">

@@ -119,6 +119,11 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.deleteMember(sqlSession,memberId);
 	}
 
+	@Override
+	public int updatePwd(Member m) {
+		return mDao.updatePwd(sqlSession, m);
+	}
+
 
 
 	

@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Dlog</title>
+<title>Dlog</title> 
+
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16" href="resources/images/DlogLogo-title.png">
 
@@ -34,21 +35,35 @@
                  <div class="card" style="width:900px;">
                      <div class="card-body" >
                          <form action="insert.di"method="post">
-                         <input type="hidden" name="diaryWriter" value="1">
-                             <div >
-                                 <input type="text" name="diaryTitle" style="width:680px; height: 35px; border: .5px solid lightgrey; border-radius: 4px; margin-left:30px; " placeholder="&nbsp;제목을 입력해주세요">
+                         <input type="hidden" name="diaryWriter" value="${loginUser.memberNo }">
+	                            
+                        	 <div>
+                                 <input type="text" name="diaryTitle" style="width:680px; height: 35px; border: .5px solid lightgrey; border-radius: 4px; margin-left:30px; " placeholder="&nbsp;제목을 입력해주세요" required>
                              </div>
                              <div class="card-body">
-                                 <div class="summernote" name="diaryContent">
-                                 </div>
+                                 <textarea class="summernote" name="diaryContent" required>
+                                 </textarea>
                              </div>
-                         </form>
                          <div align="right">
-                             <button type="submit" class="btn btn-primary btn-sm">등록</button>
+                             <button type="submit" class="btn btn-primary btn-sm"  onclick="insert(this.form)">등록</button>
                              <button onclick="history.back();" class="btn btn-dark btn-sm">취소</button>
                          </div>
-                                                       
+                         </form>
+                        
                      </div>
+                     <script>
+						function insert(form) {
+							var title = form.diaryTitle.value;
+							var content = form.diaryContent.value;
+							
+							if (title.trim() == ''){
+								alert("제목을 입력해주세요");
+								return false;
+							}
+							
+							frm.submit();
+						}
+						</script>
                  </div>
              </div>
          </div>

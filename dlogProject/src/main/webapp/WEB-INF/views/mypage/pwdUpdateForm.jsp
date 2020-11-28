@@ -13,7 +13,7 @@
         border: solid 1px rgb(207, 202, 202);
         padding: 31px;
         width: 500px;
-        height: 400px;
+        height: 450px;
         border-radius: 50px;
     }
 
@@ -46,19 +46,22 @@
                     <div class="updatePwdForm" align="center">
                         
                         <br>
-                        <p align="center"><b>비밀번호는 대문자, 소문자, 숫자, 특수문자 총 2종류 이상을 조합하여<br>
-                             최소 10자리 이상만 사용할 수 있습니다.</b></p>
+                        <p align="center"><b>비밀번호는 대문자, 소문자, 숫자, 특수문자를 조합하여<br>
+                             8자리부터 최소 10자리 이상만 사용하실 수 있습니다.</b></p>
                         <!-- 2_1. 입력을 받는 input요소들이 위치할 영역 -->
                              
-                            <form action="updatePwd.me" method="post">
+                            <form action="" id="updatePwd" method="post">
                                     <!-- 3_1. ID/PWD input요소가 들어갈 div -->
                                    
                                     <table align="center"  id="updatePwdForm">
-                                     <input type="hidden" name="memberId" class="form-control" value="">
+                                     <input type="hidden" name="memberNo" class="form-control" value="${memberNo}">
                                         <tr>
                                             <td style="font-size:12px;"><br>기존 비밀번호 : &nbsp;&nbsp;&nbsp; </td>
-                                            <td><br><input type="password" name="memberPwd" maxlength="18" class="form-control" style="height:10px;" placeholder="password"required></td>
+                                            <td><br><input id="original" type="password" name="memberPwd" maxlength="18" class="form-control" style="height:10px;" placeholder="password"required></td>
                                             <td></td>
+                                        </tr>
+                                        <tr>
+                                        	<td colspan="3"><div id="memberPwd1"></div></td>
                                         </tr>
                                         <tr>
                                             <td style="font-size:12px;"><br>새 비밀번호 : &nbsp;&nbsp;&nbsp; </td>
@@ -66,14 +69,20 @@
                                             <td></td>
                                         </tr>
                                         <tr>
+                                        	<td colspan="3"><div id="checkPwd1"></div></td>
+                                        </tr>
+                                        <tr>
                                             <td style="font-size:12px;"><br>비밀번호 확인 : &nbsp;&nbsp;&nbsp; </td>
                                             <td><br><input type="password" name="checkPassPwd" maxlength="18" class="form-control" style="height:10px;" placeholder="password" required></td>
                                             <td></td>
                                         </tr>
+                                        <tr>
+                                        	<td colspan="3" id="checkPwd2"><div id="checkPwd2"></div></td>
+                                        </tr>
                                         <tr align="center">
                                             <td colspan="3">
                                                <br><br>
-                                              <input align="center" type="button" onclick="return validate();"class="btn btn-success" id="updatePwdBtn" data-toggle="modal" data-target="#pwdUpdateForm" value="변경">
+                                              <button align="center" type="submit"class="btn btn-success" id="updatePwdBtn" >변경</button>
                                               </td>
                                           </tr>
                                       </table>
@@ -82,8 +91,150 @@
                       </div>   
                      
                       <br><br><br><br><br>
-                      
-                      <script>
+                       <script>
+                       //비밀번호 확인 비밀번호가 맞으면 disabled해제
+                       <!--
+                       var $pwdCheck = $("#updatePwd input[name=memberPwd]");
+						
+                       $pwdCheck.keyup(function(){
+							
+							if($pwdCheck.val().length >= 8){
+								
+								$.ajax({
+									url:"pwdCheck2.my",
+									data:{memberPwd:$pwdCheck.val()},
+									success:function(result){
+										
+										if(result != 'true'){
+				                            
+				                        	$("#checkPwd1").show();
+				    						$("#checkPwd1").css("color", "red").text("비밀번호가 유효하지 않습니다.다시 입력해 주세요.");
+				                            
+				                        }else{
+				                        	
+				                        	$("#checkPwd1").show();
+				    						$("#checkPwd1").css("color", "green").text("유효한 비밀번호입니다.");
+				    						$("#updatePwdBtn").removeAttr("disabled");
+				                        	
+				                        }
+										
+									},error:function(){
+										console.log("ajax통신 실패");
+									}
+								})
+				
+				      		}else{
+				      			
+				      			$("#checkPwd1").hide();
+								$("#updatePwdBtn").attr("disabled", true);
+				      			
+				      		}
+				
+						})
+						-->
+                       
+                       //새 비밀번호 유효한지 확인
+				        var $pwdCheck = $("#updatePwd input[name=checkPwd]");
+						
+						$pwdCheck.keyup(function(){
+							
+							if($pwdCheck.val().length >= 8){
+								
+								$.ajax({
+									url:"pwdCheck2.my",
+									data:{checkPwd:$pwdCheck.val()},
+									success:function(result){
+										
+										if(result != 'true'){
+				                            
+				                        	$("#").show();
+				    						$("#checkPwd1").css("color", "red").text("비밀번호가 유효하지 않습니다.다시 입력해 주세요.");
+				                            
+				                        }else{
+				                        	
+				                        	$("#checkPwd1").show();
+				    						$("#checkPwd1").css("color", "green").text("유효한 비밀번호입니다.");
+				    						$("#updatePwdBtn").removeAttr("disabled");
+				                        	
+				                        }
+										
+									},error:function(){
+										console.log("ajax통신 실패");
+									}
+								})
+				
+				      		}else{
+				      			
+				      			$("#checkPwd1").hide();
+								$("#updatePwdBtn").attr("disabled", true);
+				      			
+				      		}
+				
+						})//비밀번호 체크
+						
+						var $pwdCompare = $("#updatePwd input[name=checkPassPwd]");
+						
+						$pwdCompare.keyup(function(){
+							
+							if($pwdCompare.val().length >= 8){
+							
+				    			if($pwdCheck.val() != $pwdCompare.val()){
+				    				
+				    				$("#checkPwd2").show();
+									$("#checkPwd2").css("color", "red").text("입력한 비밀번호가 일치하지 않습니다.다시 입력해 주세요.");
+				    				
+				    			}else{
+				    				
+				    				$("#checkPwd2").show();
+									$("#checkPwd2").css("color", "green").text("비밀번호가 일치합니다.");
+									$("#updatePwdBtn").removeAttr("disabled");
+				    				
+				    			}
+				    			
+							}else{
+								
+								$("#checkPwd2").hide();
+								$("#updatePwdBtn").attr("disabled", true);
+								
+							}
+							
+						})
+						
+						//비밀번호 동일 체크
+						function validate(){
+					         // 유효성 검사 :  이메일, 비밀번호일치, 닉네임
+					          var memberPwd = document.getElementById("memberPwd");
+					         var checkPwd = document.getElementById("checkPwd");
+					         var checkPassPwd = document.getElementById("checkPassPwd");
+					    	 
+					        
+					         var pwd1 = /^[a-z\d!@#$%^&*]{8,11}$/i;  //특수문자(!@#$%^&*)
+					   
+					         if(memberPwd.value != checkPwd.value){
+					             alert("동일한 비밀번호를 입력하세요!");
+					             checkPwd.value = "";
+					             checkPwd.focus(); 
+
+					             return false; 
+					         }
+					         
+					         if(memberPwd.value != checkPassPwd.value){
+					             alert("동일한 비밀번호를 입력하세요!");
+					             checkPassPwd.value = "";
+					             checkPassPwd.focus(); 
+
+					             return false; 
+					         }
+					        
+					         
+					  	 }
+					 
+						
+						
+					
+			        </script>
+                    
+                     <!--  <script>
                       
                       function validate(){
                     	   // 유효성 검사 :  비밀번호일치
@@ -92,7 +243,7 @@
                     	   var memberPwd3 = document.getElementById("checkPassPwd");
                     	   
                     	  
-                    	   var pwd1 = /^[a-z\d!@#$%^&*]{5,15}$/i;  //특수문자(!@#$%^&*)
+                    	   var pwd1 = /^[a-z\d!@#$%^&*]{8,15}$/i;  //특수문자(!@#$%^&*)
            
                     	 
 
@@ -127,7 +278,7 @@
 
 
 
-                      </script>
+                      </script> -->
                     </div>
                 </div>
             </div>

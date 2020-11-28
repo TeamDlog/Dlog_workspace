@@ -23,7 +23,8 @@
 	        diary_no
 	      , diary_title
 	      , diary_date
-	  from diary
+	     
+	  from diary 
 	 where diary_status='Y'
 	 order
 	    by diary_no desc
@@ -34,18 +35,17 @@
 		  into diary
 		  (
 		  	 diary_no
-		   , member_no  	   
+		   , diary_writer
 		   , diary_title
 		   , diary_content
-		   , to_char(diary_date, 'yyyy.mm.dd hh24:mi') as diary_date
 		  )
 		  values
 		  (
 		     seq_diaryno.nextval
-		   , #{diaryWriter}
+		   , 2
 		   , #{diaryTitle}
 		   , #{diaryContent}
-		  )
+		    )
 	</insert>
 	
 	<select id="detailDiary" parameterType="_int" resultMap="diaryResultSet">
@@ -53,10 +53,10 @@
 			diary_no
 		  , diary_title
 		  , diary_content
-       from diary d 
-       join member using(member_no)	
+		  , to_char(diary_date, 'yyyy.mm.dd hh24:mi') as diary_date
+       from diary 
       where diary_no = #{dno}
-        and d.diary_status='Y' 
+        and diary_status='Y' 
 	</select>
 	
 	<update id="delteDiary" parameterType="_int">
@@ -71,6 +71,7 @@
 			diary
 	   set diary_title = #{diaryTitle}
 	     , diary_content = #{diaryContent}
+	     , diary_date = sysdate
 	 where diary_no = #{diaryNo}      		
 	</update>
 	

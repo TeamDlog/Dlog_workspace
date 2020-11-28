@@ -285,5 +285,12 @@
 	  where member_id = #{memberId}
 	</delete>
 	
+	<update id="updatePwd" parameterType="Member">
+		update
+		       member
+		   set member_pwd = #{memberPwd}
+		 where member_no = #{memberNo}
+	</update>
+	
 
 </mapper>

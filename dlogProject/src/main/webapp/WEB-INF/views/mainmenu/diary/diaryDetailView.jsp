@@ -41,7 +41,7 @@
                          <div class="table-responsive">
                              <!-- 시작 -->
                              
-                             <div id="content">
+                             <div class="content">
      
                                  <div id="detailTop">
                                      <hr>
@@ -49,7 +49,7 @@
                                          <table style="width:100%;">
                                              <tr>
                                                  <td style="font-size: 16px; font-weight: bolder;">${dn.diaryTitle } </td>
-                                                 <td style="width:80%;" align="right">작성일 &nbsp;&nbsp;|&nbsp;&nbsp;${dn.diaryDate }</td>
+                                                 <td  align="right" >작성일 &nbsp;&nbsp;|&nbsp;&nbsp;${dn.diaryDate}</td>
                                              </tr>    
                                              </table>
                                      </div>
@@ -71,14 +71,14 @@
                                  <br>
                                  <hr>
                  
-                                 <div align="right" style="margin-right: 50px;">
-                                     <a href="" class="btn btn-danger btn-sm">삭제</a>
-                                     <a href="" class="btn btn-success btn-sm">수정</a>
-                                     <a href="" class="btn btn-secondary btn-sm">목록</a>
+                                 <div align="right" >
+                                     <a onclick="location.href='delete.di?dno=${dn.diaryNo}'" class="btn btn-danger btn-sm">삭제</a>
+                                     <a onclick="location.href='updateForm.di?dno=${dn.diaryNo}'" class="btn btn-success btn-sm">수정</a>
+                                     <a href="list.di" class="btn btn-secondary btn-sm">목록</a>
                                  </div>
                                  
                              </div>
-
+							
                          </div>                                
                      </div>
                  </div>
