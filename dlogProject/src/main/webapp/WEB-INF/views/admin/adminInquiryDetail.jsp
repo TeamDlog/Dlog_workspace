@@ -43,7 +43,7 @@
 							                </tr>
 							                <tr>
 							                    <th>작성자</th>
-							                    <td>${i.inquiryWriter }</td>
+							                    <td>${i.memberId }</td>
 							  
 							                </tr>
 							                 <tr>

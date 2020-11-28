@@ -46,10 +46,11 @@
 		        , to_char(inquiry_date, 'YYYY.MM.DD') inquiry_date
 		        , inquiry_content
 		        , inquiry_type
-		        , inquiry_writer
+		        , member_id
 		        , inquiry_answer
 		        , inquiry_email
 		    from inquiry
+		    join member on(member_no = inquiry_writer)
 		    where inquiry_no = #{bno}
 	</select>
 	<insert id="insertInquiry" parameterType="Inquiry">
