@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="inquiryMapper">
+	<resultMap type="Inquiry" id="inquiryResultSet">
+		<id column = "inquiry_no" property="inquiryNo" />
+		<result column="inquiry_content" property="inquiryContent" />
+		<result column="inquiry_writer" property="inquiryWriter" />
+		<result column="inquiry_title" property="inquiryTitle" />
+		<result column="inquiry_date" property="inquiryDate" />
+		<result column="inquiry_type" property="inquiryType" />
+		<result column="inquiry_answer" property="inquiryAnswer" />
+		<result column="inquiry_process" property="inquiryProcess" />	
+		<result column="inquiry_email" property="inquiryEmail" />	
+		<result column="member_id" property="memberId" />
+	</resultMap>
+	
+	<select id="selectListCount" resultType="_int">
+		select
+	        count(*)
+	    from inquiry
+	    where inquiry_status='Y'
+	</select>
+	
+	<select id="selectList" resultMap="inquiryResultSet">
+		select
+		        inquiry_no
+		        , inquiry_title
+		        , inquiry_content
+		        , to_char(inquiry_date, 'YYYY/MM/DD') inquiry_date
+		        , inquiry_type
+		        , member_id
+		        , inquiry_process
+		        , inquiry_email
+		    from inquiry
+		    join member on(member_no = inquiry_writer)
+		    where inquiry_status='Y'
+		    order 
+		        by inquiry_no desc
+	</select>
+	
+	
+	<select id="selectInquiry" resultMap="inquiryResultSet" parameterType="_int">
+		select 
+		        inquiry_no
+		        , inquiry_title
+		        , to_char(inquiry_date, 'YYYY.MM.DD') inquiry_date
+		        , inquiry_content
+		        , inquiry_type
+		        , inquiry_writer
+		        , inquiry_answer
+		        , inquiry_email
+		    from inquiry
+		    where inquiry_no = #{bno}
+	</select>
+	<insert id="insertInquiry" parameterType="Inquiry">
+		insert
+		        into inquiry
+		        (
+		            inquiry_no
+		            , inquiry_title
+		            , inquiry_writer
+		            , inquiry_content
+		            , inquiry_type 
+		            , inquiry_email
+		          
+		        )
+		        values
+		        (
+		            SEQ_INQUIRYNO.nextval
+		            , #{inquiryTitle}
+		            , #{inquiryWriter}
+		            , #{inquiryContent}
+		            , #{inquiryType}
+		    		, #{inquiryEmail}
+		        )
+				
+	</insert>
+	
+	<update id="insertInquiryAnswer" parameterType="Inquiry">
+		update 
+		        inquiry
+		    set 
+		    	inquiry_answer = #{inquiryAnswer}
+		    where inquiry_no = #{inquiryNo}
+	</update>
+	
+	<update id="updateInquiryProcess" parameterType="Inquiry">
+		update 
+		        inquiry
+		    set 
+		    	inquiry_process = 'Y'
+		    where inquiry_no = #{inquiryNo}
+	</update>
+	
+</mapper>

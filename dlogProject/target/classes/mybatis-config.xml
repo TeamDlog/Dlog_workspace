@@ -21,6 +21,9 @@
 		<typeAlias type="com.kh.dlog.widget.dday.model.vo.Dday" alias="Dday"/>
 		<typeAlias type="com.kh.dlog.admin.report.model.vo.Report" alias="Report" />
 		<typeAlias type="com.kh.dlog.mypage.controlAll.model.vo.ControlAll" alias="Ca"/>
+		<typeAlias type="com.kh.dlog.admin.faq.model.vo.Faq" alias="Faq"/>
+		<typeAlias type="com.kh.dlog.admin.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.kh.dlog.admin.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 	</typeAliases>
 	
 	<!-- 
@@ -48,6 +51,10 @@
  		<mapper resource="/mappers/friend-mapper.xml"/>
  		<mapper resource="/mappers/dday-mapper.xml"/>
  		<mapper resource="/mappers/controlAll-mapper.xml"/>
+ 		<mapper resource="/mappers/faq-mapper.xml" />
+ 		<mapper resource="/mappers/notice-mapper.xml" />
+ 		<mapper resource="/mappers/inquiry-mapper.xml" />
+ 		<mapper resource="/mappers/report-mapper.xml" />
  	</mappers>
  	
 </configuration>

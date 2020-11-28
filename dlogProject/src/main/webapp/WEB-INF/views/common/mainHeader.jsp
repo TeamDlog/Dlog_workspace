@@ -36,7 +36,7 @@
                     	<c:when test="${ empty loginUser }">
 		                    <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="loginForm.me">로그인</a></li>
 	    	                <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="list.co">커뮤니티</a></li>
-	        	            <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">고객센터</a></li>
+	        	            <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="serviceMain.fo">고객센터</a></li>
         	            </c:when>
         	            <c:otherwise>
 		                    <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="logout.me">로그아웃</a></li>
@@ -49,7 +49,7 @@
                     			</c:otherwise>
                     		</c:choose>
 	    	                <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="list.co">커뮤니티</a></li>
-	        	            <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">고객센터</a></li>
+	        	            <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="serviceMain.fo">고객센터</a></li>
         	            </c:otherwise>
                     </c:choose>
                 </ul>

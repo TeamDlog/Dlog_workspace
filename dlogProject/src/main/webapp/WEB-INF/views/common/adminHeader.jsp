@@ -107,10 +107,10 @@
                                 <span class="nav-text">고객센터 관리</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="url">문의글 관리</a></li>
-                                <li><a href="url">신고관리</a></li>
-                                <li><a href="url">공지사항</a></li>
-                                <li><a href="url">FAQ</a></li>
+                                <li><a href="adminInquiryList.io">문의글 관리</a></li>
+                                <li><a href="adminReportList.ro">신고관리</a></li>
+                                <li><a href="adminNoticeList.no">공지사항</a></li>
+                                <li><a href="adminFaqList.fo">FAQ</a></li>
                             </ul>
                         </li>                        
                         

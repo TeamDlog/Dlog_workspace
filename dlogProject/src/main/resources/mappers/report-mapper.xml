@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reportMapper">
+	<resultMap type="Report" id="reportResultSet">
+		<id column = "report_no" property="reportNo" />
+		<result column="report_content" property="reportContent" />
+		<result column="report_writer" property="reportWriter" />
+		<result column="report_date" property="reportDate" />
+		<result column="report_type" property="reportType" />
+		<result column="report_postType" property="reportPostType" />
+		<result column="report_process" property="reportProcess" />	
+		<result column="report_link" property="reportLink" />	
+		<result column="report_postNo" property="reportPostNo" />
+		<result column="member_id" property="memberId" />	
+	</resultMap>
+	<resultMap type="Reply" id="replyResultSet">
+		<id column = "reply_no" property="replyNo" />
+		<result column="reply_writer" property="replyWriter" />
+		<result column="create_date" property="createDate" />
+		<result column="reply_content" property="replyContent" />
+	</resultMap>
+	<resultMap type="Freenote" id="freenoteResultSet">
+		<id column="freenote_no" property="freenoteNo" />
+		<result column="freenote_title" property="freenoteTitle" />
+		<result column="freenote_content" property="freenoteContent" />
+		<result column="freenote_category" property="freenoteCategory" />
+		<result column="freenote_topic" property="freenoteTopic" />
+		<result column="freenote_privacy" property="freenotePrivacy" />
+		<result column="freenote_privacy_comm" property="freenotePrivacyComm" />
+		<result column="freenote_comment_yn" property="freenoteCommentYN" />
+		<result column="freenote_count" property="freenoteCount" />
+		<result column="freenote_like" property="freenoteLike" />
+		<result column="create_date" property="createDate" />
+		<result column="modify_date" property="modifyDate" />
+		<result column="status" property="status" />
+		<result column="nickname" property="freenoteWriter" />
+		<result column="member_id" property="memberId" />
+		<result column="replyCount" property="replyCount" />
+		<result column="likestatus" property="likeStatus" />		
+	</resultMap>
+	
+	<select id="selectListCount" resultType="_int">
+		select
+	        count(*)
+	    from report
+	    where report_status='Y'
+	</select>
+	
+	<select id="selectList" resultMap="reportResultSet">
+		select
+		        report_no
+		        , report_postType
+		        , report_content
+		        , to_char(report_date, 'YYYY/MM/DD') report_date
+		        , report_type
+		        , member_id
+		        , report_process
+		        , report_type
+		    from report
+		    join member on(member_no = report_writer)
+		    where report_status='Y'
+		    order 
+		        by report_no desc
+	</select>
+	<select id="selectReport" resultMap="reportResultSet" parameterType="_int">
+		select 
+				report_no
+		        , report_postType
+		        , report_content
+		        , to_char(report_date, 'YYYY/MM/DD') report_date
+		        , report_type
+		        , member_id
+		        , report_type
+		        , report_link
+		        , report_postNo
+		    from report
+		    join member on(member_no = report_writer)
+		    where report_no = #{bno}
+	</select>
+	<select id="selectReply" resultMap="replyResultSet" parameterType="_int">
+		select	
+				reply_no    
+		        , reply_content
+		    from reply
+		    where status='Y'
+		 	and reply_no= #{pNo}
+	</select>
+	
+	<update id="updateReportProcess" parameterType="Report">
+		update 
+		        report
+		    set 
+		    	report_process = 'Y'
+		    where report_no = #{reportNo}
+	</update>
+	
+	<update id="adminReplyDelete" parameterType="_int">
+		update
+		        reply
+		    set status='N'
+		    where reply_no=#{reNo}
+	</update>
+	
+	<select id="selectFreenote" resultMap="freenoteResultSet" parameterType="_int">
+		select	
+				freenote_no    
+		        , freenote_content
+		    from freenote
+		    where status='Y'
+		 	and freenote_no= #{pNo}
+	</select>
+	
+	<update id="adminFreenoteDelete" parameterType="_int">
+		update
+		        freenote
+		    set status='N'
+		    where freenote_no=#{frNo}
+	</update>
+</mapper>
