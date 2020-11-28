@@ -19,7 +19,7 @@ public class DiaryServiceImpl implements DiaryService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	@Autowired
+	@Override
 	public int selectListCount() {
 		
 		return dDao.selectListCount(sqlSession);
