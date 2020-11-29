@@ -105,8 +105,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int introInsert(Member m) {
-		return mDao.introInsert(sqlSession, m);
+	public int introInsert(Member mn) {
+		return mDao.introInsert(sqlSession, mn);
 	}
 	
 	@Override

@@ -75,10 +75,9 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.introList", m);
 	}
 	
-	public int introInsert(SqlSessionTemplate sqlSession, Member m) {
+	public int introInsert(SqlSessionTemplate sqlSession, Member mn) {
 		
-		System.out.println(m.getMemberName());
-		return sqlSession.insert("memberMapper.introInsert", m);
+		return sqlSession.update("memberMapper.introInsert", mn);
 		
 	}
 	

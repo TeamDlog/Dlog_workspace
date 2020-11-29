@@ -48,9 +48,12 @@
          Content body start
      ***********************************-->
      <div class="content-body" style="float: left;">
-         <div class="row page-titles mx-0">
-             <h3 style="color:rgb(94, 94, 94); padding-left: 15px; font-size:17px; font-weight:bolder;">개인정보 수정</h3>
-         </div>
+         <div class="col p-md-0">
+	            <ol class="breadcrumb">
+	                <li class="breadcrumb-item"><a href="infoList.my">개인정보 조회</a></li>
+	                <li class="breadcrumb-item active">개인정보 수정</li>
+	            </ol>
+	        </div>
          <!-- row -->
 
          <div class="container-fluid">

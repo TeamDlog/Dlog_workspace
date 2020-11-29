@@ -37,8 +37,13 @@
   ***********************************-->
   <div class="content-body" style="float: left;">
       <div class="row page-titles mx-0">
-          <h3 style="color:rgb(94, 94, 94); padding-left: 15px; font-size:17px; font-weight:bolder;">소개글 관리</h3>
-      </div>
+	        <div class="col p-md-0">
+	            <ol class="breadcrumb">
+	                <li class="breadcrumb-item"><a href="introListMn.my">소개글 관리</a></li>
+	                <li class="breadcrumb-item active">소개글 수정</li>
+	            </ol>
+	        </div>
+	    </div>
       <!-- row -->
 
       <div class="container-fluid">

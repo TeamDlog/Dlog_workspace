@@ -35,9 +35,14 @@
       Content body start
   ***********************************-->
   <div class="content-body" style="float: left;">
-      <div class="row page-titles mx-0">
-          <h3 style="color:rgb(94, 94, 94); padding-left: 15px; font-size:17px; font-weight:bolder;">소개글 관리</h3>
-      </div>
+         <div class="row page-titles mx-0">
+	        <div class="col p-md-0">
+	            <ol class="breadcrumb">
+	                <li class="breadcrumb-item"><a href="introListMn.my">소개글 관리</a></li>
+	                <li class="breadcrumb-item active">소개글 작성</li>
+	            </ol>
+	        </div>
+	    </div>
       <!-- row -->
 
       <div class="container-fluid">
@@ -51,27 +56,21 @@
                               <div class="introEnrollForm">
                                   
                                   <form id="enrollForm" action="introInsert.my" method="post"> 
-                                  <input type="hidden"  name="memberNo" value="${loginUser.memberNo} }">
-								  <input type="hidden"  name="memberName" value="${loginUser.memberName} }">
-								  <input type="hidden"  name="memberId" value="${loginUser.memberId} }">
-								  <input type="hidden"  name="memberPwd" value="${loginUser.memberPwd} }">
-								  <input type="hidden"  name="email" value="${loginUser.email} }">
-								  <input type="hidden"  name="phone" value="${loginUser.phone} }">
-								  <input type="hidden"  name="nickname" value="${loginUser.nickname} }">
-								  
+                                  <input type="hidden"  name="memberNo" value="${mn.memberNo}">
+                                  
 								  <table>
                                       <tr>
                                           <td style="font-size:30px;">&nbsp;</td>
                                       </tr>
                                       <tr>
-                                          <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp;<input type="text" name="title" style="border:0px; background-color:transparent;" value=" "></th>
+                                          <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp;<input type="text" name="introductionTitle" style="border:0px; background-color:transparent;">${mn.introductionTitle }</th>
                                       </tr>
                                       <tr>
                                           <td><hr id="line"></td>
                                       </tr>
                                       <tr>
                                           <td id="content">
-                                              <textarea name="content" cols="88" rows="10" style="resize:none;  margin-bottom:10px; border:0px; background-color:transparent;" required></textarea>
+                                              <textarea name="introductionContent" cols="88" rows="10" style="resize:none;  margin-bottom:10px; border:0px; background-color:transparent;" required>${mn.introductionContent }</textarea>
                                           </td>
                                       </tr>
                                       

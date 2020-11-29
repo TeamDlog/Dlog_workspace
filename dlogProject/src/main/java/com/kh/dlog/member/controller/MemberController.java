@@ -294,25 +294,31 @@ public class MemberController {
 	 
 	 
 	 
-	 @RequestMapping("enrollForm.my")
-		public String enrollForm() {
+	 @RequestMapping("introEnrollForm.my")
+		public String enrollForm(Member m,Model model) {
+		 
+		 Member mn = mService.loginMember(m);
+		 model.addAttribute("mn",mn);
 			return "mypage/introEnrollForm";
 		}
 	 
-	 @RequestMapping("introInsert.it")
-	 public String introInsert(Member m, HttpSession session, Model model) {
+	 @RequestMapping("introInsert.my")
+	 public String introInsert(Member mn, HttpSession session, Model model) {
 		 
-		 int result = mService.introInsert(m);
-		 
-			if(result > 0) {
+		 int result = mService.introInsert(mn);
+			
+			if(result > 0) { 
 				
-				session.setAttribute("alertMsg", "성공적으로 게시글이 등록되었습니다.");
-				return "redirect:introListMn.it";
+				session.setAttribute("alertMsg", "성공적으로 소개글이 저장되었습니다.");
+				return "redirect:introListMn.my";
+				
+				
 			}else {
 				
-				model.addAttribute("errorMsg", "게시글 등록 실패");
+				model.addAttribute("errorMsg", "소개글 저장 실패!");
 				return "common/errorPage";
 			}
+	
 	 }
 	 
 	 @RequestMapping("updateForm.my")

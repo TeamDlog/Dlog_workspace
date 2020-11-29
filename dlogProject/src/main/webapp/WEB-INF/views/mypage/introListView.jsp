@@ -37,7 +37,7 @@
  ***********************************-->
  <div class="content-body" style="float: left;">
      <div class="row page-titles mx-0">
-         <h3 style="color:rgb(94, 94, 94); padding-left:15px; font-size:17px;"><b>소개글</b></h3>
+         <h3 style="color:rgb(94, 94, 94); padding-left:15px; font-size:17px;  font-weight:bolder;"><b>소개글</b></h3>
      </div>
      <!-- row -->
 
@@ -53,7 +53,7 @@
                                           <table>
                                           <c:if test="${loginUser.introductionTitle == null and loginUser.introductionContent == null }">
                                           	
-                                          		<td colspan="4" style="font-size:1em;">준비된 소개글이 없습니다.</td>
+                                          		<td colspan="4" style="font-size:1.3em; font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;준비된 소개글이 없습니다.</td>
                                           	
                                           </c:if>	
                                           	<tr>

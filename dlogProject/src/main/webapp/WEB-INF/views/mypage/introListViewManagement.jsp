@@ -20,7 +20,7 @@
      }
      #line{
         border:gray 2px dashed;
-        width:100%;
+        width:605px;
         
      }
     
@@ -37,7 +37,7 @@
  ***********************************-->
  <div class="content-body" style="float: left;">
      <div class="row page-titles mx-0">
-         <h3 style="color:rgb(94, 94, 94); padding-left:15px; font-size:17px;"><b>소개글 관리</b></h3>
+         <h3 style="color:rgb(94, 94, 94); padding-left:15px; font-size:17px; font-weight:bolder;">소개글 관리</h3>
      </div>
      <!-- row -->
 
@@ -51,6 +51,11 @@
                                  <div class="introSelect">
                                      <div class="introSelectForm">
                                           <table>
+                                          <c:if test="${loginUser.introductionTitle == null and loginUser.introductionContent == null }">
+                                          	
+                                          		<td colspan="4" style="font-size:1.3em; font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;준비된 소개글이 없습니다.</td>
+                                          	
+                                          </c:if>	
                                           	<tr>
                                                  <th style="font-size:30px;">&nbsp;</th>
                                              
@@ -63,8 +68,8 @@
                                          </table>
                                      </div>
                                      <div align="right">
-                                         <button type="button" onclick="location.href='enrollForm.it'" class="btn btn-success btn-sm">작성하기</button>&nbsp;&nbsp; 
-                                         <button type="button" onclick="location.href='introUpdate.it'" class="btn btn-success btn-sm">수정하기</button>
+                                         <button type="button" onclick="location.href='introEnrollForm.my'" class="btn btn-success btn-sm">작성하기</button>&nbsp;&nbsp; 
+                                         <button type="button" onclick="location.href='introUpdate.my'" class="btn btn-success btn-sm">수정하기</button>
                                      
                                      </div>
                              <br>

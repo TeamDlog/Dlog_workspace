@@ -20,7 +20,7 @@ public interface MemberService {
 	
 	ArrayList<Member> selectMemberList();
 	
-	int insertMember(Member m);
+	int insertMember(Member mn);
 	
 	int insertActive();
 	

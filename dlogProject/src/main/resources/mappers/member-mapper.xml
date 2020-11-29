@@ -237,35 +237,14 @@
 	 </select >
 	 
 	 <insert id="introInsert" parameterType="Member">
-		insert
-		  into member
-		  (
-			member_no
-		  , member_name	
-		  , member_id
-		  , member_pwd
-		  , email
-		  , phone
-		  , nickname
-		  , introduction_title
-		  , introduction_content
-		  )
-		  values
-		  (
-		     #{memberNo} 
-		   , #{memberName}	
-		   , #{memberId}
-		   , #{memberPwd}
-		   , #{email}
-		   , #{phone}
-		   , #{nickname} 
-		   , #{introductionTitle}
-		   , #{introductionContent}
-		 
-		 )
+		update
+		        member
+		    set
+		     	member_no=#{memberNo}
+		      , introduction_title=#{introductionTitle}
+		      , introduction_content=#{introductionContent}  
+		  where member_no=#{memberNo} 
 	</insert>
-	 
-	 
 	 
 	 <update id="introUpdate" parameterType="Member">
 		 update
