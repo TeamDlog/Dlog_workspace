@@ -55,7 +55,8 @@
                          <!-- 여기다가 작성 -->
                          <div class="infoSelectForm" align="center">
                          
-                             <table class="infoSelectTable" >  
+                             <table class="infoSelectTable" >
+                               
                                     <c:if test="${loginUser.profile == null}">
                                      <div class="card-body">
                                          <div class="text-center" Style=border1px solid black">
@@ -63,6 +64,7 @@
                                          </div>
                                      </div>
                                      </c:if>
+                                     
                                  <tr>
                                     <td> 이름 &nbsp; : </td>
                                     <td>${loginUser.memberName }</td>

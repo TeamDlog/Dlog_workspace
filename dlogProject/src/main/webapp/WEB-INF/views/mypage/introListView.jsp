@@ -12,18 +12,18 @@
  <style>
         .introSelectForm{ 
             height:400px;
-            width:100%;
+            width:400px;
           }
         #content{
             margin-left:20px;
             border:0px;
             padding:20px;
          }
-         #line{
-            border:gray 2px dashed;
-            width:605px;
-            
-         }
+        #line{
+        border:gray 2px dashed;
+        width:671px;
+        line-height: 30px;
+     }
         
     </style>
 </head>
@@ -56,13 +56,21 @@
                                           		<td colspan="4" style="font-size:1.3em; font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;준비된 소개글이 없습니다.</td>
                                           	
                                           </c:if>	
-                                          	<tr>
+                                          <tr>
                                                  <td style="font-size:30px;">&nbsp;</td>
-                                             
-                                                 <td style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp; ${ loginUser.introductionTitle } </td>
-                                             
+                                           </tr>      
+                                             <tr>
+                                                 <td style="font-size:23px; font-weight: bolder;">&nbsp;&nbsp; ${ loginUser.introductionTitle } </td>
+                                             </tr>
+                                             <tr>
+                                             	<td style="font-size:7px;">&nbsp;</td>
+                                             </tr>
+                                              <c:if test="${not empty loginUser.introductionTitle and not empty loginUser.introductionContent  }">
+                                         	<tr>
                                                  <td><div id="line"></div></td>
-                                            
+                                            </tr>
+                                            </c:if>
+                                            <tr>
                                                  <td id="content">${ loginUser.introductionContent } </td>
                                              </tr>
                                              

@@ -273,9 +273,9 @@ public class MemberController {
 
 	}
 	 @RequestMapping("introList.my")
-	 public String introList(Member m, HttpSession session, Model model) {
+	 public String introList(HttpSession session, Model model) {
 		 
-		 ArrayList<Member> list = mService.introList(m);
+		 ArrayList<Member> list = mService.introList();
 			
 		 model.addAttribute("list",list);
 		 
@@ -283,9 +283,9 @@ public class MemberController {
 	 }
 	 
 	 @RequestMapping("introListMn.my")
-	 public String introListMn(Member m, HttpSession session, Model model) {
+	 public String introListMn(HttpSession session, Model model) {
 		 
-		 ArrayList<Member> list = mService.introListMn(m);
+		 ArrayList<Member> list = mService.introListMn();
 			
 		 model.addAttribute("list",list);
 		 
@@ -295,20 +295,18 @@ public class MemberController {
 	 
 	 
 	 @RequestMapping("introEnrollForm.my")
-		public String enrollForm(Member m,Model model) {
+		public String enrollForm(Model model) {
 		 
-		 Member mn = mService.loginMember(m);
-		 model.addAttribute("mn",mn);
-			return "mypage/introEnrollForm";
+		 return "mypage/introEnrollForm";
 		}
 	 
 	 @RequestMapping("introInsert.my")
-	 public String introInsert(Member mn, HttpSession session, Model model) {
+	 public String introInsert(Member m, HttpSession session, Model model) {
 		 
-		 int result = mService.introInsert(mn);
+		 int result = mService.introInsert(m);
 			
 			if(result > 0) { 
-				
+				session.setAttribute("loginUser", mService.loginMember(m));
 				session.setAttribute("alertMsg", "성공적으로 소개글이 저장되었습니다.");
 				return "redirect:introListMn.my";
 				
@@ -316,32 +314,6 @@ public class MemberController {
 			}else {
 				
 				model.addAttribute("errorMsg", "소개글 저장 실패!");
-				return "common/errorPage";
-			}
-	
-	 }
-	 
-	 @RequestMapping("updateForm.my")
-		public String updateForm (){
-		
-			return "mypage/introUpdateForm";
-		}
-	 
-	 
-	 @RequestMapping("introUpdate.my")
-	 public String introUpdate(Member m, HttpSession session, Model model) {
-		 
-		 int result = mService.introUpdate(m);
-			
-			if(result > 0) { 
-				
-				session.setAttribute("loginUser", mService.loginMember(m));  
-				session.setAttribute("alertMsg", "성공적으로 소개글이 변경되었습니다.");
-				
-				return "redirect:introUpdateForm";
-			}else {
-				
-				model.addAttribute("errorMsg", "소개글 변경 실패");
 				return "common/errorPage";
 			}
 	
@@ -459,6 +431,16 @@ public class MemberController {
 			
 			}
 		
+		}
+	 @RequestMapping("profile.pf")
+		public String profile(HttpSession session, Model model) {
+			
+		 ArrayList<Member> list = mService.profile();
+			
+			
+			model.addAttribute("list",list);
+			
+			return "common/diaryWidget";
 		}
 	 
 }
