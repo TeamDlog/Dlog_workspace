@@ -418,7 +418,7 @@
 		                                            	<div class="ddayCount" align="center">
 		                                            		 <c:choose>
 		                                            		 	<c:when test="${ dday.ddayCount == 0}">D-Day</c:when>
-		                                            		 	<c:otherwise>${ dday.ddayCount }</c:otherwise>
+		                                            		 	<c:otherwise>D - ${ dday.ddayCount }</c:otherwise>
 		                                            		 </c:choose> 
 		                                            	</div>
 	                                        		</div>
@@ -497,6 +497,38 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- 디데이 -->
+            <div class="card card-widget">
+                <div class="card-body gradient-4">
+                    <div class="media">
+                        <table id="ddayWidget"  style="width: 100%; text-align: center;">
+                            <tr>
+                                <td style="height: 20px;">
+                                   	 	등록된 디데이가 없습니다.
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <script>
+            	$(function(){
+            		var ddayWidgetContent = "";
+            		<c:forEach var="d" items="${dlist}">
+            			if(${d.ddayWidget == "Y"}){
+            				
+            				ddayWidgetContent += '<tr style="height: 30px;"><th>D - ${d.ddayCount}</th></tr>' + '<tr><td style="height: 20px;">${d.ddayTitle}</td></tr>'
+            				
+            			}
+            		</c:forEach>
+            		if(ddayWidgetContent != ""){
+            			$("#ddayWidget").html(ddayWidgetContent);
+            		}
+            		
+            		
+            	});
+            </script>
         </div>
     <!--**********************************
         Widget area end

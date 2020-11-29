@@ -20,8 +20,8 @@ public class DdayController {
 	private DdayService dService;
 	
 	@RequestMapping("main.dd")
-	public String ddayMain(String memberNo, Model model) {
-
+	public String ddayMain(/* String memberNo, */ Model model) {
+		String memberNo = "3";
 		ArrayList<Dday> list = dService.ddayMain(memberNo);
 		if(!list.isEmpty()) {
 			
