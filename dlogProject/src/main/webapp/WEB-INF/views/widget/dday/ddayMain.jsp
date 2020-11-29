@@ -517,18 +517,16 @@
             		var ddayWidgetContent = "";
             		<c:forEach var="d" items="${dlist}">
             			if(${d.ddayWidget == "Y"}){
-            				
             				ddayWidgetContent += '<tr style="height: 30px;"><th>D - ${d.ddayCount}</th></tr>' + '<tr><td style="height: 20px;">${d.ddayTitle}</td></tr>'
-            				
             			}
             		</c:forEach>
             		if(ddayWidgetContent != ""){
             			$("#ddayWidget").html(ddayWidgetContent);
             		}
             		
-            		
             	});
             </script>
+             <!-- 디데이 -->
         </div>
     <!--**********************************
         Widget area end
