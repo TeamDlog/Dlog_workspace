@@ -11,6 +11,7 @@
 <style>
 #accountList{ text-align:center;}
 #enroll{float:right; margin-right:20px;}
+#dateInput{width:45px; height:20px;}
 </style>
 </head>
 
@@ -35,6 +36,7 @@
                       <div class="card-body" >
                           <div class="table-responsive">
                               <!-- 검색영역 -->
+                              	<input type="text" id="dateInput" placeholder="연도" >
                               	<select id="accountDate" name="monthly">
 								        <option value="">월별</option>
 								        <option value="01">1월</option>
@@ -149,6 +151,11 @@
 	    	    	   google.charts.setOnLoadCallback(drawChart($(this).val()));
 		    	       
 	                });
+	    	       
+	    	       $("#dateInput").change(function() {
+						searchTable($(this).val());
+	            	    google.charts.setOnLoadCallback(drawChart($(this).val()));
+	               });
 	    	  
 	    	 		
 		              
@@ -169,7 +176,7 @@
 	    	    	   
 	    	    	   found = true;
 	    	    	  	    	        	    	        	    	         
-	    	       }else if(month[1]== inputVal){
+	    	       }else if(month[1]== inputVal || month[0]==inputVal){
 	                   found=true;
 	                   if( division=='SPEND'){
 	                   	spend = spend + parseInt($(this).find("td:nth-child(6)").text());
@@ -229,7 +236,7 @@
 						  
 	               
 		    	      
-	                }else if(month[1]== inputVal){
+	                }else if(month[1]== inputVal || month[0]==inputVal){
 	                
 	                	$("#monthChart").show();
 	                	

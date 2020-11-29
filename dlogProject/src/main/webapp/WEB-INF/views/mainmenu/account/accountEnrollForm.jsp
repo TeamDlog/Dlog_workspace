@@ -19,6 +19,9 @@
 <style>
 #accountList{ border-collapse:collapse; text-align:center; }
 #accountList td, #accountList th {border:1px solid black;}
+#Date{width:80px;}
+#accountDataIls{width:70px;}
+#accountMoney{width:70px;}
 </style>
 </head>
 <body>
@@ -45,7 +48,7 @@
                               	
                               	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                            
-                             	<input type="hidden" name="accountWriter" value="${loginUser.memberNo }">
+                             	<input type="hidden" name="accountWriter" value="${loginUser.memberNo}">
                              	<table id="accountList" class="table" >
                              		
 						                	<thead>
