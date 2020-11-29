@@ -22,4 +22,6 @@ public class Timetable {
 	private String timetableContent;
 	private String timetableBackground;
 	private String timetableColor;
+	private String timetableToDay;
+	private int timetableTimeCheck;
 }

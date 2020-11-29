@@ -27,16 +27,15 @@
 		     , timetable_background
 		     , timetable_color
 		  from timetable
-		 where timetable_writer = #{timetableWriter}
+		 where timetable_writer = 3<!-- #{timetableWriter} -->
 	</select>
 	
 	<select id="insertTimetableCheck" parameterType="Timetable" resultType="_int">
 		select count(*)
 		  from timetable
-		 where timetable_writer = #{timetableWriter}
+		 where timetable_writer = 3<!-- #{timetableWriter} -->
 		   and timetable_day = #{timetableDay}
-		   and (timetable_time like '%'||#{ timetableStart }||'%'
-		    or timetable_time like '%'||#{ timetableEnd }||'%')
+		   and timetable_time like '%'||#{ timetableTimeCheck }||'%'
 	</select>
 	
 	<insert id="insertTimetable" parameterType="Timetable">
@@ -58,7 +57,7 @@
 		values
 		      (
 		        seq_timetableno.nextval
-		      , 1
+		      , 3 <!-- #{timetableWriter} -->
 		      , #{ timetableDay }
 		      , #{ timetableStart }
 		      , #{ timetableEnd }
@@ -73,20 +72,18 @@
 	<delete id="insertDeleteTimetable" parameterType="Timetable">
 		delete 
 		       timetable
-		 where timetable_writer = #{timetableWriter}
+		 where timetable_writer = 3<!-- #{timetableWriter} -->
 		   and timetable_day = #{timetableDay}
-		   and (timetable_time like '%'||#{timetableStart}||'%'
-		    or timetable_time like '%'||#{timetableEnd}||'%')
+		   and timetable_time like '%'||#{ timetableTimeCheck }||'%'
 	</delete>
 	
 	<select id="updateTimetableCheck" parameterType="Timetable" resultType="_int">
 		select count(*)
 		  from timetable
-		 where timetable_writer = #{timetableWriter}
+		 where timetable_writer = 3<!-- #{timetableWriter} -->
 		   and timetable_no != #{timetableNo}
 		   and timetable_day = #{timetableDay}
-		   and (timetable_time like '%'||#{ timetableStart }||'%'
-		    or timetable_time like '%'||#{ timetableEnd }||'%')
+		   and timetable_time like '%'||#{ timetableTimeCheck }||'%'
 	</select>
 	
 	<update id="updateTimetable" parameterType="Timetable">
@@ -107,7 +104,7 @@
 	<delete id="updateDeleteTimetable" parameterType="Timetable">
 		delete 
 		       timetable
-		 where timetable_writer = #{timetableWriter}
+		 where timetable_writer = 3<!-- #{timetableWriter} -->
 		   and timetable_no != #{timetableNo}
 		   and timetable_day = #{timetableDay}
 		   and (timetable_time like '%'||#{ timetableStart }||'%'
@@ -123,7 +120,7 @@
 	<delete id="resetTimetable" parameterType="string">
 		delete
 		       timetable
-		 where timetable_writer = #{timetableWriter}
+		 where timetable_writer = 3<!-- #{timetableWriter} -->
 	</delete>
 	
 </mapper>
