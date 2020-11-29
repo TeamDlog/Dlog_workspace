@@ -1,6 +1,7 @@
 package com.kh.dlog.widget.timetable.Controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,12 +20,26 @@ public class TimeTableController {
 	@Autowired
 	private TimetableService tService;
 	
+	private Calendar today = Calendar.getInstance();
+	
 	@RequestMapping("main.ti")
 	public String timetableMain(Member loginUser, Model model) {
-		int timetableWriter = loginUser.getMemberNo();
+		int timetableWriter = 3; /*loginUser.getMemberNo();*/
 		ArrayList<Timetable> list = tService.timetableList(timetableWriter);
-
+		
 		if(!list.isEmpty()) {
+			for(Timetable t : list) {
+				switch(today.get(Calendar.DAY_OF_WEEK)) {
+					case 1 : t.setTimetableToDay("일요일"); break;
+					case 2 : t.setTimetableToDay("월요일"); break;
+					case 3 : t.setTimetableToDay("화요일"); break;
+					case 4 : t.setTimetableToDay("수요일"); break;
+					case 5 : t.setTimetableToDay("목요일"); break;
+					case 6 : t.setTimetableToDay("금요일"); break;
+					case 7 : t.setTimetableToDay("토요일"); break;
+				}
+			}
+			
 			model.addAttribute("list", list);
 			return "widget/timetable/timetableMain";
 		}else {

@@ -15,8 +15,14 @@ public class TimetableDao {
 	}
 	
 	public int insertTimetableCheck(SqlSessionTemplate sqlSession, Timetable t) {
+		int result = 0;
+		for(int i=Integer.parseInt(t.getTimetableStart()); i<=Integer.parseInt(t.getTimetableEnd()); i++) {
+			t.setTimetableTimeCheck(i);
+			int resulti = sqlSession.selectOne("timetableMapper.insertTimetableCheck", t);
+			result = result + resulti;
+		}
 		
-		return sqlSession.selectOne("timetableMapper.insertTimetableCheck", t);
+		return result;
 	}
 	
 	public int insertTimetable(SqlSessionTemplate sqlSession, Timetable t) {
@@ -24,11 +30,24 @@ public class TimetableDao {
 	}
 	
 	public int insertDeleteTimetable(SqlSessionTemplate sqlSession, Timetable t) {
-		return sqlSession.delete("timetableMapper.insertDeleteTimetable", t);
+		int result = 1;
+		for(int i=Integer.parseInt(t.getTimetableStart()); i<=Integer.parseInt(t.getTimetableEnd()); i++) {
+			t.setTimetableTimeCheck(i);
+			result += sqlSession.delete("timetableMapper.insertDeleteTimetable", t);
+		}
+		
+		return result;
 	}
 	
 	public int updateTimetableCheck(SqlSessionTemplate sqlSession, Timetable t) {
-		return sqlSession.selectOne("timetableMapper.updateTimetableCheck", t);
+		int result = 0;
+		for(int i=Integer.parseInt(t.getTimetableStart()); i<=Integer.parseInt(t.getTimetableEnd()); i++) {
+			t.setTimetableTimeCheck(i);
+			int resulti = sqlSession.selectOne("timetableMapper.updateTimetableCheck", t);
+			result = result+resulti;
+		}
+		
+		return result;
 	}
 	
 	public int updateTimetable(SqlSessionTemplate sqlSession, Timetable t){
@@ -41,10 +60,10 @@ public class TimetableDao {
 	
 	public int deleteTimetable(SqlSessionTemplate sqlSession, String[] deleteTimetableCheck) {
 		
-		int result = 1;
+		int result = 0;
 		
 		for(String tNo : deleteTimetableCheck) {
-			result = result * sqlSession.delete("timetableMapper.deleteTimetable", tNo);
+			result += sqlSession.delete("timetableMapper.deleteTimetable", tNo);
 		}
 		
 		return result;

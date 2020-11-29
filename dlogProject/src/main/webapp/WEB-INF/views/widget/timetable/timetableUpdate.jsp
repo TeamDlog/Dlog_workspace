@@ -435,11 +435,14 @@
             <script>
             $(function(){
         		
+            	for(var i=8; i<$("#timetableStart").val(); i++){
+   					$("#timetableEnd option[value="+i+"]").attr("disabled", true);
+   				}
+            	
         		$("#timetableStart").change(function(){
         			var start = $(this).val()
         			var end = $("#timetableEnd").val()
         			if(start > end){
-        				console.log("change!!!")
         				$("#timetableEnd").val($(this).val());
         			}
         			$("#timetableEnd option").attr("disabled", false);
@@ -450,6 +453,7 @@
         		
         	});
             </script>
+            
         </div>
         <!--**********************************
             Main wrapper end

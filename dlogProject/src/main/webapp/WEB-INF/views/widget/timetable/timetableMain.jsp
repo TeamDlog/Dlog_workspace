@@ -343,12 +343,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="selectList.mo" aria-expanded="false" style="background:#F3F3F9">
+                            <a href="selectList.mo" aria-expanded="false" >
                                 <i class="icon-doc menu-icon"></i><span class="nav-text">메모장</span>
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" style="background:#F3F3F9">
                                 <i class="icon-grid menu-icon"></i><span class="nav-text">시간표<span>
                             </a>
                         </li>
@@ -395,11 +395,23 @@
                        							if("${timetable.timetableDay}" == '월요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
+	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".mon${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent}")
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ")
+	                       									<c:choose>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
+	                       											.html($(".mon${timetable.timetableStart}").html() + timetableContent.substring(0,10))
+	                       										</c:when>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
+	                       											.html($(".mon${timetable.timetableStart}").html() + timetableContent.substring(0,28))
+	                       										</c:when>
+	                       										<c:otherwise>
+	                       										.html($(".mon${timetable.timetableStart}").html() + timetableContent)
+	                       										</c:otherwise>
+	                       									</c:choose>
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -428,11 +440,23 @@
                        							}else if("${timetable.timetableDay}" == '화요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
+	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".tue${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent}")
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ")
+	                       									<c:choose>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
+	                       											.html($(".tue${timetable.timetableStart}").html() + timetableContent.substring(0,10))
+	                       										</c:when>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
+	                       											.html($(".tue${timetable.timetableStart}").html() + timetableContent.substring(0,28))
+	                       										</c:when>
+	                       										<c:otherwise>
+	                       										.html($(".tue${timetable.timetableStart}").html() + timetableContent)
+	                       										</c:otherwise>
+	                       									</c:choose>
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -461,11 +485,23 @@
                        							}else if("${timetable.timetableDay}" == '수요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
+	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".wed${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent}")
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br>")
+	                       									<c:choose>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
+	                       											.html($(".wed${timetable.timetableStart}").html() + timetableContent.substring(0,10))
+	                       										</c:when>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
+	                       											.html($(".wed${timetable.timetableStart}").html() + timetableContent.substring(0,28))
+	                       										</c:when>
+	                       										<c:otherwise>
+	                       										.html($(".wed${timetable.timetableStart}").html() + timetableContent)
+	                       										</c:otherwise>
+	                       									</c:choose>
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -494,11 +530,23 @@
                        							}else if("${timetable.timetableDay}" == '목요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
+	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".thu${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent}")
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br>")
+	                       									<c:choose>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
+	                       											.html($(".thu${timetable.timetableStart}").html() + timetableContent.substring(0,10))
+	                       										</c:when>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
+	                       											.html($(".thu${timetable.timetableStart}").html() + timetableContent.substring(0,28))
+	                       										</c:when>
+	                       										<c:otherwise>
+	                       										.html($(".thu${timetable.timetableStart}").html() + timetableContent)
+	                       										</c:otherwise>
+	                       									</c:choose>
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -527,11 +575,23 @@
                        							}else if("${timetable.timetableDay}" == '금요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
+	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".fri${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent}")
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br>")
+	                       									<c:choose>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
+	                       											.html($(".fri${timetable.timetableStart}").html() + timetableContent.substring(0,10))
+	                       										</c:when>
+	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
+	                       											.html($(".fri${timetable.timetableStart}").html() + timetableContent.substring(0,28))
+	                       										</c:when>
+	                       										<c:otherwise>
+	                       										.html($(".fri${timetable.timetableStart}").html() + timetableContent)
+	                       										</c:otherwise>
+	                       									</c:choose>
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -730,27 +790,76 @@
         <div class="card card-widget">
                 <div class="card-body gradient-3">
                     <div class="media">
-                        <table id="timetableWidget"  style="width: 100%; text-align: center;">
-                            <tr style="height: 30px;">
-                                <th>
-                                  	  과목명
-                                </th>
-                            </tr>
-                            <tr>
-                                <td style="height: 20px;">
-                                	    과목 시간 ~ 과목시간
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="height: 20px;">
-                                 	   과목 시간 ~ 과목시간
-                                </td>
-                            </tr>
+                        <table id="timetableWidget"  style="width: 100%; text-align: center; font-size:13px">
+                        	<c:choose>
+                        		<c:when test="${ !empty list }">
+		                        	<thead>
+			                        	<tr style="height: 30px;">
+			                                <th>
+			                                  	  [요일정보]
+			                                </th>
+			                            </tr>
+		                        	</thead>
+		                        	<c:forEach var="t" items="${ list }">
+		                        		<c:if test="${ t.timetableDay == t.timetableToDay }">
+				                        	<tbody>
+					                        	<tr style="height: 30px;">
+					                                <th>
+					                                  	  ${ t.timetableTitle }
+					                                </th>
+					                            </tr>
+					                            <tr>
+					                                <td style="height: 20px;">
+					                                	${ t.timetableEnd }:00 ~ ${ t.timetableEnd }:00
+					                                </td>
+					                            </tr>
+				                            </tbody>
+				                        </c:if>
+		                           </c:forEach>
+		                           <tbody>
+			                        	<tr style="height: 30px;">
+			                                <th>
+			                                  	 편안한 휴식을 가져보세요!
+			                                </th>
+			                            </tr>
+		                            </tbody>
+	                            </c:when>
+	                            <c:otherwise>
+	                            	<tr>
+		                                <td style="height: 20px;">
+		                                	등록된 시간표가 없습니다.
+		                                </td>
+		                            </tr>
+	                            </c:otherwise>
+                            </c:choose>
                         </table>
                     </div>
                 </div>
             </div>
-        
+        	
+        	<!-- 시간표 위젯 스크립트 -->
+        	<script>
+        		$(function(){
+        			var today = new Date().getDay();
+        			if(today == 1){
+        				$("#timetableWidget thead tr th").text("[월요일]");
+        			}else if(today == 2){
+        				$("#timetableWidget thead tr th").text("[화요일]");
+        			}else if(today == 3){
+        				$("#timetableWidget thead tr th").text("[수요일]");
+        			}else if(today == 4){
+        				$("#timetableWidget thead tr th").text("[목요일]");
+        			}else if(today == 5){
+        				$("#timetableWidget thead tr th").text("[금요일]");
+        			}else if(today == 6){
+        				$("#timetableWidget thead tr th").text("[토요일]");
+        			}else if(today == 0){
+        				$("#timetableWidget thead tr th").text("[일요일]");
+        			}
+        		});
+        	</script>
+        	<!-- 시간표 위젯 스크립트 -->
+        	
             <script>
             	$(function(){
             		$(".memo_widget").hover(function(){
@@ -828,9 +937,9 @@
        				alert("취소되었습니다.");
        			}
        		});
-       	});
+       	})
       </script>
-
+	
 </body>
 
 </html>

@@ -14,7 +14,7 @@
 		select
 		       count(*)
 		  from dday
-		 where member_no = ${memberNo}
+		 where member_no = 3<!-- ${memberNo} -->
 	</select>
 	
 	<select id="ddayList" parameterType="string" resultMap="ddayResultSet">
@@ -26,7 +26,7 @@
 		      , dday_widget
 		      , TO_DATE(dday_date,'YYYY/MM/DD') - to_date(sysdate, 'YYYY/MM/DD') dday_count
 		  from dday
-		 where member_no = ${memberNo}
+		 where member_no = 3<!-- ${memberNo} -->
 		 order
 		    by dday_count
 	</select>
@@ -44,7 +44,7 @@
 		values
 		      (
 		        seq_ddayNo.nextval
-		      , ${memberNo}
+		      , 3<!-- ${memberNo} -->
 		      , #{ddayTitle}
 		      , #{ddayDate}
 		      )

@@ -422,7 +422,6 @@
             		
             		$("#timetableStart").change(function(){
             			if($(this).val() > $("#timetableEnd").val()){
-            				console.log("change!!!")
             				$("#timetableEnd").val($(this).val());
             			}
             			$("#timetableEnd option").attr("disabled", false);
