@@ -36,14 +36,14 @@
 	    <div class="container-fluid">
 	        <div class="row">
 	            <div class="col-12">
-	                <div class="card" style="width:900px;">
+	                <div class="card backgroundColor" style="width:900px;">
 	                    <div class="card-body" >
 	                        <div class="table-responsive">
 	                            <!-- 검색영역 -->
 	                            <table>
 	                                <tr>
 	                                    <td width="700">
-                                            <input type="text" name="keyword" value="${ sc.keyword }" style="width: 200px; height: 30px; border: .1px solid lightgrey; border-radius: 4px; padding-left:5px;">
+                                            <input type="text" name="keyword" style="width: 200px; height: 30px; border: .1px solid lightgrey; border-radius: 4px; padding-left:5px;">
                                             <button type="button" class="btn btn-secondary btn-sm" id="searchBtn"><i class="fa fa-search"></i></button>
 	                                    </td>
 	                                    <td width="100" align="right">
@@ -97,9 +97,9 @@
 	    <!-- #/ container -->
 	</div>   
 	
-	 <script>
-		 // 글 상세보기
-		 $(function(){
+	<script>
+		// 글 상세보기
+		$(function(){
 	 		$("#listArea>tbody").on("click", "tr", function(){
 					if($(this).find("td:eq(1)").next().val() == 'Y' || $(this).find("td:eq(1)").prev().val() == '${loginUser.memberNo}'){
 	 				location.href="detail.fn?fno=" + $(this).find("td:eq(0)").text();

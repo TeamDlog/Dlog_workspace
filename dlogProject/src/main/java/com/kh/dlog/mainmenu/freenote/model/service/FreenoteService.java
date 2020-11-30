@@ -53,8 +53,12 @@ public interface FreenoteService {
 	// 3. 신고 등록
 	int checkReport(Report r);
 	int insertReport(Report r);
-	// 4. 관리자 커뮤니티 목록 조회
+	
+	// 관리자
+	// 1. 관리자 커뮤니티 목록 조회
 	ArrayList<Freenote> selectAdminCommList();
+	// 2. 관리자 커뮤니티 글 삭제
+	int deleteCommunity(String[] list);
 	
 	
 }

@@ -130,8 +130,18 @@ public class FreenoteDao {
 		return sqlSession.insert("freenoteMapper.insertReport", r);
 	}
 	
+	// 관리자
 	public ArrayList<Freenote> selectAdminCommList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("freenoteMapper.selectAdminCommList");
 	}
+	
+	public int deleteCommunity(SqlSessionTemplate sqlSession, String[] list) {
+		int result = 0;
+		for(int i=0; i<list.length; i++) {
+			result = sqlSession.update("freenoteMapper.deleteFreenote", Integer.parseInt(list[i]));
+		}
+		return result;
+	}
+	
 	
 }

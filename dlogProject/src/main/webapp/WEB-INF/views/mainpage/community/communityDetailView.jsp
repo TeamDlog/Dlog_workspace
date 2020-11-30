@@ -254,11 +254,9 @@
 				}, success:function(result){
 					
 					if(result>0){
-						alert("추천되었습니다");
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) + 1);
 						$("#heart-" + rno).html("<i class='fas fa-heart'></i>");
 					}else{
-						alert("추천 취소");
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) - 1 );
 						$("#heart-" + rno).html("<i class='far fa-heart'></i>");
 					}

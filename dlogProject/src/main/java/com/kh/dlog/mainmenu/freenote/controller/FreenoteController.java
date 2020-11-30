@@ -143,8 +143,13 @@ public class FreenoteController {
 		int listCount = fService.selectReplyListCount(fno);
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 5);
 		
-		ArrayList<Reply> rlist = fService.selectReplyList(fno, ((Member)session.getAttribute("loginUser")).getMemberNo(), pi);
-		ArrayList<Reply> rlist2= fService.selectReplyList2(fno, ((Member)session.getAttribute("loginUser")).getMemberNo());
+		int loginUserNo = 0;
+		if(session.getAttribute("loginUser")!=null) {
+			loginUserNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		}
+		
+		ArrayList<Reply> rlist = fService.selectReplyList(fno, loginUserNo, pi);
+		ArrayList<Reply> rlist2= fService.selectReplyList2(fno, loginUserNo);
 		
 		JSONObject jobj = new JSONObject();
 		jobj.put("rlist", rlist);

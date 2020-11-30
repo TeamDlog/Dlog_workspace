@@ -33,45 +33,70 @@
                 <div class="col-12">
                     <div class="card" style="width:900px;">
                         <div class="card-body">
-                            <h4 class="card-title">게시글</h4>
+                            <h4 class="card-title" style="float:left;">게시글 목록</h4>
+                            <input class="btn btn-primary btn-sm" type="button" value="삭제" onclick="confirmDelete();" style="float:left; margin-left: 680px;">
+                            
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover zero-configuration" id="listTable">
+                                <table class="table table-striped table-bordered table-hover zero-configuration" id="listTable" style="table-layout:fixed;">
                                     <thead>
                                         <tr>
-                                        	<th><input type="checkbox" ></th>
-                                            <th>글 번호</th>
-                                            <th width="150">글 제목</th>
+                                        	<th width="15"><input type="checkbox" name="chkAll"></th>
+                                            <th width="28">번호</th>
+                                            <th width="135">글 제목</th>
                                             <th>작성자</th>
-                                            <th>조회수</th>
-                                            <th>댓글수</th>
-                                            <th>작성일</th>
+                                            <th width="43">조회수</th>
+                                            <th width="43">추천수</th>
+                                            <th width="43">댓글수</th>
+                                            <th width="55">작성일</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     	<c:forEach var="fn" items="${ list }">
                                     		<tr>
-                                    			<td><input type="checkbox"></td>
+                                    			<td><input type="checkbox" name="chk"></td>
                                                 <td>${ fn.freenoteNo }</td>
-                                                <td>${ fn.freenoteTitle }</td>
+                                                <td style="overflow:hidden; white-space: nowrap;text-overflow: ellipsis;">${ fn.freenoteTitle }</td>
                                                 <td>${ fn.memberId }</td>
                                                 <td>${ fn.freenoteCount }</td>
+                                                <td>${ fn.freenoteLike }</td>
                                                 <td>${ fn.replyCount }</td>
                                                 <td>${ fn.createDate }</td>
                                             </tr>
                                     	</c:forEach>
                                     </tbody>
                                 </table>
-                                <script>
-                                	$(function(){
-                                		$("#listTable>tbody>tr").find("td:eq(2)").each(function(){
-                                			$(this).css("cursor", "pointer");
-                                			$(this).click(function(){
-                                				location.href="admin_detail.co?fno=" + $(this).prev().text();
-                                			});
-                                		});
-                                	});
-                                </script>
+                                <br>
                             </div>
+                            <script>
+                            	
+                            	$(function(){
+                            		$("#listTable>tbody>tr").find("td:eq(2)").each(function(){
+                            			$(this).css("cursor", "pointer");
+                            			$(this).click(function(){
+                            				location.href="adminDetail.co?fno=" + $(this).prev().text();
+                            			});
+                            		});
+                            	});
+                            	
+                            	function confirmDelete(){
+                            		var chkArr = [];
+                            		$("input[name=chk]:checked").each(function(){
+                            			chkArr.push($(this).parent().next().text());
+                            		});
+                            		
+                            		if(chkArr.length > 0){
+	                            		if(confirm("정말로 삭제하시겠습니까?")){
+	                            			location.href="adminDelete.co?arr=" +chkArr;
+	                            		}
+                            		}else{
+                            			alert('선택된 항목이 없습니다.');
+                            		}
+                            	}
+                            	
+                            	$("input[name=chkAll]").change(function(){
+                            		$("input[name=chk]").prop("checked", this.checked);
+                            	})
+                            </script>
                         </div>
                     </div>
                 </div>

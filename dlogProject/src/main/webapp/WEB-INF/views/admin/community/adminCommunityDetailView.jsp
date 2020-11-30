@@ -70,7 +70,10 @@
                                 <table>
                                     <tr>
                                         <td width="400" style="font-size: 20px;">${ fn.freenoteTitle }</td>
-                                        <td width="500" align="right"><a id="deleteBtn">삭제</a></td>
+                                        <td width="500" align="right">
+											<button class="btn btn-secondary btn-sm" onclick="history.back();">취소</button>
+	                           			 	<button class="btn btn-primary btn-sm" id="deleteBtn">삭제</button>
+										</td>
                                     </tr>
                                 </table>
                             </div>
@@ -174,7 +177,7 @@
 	                        	    				"좋아요 " + result.rlist2[j].replyLike +
 	                        	    			"</td>" +
 	                                            "<td width='200' align='right'>" +
-	                                				"<button class='btn btn-outline-light btn-sm btn-flat' onclick='confirmDeleteReply(" + result.rlist2[j].replyNo + ", " + result.rlist[i].replyNo + ", " + result.pi.currentPage + ");'>삭제</button>" + 
+	                                				"<button class='btn btn-outline-primary btn-sm btn-flat' onclick='confirmDeleteReply(" + result.rlist2[j].replyNo + ", " + result.rlist[i].replyNo + ", " + result.pi.currentPage + ");'>삭제</button>" + 
 	                                			"</td>" +
 	                                        "</tr>" +
 	                                    "</table>" +
@@ -208,7 +211,7 @@
 			                            "</td>" +
 			                            "<td width='600' align='right'>";
 			                if(result.rlist[i].status == 'Y'){
-			                	comment1 += "<button class='btn btn-outline-light btn-sm btn-flat' onclick='confirmDeleteReply(" + result.rlist[i].replyNo + ", 0, 1);'>삭제</button>";
+			                	comment1 += "<button class='btn btn-outline-primary btn-sm btn-flat' onclick='confirmDeleteReply(" + result.rlist[i].replyNo + ", 0, 1);'>삭제</button>";
 			                }
 			                comment1+=  "</td>" +
 			                        "</tr>" +
@@ -244,6 +247,7 @@
 		                
 					}else{
 						$("#replyArea").html("<div align='center'>작성된 댓글이 없습니다.</div>");
+						$("#replyPagination").html("");
 					}
 				}, error:function(){
 					console.log("댓글 리스트 조회용 ajax 통신 실패");

@@ -177,11 +177,9 @@
 					
 					
 					if(result>0){
-						alert("추천되었습니다");
 						$("#likeCount").html( parseInt($("#likeCount").text()) + 1);
 						$("#heart").html("<i class='mdi mdi-heart'></i>");
 					}else{
-						alert("추천 취소");
 						$("#likeCount").html( parseInt($("#likeCount").text()) - 1 );
 						$("#heart").html("<i class='mdi mdi-heart-outline'></i>");
 					}

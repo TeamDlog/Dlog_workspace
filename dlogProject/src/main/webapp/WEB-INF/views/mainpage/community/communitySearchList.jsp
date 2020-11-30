@@ -141,14 +141,14 @@
     		$(window).scroll(function(){
 	    		if ($(window).scrollTop() >= ($(document).height() - $(window).height()) && $contentLoadTriggered == false){
 	    			$contentLoadTriggered = true;
-	    			count += 1;
-	    			loadListScroll(count);
+	    			count++;
+	    			loadList(count);
 					$contentLoadTriggered = false;
 	    		}
     		});
     	});
     		
-    	function loadListScroll(cPage){
+    	function loadList(cPage){
     		$.ajax({
 		    	url:"searchList.co",
     			data:{
@@ -194,60 +194,7 @@
     					}
     					$("#listArea").append(listCard);
     					
-    				}
-    			}, error:function(){
-    				console.log('커뮤니티 검색리스트 조회 ajax 통신 실패');
-    			}
-    		});
-    	}
-    	
-    	function loadList(cPage){
-    		$.ajax({
-		    	url:"searchList.co",
-    			data:{
-	    			condition:'${sc.condition}',
-	    			keyword:'${sc.keyword}',
-	    			sort:'${sc.sort}',
-	    			currentPage:cPage
-    			}, success:function(result){
-    				
-    				if(result.list.length > 0){
-    					var listCard = "";
-    					for(var i in result.list){
-    						listCard +=
-    							"<div class='listCard'>" +
-		                    		"<input type='hidden' value='" + result.list[i].freenoteNo + "'>" +
-		    	                    "<table>" +
-		    	                        "<tr>" +
-		    	                            "<td width='790' height='40'>" +
-		    	                                "<img src='resources/images/default-profile-pic.jpg' width='40' height='40' class='rounded-circle'>&nbsp;" +
-		    	                                result.list[i].freenoteWriter +
-		    	                            "</td>" +
-		    	                            "<td width='140' align='right'>";
-                            if(result.list[i].freenoteTopic != '주제선택안함'){
-                            	listCard += result.list[i].freenoteTopic;
-                            }
-		    	            listCard +=     "</td>" +
-		    	                        "</tr>" +
-		    	                        "<tr>" +
-		    	                            "<td colspan='2' height='40' style='font-size: 17px;'>" +
-		    	                            	result.list[i].freenoteTitle +
-		    	                            "</td>" +
-		    	                        "</tr>" +
-		    	                        "<tr>" +
-		    	                            "<td colspan='2'>" +
-		    	                            	result.list[i].createDate + 
-		    	                            	"&emsp;조회수&nbsp;" + result.list[i].freenoteCount +
-		    	                            	"&emsp;좋아요&nbsp;" +  result.list[i].freenoteLike + 
-		    	                            	"&emsp;댓글&nbsp;" + result.list[i].replyCount +
-		    	                            "</td>" +
-		    	                        "</tr>" +
-		    	                    "</table>" +
-		    	                "</div>";
-    					}
-    					$("#listArea").html(listCard);
-    					
-    				}else{
+    				}else if(cPage == 1){
     					$("#listArea").html('조회된 결과가 없습니다.');
     				}
     			}, error:function(){
@@ -255,10 +202,7 @@
     			}
     		});
     	}
-    	
-    	
     </script>
-    
 	
 	<jsp:include page="../../common/mainFooter.jsp" />
 

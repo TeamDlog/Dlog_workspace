@@ -158,9 +158,16 @@ public class FreenoteServiceImpl implements FreenoteService {
 		return fDao.insertReport(sqlSession, r);
 	}
 
+	
+	// 관리자 관련
 	@Override
 	public ArrayList<Freenote> selectAdminCommList() {
 		return fDao.selectAdminCommList(sqlSession);
+	}
+
+	@Override
+	public int deleteCommunity(String[] list) {
+		return fDao.deleteCommunity(sqlSession, list);
 	}
 
 

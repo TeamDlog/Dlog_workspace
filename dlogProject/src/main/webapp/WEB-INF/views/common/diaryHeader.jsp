@@ -257,7 +257,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="list.fn?mno=1" aria-expanded="false">
+                            <a href="list.fn" aria-expanded="false">
                                 <i class="icon-note menu-icon"></i><span class="nav-text">프리노트</span>
                             </a>
                         </li>
