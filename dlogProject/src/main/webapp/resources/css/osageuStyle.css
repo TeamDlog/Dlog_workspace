@@ -301,26 +301,6 @@ input:checked + .slider:before {
 	width:30px;
 	height:30px;
 }
-.memo_widget{
-	width:180px;
-}
-.memo_widget_title{
-	background:rgb(132,200,185);
-	color:white;
-	text-align:center;
-	font-size:25px;
-	border-radius:10px 10px 0px 0px;
-}
-.memo_widget_content{
-	font-size:17px;
-	padding:20px;
-	border:0px;
-	resize:none;
-	overflow:hidden;
-	color:rgb(100,100,100);
-}
-
-
 
 
 
