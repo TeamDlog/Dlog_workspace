@@ -27,7 +27,32 @@
 
 <body>
 	<jsp:include page="../../common/diaryHeader.jsp"/>
-	<c:if test="${ timetableInsertCheck == 1 }">
+	<form action="deleteAndInsert.ti" method="post">
+    	<input type="hidden" name="timetableWriter" value="${ t.timetableWriter }">
+         <input type="hidden" name="timetableDay" value="${ t.timetableDay }" >
+         <input type="hidden" name="timetableStart" value="${ t.timetableStart }">
+         <input type="hidden" name="timetableEnd" value="${ t.timetableEnd }">
+         <input type="hidden" name="timetableTime" value="${ t.timetableTime }">
+         <input type="hidden" name="timetableTitle" value="${ t.timetableTitle }">
+         <input type="hidden" name="timetableContent" value="${ t.timetableContent }">
+         <input type="hidden" name="timetableBackground" value="${ t.timetableBackground }">
+         <input type="hidden" name="timetableColor" value="${ t.timetableColor }">
+         <button id="deleteAndInsertBtn" type="submit" style="display: none;"></button>
+     </form>
+     <form action="deleteAndUpdate.ti" method="post">
+     	 <input type="hidden" name="timetableNo" value="${ t.timetableNo }">
+    	 <input type="hidden" name="timetableWriter" value="${ t.timetableWriter }">
+         <input type="hidden" name="timetableDay" value="${ t.timetableDay }" >
+         <input type="hidden" name="timetableStart" value="${ t.timetableStart }">
+         <input type="hidden" name="timetableEnd" value="${ t.timetableEnd }">
+         <input type="hidden" name="timetableTime" value="${ t.timetableTime }">
+         <input type="hidden" name="timetableTitle" value="${ t.timetableTitle }">
+         <input type="hidden" name="timetableContent" value="${ t.timetableContent }">
+         <input type="hidden" name="timetableBackground" value="${ t.timetableBackground }">
+         <input type="hidden" name="timetableColor" value="${ t.timetableColor }">
+         <button id="deleteAndUpdateBtn" type="submit" style="display: none;"></button>
+     </form>
+	 <c:if test="${ timetableInsertCheck == 1 }">
     	<script>
     		if(confirm("선택한 시간에 중복되는 시간표가 있습니다. 기존 정보를 삭제하고 등록하시겠습니까?")){
     			
@@ -65,31 +90,7 @@
             <!--**********************************
                 Content body start
             ***********************************-->
-            <form action="deleteAndInsert.ti" method="post">
-		    	<input type="hidden" name="timetableWriter" value="${ t.timetableWriter }">
-		         <input type="hidden" name="timetableDay" value="${ t.timetableDay }" >
-		         <input type="hidden" name="timetableStart" value="${ t.timetableStart }">
-		         <input type="hidden" name="timetableEnd" value="${ t.timetableEnd }">
-		         <input type="hidden" name="timetableTime" value="${ t.timetableTime }">
-		         <input type="hidden" name="timetableTitle" value="${ t.timetableTitle }">
-		         <input type="hidden" name="timetableContent" value="${ t.timetableContent }">
-		         <input type="hidden" name="timetableBackground" value="${ t.timetableBackground }">
-		         <input type="hidden" name="timetableColor" value="${ t.timetableColor }">
-		         <button id="deleteAndInsertBtn" type="submit" style="display: none;"></button>
-		     </form>
-		     <form action="deleteAndUpdate.ti" method="post">
-		     	 <input type="hidden" name="timetableNo" value="${ t.timetableNo }">
-		    	 <input type="hidden" name="timetableWriter" value="${ t.timetableWriter }">
-		         <input type="hidden" name="timetableDay" value="${ t.timetableDay }" >
-		         <input type="hidden" name="timetableStart" value="${ t.timetableStart }">
-		         <input type="hidden" name="timetableEnd" value="${ t.timetableEnd }">
-		         <input type="hidden" name="timetableTime" value="${ t.timetableTime }">
-		         <input type="hidden" name="timetableTitle" value="${ t.timetableTitle }">
-		         <input type="hidden" name="timetableContent" value="${ t.timetableContent }">
-		         <input type="hidden" name="timetableBackground" value="${ t.timetableBackground }">
-		         <input type="hidden" name="timetableColor" value="${ t.timetableColor }">
-		         <button id="deleteAndUpdateBtn" type="submit" style="display: none;"></button>
-		     </form>
+            
             <div class="content-body" style="float: left;">
                 <div class="row page-titles mx-0">
                     <h3 style="color:rgb(94, 94, 94); padding-left: 15px; "><b>수업시간표</b></h3>
@@ -440,7 +441,18 @@
             Main wrapper end
         ***********************************-->
 		
-		<script>
+		
+		
+        <!--**********************************
+            Widget area start
+        ***********************************-->
+        <jsp:include page="../../common/diaryWidget.jsp"/>
+        
+    <!--**********************************
+        Widget area end
+    ***********************************-->
+    <jsp:include page="../../common/diaryFooter.jsp"/>
+    <script>
        	$(function(){
        		$("#deleteTimetableCheck").click(function(){
        			$(this).css("display", "none");
@@ -483,17 +495,6 @@
        		});
        	})
       </script>
-		
-        <!--**********************************
-            Widget area start
-        ***********************************-->
-        <jsp:include page="../../common/diaryWidget.jsp"/>
-        
-    <!--**********************************
-        Widget area end
-    ***********************************-->
-    <jsp:include page="../../common/diaryFooter.jsp"/>
-    
 	
 </body>
 

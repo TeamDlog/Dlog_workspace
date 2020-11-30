@@ -177,10 +177,10 @@
                 	<c:forEach var="d" items="${ dlist }">
 	                	<input type="hidden" name="dlist" value="${ d.ddayNo }">
                 	</c:forEach>
-                	<input type="hidden" name="widgetCheck1" id="widgetCheck1" />
-                	<input type="hidden" name="widgetCheck2" id="widgetCheck2" />
-                	<input type="hidden" name="widgetCheck3" id="widgetCheck3" />
-                	<input type="hidden" name="widgetCount" id="widgetCount" />
+           			<input type="hidden" name="widgetCheck1" id="widgetCheck1"/>
+           			<input type="hidden" name="widgetCheck2" id="widgetCheck2"/>
+           			<input type="hidden" name="widgetCheck3" id="widgetCheck3"/>
+                	<input type="hidden" name="widgetCount" id="widgetCount"/>
                 	<button style="display:none;" type="submit" id="widgetCheckListBtn"></button>
                 </form>
                 <!-- #/ container -->
@@ -194,125 +194,7 @@
             Main wrapper end
         ***********************************-->
 
-		<script>
-		var widgetCount = 0;
-        $(function(){
-            
-            $('.ddayRadio').click(function(){
-                if($(this).children('.ddayRadioClick').hasClass('rclick')){
-                    $(this).children('.ddayRadioClick').removeClass('rclick')
-                    $("#widgetCheck"+ (widgetCount+1)).val("")
-                    widgetCount = widgetCount-1;
-                }else{
-                    if(widgetCount >= 3){
-                        alert("최대 3개까지 선택 가능합니다.")
-                    }else{
-                        $(this).children('.ddayRadioClick').addClass('rclick')
-                        $("#widgetCheck"+(widgetCount+1)).val($(this).next().children().children().eq(3).val())
-                       widgetCount = widgetCount+1;
-                    }
-                }
-            });
-            
-            $(".ddayContent").click(function(){
-            	$("#updateDdayTitle").val($(this).children(0).children().eq(1).text());
-            	$("#updateDdayDate").val($(this).children(0).children().eq(0).text());
-            	$("#updateDdayNo").val($(this).children(0).children().eq(3).val());
-            });
-     
-            $("#insertDdayBtn").click(function(){
-            	$("#checkDdayBtn").css('display', 'block');
-            	$("#commitDeleteDdayBtn").css('display', 'none');
-            	$("#commitDdayBtn").css('display', 'none');
-            	$("#commitCancelBtn").css('display', 'none');
-                $('.ddayRadio').css('display', 'none');
-                $(".dday input").css('display', 'none');
-                $(".ddayContentDeleteCheck").attr("data-toggle","modal");
-                $(".ddayContentWidgetCheck").attr("data-toggle","modal");
-                $(".ddayContentDeleteCheck").attr("data-toggle","modal").addClass('ddayContent').removeClass('ddayContentDeleteCheck');
-                $(".ddayContentWidgetCheck").attr("data-toggle","modal").addClass('ddayContent').removeClass('ddayContentWidgetCheck');
-            });
-            
-            $("#commitCancelBtn").click(function(){
-            	$("#checkDdayBtn").css('display', 'block');
-            	$("#commitDeleteDdayBtn").css('display', 'none');
-            	$("#commitDdayBtn").css('display', 'none');
-            	$("#commitCancelBtn").css('display', 'none');
-                $('.ddayRadio').css('display', 'none');
-                $(".dday input").css('display', 'none');
-                $(".ddayContentDeleteCheck").attr("data-toggle","modal");
-                $(".ddayContentWidgetCheck").attr("data-toggle","modal");
-                $(".ddayContentDeleteCheck").attr("data-toggle","modal").addClass('ddayContent').removeClass('ddayContentDeleteCheck');
-                $(".ddayContentWidgetCheck").attr("data-toggle","modal").addClass('ddayContent').removeClass('ddayContentWidgetCheck');
-            })
-              
-            $("#commitDeleteDdayBtn").click(function(){
-            	$("#deleteDdayListBtn").click();
-            });
-            
-            $("#commitDdayBtn").click(function(){
-            	$("#widgetCount").val(widgetCount);
-            	$("#widgetCheckListBtn").click();
-            });
-            
-            $("#deleteDdayBtn").click(function(){
-            	$("#checkDdayBtn").css('display', 'none');
-            	$("#commitDdayBtn").css('display', 'none');
-            	$("#commitDeleteDdayBtn").css('display', 'block');
-            	$("#commitCancelBtn").css('display', 'block');
-            	$(".dday input").css('display', 'block');
-                $('.ddayRadio').css('display', 'none');
-                $(".ddayContent").attr("data-toggle","");
-                $(".ddayContent").addClass('ddayContentDeleteCheck').removeClass('ddayContentWidgetCheck').removeClass('ddayContent');
-                $(".ddayContentDeleteCheck").click(function(){
-                	if($(this).siblings('.ddayCheck').children().eq(0).attr("checked") == "checked"){
-                		$(this).siblings('.ddayCheck').children().eq(0).attr("checked", false);
-                	}else{
-                		$(this).siblings('.ddayCheck').children().eq(0).attr("checked","checked");
-                	}
-                });
-            })
-            
-            $("#checkDdayBtn").click(function(){
-            	$("#checkDdayBtn").css('display', 'none');
-            	$("#commitDeleteDdayBtn").css('display', 'none');
-            	$("#commitDdayBtn").css('display', 'block');
-            	$("#commitCancelBtn").css('display', 'block');
-                $('.ddayRadio').css('display', 'block');
-                $(".dday input").css('display', 'none');
-                $(".ddayContent").attr("data-toggle","");
-                $(".ddayContent").addClass('ddayContentWidgetCheck').removeClass('ddayContentDeleteCheck').removeClass('ddayContent');
-                $(".ddayContentWidgetCheck").click(function(){
-                	$(this).siblings('.ddayRadio').click();
-                });
-            });
-            
-            
-            
-        });    
-        
-    </script>
-    
-    <c:if test="${ !empty dlist }">
-    	<c:forEach var="d" items="${dlist}">
-    		<c:if test="${ d.ddayWidget == 'Y' }">
-    			<script>
-    				$("#widgetCheck"+(widgetCount+1)).val(${d.ddayNo});
-    				widgetCount = widgetCount + 1;
-    			</script>
-    		</c:if>
-    	</c:forEach>
-    </c:if>
-    
-    <script>
-    	$(function(){
-    		$(".memo_widget").hover(function(){
-    			$(this).children().eq(1).attr("style","overflow:auto;");
-    		},function(){
-    			$(this).children().eq(1).attr("style","overflow:hidden;");
-    		})
-    	})
-    </script>
+
 
     <!-- Button to Open the Modal -->
     
@@ -334,7 +216,7 @@
                     <input type="text" name="ddayTitle" style="width: 100%; height: 40px;"> <br><br>
                    	 날짜 설정 
                     <input type="date" name="ddayDate" style="width: 100%; height: 40px;">
-                    <input type="hidden" name="memberNo" id="${ loginUser.memberNo }">
+                    <input type="hidden" name="memberNo" value="${ loginUser.memberNo }">
                 </div>
         
                 <!-- Modal footer -->
@@ -366,7 +248,7 @@
                    	 날짜 설정 
                     <input type="date" name="ddayDate" id="updateDdayDate" style="width: 100%; height: 40px;">
                     <input type="hidden" name="ddayNo" id="updateDdayNo">
-                    <input type="hidden" name="memberNo" id="${ loginUser.memberNo }">
+                    <input type="hidden" name="memberNo" value="${ loginUser.memberNo }">
                 </div>
         
                 <!-- Modal footer -->
@@ -388,7 +270,114 @@
         Widget area end
     ***********************************-->
     	<jsp:include page="../../common/diaryFooter.jsp"/>
-    
+    	<script>
+    	var widgetCount = 0;
+    	var wcc = 1;
+	        $(function(){
+	        	
+	        	widgetCount = $(".rclick").length;
+	        	<c:forEach var="d" items="${dlist}">
+	        		if(${d.ddayWidget == "Y"}){
+	        			$("#widgetCheck"+wcc).val(${d.ddayNo})
+	        			wcc += 1;
+	        		}
+	        	</c:forEach>
+	            $('.ddayRadio').click(function(){
+	                if($(this).children('.ddayRadioClick').hasClass('rclick')){
+	                    $(this).children('.ddayRadioClick').removeClass('rclick')
+	                    $("#widgetCheck"+ (widgetCount+1)).val("")
+	                    widgetCount = widgetCount-1;
+	                }else{
+	                    if(widgetCount >= 3){
+	                        alert("최대 3개까지 선택 가능합니다.")
+	                    }else{
+	                        $(this).children('.ddayRadioClick').addClass('rclick')
+	                        $("#widgetCheck"+(widgetCount+1)).val($(this).next().children().children().eq(3).val())
+	                       widgetCount = widgetCount+1;
+	                    }
+	                }
+	            });
+	            
+            	$("#widgetCount").val(widgetCount);
+            	
+	            $(".ddayContent").click(function(){
+	            	$("#updateDdayTitle").val($(this).children(0).children().eq(1).text());
+	            	$("#updateDdayDate").val($(this).children(0).children().eq(0).text());
+	            	$("#updateDdayNo").val($(this).children(0).children().eq(3).val());
+	            });
+	     
+	            $("#insertDdayBtn").click(function(){
+	            	$("#checkDdayBtn").css('display', 'block');
+	            	$("#commitDeleteDdayBtn").css('display', 'none');
+	            	$("#commitDdayBtn").css('display', 'none');
+	            	$("#commitCancelBtn").css('display', 'none');
+	                $('.ddayRadio').css('display', 'none');
+	                $(".dday input").css('display', 'none');
+	                $(".ddayContentDeleteCheck").attr("data-toggle","modal");
+	                $(".ddayContentWidgetCheck").attr("data-toggle","modal");
+	                $(".ddayContentDeleteCheck").attr("data-toggle","modal").addClass('ddayContent').removeClass('ddayContentDeleteCheck');
+	                $(".ddayContentWidgetCheck").attr("data-toggle","modal").addClass('ddayContent').removeClass('ddayContentWidgetCheck');
+	            });
+	            
+	            $("#commitCancelBtn").click(function(){
+	            	$("#checkDdayBtn").css('display', 'block');
+	            	$("#commitDeleteDdayBtn").css('display', 'none');
+	            	$("#commitDdayBtn").css('display', 'none');
+	            	$("#commitCancelBtn").css('display', 'none');
+	                $('.ddayRadio').css('display', 'none');
+	                $(".dday input").css('display', 'none');
+	                $(".ddayContentDeleteCheck").attr("data-toggle","modal");
+	                $(".ddayContentWidgetCheck").attr("data-toggle","modal");
+	                $(".ddayContentDeleteCheck").attr("data-toggle","modal").addClass('ddayContent').removeClass('ddayContentDeleteCheck');
+	                $(".ddayContentWidgetCheck").attr("data-toggle","modal").addClass('ddayContent').removeClass('ddayContentWidgetCheck');
+	            })
+	              
+	            $("#commitDeleteDdayBtn").click(function(){
+	            	$("#deleteDdayListBtn").click();
+	            });
+	            
+	            $("#commitDdayBtn").click(function(){
+	            	$("#widgetCount").val(widgetCount);
+	            	$("#widgetCheckListBtn").click();
+	            });
+	            
+	            $("#deleteDdayBtn").click(function(){
+	            	$("#checkDdayBtn").css('display', 'none');
+	            	$("#commitDdayBtn").css('display', 'none');
+	            	$("#commitDeleteDdayBtn").css('display', 'block');
+	            	$("#commitCancelBtn").css('display', 'block');
+	            	$(".dday input").css('display', 'block');
+	                $('.ddayRadio').css('display', 'none');
+	                $(".ddayContent").attr("data-toggle","");
+	                $(".ddayContent").addClass('ddayContentDeleteCheck').removeClass('ddayContentWidgetCheck').removeClass('ddayContent');
+	                $(".ddayContentDeleteCheck").click(function(){
+	                	if($(this).siblings('.ddayCheck').children().eq(0).attr("checked") == "checked"){
+	                		$(this).siblings('.ddayCheck').children().eq(0).attr("checked", false);
+	                	}else{
+	                		$(this).siblings('.ddayCheck').children().eq(0).attr("checked","checked");
+	                	}
+	                });
+	            })
+	            
+	            $("#checkDdayBtn").click(function(){
+	            	$("#checkDdayBtn").css('display', 'none');
+	            	$("#commitDeleteDdayBtn").css('display', 'none');
+	            	$("#commitDdayBtn").css('display', 'block');
+	            	$("#commitCancelBtn").css('display', 'block');
+	                $('.ddayRadio').css('display', 'block');
+	                $(".dday input").css('display', 'none');
+	                $(".ddayContent").attr("data-toggle","");
+	                $(".ddayContent").addClass('ddayContentWidgetCheck').removeClass('ddayContentDeleteCheck').removeClass('ddayContent');
+	                $(".ddayContentWidgetCheck").click(function(){
+	                	$(this).siblings('.ddayRadio').click();
+	                });
+	            });
+	            
+            
+            
+        });    
+        
+    </script>
 	
 </body>
 

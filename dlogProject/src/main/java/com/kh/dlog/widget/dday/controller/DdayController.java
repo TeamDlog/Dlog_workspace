@@ -83,8 +83,8 @@ public class DdayController {
 	
 	@RequestMapping("widgetCheck.dd")
 	public String widgetCheck(WidgetCheck wc, String[] dlist, HttpSession session) {
-		
-		if(wc != null) {
+
+		if(wc.getWidgetCount() != 0) {
 			int result = dService.widgetDday(wc, dlist);
 			if(result > 0) {
 				session.setAttribute("alertMsg", "위젯 설정 완료!");
@@ -94,8 +94,14 @@ public class DdayController {
 				return "redirect:main.dd";
 			}
 		}else {
-			session.setAttribute("alertMsg", "선택된 항목이 없습니다.");
-			return "redirect:main.dd";
+			int result = dService.widgetDday(wc, dlist);
+			if(result > 0) {
+				session.setAttribute("alertMsg", "모든 위젯이 해제되었습니다.");
+				return "redirect:main.dd";
+			}else {
+				session.setAttribute("alertMsg", "위젯 등록 실패..");
+				return "redirect:main.dd";
+			}
 		}
 	}
 	
