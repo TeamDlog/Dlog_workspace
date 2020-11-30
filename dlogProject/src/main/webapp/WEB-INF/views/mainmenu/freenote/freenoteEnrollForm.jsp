@@ -53,7 +53,7 @@
 	    <div class="row page-titles mx-0">
 	        <div class="col p-md-0">
 	            <ol class="breadcrumb">
-	                <li class="breadcrumb-item"><a href="list.fn?mno=1">프리노트</a></li>
+	                <li class="breadcrumb-item"><a href="list.fn">프리노트</a></li>
 	                <li class="breadcrumb-item active">글쓰기</li>
 	            </ol>
 	        </div>
@@ -63,7 +63,7 @@
 	    <div class="container-fluid">
 	        <div class="row">
 	            <div class="col-12">
-	                <div class="card" style="width:900px;">
+	                <div class="card backgroundColor" style="width:900px;">
 	                    <div class="card-body">
 	                        <form action="insert.fn" method="post">
 	                        	<input type="hidden" name="freenoteWriter" value="${ loginUser.memberNo }">

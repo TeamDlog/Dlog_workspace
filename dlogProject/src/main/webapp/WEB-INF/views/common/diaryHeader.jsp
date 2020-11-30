@@ -44,7 +44,7 @@
     <!--**********************************
         outer start
     ***********************************-->
-    <div class="outer" style="margin: auto; width: 1390px;">
+    <div class="outer" style="margin: auto; width: 1400px;">
 	    <!--**********************************
 	        Main wrapper start
 	    ***********************************-->

@@ -10,6 +10,9 @@
 <body>
 		</div>
 		<!--**********************************
+	        Main wrapper end
+	    ***********************************-->
+		<!--**********************************
             Widget area start
         ***********************************-->
         <div class="widget-area" style="float:left; margin-top: 100px;">
@@ -27,15 +30,17 @@
             </div>
 
             <div class="card">
-	        	<div class="memo_widget">
-	                <div class="memo_widget_title">메모장</div>
-	                <textarea class="memo_widget_content" rows="5" cols="15" readOnly>${ memoWidget.memoContent }</textarea>
+            	<div class="card-body">
+		        	<div class="memo_widget">
+		                <div class="memo_widget_title">메모장</div>
+		                <textarea class="memo_widget_content" rows="5" cols="15" readOnly>${ memoWidget.memoContent }</textarea>
+		            </div>
 	            </div>
 	        </div>
 	        
 	        
 	        <!-- 시간표위젯 -->
-        <div class="card card-widget">
+        	<div class="card card-widget">
                 <div class="card-body gradient-3">
                     <div class="media">
                         <table id="timetableWidget"  style="width: 100%; text-align: center; font-size:13px">

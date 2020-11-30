@@ -59,7 +59,7 @@
         <div class="row page-titles mx-0">
             <div class="col p-md-0">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="">프리노트</a></li>
+                    <li class="breadcrumb-item"><a href="list.fn">프리노트</a></li>
                     <li class="breadcrumb-item active">상세보기</li>
                 </ol>
             </div>
@@ -69,7 +69,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card" style="width:900px;">
+                    <div class="card backgroundColor" style="width:900px;">
                         <div class="card-body" >
                             
                             <div id="titleArea">
@@ -392,6 +392,7 @@
 		                
 					}else{
 						$("#replyArea").html("<div align='center'>작성된 댓글이 없습니다.</div>");
+						$("#replyPagination").html("");
 					}
 				}, error:function(){
 					console.log("댓글 리스트 조회용 ajax 통신 실패");

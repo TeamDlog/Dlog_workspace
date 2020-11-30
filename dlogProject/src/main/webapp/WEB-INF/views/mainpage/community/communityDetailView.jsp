@@ -460,6 +460,7 @@
 		                
 					}else{
 						$("#replyArea").html("<div align='center'>작성된 댓글이 없습니다.</div>");
+						$("#replyPagination").html("");
 					}
 				}, error:function(){
 					console.log("댓글 리스트 조회용 ajax 통신 실패");
