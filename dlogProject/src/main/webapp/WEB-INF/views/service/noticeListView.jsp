@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Insert title here</title>
-<link href="resources/css/style.css" rel="stylesheet">
+
 
 </head>
 <body>
