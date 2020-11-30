@@ -27,7 +27,6 @@
 		<c:remove var="alertMsg" scope="session" />
 	</c:if>
 	
-	
     <!--*******************
         Preloader start
     ********************-->
