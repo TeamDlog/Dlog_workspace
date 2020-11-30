@@ -266,49 +266,49 @@
                         <!-- 메인메뉴 -->
                         <li class="nav-label">메인메뉴</li>
                         <li>
-                            <a href="url" aria-expanded="false">
-                                <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span>
+                            <a href="url" aria-expanded="false" id="privacyCalendarMenu" >
+                                <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span><i class="ion-android-lock" style="float:right"></i> 
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyDirayMenu">
                                 <i class="icon-notebook menu-icon"></i><span class="nav-text">다이어리</span>
                             </a>	
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyFreenoteMenu">
                                 <i class="icon-note menu-icon"></i><span class="nav-text">프리노트</span>
                             </a>
                         </li>
                         <li>
-                            <a href="selectList.ph" aria-expanded="false">
+                            <a href="selectList.ph" aria-expanded="false" id="privacyPhotoMenu">
                                 <i class="icon-picture menu-icon"></i><span class="nav-text">사진게시판</span>
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyAccountMenu">
                                 <i class="icon-wallet menu-icon"></i><span class="nav-text">가계부</span>
                             </a>
                         </li>
                         <!-- 위젯메뉴 -->
                         <li class="nav-label">위젯메뉴</li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyDdayMenu">
                                 <i class="icon-clock menu-icon"></i><span class="nav-text">디데이</span>
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyVocaMenu">
                                 <i class="icon-speech menu-icon"></i><span class="nav-text">단어장</span>
                             </a>
                         </li>
                         <li>
-                            <a href="selectList.mo" aria-expanded="false" style="background:#F3F3F9">
+                            <a href="selectList.mo" aria-expanded="false" id="privacyMemoMenu">
                                 <i class="icon-doc menu-icon"></i><span class="nav-text">메모장</span>
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyTimetableMenu">
                                 <i class="icon-grid menu-icon"></i><span class="nav-text">시간표<span>
                             </a>
                         </li>

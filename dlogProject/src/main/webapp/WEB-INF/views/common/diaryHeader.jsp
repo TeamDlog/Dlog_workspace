@@ -274,7 +274,7 @@
                         <!-- 위젯메뉴 -->
                         <li class="nav-label">위젯메뉴</li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="main.dd" aria-expanded="false">
                                 <i class="icon-clock menu-icon"></i><span class="nav-text">디데이</span>
                             </a>
                         </li>
@@ -289,7 +289,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="main.ti" aria-expanded="false">
                                 <i class="icon-grid menu-icon"></i><span class="nav-text">시간표<span>
                             </a>
                         </li>
