@@ -215,7 +215,7 @@ public class MemberController {
 			
 		}else {
 			
-			model.addAttribute("list", list);
+			session.setAttribute("loginUser", loginUser);
 			return "admin/memberDataList";
 			
 		}

@@ -38,6 +38,15 @@
 	            </div>
 	        </div>
 	        
+	        <div class="card">
+                <div class="stat-widget-one" style="padding: 10px">
+                    <div class="stat-content">
+                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">hello</div>
+                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">안녕</div>
+                    </div>
+                </div>
+            </div>
+	        
 	        
 	        <%-- <!-- 시간표위젯 -->
         	<div class="card card-widget">

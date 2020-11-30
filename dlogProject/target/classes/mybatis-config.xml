@@ -24,6 +24,7 @@
 		<typeAlias type="com.kh.dlog.admin.faq.model.vo.Faq" alias="Faq"/>
 		<typeAlias type="com.kh.dlog.admin.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.dlog.admin.inquiry.model.vo.Inquiry" alias="Inquiry"/>
+		<typeAlias type="com.kh.dlog.widget.voca.model.vo.Voca" alias="Voca"/>
 	</typeAliases>
 	
 	<!-- 
@@ -55,6 +56,7 @@
  		<mapper resource="/mappers/notice-mapper.xml" />
  		<mapper resource="/mappers/inquiry-mapper.xml" />
  		<mapper resource="/mappers/report-mapper.xml" />
+ 		<mapper resource="/mappers/voca-mapper.xml" />
  	</mappers>
  	
 </configuration>
