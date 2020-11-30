@@ -15,8 +15,8 @@
 
 	<script>
 		$(function(){
-			$(".metismenu a[href*='list.fn']").addClass("active");
-			$(".metismenu a[href*='list.fn']").parent().addClass("active");
+			$(".metismenu a[href*='selectList.ph']").addClass("active");
+			$(".metismenu a[href*='selectList.ph']").parent().addClass("active");
 		});
 	</script>
     <!--**********************************

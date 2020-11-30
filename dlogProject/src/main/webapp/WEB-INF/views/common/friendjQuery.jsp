@@ -10,6 +10,13 @@
 	<script>
 		$(function(){
 			
+			// 첫 페이지 색칠
+			$(".page-link").each(function(){
+    			if($(this).text()==${ pi2.currentPage }){
+    				$(this).css({"background":"rgb(132,200,185)", "color":"white"});
+    			}
+    		});
+			
 			// 첫 로딩 시 리스트만 보여주기
 			$(".friend_request_outer").css("display","none");
 			

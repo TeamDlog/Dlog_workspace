@@ -12,16 +12,18 @@
 <body>
 
     <jsp:include page="../../common/osageuDiaryHeader.jsp" />
-
+	
 	<script>
 		$(function(){
-			$(".metismenu a[href*='list.fn']").addClass("active");
-			$(".metismenu a[href*='list.fn']").parent().addClass("active");
+			$(".metismenu a[href*='selectList.mo']").addClass("active");
+			$(".metismenu a[href*='selectList.mo']").parent().addClass("active");
 		});
 	</script>
+	
     <!--**********************************
         Content body start
     ***********************************-->
+    
     <div class="content-body" style="float: left;">
         <div class="row page-titles mx-0">
             <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">메모장</h3>
@@ -146,6 +148,7 @@
     ***********************************-->  
 	<jsp:include page="../../common/diaryWidget.jsp" />
     <jsp:include page="../../common/diaryFooter.jsp" />
+    <jsp:include page="../../common/friendjQuery.jsp" />
     
 </body>
 </html>

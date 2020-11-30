@@ -233,7 +233,7 @@
                         <!-- 메인메뉴 -->
                         <li class="nav-label">메인메뉴</li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="selectList.ca" aria-expanded="false">
                                 <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span>
                             </a>
                         </li>
@@ -248,7 +248,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="selectList.ph" aria-expanded="false">
                                 <i class="icon-picture menu-icon"></i><span class="nav-text">사진게시판</span>
                             </a>
                         </li>
@@ -270,7 +270,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="selectList.mo" aria-expanded="false">
                                 <i class="icon-doc menu-icon"></i><span class="nav-text">메모장</span>
                             </a>
                         </li>

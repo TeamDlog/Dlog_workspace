@@ -12,11 +12,11 @@
 <body>
 
 	<jsp:include page="../../common/osageuDiaryHeader.jsp" />
-
+	
 	<script>
 		$(function(){
-			$(".metismenu a[href*='list.fn']").addClass("active");
-			$(".metismenu a[href*='list.fn']").parent().addClass("active");
+			$(".metismenu a[href*='selectList.mo']").addClass("active");
+			$(".metismenu a[href*='selectList.mo']").parent().addClass("active");
 		});
 	</script>
 	
@@ -47,22 +47,6 @@
 	                         <button type="button" class="btn mb-1 btn-success" style="font-size: 20px; letter-spacing:2px;" onclick="deleteMemo();">삭제</button>
 						</form>
 						
-						<script>
-							// 수정
-							modifyMemo = function(){
-								$("#update_form").attr("action","update.mo");
-						                    			$("#update_form").submit();
-							}
-							// 삭제
-							deleteMemo = function(){
-								$("#update_form").attr("action","updateDelete.mo");
-								var test = confirm("정말 삭제하시겠습니까?");
-								if(test == true){
-						                     			$("#update_form").submit();
-								}
-							}
-						</script>
-
                         </div>
                     </div>
                 </div>
@@ -70,12 +54,27 @@
         </div>
         <!-- #/ container -->
     </div>
+    <script>
+		// 수정
+		modifyMemo = function(){
+			$("#update_form").attr("action","update.mo");
+	        $("#update_form").submit();
+		}
+		// 삭제
+		deleteMemo = function(){
+			$("#update_form").attr("action","updateDelete.mo");
+			var test = confirm("정말 삭제하시겠습니까?");
+			if(test == true){
+	        	$("#update_form").submit();
+			}
+		}
+	</script>
     <!--**********************************
         Content body end
     ***********************************-->  
     <jsp:include page="../../common/diaryWidget.jsp" />
     <jsp:include page="../../common/diaryFooter.jsp" />
+    <jsp:include page="../../common/friendjQuery.jsp" />
 
 </body>
-
 </html>

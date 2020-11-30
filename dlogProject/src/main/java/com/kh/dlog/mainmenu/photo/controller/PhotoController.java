@@ -111,7 +111,7 @@ public class PhotoController {
 		
 		// request friendList
 		ArrayList<Friend> requestFriend = fService.requestFriend(2);
-		model.addAttribute("requestFriend", requestFriend);
+		session.setAttribute("requestFriend", requestFriend);
 		
 		return "mainmenu/photo/photoMain";
 		
