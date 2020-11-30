@@ -236,18 +236,8 @@
 		  where member_id=#{memberId}
 	 </select >
 	 
-	 <insert id="introInsert" parameterType="Member">
+	 <update id="introInsert" parameterType="Member">
 		update
-		        member
-		    set
-		     	member_no=#{memberNo}
-		      , introduction_title=#{introductionTitle}
-		      , introduction_content=#{introductionContent}  
-		  where member_no=#{memberNo} 
-	</insert>
-	 
-	 <update id="introUpdate" parameterType="Member">
-		 update
 		        member
 		    set
 		     	member_no=#{memberNo}
@@ -270,6 +260,18 @@
 		   set member_pwd = #{memberPwd}
 		 where member_no = #{memberNo}
 	</update>
+	<select id="profile" parameterType="Member" resultMap="memberResultSet">
+	select
+			member_no
+	      , profile  
+		  , nickname
+	      , email
+	      , introduction_title
+	  from member
+	 where status='Y'
+	   and member_id=#{memberId}
+	</select>
+	
 	
 
 </mapper>

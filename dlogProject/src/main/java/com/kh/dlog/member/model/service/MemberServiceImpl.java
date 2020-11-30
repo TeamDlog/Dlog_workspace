@@ -95,23 +95,18 @@ public class MemberServiceImpl implements MemberService{
 
 
 	@Override
-	public ArrayList<Member> introList(Member m) {
-		return mDao.introList(m, sqlSession);
+	public ArrayList<Member> introList() {
+		return mDao.introList(sqlSession);
 	}
 
 	@Override
-	public ArrayList<Member> introListMn(Member m) {
-		return mDao.introListMn(m, sqlSession);
+	public ArrayList<Member> introListMn() {
+		return mDao.introListMn(sqlSession);
 	}
 
 	@Override
-	public int introInsert(Member mn) {
-		return mDao.introInsert(sqlSession, mn);
-	}
-	
-	@Override
-	public int introUpdate(Member m) {
-		return mDao.introUpdate(sqlSession, m);
+	public int introInsert(Member m) {
+		return mDao.introInsert(sqlSession, m);
 	}
 
 	@Override
@@ -123,6 +118,13 @@ public class MemberServiceImpl implements MemberService{
 	public int updatePwd(Member m) {
 		return mDao.updatePwd(sqlSession, m);
 	}
+
+	@Override
+	public ArrayList<Member> profile() {
+		return mDao.profile(sqlSession);
+	}
+
+	
 
 
 

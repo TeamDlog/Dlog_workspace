@@ -86,93 +86,98 @@
                     <div class="header-right">
                         <ul class="clearfix">
                             <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                    <i class="fas fa-user-friends"></i>
-                                    <span class="badge gradient-7 badge-pill badge-primary">3</span>
-                                </a>
-                                <div class="drop-down fadeIn dropdown-menu" id="friend_list" style="padding: 0px;">
-                                    <div id="friend_list_buttons">
-                                        <div class="friend_list_button">친구 목록</div>  
-                                        <div class="friend_request_button">친구 요청</div>  
-                                    </div>
-                                    <div class="dropdown-content-body" id="friend_list_outer">
-                                        <div id="friend_list_search_outer">
-                                            <div class="friend_list_search">
-                                                <input type="text">
-                                            </div>
-                                        </div>
-                                        <div class="friend_list_height">
-	                                        <ul class="friend_list_ul">
-	                                            <c:forEach var="f" items="${ friendList }" varStatus="status">
-		                                            <li class="friend_list">
-		                                                <div class="friend_list_images">
-		                                                    <img src="resources/images/avatar/1.jpg">
-		                                                </div>
-		                                                <div class="friend_list_nickname">
-		                                                    <div class="notification-heading friend_list_nick">${ f.friendNickname }</div>
-		                                                </div>
-		                                                <div class="friend_list_delete" align="right">
-		                                                    <button class="friend_delete_DB" value="${ f.friendAccepted }">삭제</button>
-		                                                </div>
-		                                            </li>
-	                                            </c:forEach>
-	                                        </ul>
-                                        </div>
-                                        <div class="bootstrap-pagination" align="center">
-                                        	<input type="hidden" value="" id="this_page_friend_currentPage">
-                                        	<c:if test="${ friendList ne null }">
-	                                        	<input type="hidden" value="${ friendList[0].friendOwner }" id="friend_owner">
-                                        	</c:if>
-                                            <nav>
-                                                <ul class="pagination justify-content-center friend_pagination">
-								                    <li class="page-item pre-page-moving-li">
-								                    	<a class="page-link page-moving pre-page-moving">&lt;</a>
-								                    </li>
-								                    
-								                    <c:forEach var="p" begin="${ pi2.startPage }" end="${ pi2.endPage }">
-								                    	<li class="page-item page-num"><a class="page-link" onclick="pageMove(${p});">${ p }</a></li>
-								                    </c:forEach>
-								                    
-						                    		<li class="page-item next-page-moving-li">
-						                    			<a class="page-link page-moving next-page-moving">&gt;</a>
-						                    		</li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-content-body" id="friend_request_outer">
-                                        <ul>
-                                            <li>
-                                                <div class="friend_request_search">
-                                                	<div id="frs_left">
-                                                		<input type="text">
-                                                	</div>
-                                                	<div id="frs_right">
-	                                                    <i class="fa fa-search"></i>
-                                                	</div>
-                                                </div>
-                                            </li>
-                                            <li class="friend_request">
-                                                <div class="friend_request_images">
-                                                    <img src="resources/images/avatar/2.jpg">
-                                                </div>
-                                                <div class="friend_request_nickname">
-                                                    <div class="notification-heading">vv번개의신vv</div>
-                                                </div>
-                                                <div class="friend_request_yesorno" align="right">
-                                                    <img src="resources/images/checked.png" width="25" height="25">
-                                                    <img src="resources/images/close.png" width="20" height="20">
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                    <i class="fas fa-user-friends"></i>
-                                    <span class="badge gradient-7 badge-pill badge-primary">3</span>
-                                </a>
-                            </li>
+							        <i class="fas fa-user-friends" id="friend_icon"></i>
+							        <span class="badge gradient-7 badge-pill badge-primary">3</span>
+							    </a>
+							    <div class="drop-down fadeIn dropdown-menu" id="friend_list" style="padding: 0px;">
+							        <div id="friend_list_buttons">
+							            <div class="friend_list_button">친구 목록</div>  
+							            <div class="friend_request_button">친구 요청</div>  
+							        </div>
+							        <div class="dropdown-content-body" id="friend_list_outer">
+							            <div id="friend_list_search_outer">
+							                <div class="friend_list_search">
+							                    <input type="text" id="friend_ajax_search" placeholder="내 친구를 찾아보세요!">
+							                    <span id="friend_ajax_count"></span>
+							                </div>
+							            </div>
+							            <div class="friend_list_height">
+							             <ul class="friend_list_ul">
+							                 <c:forEach var="f" items="${ friendList }" varStatus="status">
+							                  <li class="friend_list">
+							                      <div class="friend_list_images">
+							                          <img src="resources/images/avatar/1.jpg">
+							                      </div>
+							                      <div class="friend_list_nickname">
+							                          <div class="notification-heading friend_list_nick">${ f.friendNickname }</div>
+							                      </div>
+							                      <div class="friend_list_delete" align="right">
+							                          <button class="friend_delete_DB" value="${ f.friendAccepted }">삭제</button>
+							                      </div>
+							                  </li>
+							                 </c:forEach>
+							             </ul>
+							            </div>
+							            <div class="bootstrap-pagination" align="center">
+							            	<input type="hidden" value="" id="this_page_friend_currentPage">
+							            	<c:if test="${ friendList ne null }">
+							             	<input type="hidden" value="${ friendList[0].friendOwner }" id="friend_owner">
+							            	</c:if>
+							                <nav>
+							                    <ul class="pagination justify-content-center friend_pagination">
+													<li class="page-item pre-page-moving-li">
+														<a class="page-link page-moving pre-page-moving hovered">&lt;</a>
+													</li>
+													
+													<c:forEach var="p" begin="${ pi2.startPage }" end="${ pi2.endPage }">
+														<li class="page-item page-num"><a class="page-link" onclick="pageMove(${p});">${ p }</a></li>
+													</c:forEach>
+													
+													<li class="page-item next-page-moving-li">
+														<a class="page-link page-moving next-page-moving hovered">&gt;</a>
+													</li>
+							                    </ul>
+							                </nav>
+							            </div>
+							        </div>
+							        
+							        <div class="dropdown-content-body" id="friend_request_outer">
+							            <div class="friend_request_search">
+							            	<div id="frs_left">
+							            		<input type="text" id="find_friend_keyword" placeholder="추가할 친구를 검색해보세요!">
+							            	</div>
+							            	<div id="frs_right" onclick="findFriend();">
+							                	<i class="fa fa-search"></i>
+							            	</div>
+							            </div>
+							            <div class="friend_request_height">
+							             <ul class="friend_request_ul">
+							             	<c:forEach var="rf" items="${ requestFriend }">
+							                  <li class="friend_request">
+							                      <div class="friend_request_images">
+							                          <img src="resources/images/avatar/2.jpg">
+							                      </div>
+							                      <div class="friend_request_nickname">
+							                          <div class="notification-heading">${ rf.friendNickname }</div>
+							                      </div>
+							                      <div class="friend_request_yesorno" align="right">
+							                      	<input type="hidden" value="${ rf.friendNo }">
+							                          <img src="resources/images/checked.png" width="25" height="25" class="accept_friend_icon">
+							                          <img src="resources/images/close.png" width="20" height="20">
+							                      </div>
+							                  </li>
+							                 </c:forEach>
+							             </ul>
+							            </div>
+							            
+							        </div>
+							    </div>
+							</li>
+							<li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+							        <i class="fas fa-user-friends"></i>
+							        <span class="badge gradient-7 badge-pill badge-primary">3</span>
+							    </a>
+							</li>
                             <li class="icons dropdown">
                                 <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                     <img src="resources/images/default-profile-pic.jpg" height="40" width="40" alt="">
@@ -237,7 +242,7 @@
                         <!-- 메인메뉴 -->
                         <li class="nav-label">메인메뉴</li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="selectList.ca" aria-expanded="false">
                                 <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span>
                             </a>
                         </li>
@@ -314,7 +319,7 @@
                             <div class="card" style="width:900px;">
                                 <div class="card-body" >
                                 	
-                                	<form action = "delete.ph" method="get" id="photo_form">
+                                	<form action = "delete.ph" method="post" id="photo_form">
 	                                    <c:forEach var="p" items="${ list }" varStatus="status">
 			                                <div class="photo_main portfolio-item">
 			                                	<input type="hidden" value="${ status.count }">
@@ -365,9 +370,9 @@
 									</script>
 									
 	                                <div class="bootstrap-pagination" align="center">
-                                            <nav>
-                                                <ul class="pagination justify-content-center">
-                                                <c:choose>
+                                        <nav>
+                                            <ul class="pagination justify-content-center">
+	                                            <c:choose>
 							                		<c:when test="${ pi.currentPage eq 1 }">
 									                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 							                		</c:when>
@@ -388,9 +393,9 @@
 							                    		<li class="page-item"><a class="page-link" href="selectList.ph?currentPage=${ pi.currentPage+1 }">Next</a></li>
 							                		</c:otherwise>
 							                    </c:choose>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                            </ul>
+                                        </nav>
+                                    </div>
 	                                
 				                    <script>
 				                    	// 현재 페이지 색칠
@@ -513,294 +518,7 @@
         <!--**********************************
             Widget area start
             ***********************************-->
-		<div class="widget-area" style="float:left; margin-top: 100px;">
-
-			<div class="card">
-	        	<div class="memo_widget">
-	            	<div class="memo_widget_title">메모장</div>
-	            	<textarea class="memo_widget_content" rows="5" cols="15" readOnly>${ memoWidget.memoContent }</textarea>
-				</div>
-			</div>
-			
-			<script>
-				$(function(){
-					
-					$(".memo_widget").hover(function(){
-						$(this).children().eq(1).attr("style","overflow:auto;");
-					},function(){
-						$(this).children().eq(1).attr("style","overflow:hidden;");
-					})
-					
-					// 첫 로딩 시 curr = 1
-					$("#this_page_friend_currentPage").val(1);
-					
-					// 첫 로딩 시 모든 컬러 gray로
-					$(".friend_pagination .page-link").css("color","gray");
-					$(".page-num").eq(0).children().css("color","white");
-					
-					// 첫 로딩 시 selected넣기
-					$(".page-num").eq(0).addClass("disabled");
-					
-					// dropdown inside 클릭 시 안 사라지게
-					$("#friend_list").click(function(){
-						event.stopPropagation();
-					})
-					
-					// 첫 로딩 시 '<<' disabled
-					$(".pre-page-moving-li").addClass("disabled");
-					
-					// 커서 모양
-					$(".friend_list_button").hover().css("cursor","pointer");
-					$(".friend_request_button").hover().css("cursor","pointer");
-					
-					// 초기에 request 숨기기
-					$("#friend_request_outer").css("display","none");
-					
-					// 메뉴 이동
-					$(".friend_list_button").click(function(){
-						$("#friend_list_outer").css("display","");
-						$("#friend_request_outer").css("display","none");
-						$(this).css({background:"white", color:"rgb(40,40,40)"})
-						$(".friend_request_button").css({background:"lightgray", color:"rgb(40,40,40)"})
-					})
-					$(".friend_request_button").click(function(){
-						$("#friend_list_outer").css("display","none");
-						$("#friend_request_outer").css("display","");
-						$(this).css({background:"white", color:"rgb(40,40,40)"})
-						$(".friend_list_button").css({background:"lightgray", color:"rgb(40,40,40)"})
-					})
-					
-					/* // hover
-	           		$(".friend_pagination .page-link").not('.disabled').hover(function(){
-	           			$(this).css("background","lightgray");
-	           		},function(){
-	           			$(this).css("background","white");
-	           		}); */
-					
-                	// 친구목록 페이지 이동
-                	// 숫자
-                	var hoverTest = 0;
-                	pageMove = function(index){
-						$.ajax({
-                			url:"selectList.fr",
-        					data:{
-        						currentPage:index,
-        						friendOwner:$("#friend_owner").val()
-        					},
-        					success:function(friendList){
-        						$(".friend_list").remove();
-	                            
-        						var value="";
-        						$.each(friendList[0], function(i, obj){
-        							value += "<li class='friend_list'>" + 
-        										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
-        										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.friendNickname + "</div>" + "</div>" + 
-        										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
-        									"</li>";
-        						})
-        						$(".friend_list_ul").append(value);
-        						$("#this_page_friend_currentPage").val(friendList[1].currentPage);
-        						
-        						// 비활성화
-        						if($("#this_page_friend_currentPage") == 1){
-        							$(".pre-page-moving-li").addClass("disabled");
-        						}else{
-        							$(".pre-page-moving-li").removeClass("disabled");
-        						}
-        						
-        						// 현재 페이지에 색 입히기
-        						$(".friend_pagination .page-link").not(".page-moving").each(function(){
-                        			if($(this).text() == friendList[1].currentPage){
-                        				$(this).parent().addClass("disabled");
-        		                		$(".friend_pagination .page-link").not($(this)).not(".page-moving").parent().removeClass("disabled");
-        		                		$(this).css({background:"rgb(132,200,185)", color:"white"});
-        		                		$(".friend_pagination .page-link").not($(this)).not(".page-moving").css({background:"white", color:"gray"});
-                        			}
-                        		})
-                        		
-                        		console.log(friendList[1].currentPage);
-                        		console.log(friendList[1].startPage);
-                        		console.log(friendList[1].endPage);
-        						
-                        		hoverTest = 1;
-                        		
-        					},error:function(){
-        						console.log("ajax통신 실패");
-        					}
-                		})
-                		
-					}
-					
-                	if(hoverTest == 1){
-                		$(".friend_pagination .page-link").hover(function(){
-    	           			$(this).css("background","lightgray");
-    	           		},function(){
-    	           			$(this).css("background","rgb(132,200,185)");
-    	           		});
-                		hoverTest = 0;
-                	}
-                	
-					// previous
-                	$(".pre-page-moving").click(function(){
-                		
-                		$.ajax({
-                			url:"selectList.fr",
-        					data:{
-        						currentPage:Number($("#this_page_friend_currentPage").val())-1,
-        						friendOwner:$("#friend_owner").val()
-        					},
-        					success:function(friendList){
-								$(".friend_list").remove();
-	                            
-        						var value1="";
-        						$.each(friendList[0], function(i, obj){
-        							value1 += "<li class='friend_list'>" + 
-        										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
-        										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.friendNickname + "</div>" + "</div>" + 
-        										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
-        									"</li>";
-        						})
-        						
-        						$(".friend_list_ul").append(value1);
-        						
-        						if(friendList[1].currentPage == 1){
-        							$(".pre-page-moving-li").addClass("disabled");
-        						}
-        						
-        						// 4 -> 3
-        						if(friendList[1].currentPage == friendList[1].endPage){
-	        						for(var i = 0 ; i <= friendList[1].endPage - friendList[1].startPage; i++){
-	        							var inputPage = Number(friendList[1].startPage + i);
-	        							if(i == friendList[1].endPage - friendList[1].startPage){
-		        							value2 += "<li class='page-item page-num disabled'><a class='page-link' onclick='pageMove(" + inputPage + ");'>" + inputPage + "</a></li>"; 
-	        							}else{
-		        							value2 += "<li class='page-item page-num'><a class='page-link' onclick='pageMove(" + inputPage + ");'>" + inputPage + "</a></li>"; 
-	        							}
-	        						}
-	        						$(".friend_pagination .page-num").remove();
-	        						
-	        						// 페이지 넣어주기
-	        						$(".pre-page-moving-li").after(value2);
-	        						
-	        						$(".page-num").children().css("color","gray");
-	        						$(".page-num").eq(2).children().css({background:"rgb(132,200,185)", color:"white"});
-        						}
-        						
-        						$("#this_page_friend_currentPage").val(friendList[1].currentPage);
-        						
-        						// 현재 페이지에 색 입히기
-        						$(".friend_pagination .page-link").not(".page-moving").each(function(){
-                        			if($(this).text() == friendList[1].currentPage){
-        		                		$(this).css({background:"rgb(132,200,185)", color:"white"});
-        		                		$(".friend_pagination .page-link").not($(this)).not(".page-moving").css({background:"white", color:"gray"});
-                        			}
-                        		})
-
-                        		console.log(friendList[1].currentPage);
-                        		console.log(friendList[1].startPage);
-                        		console.log(friendList[1].endPage);
-                        		
-        					},error:function(){
-        						console.log("ajax통신 실패");
-        					}
-                		})
-                		$(this).css({"background":"white","color":"gray"});
-                	})
-                	
-                	// next
-                	$(".next-page-moving").click(function(){
-                		$.ajax({
-                			url:"selectList.fr",
-        					data:{
-        						currentPage:Number($("#this_page_friend_currentPage").val())+1,
-        						friendOwner:$("#friend_owner").val()
-        					},
-        					success:function(friendList){
-								$(".friend_list").remove();
-	                            
-        						var value1="";
-        						var value2="";
-        						$.each(friendList[0], function(i, obj){
-        							value1 += "<li class='friend_list'>" + 
-        										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
-        										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.friendNickname + "</div>" + "</div>" + 
-        										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
-        									"</li>";
-        						})
-        						var realEnd = Math.ceil(friendList[1].listCount/5)
-        						
-        						if(friendList[1].currentPage == realEnd){
-        							$(".next-page-moving-li").addClass("disabled");
-        						}
-        						
-        						if(friendList[1].currentPage != 1){
-        							$(".pre-page-moving-li").removeClass("disabled");
-        						}
-        						
-        						// 3 -> 4
-        						if(friendList[1].currentPage == friendList[1].startPage){
-	        						for(var i = 0 ; i <= friendList[1].endPage - friendList[1].startPage; i++){
-	        							var inputPage = Number(friendList[1].startPage + i);
-	        							if(i == 0){
-		        							value2 += "<li class='page-item page-num disabled'><a class='page-link' onclick='pageMove(" + inputPage + ");'>" + inputPage + "</a></li>"; 
-	        							}else{
-		        							value2 += "<li class='page-item page-num'><a class='page-link' onclick='pageMove(" + inputPage + ");'>" + inputPage + "</a></li>"; 
-	        							}
-	        						}
-	        						$(".friend_pagination .page-num").remove();
-	        						
-	        						// 페이지 넣어주기
-	        						$(".pre-page-moving-li").after(value2);
-	        						
-	        						$(".page-num").children().css("color","gray");
-	        						$(".page-num").eq(0).children().css({background:"rgb(132,200,185)", color:"white"});
-        						}
-        						
-        						// 친구 목록 넣어주기
-        						$(".friend_list_ul").append(value1);
-        						
-        						$("#this_page_friend_currentPage").val(friendList[1].currentPage);
-        						
-        						// 현재 페이지에 색 입히기
-        						$(".friend_pagination .page-link").not(".page-moving").each(function(){
-                        			if($(this).text() == friendList[1].currentPage){
-        		                		$(this).css({background:"rgb(132,200,185)", color:"white"});
-        		                		$(".friend_pagination .page-link").not($(this)).not(".page-moving").css({background:"white", color:"gray"});
-                        			}
-                        		})
-
-                        		console.log(friendList[1].currentPage);
-                        		console.log(friendList[1].startPage);
-                        		console.log(friendList[1].endPage);
-        						
-        					},error:function(){
-        						console.log("ajax통신 실패");
-        					}
-                		})
-                		$(this).css({"background":"white","color":"gray"});
-                	})
-					
-                	// 친구 목록 삭제
-                	$(".friend_delete_DB").click(function(){
-                		$.ajax({
-                			url:"delete.fr",
-        					data:{
-        						friendOwner:$("#friend_owner").val(),
-        						friendAccepted:$(this).val()
-        					},
-        					success:function(result){
-	                            console.log("ajax통신 성공")
-        					},error:function(){
-        						console.log("ajax통신 실패");
-        					}
-                		})
-                	})
-                	
-				})
-				
-			</script>     
-            
-        </div>  
+		<jsp:include page="../../common/diaryWidget.jsp"/>
 		
     </div>
     <!--**********************************
@@ -832,7 +550,7 @@
     <script src="resources/js/settings.js"></script>
     <script src="resources/js/gleek.js"></script>
     <script src="resources/js/styleSwitcher.js"></script>
-	
+	<jsp:include page="../../common/friendjQuery.jsp"/>
 </body>
 
 </html>

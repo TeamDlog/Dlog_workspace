@@ -33,9 +33,9 @@ public interface MemberService {
 	
 	int infoUpdate(Member m);
 	
-	ArrayList<Member> introList(Member m);
+	ArrayList<Member> introList();
 	
-	ArrayList<Member> introListMn(Member m);
+	ArrayList<Member> introListMn();
 	
 	int introInsert(Member m);
 	
@@ -44,6 +44,8 @@ public interface MemberService {
 	int deleteMember(String memberId);
 
 	int updatePwd(Member m);
+	
+	ArrayList<Member> profile();
 	
 	
 	

@@ -27,7 +27,6 @@
 		<c:remove var="alertMsg" scope="session" />
 	</c:if>
 	
-	
     <!--*******************
         Preloader start
     ********************-->
@@ -108,7 +107,7 @@
                                         <ul>
                                             <li class="notification-unread">
                                                 <a href="javascript:void()">
-                                                    <img class="float-left mr-3 avatar-img" src="images/avatar/1.jpg" alt="">
+                                                    <img class="float-left mr-3 avatar-img" src="resources/images/avatar/1.jpg" alt="">
                                                     <div class="notification-content">
                                                         <div class="notification-heading">Saiful Islam</div>
                                                         <div class="notification-timestamp">08 Hours ago</div>
@@ -118,7 +117,7 @@
                                             </li>
                                             <li class="notification-unread">
                                                 <a href="javascript:void()">
-                                                    <img class="float-left mr-3 avatar-img" src="images/avatar/2.jpg" alt="">
+                                                    <img class="float-left mr-3 avatar-img" src="resources/images/avatar/2.jpg" alt="">
                                                     <div class="notification-content">
                                                         <div class="notification-heading">Adam Smith</div>
                                                         <div class="notification-timestamp">08 Hours ago</div>
@@ -128,7 +127,7 @@
                                             </li>
                                             <li>
                                                 <a href="javascript:void()">
-                                                    <img class="float-left mr-3 avatar-img" src="images/avatar/3.jpg" alt="">
+                                                    <img class="float-left mr-3 avatar-img" src="resources/images/avatar/3.jpg" alt="">
                                                     <div class="notification-content">
                                                         <div class="notification-heading">Barak Obama</div>
                                                         <div class="notification-timestamp">08 Hours ago</div>
@@ -138,7 +137,7 @@
                                             </li>
                                             <li>
                                                 <a href="javascript:void()">
-                                                    <img class="float-left mr-3 avatar-img" src="images/avatar/4.jpg" alt="">
+                                                    <img class="float-left mr-3 avatar-img" src="resources/images/avatar/4.jpg" alt="">
                                                     <div class="notification-content">
                                                         <div class="notification-heading">Hilari Clinton</div>
                                                         <div class="notification-timestamp">08 Hours ago</div>
@@ -275,7 +274,7 @@
                         <!-- 위젯메뉴 -->
                         <li class="nav-label">위젯메뉴</li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="main.dd" aria-expanded="false">
                                 <i class="icon-clock menu-icon"></i><span class="nav-text">디데이</span>
                             </a>
                         </li>
@@ -290,7 +289,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="main.ti" aria-expanded="false">
                                 <i class="icon-grid menu-icon"></i><span class="nav-text">시간표<span>
                             </a>
                         </li>

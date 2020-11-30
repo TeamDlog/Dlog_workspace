@@ -19,10 +19,11 @@
             box-sizing: border-box;
     }
     #wrap{
-        width:1050px;
+        width:1350px;
         height:900px;
         margin:auto;
         background:#F6F6F6;
+        margin-bottom:1%;
     }
     #content{
         width: 90%;
@@ -36,14 +37,14 @@
         float:left;
     }
     #content_left{
-        width: 25%;
+        width: 20%;
         height: 90%;
         padding: 20px;
        
     }
    
     #content_right{
-            width: 75%;
+            width: 80%;
             height: 90%;
             padding: 20px;
             position:relative;
@@ -84,7 +85,7 @@
 	}
 	#serviceTitle{
 		background:rgb(132, 200, 185);
-		font-size:30px;
+		font-size:25px;
 		font-weight:bold;
 		padding:5px;
 		text-align: center;
@@ -124,7 +125,7 @@
 	}
     
   	#boardList>tbody>tr:hover{cursor:pointer;}
-
+	.footer h5{font-weight:bold;}
 </style>
   <script>
         $(function(){

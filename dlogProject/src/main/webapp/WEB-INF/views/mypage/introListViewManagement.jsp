@@ -11,7 +11,7 @@
 <style>
     .introSelectForm{ 
         height:400px;
-        width:100%;
+        width:600px;
       }
     #content{
         margin-left:20px;
@@ -20,8 +20,8 @@
      }
      #line{
         border:gray 2px dashed;
-        width:605px;
-        
+        width:671px;
+        line-height: 30px;
      }
     
 </style>
@@ -51,26 +51,44 @@
                                  <div class="introSelect">
                                      <div class="introSelectForm">
                                           <table>
-                                          <c:if test="${loginUser.introductionTitle == null and loginUser.introductionContent == null }">
-                                          	
-                                          		<td colspan="4" style="font-size:1.3em; font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;준비된 소개글이 없습니다.</td>
-                                          	
-                                          </c:if>	
+      									  <c:if test="${loginUser.introductionTitle == null and loginUser.introductionContent == null }">
                                           	<tr>
-                                                 <th style="font-size:30px;">&nbsp;</th>
+                                          		<td >&nbsp;</td>
+                                          	</tr>
+                                          	<tr>
+                                          		<td style="font-size:1.3em; font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 소개글이 없습니다.</td>
+                                          	</tr>
+                                          </c:if>	
+                                          <tr>
+                                                 <td style="font-size:30px;">&nbsp;</td>
+                                           </tr>      
+                                             <tr>
+                                                 <td style="font-size:23px; font-weight: bolder; ">&nbsp;&nbsp; ${ loginUser.introductionTitle } </td>
+                                             </tr>
                                              
-                                                 <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp; ${ loginUser.introductionTitle } </th>
-                                             
-                                                 <td><hr id="line"></td>
-                                            
+                                             <tr>
+                                             	<td style="font-size:7px;">&nbsp;</td>
+                                             </tr>
+                                             <c:if test="${not empty loginUser.introductionTitle and not empty loginUser.introductionContent  }">
+                                         	<tr>
+                                                 <td><h3 id="line"></h3></td>
+                                            </tr>
+                                            </c:if>
+                                            <tr>
                                                  <td id="content">${ loginUser.introductionContent } </td>
                                              </tr>
+                                             
                                          </table>
                                      </div>
                                      <div align="right">
-                                         <button type="button" onclick="location.href='introEnrollForm.my'" class="btn btn-success btn-sm">작성하기</button>&nbsp;&nbsp; 
-                                         <button type="button" onclick="location.href='introUpdate.my'" class="btn btn-success btn-sm">수정하기</button>
-                                     
+                                     	<c:choose>
+	                                     	<c:when test="${empty loginUser.introductionTitle and empty loginUser.introductionContent}">
+	                                          	<button type="button" onclick="location.href='introEnrollForm.my'" class="btn btn-success btn-sm">작성하기</button>&nbsp;&nbsp; 
+	                                         </c:when>
+	                                         <c:otherwise> 
+	                                         	<button type="button" onclick="location.href='introEnrollForm.my'" class="btn btn-success btn-sm">수정하기</button>
+	                                     	</c:otherwise>
+                                     	</c:choose>
                                      </div>
                              <br>
                             </div> 

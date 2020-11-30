@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.widget.dday.model.service.DdayService;
 import com.kh.dlog.widget.dday.model.vo.Dday;
 import com.kh.dlog.widget.dday.model.vo.WidgetCheck;
@@ -20,9 +21,11 @@ public class DdayController {
 	private DdayService dService;
 	
 	@RequestMapping("main.dd")
-	public String ddayMain(/* String memberNo, */ Model model) {
-		String memberNo = "3";
+	public String ddayMain(HttpSession session, Model model) {
+		Member loginMember = (Member)session.getAttribute("loginUser");
+		String memberNo = loginMember.getMemberNo()+"";
 		ArrayList<Dday> list = dService.ddayMain(memberNo);
+		
 		if(!list.isEmpty()) {
 			
 			model.addAttribute("dlist", list);
@@ -42,7 +45,7 @@ public class DdayController {
 		}
 		
 		if(dService.insertDday(d) > 0) {
-			session.setAttribute("alertMsg", "디데이 추가 성공!");
+			session.setAttribute("alertMsg", "디데이 추가 완료!");
 		}else {
 			session.setAttribute("alertMsg", "디데이 추가 실패..");
 		}
@@ -54,7 +57,7 @@ public class DdayController {
 	public String updateDday(Dday d, HttpSession session) {
 		
 		if(dService.updateDday(d) > 0) {
-			session.setAttribute("alertMsg", "디데이 수정 성공!");
+			session.setAttribute("alertMsg", "디데이 수정 완료!");
 		}else {
 			session.setAttribute("alertMsg", "디데이 수정 실패..");
 		}
@@ -66,7 +69,7 @@ public class DdayController {
 		if(deleteDday != null) {
 			int result = dService.deleteDday(deleteDday);
 			if(result > 0) {
-				session.setAttribute("alertMsg", "디데이 삭제 성공!");
+				session.setAttribute("alertMsg", "디데이 삭제 완료!");
 				return "redirect:main.dd";
 			}else {
 				session.setAttribute("alertMsg", "디데이 삭제 실패..");
@@ -80,19 +83,25 @@ public class DdayController {
 	
 	@RequestMapping("widgetCheck.dd")
 	public String widgetCheck(WidgetCheck wc, String[] dlist, HttpSession session) {
-		
-		if(wc != null) {
+
+		if(wc.getWidgetCount() != 0) {
 			int result = dService.widgetDday(wc, dlist);
 			if(result > 0) {
-				session.setAttribute("alertMsg", "위젯 등록 성공!");
+				session.setAttribute("alertMsg", "위젯 설정 완료!");
 				return "redirect:main.dd";
 			}else {
 				session.setAttribute("alertMsg", "위젯 등록 실패..");
 				return "redirect:main.dd";
 			}
 		}else {
-			session.setAttribute("alertMsg", "선택된 항목이 없습니다.");
-			return "redirect:main.dd";
+			int result = dService.widgetDday(wc, dlist);
+			if(result > 0) {
+				session.setAttribute("alertMsg", "모든 위젯이 해제되었습니다.");
+				return "redirect:main.dd";
+			}else {
+				session.setAttribute("alertMsg", "위젯 등록 실패..");
+				return "redirect:main.dd";
+			}
 		}
 	}
 	

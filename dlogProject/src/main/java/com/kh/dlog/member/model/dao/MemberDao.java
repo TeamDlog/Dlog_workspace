@@ -65,27 +65,19 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.infoUpdate", m);
 	}
 	
-	public ArrayList<Member> introList(Member m, SqlSessionTemplate sqlSession) {
+	public ArrayList<Member> introList(SqlSessionTemplate sqlSession) {
 		
-		return (ArrayList)sqlSession.selectList("memberMapper.introList", m);
+		return (ArrayList)sqlSession.selectList("memberMapper.introList", null);
 	}
 	
-	public ArrayList<Member> introListMn(Member m, SqlSessionTemplate sqlSession) {
+	public ArrayList<Member> introListMn(SqlSessionTemplate sqlSession) {
 		
-		return (ArrayList)sqlSession.selectList("memberMapper.introList", m);
+		return (ArrayList)sqlSession.selectList("memberMapper.introList", null);
 	}
 	
-	public int introInsert(SqlSessionTemplate sqlSession, Member mn) {
+	public int introInsert(SqlSessionTemplate sqlSession, Member m) {
 		
-		return sqlSession.update("memberMapper.introInsert", mn);
-		
-	}
-	
-	
-	
-	public int introUpdate(SqlSessionTemplate sqlSession, Member m) {
-		
-		return sqlSession.update("memberMapper.introUpdate", m);
+		return sqlSession.update("memberMapper.introInsert", m);
 		
 	}
 	
@@ -95,6 +87,10 @@ public class MemberDao {
 	
 	public int updatePwd(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.updatePwd", m);
+	}
+	
+	public ArrayList<Member> profile(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("memberMapper.profile", null);
 	}
 	
 }

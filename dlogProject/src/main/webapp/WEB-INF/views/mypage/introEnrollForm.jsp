@@ -56,21 +56,21 @@
                               <div class="introEnrollForm">
                                   
                                   <form id="enrollForm" action="introInsert.my" method="post"> 
-                                  <input type="hidden"  name="memberNo" value="${mn.memberNo}">
+                                  <input type="hidden"  name="memberId" value="${loginUser.memberId}">
                                   
 								  <table>
                                       <tr>
                                           <td style="font-size:30px;">&nbsp;</td>
                                       </tr>
                                       <tr>
-                                          <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp;<input type="text" name="introductionTitle" style="border:0px; background-color:transparent;">${mn.introductionTitle }</th>
+                                          <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp;<input type="text" name="introductionTitle" style="border:0px; background-color:transparent; width:605px;" value="${loginUser.introductionTitle }" required></th>
                                       </tr>
                                       <tr>
-                                          <td><hr id="line"></td>
+                                          <td ><hr id="line"></td>
                                       </tr>
                                       <tr>
                                           <td id="content">
-                                              <textarea name="introductionContent" cols="88" rows="10" style="resize:none;  margin-bottom:10px; border:0px; background-color:transparent;" required>${mn.introductionContent }</textarea>
+                                              <textarea name="introductionContent" cols="88" rows="10" style="resize:none;  margin-bottom:10px; border:0px; background-color:transparent;" required>${loginUser.introductionContent }</textarea>
                                           </td>
                                       </tr>
                                       

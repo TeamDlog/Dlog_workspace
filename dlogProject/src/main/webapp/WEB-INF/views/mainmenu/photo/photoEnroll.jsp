@@ -240,7 +240,7 @@
                         <!-- 메인메뉴 -->
                         <li class="nav-label">메인메뉴</li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="selectList.ca" aria-expanded="false">
                                 <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span>
                             </a>
                         </li>
@@ -355,26 +355,8 @@
         <!--**********************************
             Widget area start
         ***********************************-->
-        <div class="widget-area" style="float:left; margin-top: 100px;">
-
-			<div class="card">
-	        	<div class="memo_widget">
-	            	<div class="memo_widget_title">메모장</div>
-	            	<textarea class="memo_widget_content" rows="5" cols="15" readOnly>${ memoWidget.memoContent }</textarea>
-				</div>
-			</div>
-			
-			<script>
-				$(function(){
-					$(".memo_widget").hover(function(){
-						$(this).children().eq(1).attr("style","overflow:auto;");
-					},function(){
-						$(this).children().eq(1).attr("style","overflow:hidden;");
-					})
-				})
-			</script>     
-            
-        </div>
+        <jsp:include page="../../common/diaryWidget.jsp"/>
+        
     </div>
     <!--**********************************
         Widget area end

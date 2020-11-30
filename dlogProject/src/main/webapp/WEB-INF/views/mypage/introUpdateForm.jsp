@@ -56,7 +56,7 @@
                           <div class="introUpdate"> 
                               <div class="introUpdateForm">
                                   
-                                  <form id="updateForm" action="introUpdate.it" method="post"> 
+                                  <form id="updateForm" action="introUpdate.my" method="post"> 
                                   <table>
                                       <tr>
                                           <td style="font-size:30px;">&nbsp;</td>
