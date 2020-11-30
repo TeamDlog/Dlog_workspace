@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="vocaMapper">
+
+	<resultMap type="Voca" id="vocaResultSet">
+		<id column="voca_no" property="vocaNo"/>
+		<result column="voca_writer" property="vocaWriter"/>
+		<result column="voca_word" property="vocaWord"/>
+		<result column="voca_mean" property="vocaMean"/>
+	</resultMap>
+	
+	<select id="selectListCount" parameterType="_int" resultType="_int">
+		select
+		       count(*)
+		  from voca v
+		  join member m on(v.voca_writer=m.member_no)
+		 where member_no = ${memberNo}
+	</select>
+	
+	<select id="selectList" parameterType="_int" resultMap="vocaResultSet">
+		select 
+		       voca_no
+		     , voca_writer
+		     , voca_word
+		     , voca_mean
+		  from voca v
+		  join member m on(v.voca_writer=m.member_no)
+		 where member_no = ${memberNo}
+	</select>
+
+</mapper>

@@ -78,66 +78,14 @@
                                                 <th width="40%">뜻</th>
                                                 <th>삭제</th>
                                             </tr>
-                                            <tr style="height: 40px;">
-                                                <td>10</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr style="height: 40px;">
-                                                <td>9</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr style="height: 40px;">
-                                                <td>8</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr style="height: 40px;">
-                                                <td>7</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr style="height: 40px;">
-                                                <td>6</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr style="height: 40px;">
-                                                <td>5</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr style="height: 40px;">
-                                                <td>4</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr style="height: 40px;">
-                                                <td>3</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr style="height: 40px;">
-                                                <td>2</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr style="height: 40px;">
-                                                <td>1</td>
-                                                <td>hello</td>
-                                                <td>안녕</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
+                                            <c:forEach var="vo" items="${ list }" varStatus="status">
+	                                            <tr style="height: 40px;">
+	                                                <td>${ status.count }</td>
+	                                                <td>${ vo.vocaWord }</td>
+	                                                <td>${ vo.vocaMean }</td>
+	                                                <td><input type="checkbox"></td>
+	                                            </tr>
+                                            </c:forEach>
                                         </table>
                                         
                                         <br>
@@ -148,27 +96,37 @@
                                                 <td width="100" align="center"></td>
                                                 <td width="600">
                                                     <ul class="pagination justify-content-center" style="margin-bottom: 0px;">
-                                                        <li class="page-item disabled">
-                                                            <a class="page-link" href="#">Previous</a>
-                                                        </li>
+                                                    <c:choose>
+                                                    	<c:when test="${ pi.currentPage eq 1 }">
+	                                                        <li class="page-item disabled">
+	                                                            <a class="page-link" href="#">Previous</a>
+	                                                        </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        	<li class="page-item">
+	                                                            <a class="page-link" href="list.vo?currentPage=${ pi.currentPage-1 }">Previous</a>
+	                                                        </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    
+                                                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                                                         <li class="page-item active">
-                                                            <a class="page-link" href="#">1</a>
+                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
                                                         </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">2</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">3</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">4</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">5</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">Next</a>
-                                                        </li>
+													</c:forEach>
+													
+													<c:choose>
+														<c:when test="${ pi.currentPage eq pi.maxPage }">
+	                                                        <li class="page-item disabled">
+	                                                            <a class="page-link" href="#">Next</a>
+	                                                        </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        	 <li class="page-item">
+	                                                            <a class="page-link" href="list.vo?currentPage=${ pi.currentPage+1 }">Next</a>
+	                                                        </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     </ul>
                                                 </td>
                             

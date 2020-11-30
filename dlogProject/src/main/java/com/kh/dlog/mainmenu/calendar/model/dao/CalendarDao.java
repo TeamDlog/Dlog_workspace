@@ -15,7 +15,7 @@ public class CalendarDao {
 	}
 
 	public int insertCalendar(SqlSessionTemplate sqlSession, Calendar c) { // 캘린더 작성
-		return 0;
+		return sqlSession.insert("calendarMapper.insertCalendar",c);
 	}
 	
 	public int deleteCalendar(SqlSessionTemplate sqlSession, int calendarNo) { // 캘린더 삭제
@@ -29,7 +29,7 @@ public class CalendarDao {
 	public Calendar selectCalendarDetail(SqlSessionTemplate sqlSession, int calendarNo) { // 캘린더 상세 조회
 		return null;
 	}
-
+	
 	public int updateCalendar(SqlSessionTemplate sqlSession, Calendar c) { // 캘린더 수정
 		return 0;
 	}

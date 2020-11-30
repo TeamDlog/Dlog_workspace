@@ -50,5 +50,15 @@ public class FriendServiceImpl implements FriendService{
 		return fDao.requestFriend(sqlSession, friendOwner);
 	}
 
+	@Override
+	public int acceptFriend(Friend f) {
+		return fDao.acceptFriend(sqlSession, f);
+	}
+
+	@Override
+	public int rejectFriend(Friend f) {
+		return fDao.rejectFriend(sqlSession, f);
+	}
+
 	
 }
