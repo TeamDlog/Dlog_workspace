@@ -307,7 +307,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card" style="width:900px; height: auto;">
+                            <div class="card backgroundColor" style="width:900px; height: auto;">
                                 <div class="card-body" style="margin-left: 30px;">
                                     
                                     <form method="post" action="insert.ph" enctype="multipart/form-data">
@@ -347,14 +347,6 @@
                 Content body end
             ***********************************-->  
             
-        </div>
-        <!--**********************************
-            Main wrapper end
-        ***********************************-->
-
-        <!--**********************************
-            Widget area start
-        ***********************************-->
         <jsp:include page="../../common/diaryWidget.jsp"/>
         
     </div>

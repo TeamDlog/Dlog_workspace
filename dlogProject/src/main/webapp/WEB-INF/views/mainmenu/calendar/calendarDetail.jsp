@@ -301,7 +301,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card" style="width:900px;">
+                            <div class="card backgroundColor" style="width:900px;">
                                 <div class="card-body" >
                                     
                                     <div id="calendar_enroll_date">
@@ -346,15 +346,7 @@
             <!--**********************************
                 Content body end
             ***********************************-->              
-        </div>
-        <!--**********************************
-            Main wrapper end
-        ***********************************-->
-
-        <!--**********************************
-            Widget area start
-            ***********************************-->
-		<jsp:include page="../../common/memoWidget.jsp"/>
+		<jsp:include page="../../common/diaryWidget.jsp"/>
 		
     </div>
     <!--**********************************

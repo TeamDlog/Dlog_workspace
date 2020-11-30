@@ -1,10 +1,13 @@
 package com.kh.dlog.mainmenu.calendar.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.dlog.mainmenu.calendar.model.service.CalendarService;
+import com.kh.dlog.mainmenu.calendar.model.vo.Calendar;
 
 @Controller
 public class CalendarController {
@@ -18,8 +21,15 @@ public class CalendarController {
 	}
 	
 	@RequestMapping("insert.ca")
-	public String insertCalendar() {
-		return "";
+	public String insertCalendar(Calendar c, HttpSession session) {
+		
+		int result = cService.insertCalendar(c);
+		if(result > 0) {
+			session.setAttribute("alertMsg", "등록 성공!!");
+			return "redirect:selectList.ca";
+		} else {
+			return "common/errorPage";
+		}
 	}
 	
 	@RequestMapping("delete.ca")

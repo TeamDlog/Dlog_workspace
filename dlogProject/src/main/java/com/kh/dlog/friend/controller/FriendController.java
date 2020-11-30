@@ -76,4 +76,30 @@ public class FriendController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="accept.fr", produces="text/html; charset=utf-8")
+	public String acceptFriend(Friend f) {
+		
+		int result = fService.acceptFriend(f);
+		if(result > 0) {
+			return "승낙 성공";
+		}else {
+			return "승낙 실패";
+		}
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="reject.fr", produces="text/html; charset=utf-8")
+	public String rejectFriend(Friend f) {
+		
+		int result = fService.rejectFriend(f);
+		if(result > 0) {
+			return "거절 성공";
+		}else {
+			return "거절 실패";
+		}
+		
+	}
+	
 }

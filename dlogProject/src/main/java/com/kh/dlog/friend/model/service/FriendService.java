@@ -14,5 +14,7 @@ public interface FriendService {
 	ArrayList<Member> searchFriend(Member m);
 	ArrayList<Member> findFriend(Member m);
 	ArrayList<Friend> requestFriend(int friendOwner);
+	int acceptFriend(Friend f);
+	int rejectFriend(Friend f);
 	
 }

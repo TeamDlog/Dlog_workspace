@@ -15,5 +15,26 @@
 		<result column="calendar_content" property="calendarContent" />
 		<result column="calendar_status" property="calendarStatus" />
 	</resultMap>
-
+	
+	<insert id="insertCalendar"
+			parameterType="Calendar">
+		insert 
+		  into calendar
+		  values
+		  (
+		    seq_calendarno.nextval
+		  , #{calendarWriter}
+		  , #{calendarBeginDate}
+		  , #{calendarEndDate}
+		  , #{calendarBgColor}
+		  , #{calendarFontColor}
+		  , #{calendarBeginTime}
+		  , #{calendarEndTime}
+		  , #{calendarTitle}
+		  , #{calendarContent}
+		  , 'Y'
+		  
+		  )
+	</insert>
+	
 </mapper>

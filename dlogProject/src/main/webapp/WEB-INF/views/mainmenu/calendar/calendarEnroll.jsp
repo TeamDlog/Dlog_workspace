@@ -301,11 +301,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card" style="width:900px;">
+                            <div class="card backgroundColor" style="width:900px;">
                                 <div class="card-body" >
                                     
                                     <form action="insert.ca" method="post">
-                                    	<input type="hidden" name="memberNo" value="">
+                                    	<input type="hidden" name="calendarWriter" value="2">
                                     	<div id="calendar_enroll_outer">
 		                                    <div id="calendar_enroll_date">
 		                                        <div>시작 : <input type="date" name="calendarBeginDate"></div>
@@ -323,8 +323,9 @@
 	                                    <textarea name="calendarContent" id="" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
 	                                    <br>
 	                                    <button type="button" class="btn mb-1 btn-success" style="margin-left: 668px; margin-right:15px; font-size: 18px;">초기화</button>
-	                                    <button type="button" class="btn mb-1 btn-success" style="font-size: 18px;">작성</button>
+	                                    <button type="submit" class="btn mb-1 btn-success" style="font-size: 18px;">작성</button>
 									</form>
+									
                                     <script>
                                         $(function(){
                                             $("#calendar_enroll_date input[type=date]").change(function(){
@@ -347,14 +348,6 @@
                 Content body end
             ***********************************-->   
             
-        </div>
-        <!--**********************************
-            Main wrapper end
-        ***********************************-->
-
-        <!--**********************************
-            Widget area start
-            ***********************************-->
 		<jsp:include page="../../common/diaryWidget.jsp"/>
 		
     </div>

@@ -247,6 +247,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   display: inline-block;
   width: 60px;
   height: 34px;
+  vertical-align:middle;
+  margin-bottom:16px;
 }
 /* Hide default HTML checkbox */
 .switch input {
@@ -301,8 +303,10 @@ input:checked + .slider:before {
 	width:30px;
 	height:30px;
 }
-
-
+.removeBox{
+	vertical-align:middle;
+	margin-bottom:16px;
+}
 
 
 

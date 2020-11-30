@@ -85,4 +85,18 @@
 		    by friend_no
 	</select>
 	
+	<update id="acceptFriend"
+			parameterType="Friend">
+		update friend
+		   set friend_status = 'Y'
+		 where friend_no = #{friendNo}
+	</update>
+	
+	<delete id="rejectFriend"
+			parameterType="Friend">
+		delete 
+		  from friend
+		 where friend_no = #{friendNo}
+	</delete>
+	
 </mapper>

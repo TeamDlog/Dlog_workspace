@@ -30,7 +30,7 @@
             </div>
 
             <div class="card">
-            	<div class="card-body">
+            	<div class="card-body" style="padding:0px;">
 		        	<div class="memo_widget">
 		                <div class="memo_widget_title">메모장</div>
 		                <textarea class="memo_widget_content" rows="5" cols="15" readOnly>${ memoWidget.memoContent }</textarea>
@@ -39,7 +39,7 @@
 	        </div>
 	        
 	        
-	        <!-- 시간표위젯 -->
+	        <%-- <!-- 시간표위젯 -->
         	<div class="card card-widget">
                 <div class="card-body gradient-3">
                     <div class="media">
@@ -98,7 +98,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> --%>
         	<!-- 시간표위젯 -->
         	<!-- 시간표 위젯 스크립트 -->
         	<script>
@@ -158,13 +158,53 @@
             Widget area end
         ***********************************-->
         <script>
+        
+        	// memo
            	$(function(){
-           		$(".memo_widget").hover(function(){
-           			$(this).children().eq(1).attr("style","overflow:auto;");
+           		
+          		$(".memo_widget").hover(function(){
+           			$(this).children().eq(1).css({
+           				"font-size":"17px",
+               			"border":"0px",
+               			"padding":"20px",
+               			"resize":"none",
+               			"overflow":"auto",
+               			"color":"rgb(100,100,100)"
+           			});
            		},function(){
-           			$(this).children().eq(1).attr("style","overflow:hidden;");
-           		})
+           			$(this).children().eq(1).css({
+           				"font-size":"17px",
+               			"border":"0px",
+               			"resize":"none",
+               			"padding":"20px",
+               			"overflow":"hidden",
+               			"color":"rgb(100,100,100)"
+           			});
+           		});
+           		
+           		$(".memo_widget_title").css({
+           			"background":"rgb(132,200,185)",
+           			"color":"white",
+           			"text-align":"center",
+           			"font-size":"25px",
+           			"height":"40px",
+           			"padding-top":"3px",
+           			"border-radius":"10px 10px 0px 0px"
+           		});
+           		
+           		$(".memo_widget_content").css({
+           			"font-size":"17px",
+           			"border":"0px",
+           			"width":"100%",
+           			"resize":"none",
+           			"padding":"20px",
+           			"overflow":"hidden",
+           			"color":"rgb(100,100,100)"
+           		});
+           		
            	})
         </script>
+        
+        
 </body>
 </html>

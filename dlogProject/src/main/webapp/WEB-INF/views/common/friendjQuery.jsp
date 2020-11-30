@@ -7,9 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
+	<script>
 		$(function(){
-				
+			
+			// 첫 로딩 시 리스트만 보여주기
+			$(".friend_request_outer").css("display","none");
+			
+			// 이동
+            $(".friend_list_button").click(function(){
+            	$(".friend_list_outer").css("display","");
+            	$(".friend_request_outer").css("display","none");
+            })
+            $(".friend_request_button").click(function(){
+            	$(".friend_request_outer").css("display","");
+            	$(".friend_list_outer").css("display","none");
+            })
+			
 			// 첫 로딩 시 curr = 1
 			$("#this_page_friend_currentPage").val(1);
 			
@@ -66,7 +79,7 @@
      						value += "<li class='friend_list'>" + 
      									"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
      									"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.friendNickname + "</div>" + "</div>" + 
-     									"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
+     									"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend(" + obj.friendAccepted + ");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
      								"</li>";
      					})
      					$(".friend_list_ul").append(value);
@@ -123,7 +136,7 @@
        							value1 += "<li class='friend_list'>" + 
        										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
        										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.friendNickname + "</div>" + "</div>" + 
-       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
+       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend("+ obj.friendAccepted +");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
        									"</li>";
        						})
        						
@@ -194,7 +207,7 @@
        							value1 += "<li class='friend_list'>" + 
        										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
        										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.friendNickname + "</div>" + "</div>" + 
-       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
+       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend("+ obj.friendAccepted +");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
        									"</li>";
        						})
        						var realEnd = Math.ceil(friendList[1].listCount/5)
@@ -251,18 +264,18 @@
 				
                	// 친구 목록 삭제
                	
-               	function reloadFriend(){  
+               	reloadFriend = function(){
                		location.reload();
-             		}
+				}
                	
-               	$(".friend_delete_DB").click(function(){
-               		var test = confirm("정말 삭제하시겠습니까?");
+				deleteFriend = function(index){
+					var test = confirm("정말 삭제하시겠습니까?");
                		if(test == true){
                 		$.ajax({
                 			url:"delete.fr",
         					data:{
         						friendOwner:$("#friend_owner").val(),
-        						friendAccepted:$(this).val()
+        						friendAccepted:index
         					},
         					success:function(result){
 	                            console.log("ajax통신 성공");
@@ -272,7 +285,7 @@
         					}
                 		})
                		}
-               	})
+				}
                	
                	// 친구 목록 검색
                	$("#friend_ajax_search").keyup(function(){
@@ -291,7 +304,7 @@
        							value += "<li class='friend_list'>" + 
        										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
        										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.nickname + "</div>" + "</div>" + 
-       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' value='" + obj.memberNo + "'>삭제</button>" + "</div>" + 
+       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend(" + obj.memberNo + ");' value='" + obj.memberNo + "'>삭제</button>" + "</div>" + 
        									"</li>";
        						})
        						$(".friend_list_ul").append(value);
@@ -315,43 +328,73 @@
                	
 			})
 			
-              	// 친구 요청 검색
-              	findFriend = function(){
-              		$.ajax({
-              			url:"find.fr",
-              			data:{
-              				nickname:$("#find_friend_keyword").val()
-              			},
-              			success:function(friendList){
-              				$(".friend_request").remove();
-              				
-              				var value="";
-      						$.each(friendList, function(i, obj){
-      							value += "<li class='friend_request'>" + 
-      										"<div class='friend_request_images'>" + "<img src='resources/images/avatar/2.jpg'>" + "</div>" + 
-      										"<div class='friend_request_nickname'>" + "<div class='notification-heading'>" + obj.nickname + "</div>" + "</div>" + 
-      										"<div class='friend_request_appeal' align='right'>" + "<button class='friend_insert_DB' value='" + obj.memberNo + "'>추가</button>" + "</div>" + 
-      									"</li>";
-      						})
-      						
-      						$(".friend_request_ul").append(value);
-              				$(".friend_insert_DB").css({"background":"rgb(132,200,185)", "border":"0", "border-radius":"5px", "color":"white", "width":"50px", "height":"27px", "font-size":"15px"});
-              				$(".friend_request_appeal").css("width","70px");
-              			},error:function(){
-              				console.log("ajax 통신 실패..")
-              			}
-              		})
-              	}
-			$("#find_friend_keyword").keydown(function(key) {
+      	// 친구 요청 검색
+      	findFriend = function(){
+      		$.ajax({
+      			url:"find.fr",
+      			data:{
+      				nickname:$("#find_friend_keyword").val()
+      			},
+      			success:function(friendList){
+      				$(".friend_request").remove();
+      				
+      				var value="";
+				$.each(friendList, function(i, obj){
+					value += "<li class='friend_request'>" + 
+								"<div class='friend_request_images'>" + "<img src='resources/images/avatar/2.jpg'>" + "</div>" + 
+								"<div class='friend_request_nickname'>" + "<div class='notification-heading'>" + obj.nickname + "</div>" + "</div>" + 
+								"<div class='friend_request_appeal' align='right'>" + "<button class='friend_insert_DB' value='" + obj.memberNo + "'>추가</button>" + "</div>" + 
+							"</li>";
+				})
+				
+				$(".friend_request_ul").append(value);
+      				$(".friend_insert_DB").css({"background":"rgb(132,200,185)", "border":"0", "border-radius":"5px", "color":"white", "width":"50px", "height":"27px", "font-size":"15px"});
+      				$(".friend_request_appeal").css("width","70px");
+      			},error:function(){
+      				console.log("ajax 통신 실패..")
+      			}
+      		})
+      	}
+		$("#find_friend_keyword").keydown(function(key) {
 
-				if (key.keyCode == 13) {
+			if (key.keyCode == 13) {
 
-					findFriend();
-					
-				}
+				findFriend();
+				
+			}
 
-			});
+		});
+		
+		// 친구 수락, 거절
+		acceptFriend = function(index){
+			$.ajax({
+      			url:"accept.fr",
+      			data:{
+      				friendNo:index
+      			},
+      			success:function(result){
+      				$(".will_disapper"+index).remove();
+      			},error:function(){
+      				console.log("ajax 통신 실패..")
+      			}
+      		})
+		}
 
+		rejectFriend = function(index){
+			$.ajax({
+      			url:"reject.fr",
+      			data:{
+      				friendNo:index
+      			},
+      			success:function(result){
+      				$(".will_disapper"+index).remove();
+      				
+      			},error:function(){
+      				console.log("ajax 통신 실패..")
+      			}
+      		})
+		}
+		
 	</script>    
 </body>
 </html>

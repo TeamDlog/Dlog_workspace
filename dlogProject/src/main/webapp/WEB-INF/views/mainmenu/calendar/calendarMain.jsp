@@ -292,6 +292,14 @@
             <!--**********************************
                 Content body start
             ***********************************-->
+            
+            <c:if test="${ !empty alertMsg }">
+            	<script>
+            		alert("${ alertMsg }");
+            	</script>
+            	<c:remove var="alertMsg" scope="session"/>
+            </c:if>
+            
             <div class="content-body" style="float: left;">
                 <div class="row page-titles mx-0">
                     <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">캘린더</h3>
@@ -301,7 +309,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card" style="width:900px;">
+                            <div class="card backgroundColor" style="width:900px;">
                                 <div class="card-body" >
                                     
                                 <div id="calendar_main_head">
@@ -363,25 +371,6 @@
             <!--**********************************
                 Content body end
             ***********************************-->  
-            
-        </div>
-        <!--**********************************
-            Main wrapper end
-        ***********************************-->
-		
-		<script>
-			$(function(){
-				var date = new Date();
-				console.log(date);
-				console.log(date.getFullYear());
-				console.log(date.getMonth()+1);
-				console.log(date.getDate());
-			})
-		</script>
-		
-        <!--**********************************
-            Widget area start
-            ***********************************-->
 		<jsp:include page="../../common/diaryWidget.jsp"/>
 		
     </div>

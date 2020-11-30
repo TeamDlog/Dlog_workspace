@@ -40,4 +40,12 @@ public class FriendDao {
 		return (ArrayList)sqlSession.selectList("friendMapper.requestFriend", friendOwner);
 	}
 	
+	public int acceptFriend(SqlSessionTemplate sqlSession, Friend f) {
+		return sqlSession.update("friendMapper.acceptFriend",f);
+	}
+	
+	public int rejectFriend(SqlSessionTemplate sqlSession, Friend f) {
+		return sqlSession.delete("friendMapper.rejectFriend",f);
+	}
+	
 }
