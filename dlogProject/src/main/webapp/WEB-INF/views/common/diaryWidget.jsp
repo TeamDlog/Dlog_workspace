@@ -40,24 +40,27 @@
                     </div>
                 </div>
             </div>
-
+			
 
             <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-content">
-                        <div class="stat-text">Today Expenses</div>
-                        <div class="stat-digit"><i class="fa fa-usd"></i>8500</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar gradient-3" style="width: 50%;" role="progressbar"><span class="sr-only">50% Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+	        	<div class="memo_widget">
+	                <div class="memo_widget_title">메모장</div>
+	                <textarea class="memo_widget_content" rows="5" cols="15" readOnly>${ memoWidget.memoContent }</textarea>
+	            </div>
+	        </div>
+	        
         </div>
         <!--**********************************
             Widget area end
         ***********************************-->
+        <script>
+           	$(function(){
+           		$(".memo_widget").hover(function(){
+           			$(this).children().eq(1).attr("style","overflow:auto;");
+           		},function(){
+           			$(this).children().eq(1).attr("style","overflow:hidden;");
+           		})
+           	})
+        </script>
 </body>
 </html>

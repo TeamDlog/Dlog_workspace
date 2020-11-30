@@ -331,22 +331,15 @@ input:checked + .slider:before {
   background: lightgray;
   border-radius: 0px 5px 0px 0px;
 }
-
 .friend_list{
   padding: 0px !important;
   height: 50px;
 }
+.scrolling{
+	overflow:scroll;
+}
 .friend_list>div{
   float:left;
-}
-.friend_list>div:nth-child(1){
-  width: 20%;
-  height: 100%;
-}
-.friend_list>div:nth-child(2){
-  height: 100%;
-  width: 60%;
-  padding-top: 12px;
 }
 .friend_list>div:nth-child(3){
   width: 20%;
@@ -400,15 +393,6 @@ input:checked + .slider:before {
 .friend_request>div{
   float:left;
 }
-.friend_request>div:nth-child(1){
-  width: 20%;
-  height: 100%;
-}
-.friend_request>div:nth-child(2){
-  height: 100%;
-  width: 50%;
-  padding-top: 12px;
-}
 .friend_request>div:nth-child(3){
   width: 30%;
   height: 100%;
@@ -426,21 +410,38 @@ input:checked + .slider:before {
   margin-top:20px;
   margin-left:20px;
   margin-bottom: 30px;
-}
-.friend_list_search input{
-  height: 100%;
-  width: 100%;
   box-shadow: 1px 1px 1px lightgray inset;
   border: 1px solid lightgray;
+  position: relative;
+}
+.friend_list_search input{
+  height: 90%;
+  width: 90%;
   padding: 10px;
+  border: 0;
+  position: absolute;
+  top:2px;
+  left:2px;
+}
+#friend_ajax_count{
+	position: absolute;
+	left:250px;
+	top:-4px;
+	color:rgb(70,70,70);
 }
 .friend_list_height{
 	height:250px;
 }
+.friend_request_height{
+	height:250px;
+	overflow:scroll;
+}
 .friend_request_search{
   height: 40px;
   width: 278px;
-  margin-bottom: 5px;
+  margin:auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
   box-shadow: 1px 1px 1px lightgray inset;
   border: 1px solid lightgray;
 }
@@ -450,12 +451,20 @@ input:checked + .slider:before {
 #frs_left{
 	width:235px;
 	height:90%;
+	position:relative;
+}
+#frs_left input{
+	position:absolute;
+	left:2px;
 }
 #frs_right{
 	width:41px;
 	height:100%;
 	background:rgb(132,200,185);
 	position:relative;
+}
+#frs_right:hover{
+	cursor:pointer;
 }
 .friend_request_search input{
 	width:100%;
@@ -479,29 +488,34 @@ input:checked + .slider:before {
 }
 .friend_list_images{
 	width:55px !important;
+	height:100%;
 }
 .friend_list_nickname{
-	width:150px !important;
+	height: 100%;
+  	width: 150px;
+  	padding-top: 12px;
 }
 .friend_list_delete{
 	margin-left:17px;
 }
 .friend_request_images{
-	width:55px !important;
+	width:55px;
+	height:100%;
 }
 .friend_request_nickname{
-	width:150px !important;
+	height: 100%;
+	width: 135px;
+	padding-top: 12px;
 }
 .friend_request_yesorno{
 	width:72px !important;
 }
-.friend_request_yesorno>img:nth-child(1){
+.friend_request_yesorno>img:hover{
+	cursor:pointer;
+}
+.accept_friend_icon{
 	margin-right:10px;
 }
-.friend_request_yesorno>img:nth-child(2){
-	
-}
-
 
 
 
@@ -513,7 +527,7 @@ input:checked + .slider:before {
 #calendar_main_head{
   width: 100%;
   height: 120px;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 #calendar_main_head>div{
   float: left;
@@ -521,6 +535,7 @@ input:checked + .slider:before {
 #calendar_main_head_left{
   width: 30%;
   height: 100%;
+  padding-top:3px;
   position: relative;
 }
 #calendar_main_head_left button:nth-child(1){
@@ -559,13 +574,14 @@ input:checked + .slider:before {
   width: 40%;
   height: 100%;
   text-align: center;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 800;
 }
 #calendar_main_head_right{
   width: 30%;
   height: 100%;
   padding-left: 63px;
+  padding-top:3px;
 }
 #calendar_main_head_right button{
   border: 0;
@@ -597,32 +613,36 @@ input:checked + .slider:before {
   width: 14.2857142857%;
   border: 1px solid lightgray;
 }
-#calendar_main_table td div:nth-child(1){
+.calendar_td div:nth-child(2){
   text-align: right;
-  padding:2px;
+  padding:5px;
   height:25%;
 }
-#calendar_main_table td div:nth-child(2){
+.calendar_td div:nth-child(3){
   height:25%;
 }
-#calendar_main_table td div:nth-child(3){
+.calendar_td div:nth-child(4){
   height:25%;
 }
-#calendar_main_table td div:nth-child(4){
+.calendar_td div:nth-child(5){
   height:25%;
 }
+
 /* 등록 */
-.card-body{
-  color: black;
+#calendar_enroll_outer>div{
+	float:left;
 }
-.card-body label{
-  font-size: 30px;
-  font-weight: bold;
+#calendar_enroll_outer{
+	color:rgb(70,70,70);
 }
 #calendar_enroll_date{
+  padding-left:5px;
   font-size: 20px;
-  margin-bottom: 20px;
-  width: 40%;
+  width: 50%;
+  height:170px;
+}
+#calendar_enroll_date>div{
+  margin-bottom: 8px;
 }
 #calendar_enroll_date input[type=date]{
   width: 50%;
@@ -631,19 +651,24 @@ input:checked + .slider:before {
 }
 #calendar_enroll_event{
   font-size: 20px;
-  width: 100%;
+  width: 50%;
+  height:170px;
+}
+#calendar_enroll_event>div{
+  margin-bottom: 8px;
 }
 #calendar_enroll_event input[type=time]{
   border: 0;
   color: lightgray;
-  width: 16%;
+  width: 36%;
 }
 #calendar_enroll_event input[type=text]{
   padding-left: 15px;
   border: 1px solid lightgray;
   border-radius: 3px;
+  color:rgb(70,70,70);
 }
-#calendar_enroll_event textarea{
+textarea[name=calendarContent]{
   width: 100%;
   padding: 15px;
   resize: none;

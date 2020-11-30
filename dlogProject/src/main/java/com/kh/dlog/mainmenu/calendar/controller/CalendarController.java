@@ -12,6 +12,11 @@ public class CalendarController {
 	@Autowired
 	private CalendarService cService;
 	
+	@RequestMapping("enroll.ca")
+	public String enrollCalendar() {
+		return "mainmenu/calendar/calendarEnroll";
+	}
+	
 	@RequestMapping("insert.ca")
 	public String insertCalendar() {
 		return "";
@@ -24,12 +29,12 @@ public class CalendarController {
 	
 	@RequestMapping("selectList.ca")
 	public String selectList() {
-		return "";
+		return "mainmenu/calendar/calendarMain";
 	}
 	
 	@RequestMapping("selectDetail.ca")
 	public String selectDetail() {
-		return "";
+		return "mainmenu/calendar/calendarDetail";
 	}
 	
 	@RequestMapping("update.ca")
