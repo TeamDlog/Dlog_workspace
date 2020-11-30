@@ -23,8 +23,9 @@ public class TimeTableController {
 	private Calendar today = Calendar.getInstance();
 	
 	@RequestMapping("main.ti")
-	public String timetableMain(Member loginUser, Model model) {
-		int timetableWriter = 3; /*loginUser.getMemberNo();*/
+	public String timetableMain(HttpSession session, Model model) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int timetableWriter =  loginUser.getMemberNo();
 		ArrayList<Timetable> list = tService.timetableList(timetableWriter);
 		
 		if(!list.isEmpty()) {
@@ -75,7 +76,7 @@ public class TimeTableController {
 			
 			if(result > 0) {
 				
-				session.setAttribute("alertMsg", "시간표 등록성공!");
+				session.setAttribute("alertMsg", "시간표 등록완료!");
 				return "redirect:main.ti";
 				
 			}else {
@@ -131,7 +132,7 @@ public class TimeTableController {
 		
 		if(tService.updateTimetableCheck(t) < 1) {
 			if(tService.updateTimetable(t) > 0) {
-				session.setAttribute("alertMsg", "시간표 수정성공!!");
+				session.setAttribute("alertMsg", "시간표 수정완료!");
 				return "redirect:main.ti";
 			}else {
 				session.setAttribute("alertMsg", "시간표 수정실패..");

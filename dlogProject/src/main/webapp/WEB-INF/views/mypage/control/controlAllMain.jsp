@@ -478,32 +478,6 @@
 	            </div>
             </div>
             
-            <!-- 시간표 위젯 -->
-            
-            <div class="card card-widget">
-                <div class="card-body gradient-3">
-                    <div class="media">
-                        <table id="timetableWidget"  style="width: 100%; text-align: center;">
-                            <tr style="height: 30px;">
-                                <th>
-                                    과목명
-                                </th>
-                            </tr>
-                            <tr>
-                                <td style="height: 20px;">
-                                    과목 시간 ~ 과목시간
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="height: 20px;">
-                                    과목 시간 ~ 과목시간
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
             <!-- 디데이 -->
             <div class="card card-widget">
                 <div class="card-body gradient-4">

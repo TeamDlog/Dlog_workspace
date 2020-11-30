@@ -26,7 +26,6 @@
                         <p class="text-muted" style="font-weight:bolder;">${loginUser.introductionTitle }</p>
                     </div>
                 </div>
-                
             </div>
 
             <div class="card card-widget">
@@ -48,6 +47,37 @@
 	                <textarea class="memo_widget_content" rows="5" cols="15" readOnly>${ memoWidget.memoContent }</textarea>
 	            </div>
 	        </div>
+	        
+	        
+            <!-- 디데이 -->
+            <div class="card card-widget">
+                <div class="card-body gradient-4">
+                    <div class="media">
+                        <table id="ddayWidget"  style="width: 100%; text-align: center;">
+                            <tr>
+                                <td style="height: 20px;">
+                                   	 	등록된 디데이가 없습니다.
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <script>
+            	$(function(){
+            		var ddayWidgetContent = "";
+            		<c:forEach var="d" items="${dlist}">
+            			if(${d.ddayWidget == "Y"}){
+            				ddayWidgetContent += '<tr style="height: 30px;"><th>D - ${d.ddayCount}</th></tr>' + '<tr><td style="height: 20px;">${d.ddayTitle}</td></tr>'
+            			}
+            		</c:forEach>
+            		if(ddayWidgetContent != ""){
+            			$("#ddayWidget").html(ddayWidgetContent);
+            		}
+            		
+            	});
+            </script>
+             <!-- 디데이 -->
 	        
         </div>
         <!--**********************************

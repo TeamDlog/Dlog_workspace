@@ -20,6 +20,8 @@
       	#timetableTable .timetableHover:hover{cursor:pointer; opacity:0.5;}
       	#timetableTable tbody td{ position: relative;}
       	.deleteCheckBox{position:absolute; left:0px; top:0px; display:none;}
+      	.mon, .tue, .wed, .thu, .fri{height:50px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+      	
     </style>
 </head>
 
@@ -395,23 +397,11 @@
                        							if("${timetable.timetableDay}" == '월요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
-	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".mon${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ")
-	                       									<c:choose>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
-	                       											.html($(".mon${timetable.timetableStart}").html() + timetableContent.substring(0,10))
-	                       										</c:when>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
-	                       											.html($(".mon${timetable.timetableStart}").html() + timetableContent.substring(0,28))
-	                       										</c:when>
-	                       										<c:otherwise>
-	                       										.html($(".mon${timetable.timetableStart}").html() + timetableContent)
-	                       										</c:otherwise>
-	                       									</c:choose>
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent} ")
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -440,23 +430,11 @@
                        							}else if("${timetable.timetableDay}" == '화요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
-	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".tue${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ")
-	                       									<c:choose>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
-	                       											.html($(".tue${timetable.timetableStart}").html() + timetableContent.substring(0,10))
-	                       										</c:when>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
-	                       											.html($(".tue${timetable.timetableStart}").html() + timetableContent.substring(0,28))
-	                       										</c:when>
-	                       										<c:otherwise>
-	                       										.html($(".tue${timetable.timetableStart}").html() + timetableContent)
-	                       										</c:otherwise>
-	                       									</c:choose>
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent} ")
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -485,23 +463,11 @@
                        							}else if("${timetable.timetableDay}" == '수요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
-	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".wed${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br>")
-	                       									<c:choose>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
-	                       											.html($(".wed${timetable.timetableStart}").html() + timetableContent.substring(0,10))
-	                       										</c:when>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
-	                       											.html($(".wed${timetable.timetableStart}").html() + timetableContent.substring(0,28))
-	                       										</c:when>
-	                       										<c:otherwise>
-	                       										.html($(".wed${timetable.timetableStart}").html() + timetableContent)
-	                       										</c:otherwise>
-	                       									</c:choose>
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent} ")
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -530,23 +496,11 @@
                        							}else if("${timetable.timetableDay}" == '목요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
-	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".thu${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br>")
-	                       									<c:choose>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
-	                       											.html($(".thu${timetable.timetableStart}").html() + timetableContent.substring(0,10))
-	                       										</c:when>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
-	                       											.html($(".thu${timetable.timetableStart}").html() + timetableContent.substring(0,28))
-	                       										</c:when>
-	                       										<c:otherwise>
-	                       										.html($(".thu${timetable.timetableStart}").html() + timetableContent)
-	                       										</c:otherwise>
-	                       									</c:choose>
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent} ")
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -575,23 +529,11 @@
                        							}else if("${timetable.timetableDay}" == '금요일'){
 	                       							for(var i=8; i<22; i++){
 	                       								if(${timetable.timetableStart} == i){
-	                       									var timetableContent = "${timetable.timetableContent}"
 	                       									$(".fri${timetable.timetableStart}")
 	                       									.attr("rowspan", ${timetable.timetableEnd - timetable.timetableStart + 1})
 	                       									.css("background", "${timetable.timetableBackground}")
 	                       									.css("color", "${timetable.timetableColor}")
-	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br>")
-	                       									<c:choose>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 0}">
-	                       											.html($(".fri${timetable.timetableStart}").html() + timetableContent.substring(0,10))
-	                       										</c:when>
-	                       										<c:when test="${timetable.timetableEnd - timetable.timetableStart == 1}">
-	                       											.html($(".fri${timetable.timetableStart}").html() + timetableContent.substring(0,28))
-	                       										</c:when>
-	                       										<c:otherwise>
-	                       										.html($(".fri${timetable.timetableStart}").html() + timetableContent)
-	                       										</c:otherwise>
-	                       									</c:choose>
+	                       									.html("<input type='checkBox' name='deleteTimetableCheck' value='${timetable.timetableNo}' class='deleteCheckBox'><b>[${timetable.timetableTitle}]</b> <br> ${timetable.timetableContent} ")
 	                       									.addClass("timetableHover")
 	                       									.click(function(){
 	                       										$("#timetableNof").val("${timetable.timetableNo}");
@@ -636,115 +578,115 @@
                                     <tbody>
                                         <tr>
                                             <td>08:00 - 09:00</td>
-                                            <td class="mon8"></td>
-                                            <td class="tue8"></td>
-                                            <td class="wed8"></td>
-                                            <td class="thu8"></td>
-                                            <td class="fri8"></td>
+                                            <td class="mon8 mon"></td>
+                                            <td class="tue8 tue"></td>
+                                            <td class="wed8 wed"></td>
+                                            <td class="thu8 thu"></td>
+                                            <td class="fri8 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>09:00 - 10:00</td>
-                                            <td class="mon9"></td>
-                                            <td class="tue9"></td>
-                                            <td class="wed9"></td>
-                                            <td class="thu9"></td>
-                                            <td class="fri9"></td>
+                                            <td class="mon9 mon"></td>
+                                            <td class="tue9 tue"></td>
+                                            <td class="wed9 wed"></td>
+                                            <td class="thu9 thu"></td>
+                                         <td class="fri9 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>10:00 - 11:00</td>
-                                            <td class="mon10"></td>
-                                            <td class="tue10"></td>
-                                            <td class="wed10"></td>
-                                            <td class="thu10"></td>
-                                            <td class="fri10"></td>
+                                            <td class="mon10 mon"></td>
+                                            <td class="tue10 tue"></td>
+                                            <td class="wed10 wed"></td>
+                                            <td class="thu10 thu"></td>
+                                            <td class="fri10 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>11:00 - 12:00</td>
-                                            <td class="mon11"></td>
-                                            <td class="tue11"></td>
-                                            <td class="wed11"></td>
-                                            <td class="thu11"></td>
-                                            <td class="fri11"></td>
+                                            <td class="mon11 mon"></td>
+                                            <td class="tue11 tue"></td>
+                                            <td class="wed11 wed"></td>
+                                            <td class="thu11 thu"></td>
+                                            <td class="fri11 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>12:00 - 13:00</td>
-                                            <td class="mon12"></td>
-                                            <td class="tue12"></td>
-                                            <td class="wed12"></td>
-                                            <td class="thu12"></td>
-                                            <td class="fri12"></td>
+                                            <td class="mon12 mon"></td>
+                                            <td class="tue12 tue"></td>
+                                            <td class="wed12 wed"></td>
+                                            <td class="thu12 thu"></td>
+                                            <td class="fri12 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>13:00 - 14:00</td>
-                                            <td class="mon13"></td>
-                                            <td class="tue13"></td>
-                                            <td class="wed13"></td>
-                                            <td class="thu13"></td>
-                                            <td class="fri13"></td>
+                                            <td class="mon13 mon"></td>
+                                            <td class="tue13 tue"></td>
+                                            <td class="wed13 wed"></td>
+                                            <td class="thu13 thu"></td>
+                                            <td class="fri13 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>14:00 - 15:00</td>
-                                            <td class="mon14"></td>
-                                            <td class="tue14"></td>
-                                            <td class="wed14"></td>
-                                            <td class="thu14"></td>
-                                            <td class="fri14"></td>
+                                            <td class="mon14 mon"></td>
+                                            <td class="tue14 tue"></td>
+                                            <td class="wed14 wed"></td>
+                                            <td class="thu14 thu"></td>
+                                            <td class="fri14 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>15:00 - 16:00</td>
-                                            <td class="mon15"></td>
-                                            <td class="tue15"></td>
-                                            <td class="wed15"></td>
-                                            <td class="thu15"></td>
-                                            <td class="fri15"></td>
+                                            <td class="mon15 mon"></td>
+                                            <td class="tue15 tue"></td>
+                                            <td class="wed15 wed"></td>
+                                            <td class="thu15 thu"></td>
+                                            <td class="fri15 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>16:00 - 17:00</td>
-                                            <td class="mon16"></td>
-                                            <td class="tue16"></td>
-                                            <td class="wed16"></td>
-                                            <td class="thu16"></td>
-                                            <td class="fri16"></td>
+                                            <td class="mon16 mon"></td>
+                                            <td class="tue16 tue"></td>
+                                            <td class="wed16 wed"></td>
+                                            <td class="thu16 thu"></td>
+                                            <td class="fri16 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>17:00 - 18:00</td>
-                                            <td class="mon17"></td>
-                                            <td class="tue17"></td>
-                                            <td class="wed17"></td>
-                                            <td class="thu17"></td>
-                                            <td class="fri17"></td>
+                                            <td class="mon17 mon"></td>
+                                            <td class="tue17 tue"></td>
+                                            <td class="wed17 wed"></td>
+                                            <td class="thu17 thu"></td>
+                                            <td class="fri17 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>18:00 - 19:00</td>
-                                            <td class="mon18"></td>
-                                            <td class="tue18"></td>
-                                            <td class="wed18"></td>
-                                            <td class="thu18"></td>
-                                            <td class="fri18"></td>
+                                            <td class="mon18 mon"></td>
+                                            <td class="tue18 tue"></td>
+                                            <td class="wed18 wed"></td>
+                                            <td class="thu18 thu"></td>
+                                            <td class="fri18 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>19:00 - 20:00</td>
-                                            <td class="mon19"></td>
-                                            <td class="tue19"></td>
-                                            <td class="wed19"></td>
-                                            <td class="thu19"></td>
-                                            <td class="fri19"></td>
+                                            <td class="mon19 mon"></td>
+                                            <td class="tue19 tue"></td>
+                                            <td class="wed19 wed"></td>
+                                            <td class="thu19 thu"></td>
+                                            <td class="fri19 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>20:00 - 21:00</td>
-                                            <td class="mon20"></td>
-                                            <td class="tue20"></td>
-                                            <td class="wed20"></td>
-                                            <td class="thu20"></td>
-                                            <td class="fri20"></td>
+                                            <td class="mon20 mon"></td>
+                                            <td class="tue20 tue"></td>
+                                            <td class="wed20 wed"></td>
+                                            <td class="thu20 thu"></td>
+                                            <td class="fri20 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>21:00 - 22:00</td>
-                                            <td class="mon21"></td>
-                                            <td class="tue21"></td>
-                                            <td class="wed21"></td>
-                                            <td class="thu21"></td>
-                                            <td class="fri21"></td>
+                                            <td class="mon21 mon"></td>
+                                            <td class="tue21 tue"></td>
+                                            <td class="wed21 wed"></td>
+                                            <td class="thu21 thu"></td>
+                                            <td class="fri21 fri"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -787,11 +729,13 @@
 	            </div>
             </div>
         
+        <!-- 시간표위젯 -->
         <div class="card card-widget">
                 <div class="card-body gradient-3">
                     <div class="media">
                         <table id="timetableWidget"  style="width: 100%; text-align: center; font-size:13px">
                         	<c:choose>
+                        	
                         		<c:when test="${ !empty list }">
 		                        	<thead>
 			                        	<tr style="height: 30px;">
@@ -800,30 +744,37 @@
 			                                </th>
 			                            </tr>
 		                        	</thead>
-		                        	<c:forEach var="t" items="${ list }">
-		                        		<c:if test="${ t.timetableDay == t.timetableToDay }">
-				                        	<tbody>
+		                        	<c:choose>
+		                        		<c:when test="${ timetableToDay != '토요일' || timetableToDay != '일요일'}">
+				                        	<c:forEach var="t" items="${ list }">
+				                        		<c:if test="${ t.timetableDay == t.timetableToDay }">
+						                        	<tbody>
+							                        	<tr style="height: 30px;">
+							                                <th>
+							                                  	  ${ t.timetableTitle }
+							                                </th>
+							                            </tr>
+							                            <tr>
+							                                <td style="height: 20px;">
+							                                	${ t.timetableStart }:00 ~ ${ t.timetableEnd }:00
+							                                </td>
+							                            </tr>
+						                            </tbody>
+						                        </c:if>
+				                           </c:forEach>
+			                           </c:when>
+			                           <c:otherwise>
+				                           <tbody>
 					                        	<tr style="height: 30px;">
 					                                <th>
-					                                  	  ${ t.timetableTitle }
+					                                  	 편안한 휴식을 가져보세요!
 					                                </th>
 					                            </tr>
-					                            <tr>
-					                                <td style="height: 20px;">
-					                                	${ t.timetableEnd }:00 ~ ${ t.timetableEnd }:00
-					                                </td>
-					                            </tr>
 				                            </tbody>
-				                        </c:if>
-		                           </c:forEach>
-		                           <tbody>
-			                        	<tr style="height: 30px;">
-			                                <th>
-			                                  	 편안한 휴식을 가져보세요!
-			                                </th>
-			                            </tr>
-		                            </tbody>
+			                            </c:otherwise>
+		                            </c:choose>
 	                            </c:when>
+	                            
 	                            <c:otherwise>
 	                            	<tr>
 		                                <td style="height: 20px;">
@@ -836,7 +787,7 @@
                     </div>
                 </div>
             </div>
-        	
+        	<!-- 시간표위젯 -->
         	<!-- 시간표 위젯 스크립트 -->
         	<script>
         		$(function(){
