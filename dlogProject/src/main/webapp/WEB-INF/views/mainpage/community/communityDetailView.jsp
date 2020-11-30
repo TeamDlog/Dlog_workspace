@@ -230,17 +230,13 @@
 					fno:${fn.freenoteNo}
 				}, success:function(result){
 					
-					
 					if(result>0){
-						alert("좋아요");
 						$("#likeCount").html( parseInt($("#likeCount").text()) + 1);
 						$("#heart").html("<i class='fas fa-heart' style='color: black;'></i>");
 					}else{
-						alert("좋아요 취소");
 						$("#likeCount").html( parseInt($("#likeCount").text()) - 1 );
 						$("#heart").html("<i class='far fa-heart' style='color: black;'></i>");
 					}
-					
 					
 				}, error:function(){
 					console.log("게시글 좋아요 ajax 통신 실패");

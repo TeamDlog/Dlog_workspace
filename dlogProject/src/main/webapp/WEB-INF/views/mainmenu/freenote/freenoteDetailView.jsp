@@ -204,15 +204,12 @@
 				}, success:function(result){
 					
 					if(result>0){
-						alert("추천되었습니다");
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) + 1);
 						$("#heart-" + rno).html("<i class='mdi mdi-heart'></i>");
 					}else{
-						alert("추천 취소");
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) - 1 );
 						$("#heart-" + rno).html("<i class='mdi mdi-heart-outline'></i>");
 					}
-					
 				}, error:function(){
 					console.log("ajax 통신 실패");
 				}
