@@ -24,6 +24,24 @@
         line-height: 30px;
      }
     
+	.bug2{
+		float:right;
+	}
+	.wrap{
+	  position:relative;
+	  animation:motion 0.5s ease-in Infinite Alternate;
+	}
+
+	@-webkit-keyframes motion {
+	  0% {
+	    top:0px;
+	  }
+	  
+	  to {
+	    top:6px;
+	    
+	  } 
+	}
 </style>
 
 </head>
@@ -56,7 +74,21 @@
                                           		<td >&nbsp;</td>
                                           	</tr>
                                           	<tr>
-                                          		<td style="font-size:1.3em; font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 소개글이 없습니다.</td>
+                                          		<td style="font-size:0.2em;">&nbsp; </td>	
+                                          	</tr>
+                                          	<tr>
+                                          		<td style="font-size:1.5em; font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;환영합니다 ! </td>
+                                          	</tr>
+                                          	<tr>
+                                          		<td class="bug2" style="font-size:1em;" ><img class="wrap" id="buga" src="resources/images/bug.png" style="width: 40px; height: 40px;">
+                                          		</td>
+                                          	</tr>
+                                          	<tr>
+                                          		<td style="font-size:1.5em;  font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;나만의 :Dlog를 멋지게 꾸며보세요 ! </td>	
+                                          		
+                                          	</tr>
+                                          	<tr>
+                                          		<td style="font-size:1.5em;"> </td>	
                                           	</tr>
                                           </c:if>	
                                           <tr>

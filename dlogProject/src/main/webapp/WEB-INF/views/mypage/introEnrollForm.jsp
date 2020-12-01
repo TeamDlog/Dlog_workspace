@@ -57,8 +57,7 @@
                                   
                                   <form id="enrollForm" action="introInsert.my" method="post"> 
                                   <input type="hidden"  name="memberId" value="${loginUser.memberId}">
-                                  
-								  <table>
+                                 <table>
                                       <tr>
                                           <td style="font-size:30px;">&nbsp;</td>
                                       </tr>
