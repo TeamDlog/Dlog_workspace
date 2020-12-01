@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
+import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
 
 
 @Controller
@@ -24,6 +25,9 @@ public class MemberController {
 	private MemberService mService;
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	@Autowired
+	private ControlAllService caService;
+	
 	
 	@RequestMapping("mainpage.me")
 	public String mainpage() {
@@ -203,6 +207,7 @@ public class MemberController {
 		
 			if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getMemberPwd(), loginUser.getMemberPwd())*/) {
 				
+				session.setAttribute("ca", caService.ControlAllMain(loginUser.getMemberNo()+""));
 				session.setAttribute("loginUser", loginUser);
 				return "redirect:/";
 				

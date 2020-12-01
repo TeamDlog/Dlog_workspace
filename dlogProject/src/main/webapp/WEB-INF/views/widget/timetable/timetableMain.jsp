@@ -100,7 +100,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card" style="width:900px;">
+                            <div  class="card backgroundColor" style="width:900px;">
                                 <div class="card-body" >
                                 <form action="updateForm.ti" method="post">
                                 	 <input type="hidden" name="timetableNo" id="timetableNof">

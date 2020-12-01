@@ -43,7 +43,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <div class="brand-logo" style="background:rgb(204, 202, 202)">
+                <div class="brand-logo" id="logoColor" style="background:rgb(204, 202, 202)">
                     <a href="#">
                         <b class="logo-abbr"><img src="resources/images/DlogLogo-text-short.png" alt="" width="19px"></b>
                         <span class="logo-compact"><img src="resources/images/DlogLogo-text.png" alt="" width="87"></span>
@@ -60,7 +60,7 @@
             <!--**********************************
                 Header start
             ***********************************-->
-            <div class="header">    
+            <div class="header" id="menubarColor">    
                 <div class="header-content clearfix">
                     
                     <div class="nav-control">
@@ -225,7 +225,7 @@
             <!--**********************************
                 Sidebar start
             ***********************************-->
-            <div class="nk-sidebar">           
+            <div class="nk-sidebar menubarColor">           
                 <div class="nk-nav-scroll">
                     <ul class="metismenu" id="menu">
                         <li class="nav-label">마이페이지</li>

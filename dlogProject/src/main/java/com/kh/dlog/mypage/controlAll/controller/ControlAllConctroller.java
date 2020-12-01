@@ -45,4 +45,28 @@ public class ControlAllConctroller {
 		return caService.ControlAllMain(loginUser.getMemberNo()+"");
 	}
 	
+	@RequestMapping("myColor.ca")
+	public String myColor(HttpSession session, ControlAll ca) {
+		int result = caService.myColor(ca);
+		if(result > 0) {
+			session.setAttribute("alertMsg", "테마적용 완료!");
+			return "redirect:main.ca";
+		}else {
+			session.setAttribute("alertMsg", "테마적용 실패..");
+			return "redirect:main.ca";
+		}
+	}
+	
+	@RequestMapping("reset.ca")
+	public String resetMyColor(HttpSession session, String memberNo) {
+		int result = caService.resetMyColor(memberNo);
+		if(result > 0) {
+			session.setAttribute("alertMsg", "테마초기화 완료!");
+			return "redirect:main.ca";
+		}else {
+			session.setAttribute("alertMsg", "테마초기화 실패..");
+			return "redirect:main.ca";
+		}
+	}
+	
 }

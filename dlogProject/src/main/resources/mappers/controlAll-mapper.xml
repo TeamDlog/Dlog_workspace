@@ -62,6 +62,24 @@
 		 where member_no = ${memberNo} 
 	</update>
 	
+	<update id="myColor" parameterType="Ca">
+		update
+		       my_color
+		   set MY_COLOR_LOGO = #{myColorLogo}
+			 , MY_COLOR_BACKGROUND = #{myColorBackground}
+             , MY_COLOR_MENUBAR = #{myColorMenubar}
+             , MY_COLOR_FONT = #{myColorFont}
+        where member_no = #{memberNo}
+	</update>
 	
+	<update id="resetMyColor" parameterType="string">
+		update
+		       my_color
+		   set MY_COLOR_LOGO = '#84c8b9'
+			 , MY_COLOR_BACKGROUND = '#ffffff'
+             , MY_COLOR_MENUBAR = '#ffffff'
+             , MY_COLOR_FONT = '#464a53'
+        where member_no = #{memberNo}
+	</update>
 	
 </mapper>
