@@ -27,5 +27,36 @@
 		  join member m on(v.voca_writer=m.member_no)
 		 where member_no = ${memberNo}
 	</select>
+	
+	<insert id="enrollVoca" parameterType="Voca">
+		 insert
+		   into voca
+		   (
+		        voca_no
+		      , voca_writer
+		      , voca_word
+		      , voca_mean
+		   )
+		   values
+		   (
+		        seq_vocano.nextval
+		      , #{vocaWriter}
+		      , #{vocaWord}
+		      , #{vocaMean}
+		   )
+	</insert>
+	
+	<select id="searchVoca" parameterType="Voca" resultMap="vocaResultSet">
+		select
+		       voca_no
+		     , voca_writer
+		     , voca_word
+		     , voca_mean
+		  from voca v
+		  join member m on(v.voca_writer=m.member_no)
+		 where member_no = 3
+		   and voca_word like '%'||#{vocaWord}||'%'
+		   and voca_mean like'%'||#{vocaMean}||'%'
+	</select>
 
 </mapper>

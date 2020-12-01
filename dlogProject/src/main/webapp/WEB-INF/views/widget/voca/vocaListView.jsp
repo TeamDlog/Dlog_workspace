@@ -34,6 +34,7 @@
                                             <tr>
                                                 <td>
                                                     <form action="" class="form-inline">
+                                                    <input type="hidden" name="vocaWriter" value="${ loginUser.memberNo }">
                                                         <input type="text" style="width: 200px; height: 28px; border: .1px solid lightgrey; border-radius: 4px;">
                                                         <button type="submit" class="btn btn-secondary btn-sm" style="background-color: #84c8b9; border-color: #84c8b9;"><i class="fa fa-search"></i></button>
                                                     </form>
@@ -49,18 +50,21 @@
                                                                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <h6>단어</h6>
-                                                                <input type="text" class="form-control" id="word" name="word" required>
-
-                                                                <br>
-
-                                                                <h6>뜻</h6>
-                                                                <input type="text" class="form-control" id="mean" name="mean" required>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-primary" style="background-color: #84c8b9; border-color: #84c8b9;">등록하기</button>
-                                                            </div>
+                                                            <form action="enroll.vo" method="post">
+                                                            <input type="hidden" name="vocaWriter" value="${ loginUser.memberNo }">
+	                                                            <div class="modal-body">
+	                                                                <h6>단어</h6>
+	                                                                <input type="text" class="form-control" id="vocaWord" name="vocaWord" required>
+	
+	                                                                <br>
+	
+	                                                                <h6>뜻</h6>
+	                                                                <input type="text" class="form-control" id="vocaMean" name="vocaMean" required>
+	                                                            </div> 
+	                                                            <div class="modal-footer">
+	                                                                <button type="submit" class="btn btn-primary" style="background-color: #84c8b9; border-color: #84c8b9;">등록하기</button>
+	                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -110,9 +114,18 @@
                                                     </c:choose>
                                                     
                                                     <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                                                        <li class="page-item active">
-                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
-                                                        </li>
+                                                    <c:choose>
+                                                    	<c:when test="${ currentPage == p}">
+	                                                        <li class="page-item active">
+	                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
+	                                                        </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        	<li class="page-item">
+	                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
+	                                                        </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
 													</c:forEach>
 													
 													<c:choose>
