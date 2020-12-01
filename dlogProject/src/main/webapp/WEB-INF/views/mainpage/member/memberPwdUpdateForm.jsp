@@ -176,6 +176,7 @@
 	                            
 	                        	$("#checkPwdResult").show();
 	    						$("#checkPwdResult").css("color", "red").text("비밀번호가 유효하지 않습니다.다시 입력해 주세요.");
+	    						$pwdCheck.val().reset();
 	                            
 	                        }else{
 	                        	
