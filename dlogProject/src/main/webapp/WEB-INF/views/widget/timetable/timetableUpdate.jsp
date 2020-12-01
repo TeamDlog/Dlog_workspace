@@ -419,7 +419,7 @@
                                     <textarea name="timetableContent" id="timetableContent" cols="100" rows="10" style="resize: none;" maxlength="50" placeholder="최대 50자"></textarea>
                                     <br><br>
                                     <a href="main.ti" style="float: right;" class="btn btn-danger">취소</a>
-                                    <button type="submit" style="float: right; margin-right: 15px;" class="btn btn-success">등록</button>
+                                    <button type="submit" style="float: right; margin-right: 15px;" class="btn btn-success">수정</button>
                                 </form>
                                 
                                 </div>

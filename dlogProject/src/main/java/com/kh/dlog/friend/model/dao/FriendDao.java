@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.dlog.common.model.vo.PageInfo;
 import com.kh.dlog.friend.model.vo.Friend;
+import com.kh.dlog.member.model.vo.Member;
 
 @Repository
 public class FriendDao {
@@ -27,5 +28,24 @@ public class FriendDao {
 		return sqlSession.delete("friendMapper.deleteFriend", f);
 	}
 	
+	public ArrayList<Member> searchFriend(SqlSessionTemplate sqlSession, Member m){
+		return (ArrayList)sqlSession.selectList("friendMapper.searchFriend", m);
+	}
+	
+	public ArrayList<Member> findFriend(SqlSessionTemplate sqlSession, Member m){
+		return (ArrayList)sqlSession.selectList("friendMapper.findFriend", m);
+	}
+	
+	public ArrayList<Friend> requestFriend(SqlSessionTemplate sqlSession, int friendOwner){
+		return (ArrayList)sqlSession.selectList("friendMapper.requestFriend", friendOwner);
+	}
+	
+	public int acceptFriend(SqlSessionTemplate sqlSession, Friend f) {
+		return sqlSession.update("friendMapper.acceptFriend",f);
+	}
+	
+	public int rejectFriend(SqlSessionTemplate sqlSession, Friend f) {
+		return sqlSession.delete("friendMapper.rejectFriend",f);
+	}
 	
 }

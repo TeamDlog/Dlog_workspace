@@ -27,6 +27,11 @@ public class CalendarServiceImpl implements CalendarService{
 	}
 
 	@Override
+	public int enrollCalendar(int calendarWriter) { // 캘린더 작성 폼
+		return cDao.enrollCalendar(sqlSession, calendarWriter);
+	}
+	
+	@Override
 	public int deleteCalendar(int calendarNo) { // 캘린더 삭제
 		return cDao.deleteCalendar(sqlSession, calendarNo);
 	}
@@ -45,5 +50,6 @@ public class CalendarServiceImpl implements CalendarService{
 	public int updateCalendar(Calendar c) { // 캘린더 수정
 		return cDao.updateCalendar(sqlSession, c);
 	}
+
 	
 }

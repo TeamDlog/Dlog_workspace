@@ -20,6 +20,13 @@ FOR C IN (SELECT * FROM USER_VIEWS) LOOP
 END LOOP;
 END;
 /
+--접속유저의 모든 트리거 삭제
+BEGIN
+FOR C IN (SELECT * FROM USER_TRIGGERS) LOOP
+  EXECUTE IMMEDIATE 'DROP TRIGGER '||C.TRIGGER_NAME;
+END LOOP;
+END;
+/
 ---------------------------------------
 CREATE TABLE "PHOTO" (
 	"PHOTO_NO"	NUMBER		NOT NULL,
@@ -840,3 +847,38 @@ CREATE SEQUENCE SEQ_INQUIRYNO NOCACHE;
 CREATE SEQUENCE SEQ_NOTICENO NOCACHE;
 CREATE SEQUENCE SEQ_REPLYNO NOCACHE;
 CREATE SEQUENCE SEQ_FREENOTENO NOCACHE;
+
+-- '좋아요' 관련 트리거
+-- 글 좋아요시 실행할 트리거
+create or replace trigger trg_like_freenote
+after insert or delete on freenote_like
+for each row
+begin
+    if inserting then
+        update freenote
+           set freenote_like = freenote_like + 1
+         where freenote_no = :new.freenote_no;
+    elsif deleting then
+        update freenote
+           set freenote_like = freenote_like - 1
+         where freenote_no = :old.freenote_no;
+    end if;
+end;
+/
+
+-- 댓글 좋아요시 실행할 트리거
+create or replace trigger trg_like_reply
+after insert or delete on reply_like
+for each row
+begin
+    if inserting then
+        update reply
+           set reply_like = reply_like + 1
+         where reply_no = :new.reply_no;
+    elsif deleting then
+        update reply
+           set reply_like = reply_like - 1
+         where reply_no = :old.reply_no;
+    end if;
+end;
+/

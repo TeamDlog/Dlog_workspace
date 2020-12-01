@@ -230,17 +230,13 @@
 					fno:${fn.freenoteNo}
 				}, success:function(result){
 					
-					
 					if(result>0){
-						alert("좋아요");
 						$("#likeCount").html( parseInt($("#likeCount").text()) + 1);
 						$("#heart").html("<i class='fas fa-heart' style='color: black;'></i>");
 					}else{
-						alert("좋아요 취소");
 						$("#likeCount").html( parseInt($("#likeCount").text()) - 1 );
 						$("#heart").html("<i class='far fa-heart' style='color: black;'></i>");
 					}
-					
 					
 				}, error:function(){
 					console.log("게시글 좋아요 ajax 통신 실패");
@@ -258,11 +254,9 @@
 				}, success:function(result){
 					
 					if(result>0){
-						alert("추천되었습니다");
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) + 1);
 						$("#heart-" + rno).html("<i class='fas fa-heart'></i>");
 					}else{
-						alert("추천 취소");
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) - 1 );
 						$("#heart-" + rno).html("<i class='far fa-heart'></i>");
 					}
@@ -464,6 +458,7 @@
 		                
 					}else{
 						$("#replyArea").html("<div align='center'>작성된 댓글이 없습니다.</div>");
+						$("#replyPagination").html("");
 					}
 				}, error:function(){
 					console.log("댓글 리스트 조회용 ajax 통신 실패");

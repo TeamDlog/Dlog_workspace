@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 </head>
 <body>
 		</div>
-	    <!--**********************************
+		<!--**********************************
 	        Main wrapper end
 	    ***********************************-->
 		<!--**********************************
@@ -26,38 +27,193 @@
                         <p class="text-muted" style="font-weight:bolder;">${loginUser.introductionTitle }</p>
                     </div>
                 </div>
-                
             </div>
 
+            <div class="card">
+            	<div class="card-body" style="padding:0px;">
+		        	<div class="memo_widget">
+		                <div class="memo_widget_title">메모장</div>
+		                <textarea class="memo_widget_content" rows="5" cols="15" readOnly>${ memoWidget.memoContent }</textarea>
+		            </div>
+	            </div>
+	        </div>
+	        
+	        <div class="card">
+                <div class="stat-widget-one" style="padding: 10px">
+                    <div class="stat-content">
+                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">hello</div>
+                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">안녕</div>
+                    </div>
+                </div>
+            </div>
+	        
+	        
+	        <%-- <!-- 시간표위젯 -->
+        	<div class="card card-widget">
+                <div class="card-body gradient-3">
+                    <div class="media">
+                        <table id="timetableWidget"  style="width: 100%; text-align: center; font-size:13px">
+                        	<c:choose>
+                        	
+                        		<c:when test="${ !empty list }">
+		                        	<thead>
+			                        	<tr style="height: 30px;">
+			                                <th>
+			                                  	  [요일정보]
+			                                </th>
+			                            </tr>
+		                        	</thead>
+		                        	<c:choose>
+		                        		<c:when test="${ timetableToDay != '토요일' || timetableToDay != '일요일'}">
+				                        	<c:forEach var="t" items="${ list }">
+				                        		<c:if test="${ t.timetableDay == t.timetableToDay }">
+						                        	<tbody>
+							                        	<tr style="height: 30px;">
+							                                <th>
+							                                  	  ${ t.timetableTitle }
+							                                </th>
+							                            </tr>
+							                            <tr>
+							                                <td style="height: 20px;">
+							                                	${ t.timetableStart }:00 ~ ${ t.timetableEnd }:00
+							                                </td>
+							                            </tr>
+						                            </tbody>
+						                        </c:if>
+				                           </c:forEach>
+			                           </c:when>
+			                           <c:otherwise>
+				                           <tbody>
+					                        	<tr style="height: 30px;">
+					                                <th>
+					                                  	 편안한 휴식을 가져보세요!
+					                                </th>
+					                            </tr>
+				                            </tbody>
+			                            </c:otherwise>
+		                            </c:choose>
+	                            </c:when>
+	                            
+	                            <c:otherwise>
+	                            	<tr>
+		                                <td style="height: 20px;">
+		                                	등록된 시간표가 없습니다.
+		                                </td>
+		                            </tr>
+	                            </c:otherwise>
+	                            
+                            </c:choose>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div> --%>
+        	<!-- 시간표위젯 -->
+        	<!-- 시간표 위젯 스크립트 -->
+        	<script>
+        		$(function(){
+        			var today = new Date().getDay();
+        			if(today == 1){
+        				$("#timetableWidget thead tr th").text("[월요일]");
+        			}else if(today == 2){
+        				$("#timetableWidget thead tr th").text("[화요일]");
+        			}else if(today == 3){
+        				$("#timetableWidget thead tr th").text("[수요일]");
+        			}else if(today == 4){
+        				$("#timetableWidget thead tr th").text("[목요일]");
+        			}else if(today == 5){
+        				$("#timetableWidget thead tr th").text("[금요일]");
+        			}else if(today == 6){
+        				$("#timetableWidget thead tr th").text("[토요일]");
+        			}else if(today == 0){
+        				$("#timetableWidget thead tr th").text("[일요일]");
+        			}
+        		});
+        	</script>
+        	<!-- 시간표 위젯 스크립트 -->
+	        
+            <!-- 디데이 -->
             <div class="card card-widget">
                 <div class="card-body gradient-4">
                     <div class="media">
-                        <span class="card-widget__icon"><i class="icon-emotsmile"></i></span>
-                        <div class="media-body">
-                            <h2 class="card-widget__title">1002</h2>
-                            <h5 class="card-widget__subtitle">Task Completed</h5>
-                        </div>
+                        <table id="ddayWidget"  style="width: 100%; text-align: center;">
+                            <tr>
+                                <td style="height: 20px;">
+                                   	 	등록된 디데이가 없습니다.
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
-
-
-            <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-content">
-                        <div class="stat-text">Today Expenses</div>
-                        <div class="stat-digit"><i class="fa fa-usd"></i>8500</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar gradient-3" style="width: 50%;" role="progressbar"><span class="sr-only">50% Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+            <script>
+            	$(function(){
+            		var ddayWidgetContent = "";
+            		<c:forEach var="d" items="${dlist}">
+            			if(${d.ddayWidget == "Y"}){
+            				ddayWidgetContent += '<tr style="height: 30px;"><th>D - ${d.ddayCount}</th></tr>' + '<tr><td style="height: 20px;">${d.ddayTitle}</td></tr>'
+            			}
+            		</c:forEach>
+            		if(ddayWidgetContent != ""){
+            			$("#ddayWidget").html(ddayWidgetContent);
+            		}
+            		
+            	});
+            </script>
+             <!-- 디데이 -->
+	        
         </div>
         <!--**********************************
             Widget area end
         ***********************************-->
+        <script>
+        
+        	// memo
+           	$(function(){
+           		
+          		$(".memo_widget").hover(function(){
+           			$(this).children().eq(1).css({
+           				"font-size":"17px",
+               			"border":"0px",
+               			"padding":"20px",
+               			"resize":"none",
+               			"overflow":"auto",
+               			"color":"rgb(100,100,100)"
+           			});
+           		},function(){
+           			$(this).children().eq(1).css({
+           				"font-size":"17px",
+               			"border":"0px",
+               			"resize":"none",
+               			"padding":"20px",
+               			"overflow":"hidden",
+               			"color":"rgb(100,100,100)"
+           			});
+           		});
+           		
+           		$(".memo_widget_title").css({
+           			"background":"rgb(132,200,185)",
+           			"color":"white",
+           			"text-align":"center",
+           			"font-size":"25px",
+           			"height":"40px",
+           			"padding-top":"3px",
+           			"border-radius":"10px 10px 0px 0px"
+           		});
+           		
+           		$(".memo_widget_content").css({
+           			"font-size":"17px",
+           			"border":"0px",
+           			"width":"100%",
+           			"resize":"none",
+           			"padding":"20px",
+           			"overflow":"hidden",
+           			"color":"rgb(100,100,100)"
+           		});
+           		
+           	})
+        </script>
+        
+        
 </body>
 </html>

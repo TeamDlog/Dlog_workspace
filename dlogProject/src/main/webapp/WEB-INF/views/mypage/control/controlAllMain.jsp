@@ -266,49 +266,49 @@
                         <!-- 메인메뉴 -->
                         <li class="nav-label">메인메뉴</li>
                         <li>
-                            <a href="url" aria-expanded="false">
-                                <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span>
+                            <a href="url" aria-expanded="false" id="privacyCalendarMenu" >
+                                <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span><i class="ion-android-lock" style="float:right"></i> 
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyDirayMenu">
                                 <i class="icon-notebook menu-icon"></i><span class="nav-text">다이어리</span>
-                            </a>
+                            </a>	
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyFreenoteMenu">
                                 <i class="icon-note menu-icon"></i><span class="nav-text">프리노트</span>
                             </a>
                         </li>
                         <li>
-                            <a href="selectList.ph" aria-expanded="false">
+                            <a href="selectList.ph" aria-expanded="false" id="privacyPhotoMenu">
                                 <i class="icon-picture menu-icon"></i><span class="nav-text">사진게시판</span>
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyAccountMenu">
                                 <i class="icon-wallet menu-icon"></i><span class="nav-text">가계부</span>
                             </a>
                         </li>
                         <!-- 위젯메뉴 -->
                         <li class="nav-label">위젯메뉴</li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyDdayMenu">
                                 <i class="icon-clock menu-icon"></i><span class="nav-text">디데이</span>
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyVocaMenu">
                                 <i class="icon-speech menu-icon"></i><span class="nav-text">단어장</span>
                             </a>
                         </li>
                         <li>
-                            <a href="selectList.mo" aria-expanded="false" style="background:#F3F3F9">
+                            <a href="selectList.mo" aria-expanded="false" id="privacyMemoMenu">
                                 <i class="icon-doc menu-icon"></i><span class="nav-text">메모장</span>
                             </a>
                         </li>
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="url" aria-expanded="false" id="privacyTimetableMenu">
                                 <i class="icon-grid menu-icon"></i><span class="nav-text">시간표<span>
                             </a>
                         </li>
@@ -469,156 +469,7 @@
         <!--**********************************
             Widget area start
         ***********************************-->
-        <div class="widget-area" style="float:left; margin-top: 100px;">
-
-            <div class="card">
-	            <div class="memo_widget">
-	                <div class="memo_widget_title">메모장</div>
-	                <textarea class="memo_widget_content" rows="5" cols="15" readOnly>${ memoWidget.memoContent }</textarea>
-	            </div>
-            </div>
-            
-            <!-- 시간표 위젯 -->
-            
-            <div class="card card-widget">
-                <div class="card-body gradient-3">
-                    <div class="media">
-                        <table id="timetableWidget"  style="width: 100%; text-align: center;">
-                            <tr style="height: 30px;">
-                                <th>
-                                    과목명
-                                </th>
-                            </tr>
-                            <tr>
-                                <td style="height: 20px;">
-                                    과목 시간 ~ 과목시간
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="height: 20px;">
-                                    과목 시간 ~ 과목시간
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 디데이 -->
-            <div class="card card-widget">
-                <div class="card-body gradient-4">
-                    <div class="media">
-                        <table id="ddayWidget"  style="width: 100%; text-align: center;">
-                            <tr>
-                                <td style="height: 20px;">
-                                   	 	등록된 디데이가 없습니다.
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <script>
-            	$(function(){
-            		var ddayWidgetContent = "";
-            		<c:forEach var="d" items="${dlist}">
-            			if(${d.ddayWidget == "Y"}){
-            				ddayWidgetContent += '<tr style="height: 30px;"><th>D - ${d.ddayCount}</th></tr>' + '<tr><td style="height: 20px;">${d.ddayTitle}</td></tr>'
-            			}
-            		</c:forEach>
-            		if(ddayWidgetContent != ""){
-            			$("#ddayWidget").html(ddayWidgetContent);
-            		}
-            		
-            	});
-            </script>
-             <!-- 디데이 -->
-			
-			<div class="card card-widget">
-                <div class="card-body gradient-3">
-                    <div class="media">
-                        <table id="timetableWidget"  style="width: 100%; text-align: center; font-size:13px">
-                        	<c:choose>
-                        		<c:when test="${ !empty list }">
-		                        	<thead>
-			                        	<tr style="height: 30px;">
-			                                <th>
-			                                  	  [요일정보]
-			                                </th>
-			                            </tr>
-		                        	</thead>
-		                        	<c:forEach var="t" items="${ list }">
-		                        		<c:if test="${ t.timetableDay == t.timetableToDay }">
-				                        	<tbody>
-					                        	<tr style="height: 30px;">
-					                                <th>
-					                                  	  ${ t.timetableTitle }
-					                                </th>
-					                            </tr>
-					                            <tr>
-					                                <td style="height: 20px;">
-					                                	${ t.timetableEnd }:00 ~ ${ t.timetableEnd }:00
-					                                </td>
-					                            </tr>
-				                            </tbody>
-				                        </c:if>
-		                           </c:forEach>
-		                           <tbody>
-			                        	<tr style="height: 30px;">
-			                                <th>
-			                                  	 편안한 휴식을 가져보세요!
-			                                </th>
-			                            </tr>
-		                            </tbody>
-	                            </c:when>
-	                            <c:otherwise>
-	                            	<tr>
-		                                <td style="height: 20px;">
-		                                	등록된 시간표가 없습니다.
-		                                </td>
-		                            </tr>
-	                            </c:otherwise>
-                            </c:choose>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        	
-        	<!-- 시간표 위젯 스크립트 -->
-        	<script>
-        		$(function(){
-        			var today = new Date().getDay();
-        			if(today == 1){
-        				$("#timetableWidget thead tr th").text("[월요일]");
-        			}else if(today == 2){
-        				$("#timetableWidget thead tr th").text("[화요일]");
-        			}else if(today == 3){
-        				$("#timetableWidget thead tr th").text("[수요일]");
-        			}else if(today == 4){
-        				$("#timetableWidget thead tr th").text("[목요일]");
-        			}else if(today == 5){
-        				$("#timetableWidget thead tr th").text("[금요일]");
-        			}else if(today == 6){
-        				$("#timetableWidget thead tr th").text("[토요일]");
-        			}else if(today == 0){
-        				$("#timetableWidget thead tr th").text("[일요일]");
-        			}
-        		});
-        	</script>
-        	<!-- 시간표 위젯 스크립트 -->
-			
-            <script>
-            	$(function(){
-            		$(".memo_widget").hover(function(){
-            			$(this).children().eq(1).attr("style","overflow:auto;");
-            		},function(){
-            			$(this).children().eq(1).attr("style","overflow:hidden;");
-            		})
-            	})
-            </script>
-            
-        </div>
-    </div>
+        <jsp:include page="../../common/diaryWidget.jsp"/>
     <!--**********************************
         Widget area end
     ***********************************-->

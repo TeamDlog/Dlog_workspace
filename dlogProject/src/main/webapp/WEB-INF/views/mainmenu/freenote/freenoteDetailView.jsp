@@ -59,7 +59,7 @@
         <div class="row page-titles mx-0">
             <div class="col p-md-0">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="">프리노트</a></li>
+                    <li class="breadcrumb-item"><a href="list.fn">프리노트</a></li>
                     <li class="breadcrumb-item active">상세보기</li>
                 </ol>
             </div>
@@ -69,7 +69,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card" style="width:900px;">
+                    <div class="card backgroundColor" style="width:900px;">
                         <div class="card-body" >
                             
                             <div id="titleArea">
@@ -177,11 +177,9 @@
 					
 					
 					if(result>0){
-						alert("추천되었습니다");
 						$("#likeCount").html( parseInt($("#likeCount").text()) + 1);
 						$("#heart").html("<i class='mdi mdi-heart'></i>");
 					}else{
-						alert("추천 취소");
 						$("#likeCount").html( parseInt($("#likeCount").text()) - 1 );
 						$("#heart").html("<i class='mdi mdi-heart-outline'></i>");
 					}
@@ -204,15 +202,12 @@
 				}, success:function(result){
 					
 					if(result>0){
-						alert("추천되었습니다");
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) + 1);
 						$("#heart-" + rno).html("<i class='mdi mdi-heart'></i>");
 					}else{
-						alert("추천 취소");
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) - 1 );
 						$("#heart-" + rno).html("<i class='mdi mdi-heart-outline'></i>");
 					}
-					
 				}, error:function(){
 					console.log("ajax 통신 실패");
 				}
@@ -395,6 +390,7 @@
 		                
 					}else{
 						$("#replyArea").html("<div align='center'>작성된 댓글이 없습니다.</div>");
+						$("#replyPagination").html("");
 					}
 				}, error:function(){
 					console.log("댓글 리스트 조회용 ajax 통신 실패");

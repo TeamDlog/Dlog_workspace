@@ -1,11 +1,14 @@
 package com.kh.dlog.mypage.controlAll.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
 import com.kh.dlog.mypage.controlAll.model.vo.ControlAll;
 
@@ -16,8 +19,9 @@ public class ControlAllConctroller {
 	private ControlAllService caService;
 	
 	@RequestMapping("main.ca")
-	public String ControlAllMain(/*String memberNo, */Model model) {
-		model.addAttribute("ca", caService.ControlAllMain("3"));
+	public String ControlAllMain(HttpSession session,Model model) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		model.addAttribute("ca", caService.ControlAllMain(loginUser.getMemberNo()+""));
 		return "mypage/control/controlAllMain";
 	}
 	
@@ -36,8 +40,9 @@ public class ControlAllConctroller {
 	
 	@RequestMapping("widgetChecked.ca")
 	@ResponseBody
-	public ControlAll WidgetChecked(String memberNo) {
-		return caService.ControlAllMain("3");
+	public ControlAll WidgetChecked(HttpSession session, String memberNo) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		return caService.ControlAllMain(loginUser.getMemberNo()+"");
 	}
 	
 }

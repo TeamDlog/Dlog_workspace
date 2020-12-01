@@ -17,6 +17,7 @@
 		<result column="modify_date" property="modifyDate" />
 		<result column="status" property="status" />
 		<result column="nickname" property="freenoteWriter" />
+		<result column="member_no" property="freenoteWriter" />
 		<result column="member_id" property="memberId" />
 		<result column="replyCount" property="replyCount" />
 		<result column="likestatus" property="likeStatus" />		
@@ -42,7 +43,7 @@
 		  from freenote
 		 where member_no = #{mno}
 		   and freenote_category like '%'||#{category}||'%'
-		   and freenote_title like '%'||#{title}||'%'
+		   and freenote_title like '%'||#{keyword}||'%'
 		   and status='Y'
 	</select>
 	
@@ -52,6 +53,7 @@
 		     , freenote_title
 		     , freenote_privacy
 		     , freenote_category
+		     , member_no
 		     , to_char(create_date, 'yyyy-mm-dd') as create_date
              , (select count(*)
                   from reply
@@ -61,7 +63,7 @@
 		  from freenote
 		 where member_no = #{mno}
 		   and freenote_category like '%'||#{category}||'%'
-		   and freenote_title like '%'||#{title}||'%'
+		   and freenote_title like '%'||#{keyword}||'%'
 		   and status='Y'
 		 order
 			by freenote_no desc
@@ -503,6 +505,7 @@
 		     , freenote_title
 		     , to_char(create_date, 'yyyy-mm-dd') as create_date
 		     , freenote_count
+		     , freenote_like
 		     , (select count(*)
 		          from reply
 		         where ref_fno = freenote_no

@@ -30,7 +30,7 @@ public class TimetableDao {
 	}
 	
 	public int insertDeleteTimetable(SqlSessionTemplate sqlSession, Timetable t) {
-		int result = 1;
+		int result = 0;
 		for(int i=Integer.parseInt(t.getTimetableStart()); i<=Integer.parseInt(t.getTimetableEnd()); i++) {
 			t.setTimetableTimeCheck(i);
 			result += sqlSession.delete("timetableMapper.insertDeleteTimetable", t);

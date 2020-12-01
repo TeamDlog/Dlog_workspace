@@ -10,10 +10,14 @@ import com.kh.dlog.mainmenu.calendar.model.vo.Calendar;
 @Repository
 public class CalendarDao {
 	
-	public int insertCalendar(SqlSessionTemplate sqlSession, Calendar c) { // 캘린더 작성
+	public int enrollCalendar(SqlSessionTemplate sqlSession, int calendarWriter) { // 캘린더 작성 폼
 		return 0;
 	}
 
+	public int insertCalendar(SqlSessionTemplate sqlSession, Calendar c) { // 캘린더 작성
+		return sqlSession.insert("calendarMapper.insertCalendar",c);
+	}
+	
 	public int deleteCalendar(SqlSessionTemplate sqlSession, int calendarNo) { // 캘린더 삭제
 		return 0;
 	}
@@ -25,7 +29,7 @@ public class CalendarDao {
 	public Calendar selectCalendarDetail(SqlSessionTemplate sqlSession, int calendarNo) { // 캘린더 상세 조회
 		return null;
 	}
-
+	
 	public int updateCalendar(SqlSessionTemplate sqlSession, Calendar c) { // 캘린더 수정
 		return 0;
 	}

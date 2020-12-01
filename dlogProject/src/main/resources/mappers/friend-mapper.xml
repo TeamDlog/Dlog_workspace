@@ -10,6 +10,22 @@
 		<result column="friend_status" property="friendStatus" />
 	</resultMap>
 	
+	<resultMap id="memberResultSet" type="Member">
+		<id column="member_no" property="memberNo" />
+		<result column="member_name" property="memberName" />
+		<result column="member_id" property="memberId" />
+		<result column="member_pwd" property="memberPwd" />
+		<result column="email" property="email" />
+		<result column="phone" property="phone" />
+		<result column="nickname" property="nickname" />	
+		<result column="profile" property="profile" />
+		<result column="enroll_date" property="enrollDate" />
+		<result column="modify_date" property="modifyDate" />
+		<result column="status" property="status" />
+		<result column="introduction_title" property="introductionTitle" />
+		<result column="introduction_content" property="introductionContent" />	
+	</resultMap>
+	
 	<select id="selectFriendList"
 			parameterType="_int"
 			resultMap="friendResultSet">
@@ -17,6 +33,7 @@
 		  from friend f
 		  join member m on(f.friend_accepted=m.member_no)
 		 where friend_owner = #{friendOwner}
+		   and friend_status = 'Y'
 		 order 
 		    by friend_no
 	</select>
@@ -27,6 +44,7 @@
 		select count(*)
 		  from friend
 		 where friend_owner = #{friendOwner}
+		   and friend_status = 'Y'
 	</select>
 	
 	<delete id="deleteFriend"
@@ -35,6 +53,50 @@
 	      from friend
 	     where friend_owner = #{friendOwner}
 	       and friend_accepted = #{friendAccepted}
+	</delete>
+	
+	<select id="searchFriend"
+			parameterType="Member"
+			resultMap="memberResultSet">
+		select m.*
+		  from friend f
+		  join member m on(f.friend_accepted = m.member_no) 
+		 where friend_owner = #{memberNo}
+		   and m.nickname like '%'|| #{nickname} ||'%'
+	</select>
+	
+	<select id="findFriend"
+			parameterType="Member"
+			resultMap="memberResultSet">
+		select *
+		  from member
+		 where nickname = #{nickname}
+	</select>
+	
+	<select id="requestFriend"
+			parameterType="_int"
+			resultMap="friendResultSet">
+		select friend_no, friend_owner, m.nickname friend_nickname, friend_accepted, friend_status
+		  from friend f
+		  join member m on(f.friend_accepted=m.member_no)
+		 where friend_owner = #{friendOwner}
+		   and friend_status = 'N'
+		 order 
+		    by friend_no
+	</select>
+	
+	<update id="acceptFriend"
+			parameterType="Friend">
+		update friend
+		   set friend_status = 'Y'
+		 where friend_no = #{friendNo}
+	</update>
+	
+	<delete id="rejectFriend"
+			parameterType="Friend">
+		delete 
+		  from friend
+		 where friend_no = #{friendNo}
 	</delete>
 	
 </mapper>

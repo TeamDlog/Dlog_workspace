@@ -29,29 +29,26 @@ public class FreenoteController {
 	private FreenoteService fService;
 	
 	@RequestMapping("list.fn")
-	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, SearchCondition sc, Model model) {
-		int listCount = fService.selectListCount(sc);
+	public String selectList() {
+		return "mainmenu/freenote/freenoteListView";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="flist.fn", produces="application/json; charset=utf-8")
+	public String freenoteList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, SearchCondition sc) {
 
-		if(sc.getBoardLimit() == 0) {
-			sc.setBoardLimit(10);
-		}
-		if(sc.getCategory() == null) {
-			sc.setCategory("");
-		}
-		if(sc.getTitle() == null) {
-			sc.setTitle("");
-		}
-		
+		int listCount = fService.selectListCount(sc);
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, sc.getBoardLimit());
-		
 		ArrayList<Freenote> list = fService.selectList(sc, pi);
 		ArrayList<String> cateList = fService.selectCategory(sc.getMno());
 		
-		model.addAttribute("pi", pi);
-		model.addAttribute("cateList", cateList);
-		model.addAttribute("list", list);
-		model.addAttribute("sc", sc);
-		return "mainmenu/freenote/freenoteListView";
+		JSONObject jobj = new JSONObject();
+		jobj.put("list", list);
+		jobj.put("cateList", cateList);
+		jobj.put("pi", pi);
+		jobj.put("sc", sc);
+		
+		return new Gson().toJson(jobj);
 	}
 	
 	@RequestMapping("enrollForm.fn")
@@ -146,8 +143,13 @@ public class FreenoteController {
 		int listCount = fService.selectReplyListCount(fno);
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 5);
 		
-		ArrayList<Reply> rlist = fService.selectReplyList(fno, ((Member)session.getAttribute("loginUser")).getMemberNo(), pi);
-		ArrayList<Reply> rlist2= fService.selectReplyList2(fno, ((Member)session.getAttribute("loginUser")).getMemberNo());
+		int loginUserNo = 0;
+		if(session.getAttribute("loginUser")!=null) {
+			loginUserNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		}
+		
+		ArrayList<Reply> rlist = fService.selectReplyList(fno, loginUserNo, pi);
+		ArrayList<Reply> rlist2= fService.selectReplyList2(fno, loginUserNo);
 		
 		JSONObject jobj = new JSONObject();
 		jobj.put("rlist", rlist);

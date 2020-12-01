@@ -18,6 +18,13 @@
 </head>
 <body>
 
+	<c:if test="${ !empty alertMsg }">
+		<script>
+			alert("${alertMsg}");
+		</script>
+		<c:remove var="alertMsg" scope="session" />
+	</c:if>
+
     <!--*******************
         Preloader start
     ********************-->
@@ -98,7 +105,7 @@
                                 <span class="nav-text">커뮤니티 관리</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="admin_list.co">게시글 관리</a></li>
+                                <li><a href="adminList.co">게시글 관리</a></li>
                             </ul>
                         </li>
                         
