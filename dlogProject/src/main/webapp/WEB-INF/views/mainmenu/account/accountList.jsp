@@ -32,7 +32,7 @@
       <div class="container-fluid">
           <div class="row">
               <div class="col-12">
-                  <div class="card" style="width:870px;">
+                  <div class="card backgroundColor" style="width:870px;" >
                       <div class="card-body" >
                           <div class="table-responsive">
                               <!-- 검색영역 -->
