@@ -64,7 +64,7 @@
                              
                          <!-- 여기다가 작성 -->
                          <div class="infoUpdateForm" align="center">
-                               <form action="infoUpdate.me" id="infoUpdateForm" method="post" enctype="multipart/form-data">
+                               <form action="infoUpdate.my" id="infoUpdateForm" method="post" enctype="multipart/form-data">
                                    
                                      <table id="infoUpdateFormTable">
                                          <div class="card-body">
@@ -73,7 +73,7 @@
                                              </div>
                                          </div>
                                          <td> 이름 : </td>
-                                         <td colspan="2" readonly>홍길동</td>
+                                         <td colspan="2" readonly>${loginUser.memberName }</td>
                                       </tr>
                                       <tr>
                                          <td>&nbsp;</td>
@@ -81,7 +81,7 @@
                                      </tr>
                                        <tr>
                                          <td> 아이디 : </td>
-                                         <td colspan="2" readonly>user01</td>
+                                         <td colspan="2" readonly>${loginUser.memberId }</td>
                                        
                                       </tr>
                                      
@@ -108,26 +108,70 @@
                                        </tr>
                                        <tr>
                                          <td>전화번호 :</td> 
-                                         <td><input style="width:200px;" type="text" onKeyup="" maxlength="13" style="text-align:center;" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." required></td>
-                                         <td>&nbsp;&nbsp;<button type="button" onclick="" class="btn btn-outline-success btn-sm">인증</button></td>
+                                 		 <td><input id="phoneNumber" style="width:200px;" type="text" maxlength="13" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." required></td>
+                                         <td>&nbsp;&nbsp;<button id="sendPhoneNumber" class="btn btn-secondary btn-sm">인증</button></td>
                                        </tr>
                                        <tr>
-                                         <td>&nbsp;</td>
-                                         <td>&nbsp;</td>
+                                         <td colspan="3">&nbsp;</td> 
+                                       </tr>
+                                       <tr>
+                                         <td>인증번호 입력 : </td>
+                                         <td><input type="text" id="inputCertifiedNumber" name="inputCertifiedNumber" placeholder="인증번호를 입력하세요" style="width: 200px;" required></td>
+                                      	 <td><button id="checkBtn" type="button" class="btn btn-secondary btn-sm">인증확인</button></td>
                                       </tr>
+                                      <tr>
+                                         <td colspan="3">&nbsp;</td> 
+                                       </tr>
                                       <tr>
                                          <td class="profileimg"> 프로필 이미지 :  &nbsp;&nbsp;</td>
                                          
-                                         <td colspan="2">&nbsp;&nbsp;<input type="file" name="upfile" class="form-control-e" id="exampleFormControlFile2" value=""></td>
+                                         <td colspan="2">&nbsp;&nbsp;<input type="file" name="profile" class="form-control-e" id="exampleFormControlFile2" value=""></td>
                                      </tr>
                                     </table>
                                    <br><br>
-                                 <button type="submit"id="infoUpdateBtn" data-toggle="modal" data-target="#exampleModal" class="btn btn-success">확인</button>
+                                 <button type="submit" id="infoUpdateBtn" data-toggle="modal" data-target="#exampleModal" class="btn btn-success">확인</button>
                                   
                                 </form>
                                </div>
                                <br><br><br>
-                           
+                           		<script>
+                           		$('#sendPhoneNumber').click(function(){
+                                    var phoneNumber = $('#phoneNumber').val();
+                                    
+                                    alert('인증번호 발송 완료!');
+
+
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "sendSMS.my",
+                                        data: {"phoneNumber":phoneNumber},
+                                        success: function(result){
+                                            $('#checkBtn').click(function(){
+                                            	
+                                                if(result ==$('#inputCertifiedNumber').val()){
+                                                    alert(
+                                                        '휴대폰 인증이 정상적으로 완료되었습니다.'
+                                                    );
+                                                    $("#enrollBtn").removeAttr("disabled")
+
+                                                }else{
+                                                	
+                                                	alert(
+                                                            '인증번호가 올바르지 않습니다.'
+                                                    );
+                                                	$("#enrollBtn").attr("disabled", true);
+                                                	$('#phoneNumber').focus();
+                                                    
+                                                }
+                                            })
+
+
+                                        }
+                                    })
+                                    
+                                    
+                           		</script>
+                           		
                            </div>
                            
                          
@@ -150,7 +194,7 @@
  <jsp:include page="../common/myPageFooter.jsp" />
  
 <script>
-
+<!--
 function validate(){
 	
 	function nameCheck(){
@@ -204,7 +248,7 @@ function validate(){
    
  }
 
-
+-->
 </script>
 </body>
 </html>

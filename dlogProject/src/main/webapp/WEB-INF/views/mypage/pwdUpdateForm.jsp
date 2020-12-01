@@ -82,7 +82,7 @@
                                         <tr align="center">
                                             <td colspan="3">
                                                <br><br>
-                                              <button align="center" type="submit"class="btn btn-success" id="updatePwdBtn" >변경</button>
+                                              <button align="center" type="submit"class="btn btn-success" id="updatePwdBtn" disabled>변경</button>
                                               </td>
                                           </tr>
                                       </table>
@@ -93,48 +93,57 @@
                       <br><br><br><br><br>
                         
                        <script>
-                       //비밀번호 확인 비밀번호가 맞으면 disabled해제
                        <!--
-                       var $pwdCheck = $("#updatePwd input[name=memberPwd]");
-						
-                       $pwdCheck.keyup(function(){
-							
-							if($pwdCheck.val().length >= 8){
-								
-								$.ajax({
-									url:"pwdCheck2.my",
-									data:{memberPwd:$pwdCheck.val()},
-									success:function(result){
-										
-										if(result != 'true'){
-				                            
-				                        	$("#checkPwd1").show();
-				    						$("#checkPwd1").css("color", "red").text("비밀번호가 유효하지 않습니다.다시 입력해 주세요.");
-				                            
-				                        }else{
-				                        	
-				                        	$("#checkPwd1").show();
-				    						$("#checkPwd1").css("color", "green").text("유효한 비밀번호입니다.");
-				    						$("#updatePwdBtn").removeAttr("disabled");
-				                        	
-				                        }
-										
-									},error:function(){
-										console.log("ajax통신 실패");
-									}
-								})
-				
-				      		}else{
-				      			
-				      			$("#checkPwd1").hide();
-								$("#updatePwdBtn").attr("disabled", true);
-				      			
-				      		}
-				
-						})
-						
-                       -->
-                       //새 비밀번호 유효한지 확인
+                       $(document).ready(function(){
+                    		$('#pw1').keyup(function(){
+                    			$('#pwCheckFF').text('');
+                    		}); 
+                    		
+                    		$('#repw1').keyup(function(){
+                    			if($('#pw1').val()!=$('#repw1').val()){
+                    				$('#pwCheckFF').text('');
+                    		  		$('#pwCheckFF').html("패스워드 확인이 불일치 합니다");
+                    		 	}else{
+                    			  	$('#pwCheckFF').text('');
+                    			  	$('#pwCheckFF').html("<font color='#70AD47'>패스워드 확인이 일치 합니다.</font>");
+                    		 	}
+                    		});
+                    	 }); 
+                    	 
+                    	 //비밀번호 실시간 유효성 체크
+                    	function pwCheck(memberPwd){
+                    		$.ajax({
+                    			type:"POST",
+                    			url: "pwdCheck2.my",
+                    			data : { memberPwd: memberPwd },
+                    			success:function(result){	
+                    				if(result == true){				
+                    					checkPwd1.css("color", "green").text("유효한 비밀번호입니다.");	
+                    					$("#updatePwdBtn").removeAttr("disabled");
+                    					
+                    				}else{				
+                    					checkPwd1.css("color", "red").text("비밀번호가 유효하지 않습니다.다시 입력해 주세요.");
+                    				}
+                    			},error:function(){
+									console.log("ajax통신 실패");
+								}
+                    		})
+                    		
+                    	}
+                   
+                    -->
+                       
+                       </script>
+    
+	                	
+	                	
+	                	
+	                	
+	                	
+	                	
+					
+					<script>
+					   //새 비밀번호 유효한지 확인
 				        var $pwdCheck = $("#updatePwd input[name=memberPwd]");
 						
 						$pwdCheck.keyup(function(){
@@ -182,7 +191,7 @@
 				    			if($pwdCheck.val() != $pwdCompare.val()){
 				    				
 				    				$("#checkPwd2").show();
-									$("#checkPwd2").css("color", "red").text("입력한 비밀번호가 일치하지 않습니다.다시 입력해 주세요.");
+									$("#checkPwd2").css("color", "red").text("입력한 비밀번호가 일치하지 않습니다.");
 				    				
 				    			}else{
 				    				

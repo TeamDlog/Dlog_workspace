@@ -1,11 +1,14 @@
 package com.kh.dlog.member.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
+import com.kh.dlog.template.Coolsms;
 
 
 @Controller
@@ -256,6 +260,43 @@ public class MemberController {
 		
 		return "mypage/infoListView";
 	}
+	/*
+	@ResponseBody
+	@RequestMapping(value="sendSMS.my")
+	public String sendSMS2(String phoneNumber) {
+		
+		Random rand  = new Random();
+        String numStr = "";
+        for(int i=0; i<6; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr+=ran;
+        }
+	        
+	        System.out.println("수신자 번호 : " + phoneNumber);
+	        System.out.println("인증번호 : " + numStr);
+	       
+	        String api_key = "NCSDDMHFZCHOCFLE";
+	        String api_secret = "P7GRQDVKXWOBMNYIDFODEA8WIKDEHXCQ";
+	        Coolsms coolsms = new Coolsms(api_key, api_secret);
+
+	       
+	        HashMap<String, String> params = new HashMap<String, String>();
+	        params.put("to", phoneNumber);    // 수신전화번호
+	        params.put("from", "01077517347");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
+	        params.put("type", "SMS");
+	        params.put("text", "휴대폰인증 테스트 메시지 : 인증번호는" + "["+numStr+"]" + "입니다.");
+
+	        JSONObject result = coolsms.send(params); // 보내기&전송결과받기 
+	        
+	        return numStr;
+		
+	}
+	*/
+	@RequestMapping("infoUpdateForm.my")
+	public String infoUpdateForm() {
+		return "mypage/infoUpdateForm";
+	}
+	
 	
 	
 	@RequestMapping("infoUpdate.my")
@@ -383,7 +424,9 @@ public class MemberController {
 	 }
 	 */
 	 @RequestMapping("pwdCheck2.my")
-	 public String pwdCheck2(String memberPwd) {
+	 public boolean pwdCheck2(String memberPwd) {
+		 
+		 boolean check = false;
 		 
 		 String regExp = "^(?=.*[a-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\\\"+=])[a-z[0-9]$@$!%*?&`~'\\\"+=]{8,15}$";
 		 
@@ -391,12 +434,13 @@ public class MemberController {
 		 Matcher mSymbol = pSymbol.matcher(memberPwd);
 		 
 		 if(mSymbol.find()) {
-			 return "true";
-		 }else {
-			 return "false";
+			 check = true;
 		 }
 		 
+		 return check;
+		 
 	 }
+	 
 	 
 	 @RequestMapping("deleteForm.me")
 		public String deleteForm(HttpSession session) {
