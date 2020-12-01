@@ -6,4 +6,6 @@ public interface ControlAllService {
 	public int ActiveWidget(ControlAll ca);
 	public int PrivacyWidget(ControlAll ca);
 	public ControlAll ControlAllMain(String memberNo);
+	public int myColor(ControlAll ca);
+	public int resetMyColor(String memberNo);
 }

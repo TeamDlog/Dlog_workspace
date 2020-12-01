@@ -33,10 +33,22 @@
              left: 0px;}
         #myColor input[type=color]{
             border: none;
+            madding:0px;
+            margin:0px;
             width: 100px;
             height: 30px;
-        }       
-    
+        }
+        /* 메뉴바색상 */
+    	.menubarColor, #menubarColor,.menubarColor li{background:${ ca.myColorMenubar };}
+    	/* 배경색상 */
+    	.backgroundColor{background:${ca.myColorBackground};}
+    	.backgroundColor div{background:${ca.myColorBackground};}
+    	/* 글자색상 */
+    	.backgroundColor div{color:${ ca.myColorFont };}
+    	.menubarColor li *{color:${ ca.myColorFont };}
+    	/* 로고색상 */
+    	#logoColor{background:${ca.myColorLogo};}
+    	
     </style>
     
 </head>
@@ -73,7 +85,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <div class="brand-logo">
+                <div class="brand-logo" id="logoColor">
                     <a href="#">
                         <b class="logo-abbr"><img src="resources/images/DlogLogo-text-short.png" alt="" width="19px"></b>
                         <span class="logo-compact"><img src="resources/images/DlogLogo-text.png" alt="" width="87"></span>
@@ -90,7 +102,7 @@
             <!--**********************************
                 Header start
             ***********************************-->
-            <div class="header">    
+            <div class="header" id="menubarColor">    
                 <div class="header-content clearfix">
                     
                     <div class="nav-control">
@@ -255,7 +267,7 @@
             <!--**********************************
                 Sidebar start
             ***********************************-->
-            <div class="nk-sidebar">           
+            <div class="nk-sidebar menubarColor">           
                 <div class="nk-nav-scroll">
                     <ul class="metismenu" id="menu">
                         <li>
@@ -331,7 +343,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="width:290px; float: left; margin-right: 15px; height: 450px;">
-                                <div class="card-body" >
+                                <div class="card-body  backgroundColor" >
                                 
                                 <!-- 여기다가 작성 -->
                                 <div style="float:right"><h4>위젯 관리</h4></div>
@@ -372,7 +384,7 @@
                             </div>
 
                             <div class="card" style="width:290px; float: left;  margin-right: 15px; height: 450px;">
-                                <div class="card-body" >
+                                <div class="card-body  backgroundColor" >
                                	<div style="float:right"><h4>메뉴 관리</h4></div>
                                 <!-- 여기다가 작성 -->
                                 <br><br><br>
@@ -412,46 +424,48 @@
                                 </h4>
                                 </div>
                             </div>
-
+							
                             <div class="card" style="width:290px; float: left; height: 450px;">
-                                <div class="card-body" >
+                                <div class="card-body backgroundColor" >
                                 <!-- 여기다가 작성 -->
                                 <div style="float:right"><h4>테마 관리</h4></div>
                                 <br><br><br>
+                                <form action="myColor.ca" method="post">
+                                	<input type="hidden" name="memberNo" value="${ loginUser.memberNo }">
                                     <table id="myColor">
                                         <tr>
                                             <th>
-                                                <h4>로고 색상 :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="color" name="logoColor" id="logoColor"></h4>
+                                                <h4>로고 색상 :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="color" name="myColorLogo" id="logoColorCh"></h4>
                                                 <br>
                                             </th>
                                         </tr>
                                         <tr>
                                             <th>
-                                                <h4>배경 색상 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="color" name="backgroundColor" id="backgroundColor"></h4>
+                                                <h4>배경 색상 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="color" name="myColorBackground" id="backgroundColorCh"></h4>
                                                 <br>
                                             </th>
                                         </tr>
                                         <tr>
                                             <th>
-                                                <h4>메뉴바 색상 :&nbsp;&nbsp;&nbsp;&nbsp; <input type="color" name="menubarColor" id="menubarColor"></h4>
+                                                <h4>메뉴바 색상 :&nbsp;&nbsp;&nbsp;&nbsp; <input type="color" name="myColorMenubar" id="menubarColorCh"></h4>
                                                 <br>
                                             </th>
                                         </tr>
                                         <tr>
                                             <th>
-                                                <h4>글자 색상 :&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="color" name="fontColor" id="fontColor"></h4>
+                                                <h4>글자 색상 :&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="color" name="myColorFont" id="fontColorCh"></h4>
                                                 <br>
                                             </th>
                                         </tr>
                                     </table>
-                                    <br><br><br>
+                                    <br><br>
                                     <div style="float: right;">
-                                        <button onclick="changeMyColor();" type="button" class="btn btn-success" >테마적용</button>
-                                        <button type="button" class="btn btn-danger" >초기화</button>
+                                        <button type="submit" class="btn btn-success" >테마적용</button>
+                                        <button onclick="resetMyColor();" type="button" class="btn btn-danger" >초기화</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -684,10 +698,10 @@
     <script>
     	$(function(){
     		
-    		$("#logoColor").val("${ca.myColorLogo}");
-    		$("#backgroundColor").val("${ca.myColorBackground}");
-    		$("#menubarColor").val("${ca.myColorMenubar}");
-    		$("fontColor").val("${ca.myColorFont}")
+    		$("#logoColorCh").val("${ca.myColorLogo}");
+    		$("#backgroundColorCh").val("${ca.myColorBackground}");
+    		$("#menubarColorCh").val("${ca.myColorMenubar}");
+    		$("#fontColorCh").val("${ca.myColorFont}")
     		
     		/* 메뉴관리 */
     		if('${ca.privacyCalendar}' == 'Y'){
@@ -963,6 +977,15 @@
 			/* 위젯관리 */
 				
     	});
+    	
+    	function resetMyColor(){
+    		if(confirm("정말 초기화 하시겠습니까?")){
+    			location.href="reset.ca?memberNo=${loginUser.memberNo}";
+    		}else{
+    			alert("최소 되었습니다.");
+    		}
+    	}
+    	
     </script>
     
 </body>

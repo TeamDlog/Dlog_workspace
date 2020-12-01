@@ -27,7 +27,6 @@ public class DdayController {
 		ArrayList<Dday> list = dService.ddayMain(memberNo);
 		
 		if(!list.isEmpty()) {
-			
 			model.addAttribute("dlist", list);
 			
 		}

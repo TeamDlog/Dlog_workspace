@@ -21,4 +21,12 @@ public class ControlAllDao {
 			return sqlSession.update("controlAllMapper.privacyWidget", ca);
 	}
 	
+	public int myColor(SqlSessionTemplate sqlSession, ControlAll ca) {
+		return sqlSession.update("controlAllMapper.myColor", ca);
+	}
+	
+	public int resetMyColor(SqlSessionTemplate sqlSession, String memberNo){
+		return sqlSession.update("controlAllMapper.resetMyColor", memberNo);
+	}
+	
 }

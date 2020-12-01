@@ -117,7 +117,7 @@
 	                <div class="container-fluid">
 	                    <div class="row">
 	                        <div class="col-12">
-	                            <div class="card" style="width:900px;">
+	                            <div class="card backgroundColor" style="width:900px;">
 	                                <div class="card-body" >
 	                                    <!-- 여기다가 작성 -->
 	                                    <div style="height: 50px;">

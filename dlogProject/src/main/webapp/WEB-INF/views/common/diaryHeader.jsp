@@ -17,8 +17,23 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- summernote -->
 	<link href="resources/plugins/summernote/dist/summernote.css" rel="stylesheet">
+
 	<!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+
+	<style>
+		/* 메뉴바색상 */
+    	.menubarColor, #menubarColor,.menubarColor li{background:${ ca.myColorMenubar };}
+    	/* 배경색상 */
+    	.backgroundColor{background:${ca.myColorBackground};}
+    	.backgroundColor div{background:${ca.myColorBackground};}
+    	/* 글자색상 */
+    	.backgroundColor div{color:${ ca.myColorFont };}
+    	.menubarColor li *{color:${ ca.myColorFont };}
+    	/* 로고색상 */
+    	#logoColor{background:${ca.myColorLogo};}
+	</style>
+
 </head>
 
 <body>
@@ -56,7 +71,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <div class="brand-logo">
+                <div class="brand-logo" id="logoColor">
                     <a href="${ pageContext.servletContext.contextPath }">
                         <b class="logo-abbr"><img src="resources/images/DlogLogo-text-short.png" alt="" width="19px"></b>
                         <span class="logo-compact"><img src="resources/images/DlogLogo-text.png" alt="" width="87"></span>
@@ -73,7 +88,7 @@
             <!--**********************************
                 Header start
             ***********************************-->
-            <div class="header">    
+            <div class="header" id="menubarColor">    
                 <div class="header-content clearfix">
                     
                     <div class="nav-control">
@@ -238,7 +253,7 @@
             <!--**********************************
                 Sidebar start
             ***********************************-->
-            <div class="nk-sidebar">           
+            <div class="nk-sidebar menubarColor">           
                 <div class="nk-nav-scroll">
                     <ul class="metismenu" id="menu">
                         <li>

@@ -29,6 +29,18 @@ public class ControlAllServiceImpl implements ControlAllService{
 	public int PrivacyWidget(ControlAll ca) {
 		return caDao.PrivacyWidget(sqlSession, ca);
 	}
+
+	@Override
+	public int myColor(ControlAll ca) {
+		// TODO Auto-generated method stub
+		return caDao.myColor(sqlSession, ca);
+	}
+
+	@Override
+	public int resetMyColor(String memberNo) {
+		// TODO Auto-generated method stub
+		return caDao.resetMyColor(sqlSession, memberNo);
+	}
 	
 	
 }

@@ -48,7 +48,7 @@
             </div>
 	        
 	        
-	        <%-- <!-- 시간표위젯 -->
+	        <!-- 시간표위젯 -->
         	<div class="card card-widget">
                 <div class="card-body gradient-3">
                     <div class="media">
@@ -107,7 +107,7 @@
                         </table>
                     </div>
                 </div>
-            </div> --%>
+            </div> 
         	<!-- 시간표위젯 -->
         	<!-- 시간표 위젯 스크립트 -->
         	<script>
