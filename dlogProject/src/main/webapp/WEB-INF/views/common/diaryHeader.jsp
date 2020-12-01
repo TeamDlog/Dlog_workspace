@@ -169,48 +169,138 @@
                             </li>
                             <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                                     <i class="mdi mdi-bell-outline"></i>
-                                    <span class="badge badge-pill gradient-2 badge-primary">3</span>
+                                    <span class="badge badge-pill gradient-2 badge-primary">7</span>
                                 </a>
-                                <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
+                                <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication" style="max-height: 500px; overflow: auto;">
                                     <div class="dropdown-content-heading d-flex justify-content-between">
-                                        <span class="">2 New Notifications</span>  
+                                        <span class="">7개의 새로운 알림</span>  
                                         
                                     </div>
                                     <div class="dropdown-content-body">
                                         <ul>
                                             <li>
                                                 <a href="javascript:void()">
-                                                    <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                    <div class="notification-content">
-                                                        <h6 class="notification-heading">Events near you</h6>
-                                                        <span class="notification-text">Within next 5 days</span> 
+                                                    <span class="mr-3 avatar-icon" style="background: rgb(245, 195, 204);"><i class="icon-heart"></i></span>
+                                                    <div class="notification-content" style="margin-right:0;">
+                                                        <table>
+                                                            <tr>
+                                                                <td width="200">
+                                                                    <h6 class="notification-heading">user11님이 게시글 "게시글제목1"에 좋아요를 표시했습니다.</h6>
+                                                                    <!-- <span class="notification-text">Within next 5 days</span>  -->
+                                                                </td>
+                                                                <td>
+                                                                    <a class="alertDeleteBtn" style="font-size: 20px; font-weight: bold; margin-left: 10px;"><i class="mdi mdi-check"></i><a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                     </div>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="javascript:void()">
-                                                    <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                    <div class="notification-content">
-                                                        <h6 class="notification-heading">Event Started</h6>
-                                                        <span class="notification-text">One hour ago</span> 
+                                                    <span class="mr-3 avatar-icon" style="background: rgb(186, 219, 231);"><i class="icon-bubble"></i></span>
+                                                    <div class="notification-content" style="margin-right:0;">
+                                                        <table>
+                                                            <tr>
+                                                                <td width="200">
+                                                                    <h6 class="notification-heading">user11님이 게시글 "게시글제목1"에 댓글을 달았습니다.</h6>
+                                                                    <!-- <span class="notification-text">One hour ago</span>  -->
+                                                                </td>
+                                                                <td>
+                                                                    <a class="alertDeleteBtn" style="font-size: 20px; font-weight: bold; margin-left: 10px;"><i class="mdi mdi-check"></i><a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>    
                                                     </div>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="javascript:void()">
-                                                    <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                    <div class="notification-content">
-                                                        <h6 class="notification-heading">Event Ended Successfully</h6>
-                                                        <span class="notification-text">One hour ago</span>
+                                                    <span class="mr-3 avatar-icon" style="background: rgb(122, 163, 211);"><i class="icon-note"></i></span>
+                                                    <div class="notification-content" style="margin-right:0;">
+                                                        <table>
+                                                            <tr>
+                                                                <td width="200">
+                                                                    <h6 class="notification-heading">친구 user11님이 새글을 등록했습니다.</h6>
+                                                                    <!-- <span class="notification-text">Within next 5 days</span>  -->
+                                                                </td>
+                                                                <td>
+                                                                    <a class="alertDeleteBtn" style="font-size: 20px; font-weight: bold; margin-left: 10px;"><i class="mdi mdi-check"></i><a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                     </div>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="javascript:void()">
-                                                    <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                    <div class="notification-content">
-                                                        <h6 class="notification-heading">Events to Join</h6>
-                                                        <span class="notification-text">After two days</span> 
+                                                    <span class="mr-3 avatar-icon" style="background: rgb(183, 154, 238);"><i class="icon-user"></i></span>
+                                                    <div class="notification-content" style="margin-right:0;">
+                                                        <table>
+                                                            <tr>
+                                                                <td width="200">
+                                                                    <h6 class="notification-heading">user02님이 친구 요청하셨습니다.</h6>
+                                                                    <!-- <span class="notification-text">One hour ago</span> -->
+                                                                </td>
+                                                                <td>
+                                                                    <a class="alertDeleteBtn" style="font-size: 20px; font-weight: bold; margin-left: 10px;"><i class="mdi mdi-check"></i><a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void()">
+                                                    <span class="mr-3 avatar-icon" style="background: rgb(193, 224, 156);"><i class="icon-user-following"></i></span>
+                                                    <div class="notification-content" style="margin-right:0;">
+                                                        <table>
+                                                            <tr>
+                                                                <td width="200">
+                                                                    <h6 class="notification-heading">user02님이 친구 수락하셨습니다.</h6>
+                                                                    <!-- <span class="notification-text">Within next 5 days</span>  -->
+                                                                </td>
+                                                                <td>
+                                                                    <a class="alertDeleteBtn" style="font-size: 20px; font-weight: bold;  margin-left: 10px;"><i class="mdi mdi-check"></i><a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void()">
+                                                    <span class="mr-3 avatar-icon" style="background: rgb(174, 182, 190);"><i class="icon-envelope"></i></span>
+                                                    <div class="notification-content" style="margin-right:0;">
+                                                        <table>
+                                                            <tr>
+                                                                <td width="200">
+                                                                    <h6 class="notification-heading">1:1문의 답변이 이메일로 전송되었습니다.</h6>
+                                                                    <!-- <span class="notification-text">After two days</span>  -->
+                                                                </td>
+                                                                <td>
+                                                                    <a class="alertDeleteBtn" style="font-size: 20px; font-weight: bold;  margin-left: 10px;"><i class="mdi mdi-check"></i><a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void()">
+                                                    <span class="mr-3 avatar-icon" style="background: rgb(117, 131, 146);"><i class="icon-earphones-alt"></i></span>
+                                                    <div class="notification-content" style="margin-right:0;">
+                                                        <table>
+                                                            <tr>
+                                                                <td width="200">
+                                                                    <h6 class="notification-heading">신고하신 내역이 처리되었습니다.</h6>
+                                                                    <!-- <span class="notification-text">Within next 5 days</span>  -->
+                                                                </td>
+                                                                <td>
+                                                                    <a class="alertDeleteBtn" style="font-size: 20px; font-weight: bold; margin-left: 10px;"><i class="mdi mdi-check"></i><a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                     </div>
                                                 </a>
                                             </li>
@@ -237,7 +327,7 @@
                                             <li>
                                                 <a href="page-lock.html"><i class="icon-lock"></i> <span>스크린 잠금</span></a>
                                             </li>
-                                            <li><a href="page-login.html"><i class="icon-key"></i> <span>로그아웃</span></a></li>
+                                            <li><a href="logout.me"><i class="icon-key"></i> <span>로그아웃</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
