@@ -9,5 +9,7 @@ public interface VocaService {
 	
 	int selectListCount(int mno);
 	ArrayList<Voca> selectList(PageInfo pi, int mno);
+	
+	int enrollVoca(Voca v);
 
 }

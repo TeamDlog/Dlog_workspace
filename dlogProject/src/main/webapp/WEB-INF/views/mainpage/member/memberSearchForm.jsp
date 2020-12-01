@@ -191,11 +191,12 @@
 
         </div>
         
-        <script>
+        <script>	
+        
+		var $name = $("#idSearchFrom input[name=memberName]");
+		var $phone = $("#idSearchFrom input[name=phone]");
+		
                 	$("#idB").click(function(){
-                		
-                		var $name = $("#idSearchFrom input[name=memberName]");
-                		var $phone = $("#idSearchFrom input[name=phone]");
                 		
                 		$.ajax({
                 			url:"idSearch.me",
@@ -207,6 +208,7 @@
                 					$("#exampleModalCenter").html();
                                     $('#exampleModalCenter').modal('toggle');
                                     $("#loginFrom").removeAttr("disabled");
+	
                 					
                 				}else{
                 					

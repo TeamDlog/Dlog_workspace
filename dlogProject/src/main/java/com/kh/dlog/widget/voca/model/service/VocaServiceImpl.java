@@ -28,4 +28,9 @@ public class VocaServiceImpl implements VocaService {
   		return vDao.selectList(sqlSession, pi, mno);
 	}
 
+	@Override
+	public int enrollVoca(Voca v) {
+		return vDao.enrollVoca(sqlSession, v);
+	}
+
 }

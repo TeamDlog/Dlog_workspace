@@ -30,7 +30,7 @@ public class VocaController {
 		
 		int listCount = vService.selectListCount(mno);
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 		
 		ArrayList<Voca> list = vService.selectList(pi, mno);
 		
@@ -38,6 +38,24 @@ public class VocaController {
 		model.addAttribute("list", list);
 		
 		return "widget/voca/vocaListView";
+	}
+	
+	@RequestMapping("enroll.vo")
+	public String enrollVoca(Voca v, HttpSession session) {
+		
+		int result = vService.enrollVoca(v);
+		
+		if(result > 0) {
+			
+			return "redirect:list.vo";
+			
+		}else {
+			
+			session.setAttribute("errorMsg", "단어 등록에 실패했습니다.");
+			return "redirect:list.vo";
+			
+		}
+		
 	}
 
 }

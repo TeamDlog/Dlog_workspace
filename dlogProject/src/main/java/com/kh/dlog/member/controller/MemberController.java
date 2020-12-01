@@ -207,9 +207,9 @@ public class MemberController {
 		Member loginUser = mService.loginMember(m);
 		ArrayList<Member> list = mService.selectMemberList();
 		
-		if(loginUser.getMemberNo() != 1) {
-		
-			if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getMemberPwd(), loginUser.getMemberPwd())*/) {
+		if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getMemberPwd(), loginUser.getMemberPwd())*/) {
+			
+			if(loginUser.getMemberNo() != 1) {
 				
 				session.setAttribute("ca", caService.ControlAllMain(loginUser.getMemberNo()+""));
 				session.setAttribute("loginUser", loginUser);
@@ -217,15 +217,16 @@ public class MemberController {
 				
 			}else {
 				
-				session.setAttribute("alertMsg", "로그인실패");
-				return "mainpage/member/memberLoginForm";
+				session.setAttribute("list", list);
+				session.setAttribute("loginUser", loginUser);
+				return "admin/memberDataList";
 				
 			}
 			
 		}else {
 			
-			session.setAttribute("loginUser", loginUser);
-			return "admin/memberDataList";
+			session.setAttribute("alertMsg", "로그인실패");
+			return "mainpage/member/memberLoginForm";
 			
 		}
 		

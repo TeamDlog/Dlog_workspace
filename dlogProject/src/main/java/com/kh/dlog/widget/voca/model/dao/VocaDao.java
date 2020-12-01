@@ -25,5 +25,9 @@ public class VocaDao {
 		
 		return (ArrayList)sqlSession.selectList("vocaMapper.selectList", mno, rowBounds);
 	}
+	
+	public int enrollVoca(SqlSessionTemplate sqlSession, Voca v) {
+		return sqlSession.insert("vocaMapper.enrollVoca", v);
+	}
 
 }
