@@ -39,8 +39,6 @@ public interface MemberService {
 	
 	int introInsert(Member m);
 	
-	int introUpdate(Member m);
-
 	int deleteMember(String memberId);
 
 	int updatePwd(Member m);

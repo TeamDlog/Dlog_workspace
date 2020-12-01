@@ -123,13 +123,6 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<Member> profile() {
 		return mDao.profile(sqlSession);
 	}
-
-	
-
-
-
-	
-
 	
 
 }

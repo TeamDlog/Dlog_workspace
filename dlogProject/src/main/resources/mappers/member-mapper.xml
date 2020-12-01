@@ -240,7 +240,7 @@
 		update
 		        member
 		    set
-		     	member_no=#{memberNo}
+		     	member_no=2
 		      , introduction_title=#{introductionTitle}
 		      , introduction_content=#{introductionContent}  
 		  where member_id=#{memberId} 
