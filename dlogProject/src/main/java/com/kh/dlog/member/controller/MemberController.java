@@ -329,6 +329,7 @@ public class MemberController {
 		 
 			String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
 			
+			
 			m.setMemberPwd(encPwd);
 			
 			int result = mService.updatePwd(m);
@@ -336,7 +337,7 @@ public class MemberController {
 			if(result > 0) {
 				
 				session.setAttribute("alertMsg", "성공적으로 비밀번호가 변경되었습니다.");
-				return "redirect:updatePwd.my";
+				return "redirect:updatePwdForm.my";
 				
 			}else {
 				

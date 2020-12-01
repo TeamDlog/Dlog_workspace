@@ -269,7 +269,7 @@
 	      , introduction_title
 	  from member
 	 where status='Y'
-	   and member_id=#{memberId}
+	   and member_no=#{memberNo}
 	</select>
 	
 	

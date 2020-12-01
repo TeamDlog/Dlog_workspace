@@ -91,6 +91,7 @@
                       </div>   
                      
                       <br><br><br><br><br>
+                        
                        <script>
                        //비밀번호 확인 비밀번호가 맞으면 disabled해제
                        <!--
@@ -131,8 +132,8 @@
 				      		}
 				
 						})
-						-->
-                       
+						
+                       -->
                        //새 비밀번호 유효한지 확인
 				        var $pwdCheck = $("#updatePwd input[name=memberPwd]");
 						
