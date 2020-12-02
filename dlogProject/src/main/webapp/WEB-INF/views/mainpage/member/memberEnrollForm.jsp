@@ -159,7 +159,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phoneCheck">인증번호 입력</label><br>
-                        <input type="text" class="form-control" id="inputCertifiedNumber" name="inputCertifiedNumber" required placeholder="인증번호를 입력하세요" style="width: 77%; float: left; margin-right: 10px;">
+                        <input type="text" class="form-control" id="inputCertifiedNumber" name="inputCertifiedNumber"  placeholder="인증번호를 입력하세요" style="width: 77%; float: left; margin-right: 10px;">
                         <button id="checkBtn" type="button" class="btn btn-secondary">인증확인</button>
                     </div>
                    
