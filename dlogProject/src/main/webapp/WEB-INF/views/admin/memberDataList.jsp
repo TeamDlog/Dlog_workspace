@@ -51,7 +51,7 @@
                                     <tbody>
                                     	<c:forEach var="me" items="${ list }" varStatus="status">
                                     		<tr>
-                                                <td>${ status.index }</td>
+                                                <td>${ me.memberNo - 1 }</td>
                                                 <td>${ me.memberId }</td>
                                                 <td>${ me.nickname }</td>
                                                 <td>${ me.memberName }</td>
