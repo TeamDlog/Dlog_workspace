@@ -28,5 +28,6 @@ public class Member {
 	private String status;
 	private String introductionTitle;
 	private String introductionContent;
+	private int diaryMemberNo;
 	
 }

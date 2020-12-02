@@ -322,8 +322,12 @@ public class MemberController {
 	 @RequestMapping("introList.my")
 	 public String introList(HttpSession session, Model model) {
 		 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		 loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		 session.setAttribute("loginUser", loginUser);
+		 
 		 ArrayList<Member> list = mService.introList();
-			
+		 
 		 model.addAttribute("list",list);
 		 
 		 return "mypage/introListView";
@@ -332,8 +336,10 @@ public class MemberController {
 	 @RequestMapping("introListMn.my")
 	 public String introListMn(HttpSession session, Model model) {
 		 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		 
 		 ArrayList<Member> list = mService.introListMn();
-			
+		 
 		 model.addAttribute("list",list);
 		 
 		 return "mypage/introListViewManagement";

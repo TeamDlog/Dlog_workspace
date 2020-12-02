@@ -19,6 +19,18 @@
 	<link href="resources/plugins/summernote/dist/summernote.css" rel="stylesheet">
 	<!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+    	/* 메뉴바색상 */
+    	.menubarColor, #menubarColor,.menubarColor li{background:${ ca.myColorMenubar };}
+    	/* 배경색상 */
+    	.backgroundColor{background:${ca.myColorBackground};}
+    	.backgroundColor div{background:${ca.myColorBackground};}
+    	/* 글자색상 */
+    	.backgroundColor div{color:${ ca.myColorFont };}
+    	.menubarColor li *{color:${ ca.myColorFont };}
+    	/* 로고색상 */
+    	#logoColor{background:${ca.myColorLogo};}
+    </style>
 </head>
 
 <body>
@@ -56,7 +68,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <div class="brand-logo">
+                <div class="brand-logo" id="logoColor">
                     <a href="${ pageContext.servletContext.contextPath }">
                         <b class="logo-abbr"><img src="resources/images/DlogLogo-text-short.png" alt="" width="19px"></b>
                         <span class="logo-compact"><img src="resources/images/DlogLogo-text.png" alt="" width="87"></span>
@@ -73,7 +85,7 @@
             <!--**********************************
                 Header start
             ***********************************-->
-            <div class="header">    
+            <div class="header" id="menubarColor">    
                 <div class="header-content clearfix">
                     
                     <div class="nav-control">
@@ -222,7 +234,7 @@
             <!--**********************************
                 Sidebar start
             ***********************************-->
-            <div class="nk-sidebar">           
+            <div class="nk-sidebar menubarColor">           
                 <div class="nk-nav-scroll">
                     <ul class="metismenu" id="menu">
                         <li>
@@ -232,49 +244,49 @@
                         </li>
                         <!-- 메인메뉴 -->
                         <li class="nav-label">메인메뉴</li>
-                        <li>
+                        <li class="menuCalendar">
                             <a href="selectList.ca" aria-expanded="false">
                                 <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuDiary">
                             <a href="list.di" aria-expanded="false">
                                 <i class="icon-notebook menu-icon"></i><span class="nav-text">다이어리</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuFreenite">
                             <a href="list.fn?mno=1" aria-expanded="false">
                                 <i class="icon-note menu-icon"></i><span class="nav-text">프리노트</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuPhoto">
                             <a href="selectList.ph" aria-expanded="false">
                                 <i class="icon-picture menu-icon"></i><span class="nav-text">사진게시판</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuAccount">
                             <a href="accountList.ac" aria-expanded="false">
                                 <i class="icon-wallet menu-icon"></i><span class="nav-text">가계부</span>
                             </a>
                         </li>
                         <!-- 위젯메뉴 -->
                         <li class="nav-label">위젯메뉴</li>
-                        <li>
+                        <li class="menuDday">
                             <a href="main.dd" aria-expanded="false">
                                 <i class="icon-clock menu-icon"></i><span class="nav-text">디데이</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuVoca">
                             <a href="list.vo" aria-expanded="false">
                                 <i class="icon-speech menu-icon"></i><span class="nav-text">단어장</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuMemo">
                             <a href="selectList.mo" aria-expanded="false">
                                 <i class="icon-doc menu-icon"></i><span class="nav-text">메모장</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="meniTimetable">
                             <a href="main.ti" aria-expanded="false">
                                 <i class="icon-grid menu-icon"></i><span class="nav-text">시간표<span>
                             </a>

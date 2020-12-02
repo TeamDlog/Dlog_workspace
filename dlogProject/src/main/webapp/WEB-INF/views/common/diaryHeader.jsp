@@ -347,55 +347,55 @@
                 <div class="nk-nav-scroll">
                     <ul class="metismenu" id="menu">
                         <li>
-                            <a href="url" aria-expanded="false">
+                            <a href="introList.my" aria-expanded="false">
                                 <i class="icon-home menu-icon"></i><span class="nav-text">소개글</span>
                             </a>
                         </li>
                         <!-- 메인메뉴 -->
                         <li class="nav-label">메인메뉴</li>
-                        <li>
+                        <li class="menuCalendar">
                             <a href="selectList.ca" aria-expanded="false">
                                 <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuDiary">
                             <a href="list.di" aria-expanded="false">
                                 <i class="icon-notebook menu-icon"></i><span class="nav-text">다이어리</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuFreenote">
                             <a href="list.fn" aria-expanded="false">
                                 <i class="icon-note menu-icon"></i><span class="nav-text">프리노트</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuPhoto">
                             <a href="selectList.ph" aria-expanded="false">
                                 <i class="icon-picture menu-icon"></i><span class="nav-text">사진게시판</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuAccount">
                             <a href="accountList.ac" aria-expanded="false">
                                 <i class="icon-wallet menu-icon"></i><span class="nav-text">가계부</span>
                             </a>
                         </li>
                         <!-- 위젯메뉴 -->
                         <li class="nav-label">위젯메뉴</li>
-                        <li>
+                        <li class="menuDday">
                             <a href="main.dd" aria-expanded="false">
                                 <i class="icon-clock menu-icon"></i><span class="nav-text">디데이</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuVoca">
                             <a href="list.vo" aria-expanded="false">
                                 <i class="icon-speech menu-icon"></i><span class="nav-text">단어장</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuMemo">
                             <a href="selectList.mo" aria-expanded="false">
                                 <i class="icon-doc menu-icon"></i><span class="nav-text">메모장</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="menuTimetable">
                             <a href="main.ti" aria-expanded="false">
                                 <i class="icon-grid menu-icon"></i><span class="nav-text">시간표<span>
                             </a>
@@ -406,7 +406,8 @@
             <!--**********************************
                 Sidebar end
             ***********************************-->
-
+            <!-- 공개비공개/화설비활성 스크립트 -->
+			
 </body>
 </html>
             
