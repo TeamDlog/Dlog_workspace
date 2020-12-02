@@ -261,9 +261,9 @@ public class MemberController {
 		
 		return "mypage/infoListView";
 	}
-	/*
+	
 	@ResponseBody
-	@RequestMapping(value="sendSMS.my")
+	@RequestMapping(value="sendSMS2.my")
 	public String sendSMS2(String phoneNumber) {
 		
 		Random rand  = new Random();
@@ -276,8 +276,8 @@ public class MemberController {
 	        System.out.println("수신자 번호 : " + phoneNumber);
 	        System.out.println("인증번호 : " + numStr);
 	       
-	        String api_key = "NCSDDMHFZCHOCFLE";
-	        String api_secret = "P7GRQDVKXWOBMNYIDFODEA8WIKDEHXCQ";
+	        String api_key = "NCSROFZSPCGLDC64";
+	        String api_secret = "77MADTGXDEI4A46TGGYGBJOQSWK0WX4J";
 	        Coolsms coolsms = new Coolsms(api_key, api_secret);
 
 	       
@@ -292,7 +292,7 @@ public class MemberController {
 	        return numStr;
 		
 	}
-	*/
+	
 	@RequestMapping("infoUpdateForm.my")
 	public String infoUpdateForm() {
 		return "mypage/infoUpdateForm";
@@ -372,8 +372,40 @@ public class MemberController {
 	 }
 	 
 	 @RequestMapping("updatePwd.my")
-	 	public String updatePwd(String original,Member m, HttpSession session) {
+	 	public String updatePwd(String original, Member m, HttpSession session) {
 		 
+		
+		 Member loginUser = mService.loginMember(m);
+		 
+		 if(loginUser != null && bcryptPasswordEncoder.matches(original, loginUser.getMemberPwd())) { 
+		 
+			 String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
+				
+				
+				m.setMemberPwd(encPwd);
+				
+				int result = mService.updatePwd(m);
+				
+				if(result > 0) {
+					
+					session.setAttribute("alertMsg", "성공적으로 비밀번호가 변경되었습니다.");
+					return "redirect:updatePwdForm.my";
+					
+				}else {
+					
+					session.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
+					return "common/errorPage";
+					
+				}
+			 
+		 }else {
+			 
+			 session.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
+			return "common/errorPage";
+			 
+		 }
+		  
+		 /*
 			String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
 			
 			
@@ -391,7 +423,7 @@ public class MemberController {
 				session.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
 				return "common/errorPage";
 				
-			}
+			}*/
 		
 	 }
 	 
@@ -425,9 +457,7 @@ public class MemberController {
 	 }
 	 */
 	 @RequestMapping("pwdCheck2.my")
-	 public boolean pwdCheck2(String memberPwd) {
-		 
-		 boolean check = false;
+	 public String pwdCheck2(String memberPwd) {
 		 
 		 String regExp = "^(?=.*[a-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\\\"+=])[a-z[0-9]$@$!%*?&`~'\\\"+=]{8,15}$";
 		 
@@ -435,10 +465,10 @@ public class MemberController {
 		 Matcher mSymbol = pSymbol.matcher(memberPwd);
 		 
 		 if(mSymbol.find()) {
-			 check = true;
-		 }
-		 
-		 return check;
+			 return "true";
+		 }else {
+			return "false";
+			}
 		 
 	 }
 	 
@@ -478,7 +508,7 @@ public class MemberController {
 			}else {
 				// 비밀번호 틀림!!
 				session.setAttribute("alertMsg", "비밀번호가 틀렸습니다.");
-				return "redirect:deleteForm.me"; // 마이페이지상에서 !
+				return "redirect:deleteForm.me"; 
 			
 			}
 		
