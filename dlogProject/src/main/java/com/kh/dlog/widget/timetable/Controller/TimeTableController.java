@@ -25,11 +25,11 @@ public class TimeTableController {
 	@RequestMapping("main.ti")
 	public String timetableMain(HttpSession session, Model model) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		int timetableWriter =  loginUser.getMemberNo();
-		ArrayList<Timetable> list = tService.timetableList(timetableWriter);
+		int timetableWriter =  loginUser.getDiaryMemberNo();
+		ArrayList<Timetable> tlist = tService.timetableList(timetableWriter);
 		
-		if(!list.isEmpty()) {
-			for(Timetable t : list) {
+		if(!tlist.isEmpty()) {
+			for(Timetable t : tlist) {
 				switch(today.get(Calendar.DAY_OF_WEEK)) {
 					case 1 : t.setTimetableToDay("일요일"); break;
 					case 2 : t.setTimetableToDay("월요일"); break;
@@ -41,7 +41,7 @@ public class TimeTableController {
 				}
 			}
 			
-			model.addAttribute("list", list);
+			model.addAttribute("tlist", tlist);
 			return "widget/timetable/timetableMain";
 		}else {
 			return "widget/timetable/timetableMain";

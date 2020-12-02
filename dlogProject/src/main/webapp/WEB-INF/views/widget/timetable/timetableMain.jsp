@@ -113,12 +113,14 @@
 							         <input type="hidden" name="timetableContent" id="timetableContentf">
 							         <input type="hidden" name="timetableBackground" id="timetableBackgroundf">
 							         <input type="hidden" name="timetableColor" id="timetableColorf">
-							         <button id="updateTimetableBtn" type="submit" style="display: none;"></button>
+							         <c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+							         	<button id="updateTimetableBtn" type="submit" style="display: none;"></button>
+						         	</c:if>
 							     </form>
                                 <!-- 여기다가 작성 -->
                                 <form action="delete.ti" method="post">
-                              	<c:if test="${ !empty list }">
-                              		<c:forEach var="timetable" items="${ list }">
+                              	<c:if test="${ !empty tlist }">
+                              		<c:forEach var="timetable" items="${ tlist }">
 	                           			<script>
                        						$(function(){
                        							if("${timetable.timetableDay}" == '월요일'){
@@ -418,12 +420,14 @@
                                     </tbody>
                                 </table>
                                 <br>
-                                <button id="deleteTimetableCheck" type="button" style="float: right;" class="btn btn-danger">삭제</button>
-                                <button id="deleteTimetableCancel" type="button" style="float: right; display: none;" class="btn btn-success">취소</button>
-                                <button id="deleteTimetable" type="button" style="float: right;  display: none; margin-right: 15px;" class="btn btn-danger">삭제</button>
-                                <button id="deleteTimetableSubmit" type="submit" style="float: right; display: none;" class="btn btn-danger">삭제</button>
-                                <button id="resetTimetable"type="button" style="float: right; margin-right: 15px" class="btn btn-danger">초기화</button>
-                                <a id="insertTimetable" href="enrollForm.ti" style="float: right; margin-right: 15px;" class="btn btn-success">등록</a>
+                                <c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+	                                <button id="deleteTimetableCheck" type="button" style="float: right;" class="btn btn-danger">삭제</button>
+	                                <button id="deleteTimetableCancel" type="button" style="float: right; display: none;" class="btn btn-success">취소</button>
+	                                <button id="deleteTimetable" type="button" style="float: right;  display: none; margin-right: 15px;" class="btn btn-danger">삭제</button>
+	                                <button id="deleteTimetableSubmit" type="submit" style="float: right; display: none;" class="btn btn-danger">삭제</button>
+	                                <button id="resetTimetable"type="button" style="float: right; margin-right: 15px" class="btn btn-danger">초기화</button>
+	                                <a id="insertTimetable" href="enrollForm.ti" style="float: right; margin-right: 15px;" class="btn btn-success">등록</a>
+                                </c:if>
                                 </div>
                             </div>
                         </div>
