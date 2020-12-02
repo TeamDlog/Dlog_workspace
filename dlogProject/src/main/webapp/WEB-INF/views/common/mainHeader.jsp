@@ -45,7 +45,7 @@
                     				<li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="adminMemebr.me">관리</a></li>
                     			</c:when>
                     			<c:otherwise>
-		                    		<li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">다이어리</a></li>
+		                    		<li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="introList.my">다이어리</a></li>
                     			</c:otherwise>
                     		</c:choose>
 	    	                <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="list.co">커뮤니티</a></li>

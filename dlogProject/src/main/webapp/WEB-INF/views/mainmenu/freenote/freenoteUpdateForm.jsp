@@ -64,7 +64,7 @@
 	        <div class="row">
 	            <div class="col-12">
 	                <div class="card backgroundColor" style="width:900px;">
-	                    <div class="card-body">
+	                    <div class="card-body backgroundColor">
 	                        <form action="update.fn" method="post">
 	                        	<input type="hidden" name="freenoteNo" value="${ fn.freenoteNo }">
 	                            <div align="center">

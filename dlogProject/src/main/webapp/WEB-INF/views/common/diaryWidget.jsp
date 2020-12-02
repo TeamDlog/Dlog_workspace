@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card widgetMemo">
             	<div class="card-body" style="padding:0px;">
 		        	<div class="memo_widget">
 		                <div class="memo_widget_title">메모장</div>
@@ -38,7 +38,7 @@
 	            </div>
 	        </div>
 	        
-	        <div class="card">
+	        <div class="card widgetVoca">
                 <div class="stat-widget-one" style="padding: 10px">
                     <div class="stat-content">
                         <div class="stat-digit" style="color: #84c8b9; font-size: 30px">hello</div>
@@ -49,13 +49,13 @@
 	        
 	        
 	        <!-- 시간표위젯 -->
-        	<div class="card card-widget">
+        	<div class="card card-widget widgetTimetable">
                 <div class="card-body gradient-3">
                     <div class="media">
                         <table id="timetableWidget"  style="width: 100%; text-align: center; font-size:13px">
                         	<c:choose>
                         	
-                        		<c:when test="${ !empty list }">
+                        		<c:when test="${ !empty tlist }">
 		                        	<thead>
 			                        	<tr style="height: 30px;">
 			                                <th>
@@ -65,7 +65,7 @@
 		                        	</thead>
 		                        	<c:choose>
 		                        		<c:when test="${ timetableToDay != '토요일' || timetableToDay != '일요일'}">
-				                        	<c:forEach var="t" items="${ list }">
+				                        	<c:forEach var="t" items="${ tlist }">
 				                        		<c:if test="${ t.timetableDay == t.timetableToDay }">
 						                        	<tbody>
 							                        	<tr style="height: 30px;">
@@ -133,7 +133,7 @@
         	<!-- 시간표 위젯 스크립트 -->
 	        
             <!-- 디데이 -->
-            <div class="card card-widget">
+            <div class="card card-widget widgetDday">
                 <div class="card-body gradient-4">
                     <div class="media">
                         <table id="ddayWidget"  style="width: 100%; text-align: center;">
@@ -214,6 +214,27 @@
            	})
         </script>
         
+        <script>
+        	$(function(){
+        		
+        		if(${ca.activeDday == "N"} ){
+        			$(".widgetDday").css("display", "none");
+        		}
+        		
+        		if(${ca.activeMemo == "N"} ){
+        			$(".widgetMemo").css("display", "none");
+        		}
+        		
+        		if(${ca.activeVoca == "N"} ){
+        			$(".widgetVoca").css("display", "none");
+        		}
+        		
+        		if(${ca.activeTimetable == "N"} ){
+        			$(".widgetTimetable").css("display", "none");
+        		}
+        		
+        	})
+        </script>
         
 </body>
 </html>

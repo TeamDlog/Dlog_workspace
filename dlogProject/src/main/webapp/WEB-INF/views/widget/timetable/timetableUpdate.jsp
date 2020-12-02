@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="width:800px;">
-                                <div class="card-body" >
+                                <div class="card-body backgroundColor" >
                                 
                                 <!-- 여기다가 작성 -->
                                 <c:if test="${ !empty t }">

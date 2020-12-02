@@ -80,23 +80,33 @@
 							                <tbody>
 							                	<c:forEach var="a" items="${list}">
 							                    <tr>
-							    
+							    					<c:choose>
+							    					<c:when test="${a.accountStatus =='SPEND' }">
 							                        <td>${a.accountDate }</td>
 							                        <td>${a.accountItem }</td>
 							                        <td>${a.accountDetailItem }</td>
 							                        <td>${a.accountDivision }</td>
-							                        <td>${a.accountStatus }</td>
+							                        <td>지출</td>
 							                        <td>${a.accountMoney }</td>
 							                        <td>${a.accountDataIls }</td> 
-							                        <td><a href="#"  role="button" class="btn btn-danger btn-sm"onclick="location.href='accountDelete.ac?bno=' +${a.accountNo }" >삭제</a></td>
-							                        <c:choose>
-							                        <c:when test="${a.accountStatus =='SPEND' }">
-							                        	<c:set var="resultSpend" value="${a.accountMoney+ resultSpend}" />
+							                        <td><a href="#"  role="button" class="btn mb-1 btn-light" onclick="location.href='accountDelete.ac?bno=' +${a.accountNo }" >X</a></td>
+							                       
+							                        <c:set var="resultSpend" value="${a.accountMoney+ resultSpend}" />
+							                           
 							                        </c:when>
 							                        <c:otherwise>
-							                        	<c:set var="resultIncome" value="${a.accountMoney + resultIncome}" />
+							                        <td>${a.accountDate }</td>
+							                        <td>${a.accountItem }</td>
+							                        <td>${a.accountDetailItem }</td>
+							                        <td>${a.accountDivision }</td>
+							                        <td>수입</td>
+							                        <td>${a.accountMoney }</td>
+							                        <td>${a.accountDataIls }</td> 
+							                        <td><a href="#"  role="button" class="btn mb-1 btn-light" onclick="location.href='accountDelete.ac?bno=' +${a.accountNo }" >X</a></td>
+							                        <c:set var="resultIncome" value="${a.accountMoney + resultIncome}" />
 							                        </c:otherwise>
 							                        </c:choose>
+							                        
 								               </tr>
 							                    </c:forEach>
 							                </tbody>
@@ -172,13 +182,18 @@
 	    	       var date = $(this).find("td:nth-child(1)").text();
 	    	       var month = date.split('-');
 	    	       var division = $(this).find("td:nth-child(5)").text();
+	    	       if( division=='SPEND'){   	
+	                    $(this).show().eq(5).text('지출');
+	    	    	   }else{
+	    	    		   $(this).show().eq(5).text('수입');
+	    	    	   }
 	    	       if (inputVal == '') {
 	    	    	   
 	    	    	   found = true;
 	    	    	  	    	        	    	        	    	         
 	    	       }else if(month[1]== inputVal || month[0]==inputVal){
 	                   found=true;
-	                   if( division=='SPEND'){
+	                   if( division=='지출'){
 	                   	spend = spend + parseInt($(this).find("td:nth-child(6)").text());
 	                   }else {
 	                	income = income + parseInt($(this).find("td:nth-child(6)").text());
@@ -244,9 +259,9 @@
 	                	
 	                	
 		                 
-	                	   if(division=='INCOME'){
+	                	   if(division=='수입'){
 		                	   income = parseInt(income) + parseInt($(this).find("td:nth-child(6)").text());
-		                   }else if(division=='SPEND') {
+		                   }else if(division=='지출') {
 		                	   spend = spend + parseInt($(this).find("td:nth-child(6)").text());
 		                   }
 	                

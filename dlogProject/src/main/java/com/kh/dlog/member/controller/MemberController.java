@@ -1,14 +1,12 @@
 package com.kh.dlog.member.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,11 +17,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
-import com.kh.dlog.template.Coolsms;
+import com.kh.dlog.widget.dday.model.service.DdayService;
+import com.kh.dlog.widget.timetable.model.Service.TimetableService;
+import com.kh.dlog.widget.timetable.model.vo.Timetable;
 
 
 @Controller
 public class MemberController {
+	
+	private Calendar today = Calendar.getInstance();
 	
 	@Autowired
 	private MemberService mService;
@@ -31,8 +33,11 @@ public class MemberController {
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	@Autowired
 	private ControlAllService caService;
-	
-	
+	@Autowired
+	private TimetableService tService;
+	@Autowired
+	private DdayService dService;
+
 	@RequestMapping("mainpage.me")
 	public String mainpage() {
 		return "mainpage/mainPage";
@@ -211,15 +216,40 @@ public class MemberController {
 			
 			if(loginUser.getMemberNo() != 1) {
 				
-				session.setAttribute("ca", caService.ControlAllMain(loginUser.getMemberNo()+""));
+				loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+				
+				// 위젯관리, 메뉴관리, 테마관리 객체
+				session.setAttribute("ca", caService.ControlAllMain(loginUser.getDiaryMemberNo()+""));
+				
+				// 시간표 객체리스트
+				ArrayList<Timetable> tlist = tService.timetableList(loginUser.getDiaryMemberNo());
+				
+				// 시간표 객체리스트에 오늘날짜 추가하는 조건문/반복문
+				if(!tlist.isEmpty()) {
+					for(Timetable t : tlist) {
+						switch(today.get(Calendar.DAY_OF_WEEK)) {
+							case 1 : t.setTimetableToDay("일요일"); break;
+							case 2 : t.setTimetableToDay("월요일"); break;
+							case 3 : t.setTimetableToDay("화요일"); break;
+							case 4 : t.setTimetableToDay("수요일"); break;
+							case 5 : t.setTimetableToDay("목요일"); break;
+							case 6 : t.setTimetableToDay("금요일"); break;
+							case 7 : t.setTimetableToDay("토요일"); break;
+						}
+					}
+				}
+				// 디데이 객체리스트 세션에 보관
+				session.setAttribute("dlist", dService.ddayMain(loginUser.getDiaryMemberNo()+""));
+				// 시간표 객체리스트 세션에 보관
+				session.setAttribute("tlist", tlist);
+				// diaryMemberNo 추가한 로그인유저 객체 세션에 보관
 				session.setAttribute("loginUser", loginUser);
 				return "redirect:/";
 				
 			}else {
 				
-				session.setAttribute("list", list);
 				session.setAttribute("loginUser", loginUser);
-				return "admin/memberDataList";
+				return "redirect:adminMember.me";
 				
 			}
 			
@@ -261,9 +291,9 @@ public class MemberController {
 		
 		return "mypage/infoListView";
 	}
-	/*
+	
 	@ResponseBody
-	@RequestMapping(value="sendSMS.my")
+	@RequestMapping(value="sendSMS2.my")
 	public String sendSMS2(String phoneNumber) {
 		
 		Random rand  = new Random();
@@ -276,8 +306,8 @@ public class MemberController {
 	        System.out.println("수신자 번호 : " + phoneNumber);
 	        System.out.println("인증번호 : " + numStr);
 	       
-	        String api_key = "NCSDDMHFZCHOCFLE";
-	        String api_secret = "P7GRQDVKXWOBMNYIDFODEA8WIKDEHXCQ";
+	        String api_key = "NCSROFZSPCGLDC64";
+	        String api_secret = "77MADTGXDEI4A46TGGYGBJOQSWK0WX4J";
 	        Coolsms coolsms = new Coolsms(api_key, api_secret);
 
 	       
@@ -292,7 +322,7 @@ public class MemberController {
 	        return numStr;
 		
 	}
-	*/
+	
 	@RequestMapping("infoUpdateForm.my")
 	public String infoUpdateForm() {
 		return "mypage/infoUpdateForm";
@@ -322,8 +352,10 @@ public class MemberController {
 	 @RequestMapping("introList.my")
 	 public String introList(HttpSession session, Model model) {
 		 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+
 		 ArrayList<Member> list = mService.introList();
-			
+		 
 		 model.addAttribute("list",list);
 		 
 		 return "mypage/introListView";
@@ -332,8 +364,10 @@ public class MemberController {
 	 @RequestMapping("introListMn.my")
 	 public String introListMn(HttpSession session, Model model) {
 		 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		 
 		 ArrayList<Member> list = mService.introListMn();
-			
+		 
 		 model.addAttribute("list",list);
 		 
 		 return "mypage/introListViewManagement";
@@ -372,8 +406,40 @@ public class MemberController {
 	 }
 	 
 	 @RequestMapping("updatePwd.my")
-	 	public String updatePwd(String original,Member m, HttpSession session) {
+	 	public String updatePwd(String original, Member m, HttpSession session) {
 		 
+		
+		 Member loginUser = mService.loginMember(m);
+		 
+		 if(loginUser != null && bcryptPasswordEncoder.matches(original, loginUser.getMemberPwd())) { 
+		 
+			 String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
+				
+				
+				m.setMemberPwd(encPwd);
+				
+				int result = mService.updatePwd(m);
+				
+				if(result > 0) {
+					
+					session.setAttribute("alertMsg", "성공적으로 비밀번호가 변경되었습니다.");
+					return "redirect:updatePwdForm.my";
+					
+				}else {
+					
+					session.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
+					return "common/errorPage";
+					
+				}
+			 
+		 }else {
+			 
+			 session.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
+			return "common/errorPage";
+			 
+		 }
+		  
+		 /*
 			String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
 			
 			
@@ -391,7 +457,7 @@ public class MemberController {
 				session.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
 				return "common/errorPage";
 				
-			}
+			}*/
 		
 	 }
 	 
@@ -425,9 +491,7 @@ public class MemberController {
 	 }
 	 */
 	 @RequestMapping("pwdCheck2.my")
-	 public boolean pwdCheck2(String memberPwd) {
-		 
-		 boolean check = false;
+	 public String pwdCheck2(String memberPwd) {
 		 
 		 String regExp = "^(?=.*[a-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\\\"+=])[a-z[0-9]$@$!%*?&`~'\\\"+=]{8,15}$";
 		 
@@ -435,10 +499,10 @@ public class MemberController {
 		 Matcher mSymbol = pSymbol.matcher(memberPwd);
 		 
 		 if(mSymbol.find()) {
-			 check = true;
-		 }
-		 
-		 return check;
+			 return "true";
+		 }else {
+			return "false";
+			}
 		 
 	 }
 	 
@@ -478,7 +542,7 @@ public class MemberController {
 			}else {
 				// 비밀번호 틀림!!
 				session.setAttribute("alertMsg", "비밀번호가 틀렸습니다.");
-				return "redirect:deleteForm.me"; // 마이페이지상에서 !
+				return "redirect:deleteForm.me"; 
 			
 			}
 		

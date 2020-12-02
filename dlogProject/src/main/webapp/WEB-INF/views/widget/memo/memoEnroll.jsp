@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px;">
-                        <div class="card-body" >
+                        <div class="card-body backgroundColor" >
                             
                         <form action="insert.mo" method="post">
 	                        <div class="memo_enroll_title">

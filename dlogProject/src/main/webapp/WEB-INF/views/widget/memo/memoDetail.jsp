@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px;">
-                        <div class="card-body" >
+                        <div class="card-body backgroundColor" >
                         
                         <form action="" method="post" id="update_form">
                         	 <input type="hidden" name="memoNo" value="${ m.memoNo }">

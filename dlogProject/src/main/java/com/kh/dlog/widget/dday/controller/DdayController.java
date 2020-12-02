@@ -22,85 +22,110 @@ public class DdayController {
 	
 	@RequestMapping("main.dd")
 	public String ddayMain(HttpSession session, Model model) {
-		Member loginMember = (Member)session.getAttribute("loginUser");
-		String memberNo = loginMember.getMemberNo()+"";
-		ArrayList<Dday> list = dService.ddayMain(memberNo);
-		
-		if(!list.isEmpty()) {
-			model.addAttribute("dlist", list);
+		if(session.getAttribute("loginUser") != null) {
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			String memberNo = loginUser.getDiaryMemberNo()+"";
+			ArrayList<Dday> list = dService.ddayMain(memberNo);
 			
+			if(!list.isEmpty()) {
+				model.addAttribute("dlist", list);
+				
+			}
+			return "widget/dday/ddayMain";
+			
+		}else {
+			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
+			return "redirect:/";
 		}
-		return "widget/dday/ddayMain";
 	}
 	
 	@RequestMapping("insert.dd")
 	public String insertDday(Dday d, HttpSession session) {
-		
-		int result = dService.ddayCount(d.getMemberNo());
-		
-		if(result >= 10) {
-			session.setAttribute("alertMsg", "디데이는 최대 10개 까지 등록 가능합니다.");
+		if(session.getAttribute("loginUser") != null) {
+			int result = dService.ddayCount(d.getMemberNo());
+			
+			if(result >= 10) {
+				session.setAttribute("alertMsg", "디데이는 최대 10개 까지 등록 가능합니다.");
+				return "redirect:main.dd";
+			}
+			
+			if(dService.insertDday(d) > 0) {
+				session.setAttribute("alertMsg", "디데이 추가 완료!");
+			}else {
+				session.setAttribute("alertMsg", "디데이 추가 실패..");
+			}
+			
 			return "redirect:main.dd";
-		}
-		
-		if(dService.insertDday(d) > 0) {
-			session.setAttribute("alertMsg", "디데이 추가 완료!");
+			
 		}else {
-			session.setAttribute("alertMsg", "디데이 추가 실패..");
+			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
+			return "redirect:/";
 		}
-		
-		return "redirect:main.dd";
 	}
 	
 	@RequestMapping("update.dd")
 	public String updateDday(Dday d, HttpSession session) {
-		
-		if(dService.updateDday(d) > 0) {
-			session.setAttribute("alertMsg", "디데이 수정 완료!");
+		if(session.getAttribute("loginUser") != null) {
+			if(dService.updateDday(d) > 0) {
+				session.setAttribute("alertMsg", "디데이 수정 완료!");
+			}else {
+				session.setAttribute("alertMsg", "디데이 수정 실패..");
+			}
+			return "redirect:main.dd";
 		}else {
-			session.setAttribute("alertMsg", "디데이 수정 실패..");
+			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
+			return "redirect:/";
 		}
-		return "redirect:main.dd";
 	}
 	
 	@RequestMapping("delete.dd")
 	public String deleteDday(String[] deleteDday, HttpSession session) {
-		if(deleteDday != null) {
-			int result = dService.deleteDday(deleteDday);
-			if(result > 0) {
-				session.setAttribute("alertMsg", "디데이 삭제 완료!");
-				return "redirect:main.dd";
+		if(session.getAttribute("loginUser") != null) {
+			if(deleteDday != null) {
+				int result = dService.deleteDday(deleteDday);
+				if(result > 0) {
+					session.setAttribute("alertMsg", "디데이 삭제 완료!");
+					return "redirect:main.dd";
+				}else {
+					session.setAttribute("alertMsg", "디데이 삭제 실패..");
+					return "redirect:main.dd";
+				}
 			}else {
-				session.setAttribute("alertMsg", "디데이 삭제 실패..");
+				session.setAttribute("alertMsg", "선택된 항목이 없습니다.");
 				return "redirect:main.dd";
 			}
 		}else {
-			session.setAttribute("alertMsg", "선택된 항목이 없습니다.");
-			return "redirect:main.dd";
+			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
+			return "redirect:/";
 		}
 	}
 	
 	@RequestMapping("widgetCheck.dd")
 	public String widgetCheck(WidgetCheck wc, String[] dlist, HttpSession session) {
-
-		if(wc.getWidgetCount() != 0) {
-			int result = dService.widgetDday(wc, dlist);
-			if(result > 0) {
-				session.setAttribute("alertMsg", "위젯 설정 완료!");
-				return "redirect:main.dd";
+		if(session.getAttribute("loginUser") != null) {
+			if(wc.getWidgetCount() != 0) {
+				int result = dService.widgetDday(wc, dlist);
+				if(result > 0) {
+					session.setAttribute("alertMsg", "위젯 설정 완료!");
+					return "redirect:main.dd";
+				}else {
+					session.setAttribute("alertMsg", "위젯 등록 실패..");
+					return "redirect:main.dd";
+				}
 			}else {
-				session.setAttribute("alertMsg", "위젯 등록 실패..");
-				return "redirect:main.dd";
+				int result = dService.widgetDday(wc, dlist);
+				if(result > 0) {
+					session.setAttribute("alertMsg", "모든 위젯이 해제되었습니다.");
+					return "redirect:main.dd";
+				}else {
+					session.setAttribute("alertMsg", "위젯 등록 실패..");
+					return "redirect:main.dd";
+				}
 			}
+			
 		}else {
-			int result = dService.widgetDday(wc, dlist);
-			if(result > 0) {
-				session.setAttribute("alertMsg", "모든 위젯이 해제되었습니다.");
-				return "redirect:main.dd";
-			}else {
-				session.setAttribute("alertMsg", "위젯 등록 실패..");
-				return "redirect:main.dd";
-			}
+			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
+			return "redirect:/";
 		}
 	}
 	

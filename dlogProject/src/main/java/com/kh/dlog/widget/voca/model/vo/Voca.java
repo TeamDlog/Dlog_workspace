@@ -17,5 +17,6 @@ public class Voca {
 	private int vocaWriter;
 	private String vocaWord;
 	private String vocaMean;
+	private String keyword;
 
 }

@@ -33,9 +33,9 @@
                                         <table>
                                             <tr>
                                                 <td>
-                                                    <form action="" class="form-inline">
+                                                    <form action="search.vo" method="post" class="form-inline">
                                                     <input type="hidden" name="vocaWriter" value="${ loginUser.memberNo }">
-                                                        <input type="text" style="width: 200px; height: 28px; border: .1px solid lightgrey; border-radius: 4px;">
+                                                        <input type="text" id="keyword" name="keyword" style="width: 200px; height: 28px; border: .1px solid lightgrey; border-radius: 4px;">
                                                         <button type="submit" class="btn btn-secondary btn-sm" style="background-color: #84c8b9; border-color: #84c8b9;"><i class="fa fa-search"></i></button>
                                                     </form>
                                                 </td>
@@ -69,7 +69,7 @@
                                                     </div>
                                                 </div>
 
-                                                <button type="button" class="btn btn-secondary btn-sm" style="float: right; margin-right: 10px;">삭제</button>
+                                                <button id="checkDelete" type="button" class="btn btn-secondary btn-sm" style="float: right; margin-right: 10px;">삭제</button>
                                             </tr>
                                         </table>
                                         
@@ -84,10 +84,10 @@
                                             </tr>
                                             <c:forEach var="vo" items="${ list }" varStatus="status">
 	                                            <tr style="height: 40px;">
-	                                                <td>${ status.count }</td>
+	                                                <td>${ (pi.listCount - status.index)-((pi.currentPage-1)*10) }</td>
 	                                                <td>${ vo.vocaWord }</td>
 	                                                <td>${ vo.vocaMean }</td>
-	                                                <td><input type="checkbox"></td>
+	                                                <td><input type="checkbox" id="vocaNo" name="vocaNo" value="${ vo.vocaNo }"></td>
 	                                            </tr>
                                             </c:forEach>
                                         </table>
@@ -115,7 +115,7 @@
                                                     
                                                     <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                                                     <c:choose>
-                                                    	<c:when test="${ currentPage == p}">
+                                                    	<c:when test="${ pi.currentPage == p}">
 	                                                        <li class="page-item active">
 	                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
 	                                                        </li>
@@ -159,6 +159,58 @@
             <!--**********************************
                 Content body end
             ***********************************-->
+             
+            <script>
+				
+            /*
+            	function checkDelete(){
+            		var vocaArr = new Array();
+            		var list = $("input[name=vocaNo]");
+            		for(var i = 0; i<list.length; i++){
+            			if(list[i].checked){
+            				vocaArr.push(list[i].value);
+            				console.log(list[i].value);
+            			}
+            		}
+            		
+            		if(vocaArr.length == 0){
+            			alert("선택된 글이 없습니다.");
+            		}else{
+            			
+            			var chk = confirm("정말 삭제하시겠습니까?");
+            			$.ajax({
+            				url:"delete.vo",
+            				data:{vocaArr:vocaArr},
+            				success:function(result){
+            					if(result = 1){
+            						location.replace("list.vo");
+            					}else{
+            						alert("실패");
+            					}
+            				},error:function(){
+            					console.log("ajax통신 실패");
+            				}
+            			})
+            		}
+            	}
+            	*/
+            	
+            	$("#checkDelete").click(function(){
+            		var chkArr = [];
+            		$("input[name=vocaNo]:checked").each(function(){
+            			chkArr.push($(this).val());
+            			console.log(chkArr);
+            		});
+            	
+            		if(chkArr.lenght != 0){
+            			if(confirm("정말로 삭제하시겠습니까?")){
+            				location.href="delete.vo?arr=" + chkArr;
+            			}
+            		}else{
+            			alert("선택된 단어가 없습니다.");
+            		}
+            	})
+            </script>
 	
 	<jsp:include page="../../common/diaryWidget.jsp" />
 	<jsp:include page="../../common/diaryFooter.jsp" />

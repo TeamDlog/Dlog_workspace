@@ -41,8 +41,8 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-12">
-                 <div class="card" style="width:900px;">
-                     <div class="card-body" >
+                 <div class="card backgroundColor" style="width:900px;">
+                     <div class="card-body backgroundColor" >
                          <div class="table-responsive">
                              <!-- 시작 -->
                              

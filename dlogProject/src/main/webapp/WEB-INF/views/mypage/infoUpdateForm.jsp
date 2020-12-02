@@ -69,7 +69,7 @@
                                      <table id="infoUpdateFormTable">
                                          <div class="card-body">
                                              <div class="text-center">
-                                                 <img alt="" class="rounded-circle mt-4" src="images/default-profile-pic.jpg" width="90px">
+                                                 <img alt="" class="rounded-circle mt-4" src="resources/images/default-profile-pic.jpg" width="90px">
                                              </div>
                                          </div>
                                          <td> 이름 : </td>
@@ -91,7 +91,7 @@
                                        </tr>
                                        <tr>
                                          <td> 별명 : </td>
-                                         <td colspan="2"><input style="width:200px;" type="text"  name="userName" id="userName" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" required value=""></td>
+                                         <td colspan="2"><input style="width:200px;" type="text"  name="userName" id="userName" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" required value="${loginUser.nickname }"></td>
                                          </tr>
                                        <tr>
                                          <td>&nbsp;</td>
@@ -100,7 +100,7 @@
                                      
                                         <tr>
                                            <td> 이메일 : </td>
-                                           <td colspan="2"><input style="width:200px;" type="email" name="email" placeholder="&nbsp;&nbsp;이메일을 입력해주세요." required value=""></td>
+                                           <td colspan="2"><input style="width:200px;" type="email" name="email" placeholder="&nbsp;&nbsp;이메일을 입력해주세요." required value="${loginUser.email }"></td>
                                        </tr>
                                        <tr>
                                          <td>&nbsp;</td>
@@ -108,7 +108,7 @@
                                        </tr>
                                        <tr>
                                          <td>전화번호 :</td> 
-                                 		 <td><input id="phoneNumber" style="width:200px;" type="text" maxlength="13" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." required></td>
+                                 		 <td><input id="phoneNumber" name="phone" style="width:200px;" type="text" maxlength="13" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." value="${loginUser.phone }" required></td>
                                          <td>&nbsp;&nbsp;<button id="sendPhoneNumber" class="btn btn-secondary btn-sm">인증</button></td>
                                        </tr>
                                        <tr>
@@ -129,7 +129,7 @@
                                      </tr>
                                     </table>
                                    <br><br>
-                                 <button type="submit" id="infoUpdateBtn" data-toggle="modal" data-target="#exampleModal" class="btn btn-success">확인</button>
+                                 <button type="submit" id="infoUpdateBtn" class="btn btn-success">확인</button>
                                   
                                 </form>
                                </div>
@@ -143,7 +143,7 @@
 
                                     $.ajax({
                                         type: "GET",
-                                        url: "sendSMS.my",
+                                        url: "sendSMS2.my",
                                         data: {"phoneNumber":phoneNumber},
                                         success: function(result){
                                             $('#checkBtn').click(function(){
@@ -152,14 +152,14 @@
                                                     alert(
                                                         '휴대폰 인증이 정상적으로 완료되었습니다.'
                                                     );
-                                                    $("#enrollBtn").removeAttr("disabled")
+                                                    $("#infoUpdateBtn").removeAttr("disabled")
 
                                                 }else{
                                                 	
                                                 	alert(
                                                             '인증번호가 올바르지 않습니다.'
                                                     );
-                                                	$("#enrollBtn").attr("disabled", true);
+                                                	$("#infoUpdateBtn").attr("disabled", true);
                                                 	$('#phoneNumber').focus();
                                                     
                                                 }

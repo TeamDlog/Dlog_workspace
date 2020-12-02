@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px;">
-                        <div class="card-body" >
+                        <div class="card-body backgroundColor" >
                         
                             <form action="delete.mo" method="post" class="delete_memo_form update_memo_form">
                              <c:forEach var="m" items="${ list }">

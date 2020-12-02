@@ -122,9 +122,13 @@
 	                                    <!-- 여기다가 작성 -->
 	                                    <div style="height: 50px;">
 		                                    <c:if test="${ !empty dlist }">
-		                                        <button type="button" id="deleteDdayBtn" style="float: right; width: 30px; background:white;" class="ion-minus"></button>
+		                                    	<c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+		                                        	<button type="button" id="deleteDdayBtn" style="float: right; width: 30px; background:white;" class="ion-minus"></button>
+		                                    	</c:if>
 		                                    </c:if>
-	                                        <button id="insertDdayBtn" type="button" style="float: right; width: 30px; background:white; margin-right: 15px;" class="ion-plus"  data-toggle="modal" data-target="#insertModal"></button>
+		                                    <c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+	                                        	<button id="insertDdayBtn" type="button" style="float: right; width: 30px; background:white; margin-right: 15px;" class="ion-plus"  data-toggle="modal" data-target="#insertModal"></button>
+	                                    	</c:if>
 	                                    </div>
 	                                    <c:if test="${ !empty dlist }">
 	                                   	 <c:forEach var="dday" items="${ dlist }">
@@ -132,7 +136,7 @@
 			                                        <div class="dday">
 			                                            <div class="ddayCheck"><input type="checkbox" name="deleteDday" value="${ dday.ddayNo }"></div>
 			                                            <div class="ddayRadio">
-			                                                <div class="ddayRadioClick <c:if test="${ dday.ddayWidget == 'Y' }">rclick</c:if>"></div>
+			                                                <span class="ddayRadioClick <c:if test="${ dday.ddayWidget == 'Y' }">rclick</c:if>"></span>
 			                                            </div>
 			                                            <div class="ddayContent" data-toggle="modal" data-target="#updateModal">
 			                                            	<div class="ddayDateWrap">
@@ -156,9 +160,9 @@
 	                                        		</div>
 	                                       		</div>
 	                                      </c:forEach>
-	                                        
-		                                        <button type="button" id="checkDdayBtn" style="float: right;" class="btn btn-success">위젯 설정</button>
-		
+	                                        	<c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+		                                        	<button type="button" id="checkDdayBtn" style="float: right;" class="btn btn-success">위젯 설정</button>
+												</c:if>
 		                                        <button type="button" id="commitCancelBtn" style="float: right; display:none;" class="btn btn-success" >취소</button>
 		                                        <button type="button" id="commitDdayBtn" style="float: right; margin-right: 15px; display:none;" class="btn btn-success" >저장</button>
 		                                        <button type="button" id="commitDeleteDdayBtn" style="float: right; margin-right: 15px; display:none;" class="btn btn-success" >삭제</button>
@@ -273,6 +277,11 @@
     	<script>
     	var widgetCount = 0;
     	var wcc = 1;
+    		$(function(){
+    			<c:if test="${ loginUser.memberNo != loginUser.diaryMemberNo }">
+    				$(".ddayContent").attr("data-toggle","");
+    			</c:if>
+    		})
 	        $(function(){
 	        	
 	        	widgetCount = $(".rclick").length;

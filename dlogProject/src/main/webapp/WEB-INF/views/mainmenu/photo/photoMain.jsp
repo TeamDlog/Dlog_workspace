@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px;">
-                        <div class="card-body" >
+                        <div class="card-body backgroundColor" >
                         	
                         	<form action = "delete.ph" method="post" id="photo_form">
 	                            <c:forEach var="p" items="${ list }" varStatus="status">

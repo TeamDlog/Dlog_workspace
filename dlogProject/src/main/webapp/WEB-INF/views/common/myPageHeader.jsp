@@ -15,6 +15,18 @@
 	<link href="resources/css/style.css" rel="stylesheet">
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+		/* 메뉴바색상 */
+    	.menubarColor, #menubarColor,.menubarColor li{background:${ ca.myColorMenubar };}
+    	/* 배경색상 */
+    	.backgroundColor{background:${ca.myColorBackground};}
+    	.backgroundColor div{background:${ca.myColorBackground};}
+    	/* 글자색상 */
+    	.backgroundColor div{color:${ ca.myColorFont };}
+    	.menubarColor li *{color:${ ca.myColorFont };}
+    	/* 로고색상 */
+    	#logoColor{background:${ca.myColorLogo};}
+	</style>
 </head>
 
 <body>
@@ -36,7 +48,7 @@
     <!--**********************************
         Main wrapper start
     ***********************************-->
-    <div class="outer" style="margin: auto; width: fit-content;">
+    <div class="outer" style="margin: auto; width: 1400px;">
         <div id="main-wrapper" style="float: left;">
 
             <!--**********************************
@@ -241,7 +253,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="has-arrow" href="mian.ca" aria-expanded="false">
+                            <a class="has-arrow" href="main.ca" aria-expanded="false">
                                 <i class="icon-social-dropbox"></i> <span class="nav-text">통합관리</span>
                             </a>
                         </li>

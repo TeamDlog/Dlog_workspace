@@ -11,5 +11,10 @@ public interface VocaService {
 	ArrayList<Voca> selectList(PageInfo pi, int mno);
 	
 	int enrollVoca(Voca v);
+	
+	int deleteVoca(String[] list);
+	
+	int searchListCount(Voca v);
+	ArrayList<Voca> searchVoca(PageInfo pi, Voca v);
 
 }
