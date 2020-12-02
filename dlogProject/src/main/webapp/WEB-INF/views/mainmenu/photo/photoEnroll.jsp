@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px; height: auto;">
-                        <div class="card-body" style="margin-left: 30px;">
+                        <div class="card-body backgroundColor" style="margin-left: 30px;">
                             
                             <form method="post" action="insert.ph" enctype="multipart/form-data">
                              <div class="photo_outer">

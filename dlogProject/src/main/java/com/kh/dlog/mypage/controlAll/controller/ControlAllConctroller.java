@@ -27,15 +27,16 @@ public class ControlAllConctroller {
 	
 	@RequestMapping("activeWidget.ca")
 	@ResponseBody
-	public void ActiveWidget(ControlAll ca, Model model) {
+	public ControlAll ActiveWidget(HttpSession session, ControlAll ca, Model model) {
 		caService.ActiveWidget(ca);
-		
+		return caService.ControlAllMain(ca.getMemberNo());
 	}
 	
 	@RequestMapping("privacyWidget.ca")
 	@ResponseBody
-	public void PrivacyWidget(ControlAll ca, Model model) {
+	public ControlAll PrivacyWidget(HttpSession session, ControlAll ca, Model model) {
 		caService.PrivacyWidget(ca);
+		return caService.ControlAllMain(ca.getMemberNo());
 	}
 	
 	@RequestMapping("widgetChecked.ca")

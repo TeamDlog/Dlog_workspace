@@ -22,8 +22,8 @@ public class DdayController {
 	
 	@RequestMapping("main.dd")
 	public String ddayMain(HttpSession session, Model model) {
-		Member loginMember = (Member)session.getAttribute("loginUser");
-		String memberNo = loginMember.getMemberNo()+"";
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		String memberNo = loginUser.getDiaryMemberNo()+"";
 		ArrayList<Dday> list = dService.ddayMain(memberNo);
 		
 		if(!list.isEmpty()) {

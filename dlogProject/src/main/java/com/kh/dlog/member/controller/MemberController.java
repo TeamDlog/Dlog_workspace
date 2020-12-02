@@ -1,14 +1,12 @@
 package com.kh.dlog.member.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,11 +17,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
-import com.kh.dlog.template.Coolsms;
+import com.kh.dlog.widget.dday.model.service.DdayService;
+import com.kh.dlog.widget.timetable.model.Service.TimetableService;
+import com.kh.dlog.widget.timetable.model.vo.Timetable;
 
 
 @Controller
 public class MemberController {
+	
+	private Calendar today = Calendar.getInstance();
 	
 	@Autowired
 	private MemberService mService;
@@ -31,8 +33,11 @@ public class MemberController {
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	@Autowired
 	private ControlAllService caService;
-	
-	
+	@Autowired
+	private TimetableService tService;
+	@Autowired
+	private DdayService dService;
+
 	@RequestMapping("mainpage.me")
 	public String mainpage() {
 		return "mainpage/mainPage";
@@ -211,7 +216,33 @@ public class MemberController {
 			
 			if(loginUser.getMemberNo() != 1) {
 				
-				session.setAttribute("ca", caService.ControlAllMain(loginUser.getMemberNo()+""));
+				loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+				
+				// 위젯관리, 메뉴관리, 테마관리 객체
+				session.setAttribute("ca", caService.ControlAllMain(loginUser.getDiaryMemberNo()+""));
+				
+				// 시간표 객체리스트
+				ArrayList<Timetable> tlist = tService.timetableList(loginUser.getDiaryMemberNo());
+				
+				// 시간표 객체리스트에 오늘날짜 추가하는 조건문/반복문
+				if(!tlist.isEmpty()) {
+					for(Timetable t : tlist) {
+						switch(today.get(Calendar.DAY_OF_WEEK)) {
+							case 1 : t.setTimetableToDay("일요일"); break;
+							case 2 : t.setTimetableToDay("월요일"); break;
+							case 3 : t.setTimetableToDay("화요일"); break;
+							case 4 : t.setTimetableToDay("수요일"); break;
+							case 5 : t.setTimetableToDay("목요일"); break;
+							case 6 : t.setTimetableToDay("금요일"); break;
+							case 7 : t.setTimetableToDay("토요일"); break;
+						}
+					}
+				}
+				// 디데이 객체리스트 세션에 보관
+				session.setAttribute("dlist", dService.ddayMain(loginUser.getDiaryMemberNo()+""));
+				// 시간표 객체리스트 세션에 보관
+				session.setAttribute("tlist", tlist);
+				// diaryMemberNo 추가한 로그인유저 객체 세션에 보관
 				session.setAttribute("loginUser", loginUser);
 				return "redirect:/";
 				
@@ -322,8 +353,10 @@ public class MemberController {
 	 @RequestMapping("introList.my")
 	 public String introList(HttpSession session, Model model) {
 		 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+
 		 ArrayList<Member> list = mService.introList();
-			
+		 
 		 model.addAttribute("list",list);
 		 
 		 return "mypage/introListView";
@@ -332,8 +365,10 @@ public class MemberController {
 	 @RequestMapping("introListMn.my")
 	 public String introListMn(HttpSession session, Model model) {
 		 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		 
 		 ArrayList<Member> list = mService.introListMn();
-			
+		 
 		 model.addAttribute("list",list);
 		 
 		 return "mypage/introListViewManagement";
