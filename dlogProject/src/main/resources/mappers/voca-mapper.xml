@@ -54,9 +54,18 @@
 		     , voca_mean
 		  from voca v
 		  join member m on(v.voca_writer=m.member_no)
-		 where member_no = 3
-		   and voca_word like '%'||#{vocaWord}||'%'
-		   and voca_mean like'%'||#{vocaMean}||'%'
+		 where member_no = #{vocaWriter}
+		   and (voca_word like '%'||#{keyword}||'%'
+		   or voca_mean like '%'||#{keyword}||'%')
 	</select>
+	
+	<delete id="deleteVoca" parameterType="_int">
+	
+		delete
+		  from voca
+		 where voca_no=#{vocaNo}
+	 
+	</delete>
+
 
 </mapper>
