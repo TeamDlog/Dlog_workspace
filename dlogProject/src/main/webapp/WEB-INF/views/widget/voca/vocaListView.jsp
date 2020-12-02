@@ -84,7 +84,7 @@
                                             </tr>
                                             <c:forEach var="vo" items="${ list }" varStatus="status">
 	                                            <tr style="height: 40px;">
-	                                                <td>${ status.count }</td>
+	                                                <td>${ (pi.listCount - status.index)-((pi.currentPage-1)*10) }</td>
 	                                                <td>${ vo.vocaWord }</td>
 	                                                <td>${ vo.vocaMean }</td>
 	                                                <td><input type="checkbox" id="vocaNo" name="vocaNo" value="${ vo.vocaNo }"></td>
@@ -115,7 +115,7 @@
                                                     
                                                     <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                                                     <c:choose>
-                                                    	<c:when test="${ currentPage == p}">
+                                                    	<c:when test="${ pi.currentPage == p}">
 	                                                        <li class="page-item active">
 	                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
 	                                                        </li>

@@ -248,9 +248,8 @@ public class MemberController {
 				
 			}else {
 				
-				session.setAttribute("list", list);
 				session.setAttribute("loginUser", loginUser);
-				return "admin/memberDataList";
+				return "redirect:adminMember.me";
 				
 			}
 			

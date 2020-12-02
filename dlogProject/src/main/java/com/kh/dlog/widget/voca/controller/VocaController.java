@@ -32,7 +32,7 @@ public class VocaController {
 		
 		int listCount = vService.selectListCount(mno);
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 15);
 		
 		ArrayList<Voca> list = vService.selectList(pi, mno);
 		
@@ -80,9 +80,9 @@ public class VocaController {
 		v.setKeyword(keyword);
 		v.setVocaWriter(vocaWriter);
 		
-		int listCount = vService.selectListCount(vocaWriter);
+		int listCount = vService.searchListCount(v);
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 15);
 		
 		ArrayList<Voca> list = vService.searchVoca(pi,v);
 		

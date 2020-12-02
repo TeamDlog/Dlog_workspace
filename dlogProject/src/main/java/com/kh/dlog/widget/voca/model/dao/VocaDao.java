@@ -38,6 +38,11 @@ public class VocaDao {
 		return result;
 	}
 	
+	public int searchListCount(SqlSessionTemplate sqlSession, Voca v) {
+		return sqlSession.selectOne("vocaMapper.searchListCount", v);
+	}
+	
+	
 	public ArrayList<Voca> searchVoca(SqlSessionTemplate sqlSession, Voca v, PageInfo pi){
 		
 		int offset=(pi.getCurrentPage() - 1) * pi.getBoardLimit();

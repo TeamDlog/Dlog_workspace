@@ -15,6 +15,7 @@
 		  from voca v
 		  join member m on(v.voca_writer=m.member_no)
 		 where member_no = ${memberNo}
+		 
 	</select>
 	
 	<select id="selectList" parameterType="_int" resultMap="vocaResultSet">
@@ -26,6 +27,7 @@
 		  from voca v
 		  join member m on(v.voca_writer=m.member_no)
 		 where member_no = ${memberNo}
+		 order by voca_no desc
 	</select>
 	
 	<insert id="enrollVoca" parameterType="Voca">
@@ -52,6 +54,16 @@
 		     , voca_writer
 		     , voca_word
 		     , voca_mean
+		  from voca v
+		  join member m on(v.voca_writer=m.member_no)
+		 where member_no = #{vocaWriter}
+		   and (voca_word like '%'||#{keyword}||'%'
+		   or voca_mean like '%'||#{keyword}||'%')
+	</select>
+	
+	<select id="searchListCount" parameterType="Voca" resultType="_int">
+		select
+		       count(*)
 		  from voca v
 		  join member m on(v.voca_writer=m.member_no)
 		 where member_no = #{vocaWriter}

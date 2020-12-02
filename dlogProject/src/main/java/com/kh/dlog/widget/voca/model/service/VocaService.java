@@ -14,6 +14,7 @@ public interface VocaService {
 	
 	int deleteVoca(String[] list);
 	
+	int searchListCount(Voca v);
 	ArrayList<Voca> searchVoca(PageInfo pi, Voca v);
 
 }

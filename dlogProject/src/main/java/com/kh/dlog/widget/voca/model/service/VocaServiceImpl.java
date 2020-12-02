@@ -37,6 +37,11 @@ public class VocaServiceImpl implements VocaService {
 	public int deleteVoca(String[] list) {
 		return vDao.deleteVoca(sqlSession, list);
 	}
+	
+	@Override
+	public int searchListCount(Voca v) {
+		return vDao.searchListCount(sqlSession, v);
+	}
 
 	@Override
 	public ArrayList<Voca> searchVoca(PageInfo pi, Voca v) {
