@@ -33,5 +33,8 @@ public class NotificationDao {
 		return (ArrayList)sqlSession.selectList("notificationMapper.selectFriednList", loginUserNo);
 	}
 	
+	public ArrayList<Notification> selectNotificationList(SqlSessionTemplate sqlSession, int loginUserNo) {
+		return (ArrayList)sqlSession.selectList("notificationMapper.selectNotificationList", loginUserNo);
+	}
 
 }

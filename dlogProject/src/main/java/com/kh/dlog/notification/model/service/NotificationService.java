@@ -24,8 +24,7 @@ public interface NotificationService {
 	
 	// 신고내역처리(7)
 	
-	// 알림 수 조회
-	int selectNotificationCount(int loginUserNo);
+
 	// 알림창 조회
 	ArrayList<Notification> selectNotificationList(int loginUserNo);
 	// 알림 목록에서 제거

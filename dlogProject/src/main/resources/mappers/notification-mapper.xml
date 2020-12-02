@@ -6,6 +6,15 @@
 		<result column="reply_content" property="replyContent" />
 		<result column="member_no" property="replyWriter" />
 	</resultMap>
+	
+	<resultMap type="Notification" id="notificationResultSet">
+		<id column="notification_no" property="notificationNo" />
+		<result column="notification_content" property="notificationContent" />
+		<result column="notification_category" property="notificationCategory" />
+		<result column="create_date" property="createDate" />
+		<result column="status" property="status" />
+		<result column="member_no" property="memberNo" />
+	</resultMap>
 
 	<insert id="insertNotification" parameterType="Notification">
 		insert
@@ -45,6 +54,19 @@
 		  from friend
 		 where friend_owner = #{loginUserNo}
 		   and friend_status = 'Y'
+	</select>
+	
+	<select id="selectNotificationList" parameterType="_int" resultMap="notificationResultSet">
+		select
+		       notification_no
+		     , notification_content
+		     , notification_category
+		     , trunc(mod((sysdate-create_date)*24*60, 60)) as create_date
+		  from notification
+		 where member_no = #{loginUserNo}
+		   and status = 'Y'
+		 order
+		    by notification_no desc
 	</select>
 
 </mapper>

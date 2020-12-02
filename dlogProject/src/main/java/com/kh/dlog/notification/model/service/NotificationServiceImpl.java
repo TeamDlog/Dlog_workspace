@@ -46,7 +46,7 @@ public class NotificationServiceImpl implements NotificationService {
 	@Override
 	public int replyNotify(String loginUserNickname, String freenoteTitle, int freenoteWriterNo) {
 		Notification n = new Notification();
-		n.setNotificationContent(loginUserNickname + "님이 게시글 \"" + freenoteTitle + "\"에 댓글을 달았습니다.");
+		n.setNotificationContent(loginUserNickname + "님이 게시글 \"" + freenoteTitle + "\"에 댓글을 남겼습니다.");
 		n.setNotificationCategory(2);
 		n.setMemberNo(freenoteWriterNo);
 		
@@ -86,17 +86,11 @@ public class NotificationServiceImpl implements NotificationService {
 		ArrayList flist = selectFriendList(loginUserNo);
 		return nDao.insertNotifiactions(sqlSession, n, flist);
 	}
-	
-	@Override
-	public int selectNotificationCount(int loginUserNo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public ArrayList<Notification> selectNotificationList(int loginUserNo) {
 		// TODO Auto-generated method stub
-		return null;
+		return nDao.selectNotificationList(sqlSession, loginUserNo);
 	}
 
 	@Override
