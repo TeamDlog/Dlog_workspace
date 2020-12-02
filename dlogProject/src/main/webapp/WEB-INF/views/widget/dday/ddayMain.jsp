@@ -136,7 +136,7 @@
 			                                        <div class="dday">
 			                                            <div class="ddayCheck"><input type="checkbox" name="deleteDday" value="${ dday.ddayNo }"></div>
 			                                            <div class="ddayRadio">
-			                                                <div class="ddayRadioClick <c:if test="${ dday.ddayWidget == 'Y' }">rclick</c:if>"></div>
+			                                                <span class="ddayRadioClick <c:if test="${ dday.ddayWidget == 'Y' }">rclick</c:if>"></span>
 			                                            </div>
 			                                            <div class="ddayContent" data-toggle="modal" data-target="#updateModal">
 			                                            	<div class="ddayDateWrap">
@@ -277,10 +277,13 @@
     	<script>
     	var widgetCount = 0;
     	var wcc = 1;
+    		$(function(){
+    			<c:if test="${ loginUser.memberNo != loginUser.diaryMemberNo }">
+    				$(".ddayContent").attr("data-toggle","");
+    			</c:if>
+    		})
 	        $(function(){
-	        	<c:if test="${ loginUser.memberNo != logunUser.diaryMemberNo }">
-	        		$(".ddayContent").attr("data-toggle","");
-	        	</c:if>
+	        	
 	        	widgetCount = $(".rclick").length;
 	        	<c:forEach var="d" items="${dlist}">
 	        		if(${d.ddayWidget == "Y"}){

@@ -253,7 +253,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="has-arrow" href="mian.ca" aria-expanded="false">
+                            <a class="has-arrow" href="main.ca" aria-expanded="false">
                                 <i class="icon-social-dropbox"></i> <span class="nav-text">통합관리</span>
                             </a>
                         </li>

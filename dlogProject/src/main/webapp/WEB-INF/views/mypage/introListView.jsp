@@ -62,8 +62,8 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-12">
-                 <div class="card" style="width:730px;">
-                     <div class="card-body" >
+                 <div class="card backgroundColor" style="width:730px;">
+                     <div class="card-body backgroundColor" >
                          <div class="table-responsive">
                              <!--시작-->
                                  <div class="introSelect">
