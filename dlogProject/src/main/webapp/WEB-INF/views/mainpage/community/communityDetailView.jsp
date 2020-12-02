@@ -124,13 +124,21 @@
                         <td width="750" style="font-size: 20px;">${ fn.freenoteTitle }</td>
                         <td width="200" align="right">
                             <img src="resources/images/default-profile-pic.jpg" class="rounded-circle" height="35" width="35"> 
-                            &nbsp; <a type="button" data-toggle="popover" data-content="
-                                <div align='center'>
-                                    ${ fn.freenoteWriter }님의 다이어리가 궁금하다면 <br>
-                                    친구가 되어 방문할 수 있습니다. <br>
-                                    <button id='addFriendBtn' onclick='test()'>친구요청</button>
-                                </div>
-                            " data-placement="right">${ fn.freenoteWriter }</a>
+                            &nbsp; 
+                            <c:choose>
+                            	<c:when test="${loginUser.memberNo eq fn.memberNo }">
+                            		${ fn.freenoteWriter }
+                            	</c:when>
+                            	<c:otherwise>
+		                            <a type="button" data-toggle="popover" data-content="
+		                                <div align='center'>
+		                                    ${ fn.freenoteWriter }님의 다이어리가 궁금하다면 <br>
+		                                    친구가 되어 방문할 수 있습니다. <br>
+		                                    <button id='addFriendBtn' onclick='requestFriend()'>친구요청</button>
+		                                </div>
+		                            " data-placement="right">${ fn.freenoteWriter }</a>
+                            	</c:otherwise>
+                            </c:choose>
                         </td>
                     </tr>
                 </table>
@@ -157,8 +165,26 @@
                         }, 300);
                     });
                 })
-                function test(){
-                    location.href=""
+                
+                function requestFriend(){
+                	$.ajax({
+        				url:"friend.co",
+        				type:"post",
+        				data:{
+        					friendAccepted:${fn.memberNo},
+        					friendOwner:${loginUser.memberNo}
+        				}, success:function(result){
+        					
+        					if(result == 1){
+        						alert("친구 요청 되었습니다.");
+        					}else{
+        						alert("이미 친구이거나 친구 승인 대기 중 입니다.");
+        					}
+        					
+        				}, error:function(){
+        					console.log("친구추가 ajax 통신 실패");
+        				}
+                	});
                 }
             </script>
             
@@ -227,7 +253,10 @@
 				type:"post",
 				data:{
 					memberNo:${loginUser.memberNo},
-					fno:${fn.freenoteNo}
+					fno:${fn.freenoteNo},
+					loginUserNickname:'${ loginUser.nickname }',
+					freenoteTitle:'${ fn.freenoteTitle }',
+					freenoteWriterNo:${ fn.memberNo }
 				}, success:function(result){
 					
 					if(result>0){
@@ -250,7 +279,8 @@
 				type:"post",
 				data:{
 					memberNo:${loginUser.memberNo},
-					rno:rno
+					rno:rno,
+					loginUserNickname:'${ loginUser.nickname }'
 				}, success:function(result){
 					
 					if(result>0){
@@ -477,7 +507,10 @@
 						replyContent:$("#addReply2-" + refRno).find("textarea").val(),
 						replyWriter:${ loginUser.memberNo },
 						refFno:${ fn.freenoteNo },
-						refRno:refRno
+						refRno:refRno,
+						loginUserNickname:'${ loginUser.nickname }',
+						freenoteTitle:'${ fn.freenoteTitle }',
+						freenoteWriterNo:${ fn.memberNo }
 					}, success:function(result){
 						if(result>0){
 							$("#addReply2-" + refRno).find("textarea").val("");
@@ -624,7 +657,7 @@
 			}else{
 				$("#reportPostType").val(reportPostType);
 			}
-			$("input[name=reportLink]").val("http://localhost:8888/dlog/detail.co?fno=" + fno);
+			$("input[name=reportLink]").val("http://localhost:8888/dlog/adminDetail.co?fno=" + fno);
 			reportModal.style.display = "block";
 		}
 		

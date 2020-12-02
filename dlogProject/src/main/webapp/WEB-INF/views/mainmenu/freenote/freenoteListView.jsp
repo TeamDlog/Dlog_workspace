@@ -144,7 +144,7 @@
 			$.ajax({
 				url:"flist.fn",
 				data:{
-					mno:1,
+					mno:${loginUser.memberNo},
 					currentPage:cPage,
 					category:category,
 					boardLimit:boardLimit,
@@ -179,7 +179,7 @@
 						for(i in result.list){
 		                	list += "<tr>" +
 				                        "<td>" + result.list[i].freenoteNo + "</td>" +
-				                        "<input type='hidden' value='" + result.list[i].freenoteWriter + "'>" +
+				                        "<input type='hidden' value='" + result.list[i].memberNo + "'>" +
 				                        "<td class='freenoteTitle'>" + result.list[i].freenoteTitle + "&nbsp;";
 				            if(result.list[i].freenotePrivacy == 'N'){
                         		list += "<span class='badge badge-pill badge-light'>&nbsp;비공개&nbsp;</span>";

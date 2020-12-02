@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.dlog.admin.report.model.vo.Report;
 import com.kh.dlog.common.model.vo.PageInfo;
+import com.kh.dlog.friend.model.vo.Friend;
 import com.kh.dlog.mainmenu.freenote.model.vo.Freenote;
 import com.kh.dlog.mainmenu.freenote.model.vo.Reply;
 import com.kh.dlog.mainmenu.freenote.model.vo.SearchCondition;
@@ -128,6 +129,14 @@ public class FreenoteDao {
 	
 	public int insertReport(SqlSessionTemplate sqlSession, Report r) {
 		return sqlSession.insert("freenoteMapper.insertReport", r);
+	}
+	
+	public int checkFriend(SqlSessionTemplate sqlSession, Friend friend) {
+		return sqlSession.selectOne("freenoteMapper.checkFriend", friend);
+	}
+	
+	public int requestFriend(SqlSessionTemplate sqlSession, Friend friend) {
+		return sqlSession.insert("freenoteMapper.requestFriend", friend);
 	}
 	
 	// 관리자

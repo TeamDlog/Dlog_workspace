@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.dlog.admin.report.model.vo.Report;
 import com.kh.dlog.common.model.vo.PageInfo;
+import com.kh.dlog.friend.model.vo.Friend;
 import com.kh.dlog.mainmenu.freenote.model.dao.FreenoteDao;
 import com.kh.dlog.mainmenu.freenote.model.vo.Freenote;
 import com.kh.dlog.mainmenu.freenote.model.vo.Reply;
@@ -157,7 +158,16 @@ public class FreenoteServiceImpl implements FreenoteService {
 	public int insertReport(Report r) {
 		return fDao.insertReport(sqlSession, r);
 	}
+	
+	@Override
+	public int checkFriend(Friend friend) {
+		return fDao.checkFriend(sqlSession, friend);
+	}
 
+	@Override
+	public int requestFriend(Friend friend) {
+		return fDao.requestFriend(sqlSession, friend);
+	}
 	
 	// 관리자 관련
 	@Override

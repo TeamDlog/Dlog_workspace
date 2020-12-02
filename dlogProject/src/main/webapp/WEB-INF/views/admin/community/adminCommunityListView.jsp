@@ -33,15 +33,13 @@
                 <div class="col-12">
                     <div class="card" style="width:900px;">
                         <div class="card-body">
-                            <h4 class="card-title" style="float:left;">게시글 목록</h4>
-                            <input class="btn btn-primary btn-sm" type="button" value="삭제" onclick="confirmDelete();" style="float:left; margin-left: 680px;">
-                            
+                            <h4 class="card-title">게시글 목록</h4>
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover zero-configuration" id="listTable" style="table-layout:fixed;">
                                     <thead>
                                         <tr>
                                         	<th width="15"><input type="checkbox" name="chkAll"></th>
-                                            <th width="28">번호</th>
+                                            <th width="30">번호</th>
                                             <th width="135">글 제목</th>
                                             <th>작성자</th>
                                             <th width="43">조회수</th>
@@ -65,7 +63,10 @@
                                     	</c:forEach>
                                     </tbody>
                                 </table>
-                                <br>
+                               	<div align="right" style="margin-top: 5px; padding-right:16px;">
+	                                <input class="btn btn-primary" type="button" value="삭제" onclick="confirmDelete();">
+                               	</div>
+                               	<br>
                             </div>
                             <script>
                             	

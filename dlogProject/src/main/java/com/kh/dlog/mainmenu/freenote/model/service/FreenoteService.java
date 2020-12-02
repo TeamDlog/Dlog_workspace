@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.dlog.admin.report.model.vo.Report;
 import com.kh.dlog.common.model.vo.PageInfo;
+import com.kh.dlog.friend.model.vo.Friend;
 import com.kh.dlog.mainmenu.freenote.model.vo.Freenote;
 import com.kh.dlog.mainmenu.freenote.model.vo.Reply;
 import com.kh.dlog.mainmenu.freenote.model.vo.SearchCondition;
@@ -53,6 +54,9 @@ public interface FreenoteService {
 	// 3. 신고 등록
 	int checkReport(Report r);
 	int insertReport(Report r);
+	// 4. 친구 신청
+	int checkFriend(Friend friend);
+	int requestFriend(Friend friend);
 	
 	// 관리자
 	// 1. 관리자 커뮤니티 목록 조회

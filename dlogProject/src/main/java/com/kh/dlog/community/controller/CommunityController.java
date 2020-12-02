@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.kh.dlog.admin.report.model.vo.Report;
 import com.kh.dlog.common.model.vo.PageInfo;
 import com.kh.dlog.common.template.Pagination;
+import com.kh.dlog.friend.model.vo.Friend;
 import com.kh.dlog.mainmenu.freenote.model.service.FreenoteService;
 import com.kh.dlog.mainmenu.freenote.model.vo.Freenote;
 import com.kh.dlog.mainmenu.freenote.model.vo.SearchCondition;
@@ -112,7 +113,20 @@ public class CommunityController {
 			return "0";
 		}
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value="friend.co", produces="text/html; charset=utf-8")
+	public String requestFriend(Friend friend) {
+		
+		int result = fService.checkFriend(friend);
+		if(result==0) {
+			result = fService.requestFriend(friend);
+			return "1";
+		}else {
+			return "0";
+		}
+	}
+	
 }
 
 

@@ -17,7 +17,7 @@
 		<result column="modify_date" property="modifyDate" />
 		<result column="status" property="status" />
 		<result column="nickname" property="freenoteWriter" />
-		<result column="member_no" property="freenoteWriter" />
+		<result column="member_no" property="memberNo" />
 		<result column="member_id" property="memberId" />
 		<result column="replyCount" property="replyCount" />
 		<result column="likestatus" property="likeStatus" />		
@@ -129,6 +129,7 @@
 		     , to_char(create_date, 'yyyy.mm.dd hh24:mi') as create_date
 		     , nickname
 		     , member_id
+		     , member_no
 		     , (select count(*)
                   from reply
                  where ref_fno = freenote_no
@@ -400,7 +401,7 @@
 		   and f.status = 'Y'
 		   and freenote_privacy_comm = 'Y'
 		 order
-		    by create_date desc
+		    by freenote_no desc
 	</select>	
 	
 	<select id="selectSearchListCount" parameterType="SearchCondition" resultType="_int">
@@ -457,7 +458,7 @@
 			  order
 		 <choose>
 		 	<when test="sort == 'recent'">
-			   	 by create_date desc
+			   	 by freenote_no desc
 		 	</when>
 		 	<otherwise>
 		 		 by freenote_count desc
@@ -497,6 +498,34 @@
 		   , #{reportPostNo}
 		  )
 	</insert>
+	
+	<select id="checkFriend" parameterType="Friend" resultType="_int">
+		select count(*)
+		  from friend
+		 where (friend_accepted = #{friendAccepted}
+		   and friend_owner = #{friendOwner})
+		    or (friend_accepted = #{friendOwner}
+		   and friend_owner = #{friendAccepted})
+	</select>
+	
+	<insert id="requestFriend" parameterType="Friend">
+		insert
+		  into friend
+		  (
+		     friend_no
+		   , friend_accepted
+		   , friend_owner
+		   , friend_status  
+		  )
+		  values
+		  (
+		  	 seq_friendno.nextval
+		   , #{friendAccepted}
+		   , #{friendOwner}
+		   , 'N'
+		  )
+	</insert>
+	
 	
 	<select id="selectAdminCommList" resultMap="freenoteResultSet">
 		select 

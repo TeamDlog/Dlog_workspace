@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="notificationMapper">
+
+	<resultMap type="Reply" id="replyResultSet">
+		<result column="reply_content" property="replyContent" />
+		<result column="member_no" property="replyWriter" />
+	</resultMap>
+
+	<insert id="insertNotification" parameterType="Notification">
+		insert
+		  into notification
+		  (
+		     notification_no
+		   , notification_content
+		   , notification_category
+		   , member_no  
+		  )
+		  values
+		  (
+		  	 seq_notificationno.nextval
+		   , #{notificationContent}
+		   , #{notificationCategory}
+		   , #{memberNo}
+		  )
+	</insert>
+	
+	<select id="selectReplyContent" parameterType="_int" resultMap="replyResultSet">
+		select
+		       substr(reply_content, 0, 10) as reply_content
+		     , member_no
+		  from reply
+		 where reply_no = #{rno}
+	</select>
+	
+	<select id="selectFriend" parameterType="_int" resultType="_int">
+		select
+		       friend_owner
+		  from friend
+		 where friend_accepted = #{loginUserNo}
+		   and friend_status = 'Y'
+		 union
+		select
+		       friend_accepted
+		  from friend
+		 where friend_owner = #{loginUserNo}
+		   and friend_status = 'Y'
+	</select>
+
+</mapper>

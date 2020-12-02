@@ -172,7 +172,10 @@
 				type:"post",
 				data:{
 					memberNo:${loginUser.memberNo},
-					fno:${fn.freenoteNo}
+					fno:${fn.freenoteNo},
+					loginUserNickname:'${ loginUser.nickname }',
+					freenoteTitle:'${ fn.freenoteTitle }',
+					freenoteWriterNo:${ fn.memberNo }
 				}, success:function(result){
 					
 					
@@ -198,7 +201,9 @@
 				type:"post",
 				data:{
 					memberNo:${loginUser.memberNo},
-					rno:rno
+					rno:rno,
+					loginUserNickname:'${ loginUser.nickname }',
+					freenoteWriterNo:${ fn.memberNo }
 				}, success:function(result){
 					
 					if(result>0){
@@ -409,7 +414,10 @@
 						replyContent:$("#addReply2-" + refRno).find("textarea").val(),
 						replyWriter:${ loginUser.memberNo },
 						refFno:${ fn.freenoteNo },
-						refRno:refRno
+						refRno:refRno,
+						loginUserNickname:'${ loginUser.nickname }',
+						freenoteTitle:'${ fn.freenoteTitle }',
+						freenoteWriterNo:${ fn.memberNo }
 					}, success:function(result){
 						if(result>0){
 							$("#addReply2-" + refRno).find("textarea").val("");

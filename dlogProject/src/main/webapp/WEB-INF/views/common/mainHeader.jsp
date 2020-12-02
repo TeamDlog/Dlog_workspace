@@ -42,7 +42,7 @@
 		                    <li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="logout.me">로그아웃</a></li>
                     		<c:choose>
                     			<c:when test="${ loginUser.memberNo eq 1 }">
-                    				<li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="admin_list.co">관리</a></li>
+                    				<li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="adminMemebr.me">관리</a></li>
                     			</c:when>
                     			<c:otherwise>
 		                    		<li class="nav-item mx-0 mx-lg-1 nav-lcs"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">다이어리</a></li>

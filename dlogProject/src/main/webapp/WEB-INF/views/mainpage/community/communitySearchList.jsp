@@ -167,7 +167,7 @@
 		    	                    "<table>" +
 		    	                        "<tr>" +
 		    	                            "<td width='790' height='40'>" +
-		    	                                "<img src='resources/images/default-profile-pic.jpg' width='40' height='40' class='rounded-circle'>&nbsp;" +
+		    	                                "<img src='resources/images/default-profile-pic.jpg' width='40' height='40' class='rounded-circle'> &nbsp;&nbsp;" +
 		    	                                result.list[i].freenoteWriter +
 		    	                            "</td>" +
 		    	                            "<td width='140' align='right'>";

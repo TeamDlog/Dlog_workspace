@@ -21,12 +21,15 @@ import com.kh.dlog.mainmenu.freenote.model.vo.Freenote;
 import com.kh.dlog.mainmenu.freenote.model.vo.Reply;
 import com.kh.dlog.mainmenu.freenote.model.vo.SearchCondition;
 import com.kh.dlog.member.model.vo.Member;
+import com.kh.dlog.notification.model.service.NotificationService;
 
 @Controller
 public class FreenoteController {
 
 	@Autowired
 	private FreenoteService fService;
+	@Autowired
+	private NotificationService nService;
 	
 	@RequestMapping("list.fn")
 	public String selectList() {
@@ -52,10 +55,9 @@ public class FreenoteController {
 	}
 	
 	@RequestMapping("enrollForm.fn")
-	public String enrollForm(Model model) {
+	public String enrollForm(Model model, HttpSession session) {
 		
-		// 수정 필요!! 로그인한 회원 번호로!!
-		ArrayList<String> cateList = fService.selectCategory(1);
+		ArrayList<String> cateList = fService.selectCategory(((Member)session.getAttribute("loginUser")).getMemberNo());
 		model.addAttribute("cateList", cateList);
 		
 		return "mainmenu/freenote/freenoteEnrollForm";
@@ -72,8 +74,6 @@ public class FreenoteController {
 
 		if(result>0) {
 			session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
-			// 수정 필요!! 로그인한 회원 번호로!!
-			model.addAttribute("mno", 1);
 			return "redirect:list.fn";
 		}else {
 			return "common/errorPage";
@@ -96,9 +96,9 @@ public class FreenoteController {
 	}
 	
 	@RequestMapping("updateForm.fn")
-	public String deleteFreenote(int fno, Model model) {
+	public String deleteFreenote(int fno, Model model, HttpSession session) {
 		// 로그인한 회원번호로 수정
-		int mno = 1;
+		int mno = ((Member)(session.getAttribute("loginUser"))).getMemberNo();
 		ArrayList<String> cateList = fService.selectCategory(mno);
 		Freenote fn = fService.selectFreenote(fno, 0);
 		model.addAttribute("cateList", cateList);
@@ -130,7 +130,7 @@ public class FreenoteController {
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "삭제되었습니다.");
-			mv.addObject("mno", 1).setViewName("redirect:list.fn");
+			mv.setViewName("redirect:list.fn");
 		}else {
 			mv.setViewName("common/errorPage");
 		}
@@ -162,14 +162,22 @@ public class FreenoteController {
 	
 	@ResponseBody
 	@RequestMapping(value="rinsert.fn", produces="text/html; charset=utf-8")
-	public String insertReply(Reply r) {
+	public String insertReply(Reply r, String loginUserNickname, String freenoteTitle, int freenoteWriterNo) {
 
 		if(r.getRefRno()==0) {
 			r.setReplyLevel(1);
 		}else {
 			r.setReplyLevel(2);
 		}
-		return fService.insertReply(r) + "";
+		int result = fService.insertReply(r);
+		if(result>0) {
+			// 내 글이 아닐때만
+			if(Integer.parseInt(r.getReplyWriter()) != freenoteWriterNo) {
+				nService.replyNotify(loginUserNickname, freenoteTitle, freenoteWriterNo);
+			}
+		}
+		
+		return result + "";
 	}
 	
 	@ResponseBody
@@ -180,13 +188,14 @@ public class FreenoteController {
 	
 	@ResponseBody
 	@RequestMapping(value="likePost.fn", produces="text/html; charset=utf-8")
-	public String likePost(int memberNo, int fno) {
+	public String likePost(int memberNo, int fno, String loginUserNickname, String freenoteTitle, int freenoteWriterNo) {
 		Freenote fn = new Freenote();
 		fn.setFreenoteWriter(memberNo+"");
 		fn.setFreenoteNo(fno);
 		int result = fService.checkLikePost(fn);
 		if(result == 0) {
 			fService.likePost(fn);
+			nService.likePostNotify(loginUserNickname, freenoteTitle, freenoteWriterNo);
 			return "1";
 		}else {
 			fService.dislikePost(fn);
@@ -196,19 +205,34 @@ public class FreenoteController {
 	
 	@ResponseBody
 	@RequestMapping(value="likeReply.fn", produces="text/html; charset=utf-8")
-	public String likeReply(int memberNo, int rno) {
+	public String likeReply(int memberNo, int rno, String loginUserNickname) {
 		Reply r = new Reply();
 		r.setReplyWriter(memberNo+"");
 		r.setReplyNo(rno);
 		int result = fService.checkLikeReply(r);
 		if(result == 0) {
 			fService.likeReply(r);
+			Reply reply = nService.selectReplyContent(rno);
+			nService.likeReplyNotify(loginUserNickname, reply.getReplyContent(), Integer.parseInt(reply.getReplyWriter()));
 			return "1";
 		}else {
 			fService.dislikeReply(r);
 			return "0";
 		}
 	}
+
+	
+	
+    
+    @RequestMapping("test.ws")
+    public String testWs() {
+    	return "common/webSocketTest";
+    }
+    
+    @RequestMapping("test2.ws")
+    public String testWs2() {
+    	return "common/wetest2";
+    }
 }
 
 
