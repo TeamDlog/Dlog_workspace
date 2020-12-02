@@ -33,7 +33,7 @@
   ***********************************-->
   <div class="content-body" style="float: left;">
       <div class="row page-titles mx-0">
-          <h3 style="color:rgb(94, 94, 94); padding-left: 15px; font-size:17px; font-weight:bolder">가계부</h3>
+          <h3 style="color:rgb(94, 94, 94); padding-left: 15px; font-size:17px; font-weight:bolder"><a href="accountList.ac">가계부</a></h3>
       </div>
 
       <!-- row -->
@@ -46,7 +46,7 @@
                           <div class="table-responsive">
                               <!-- 검색영역 -->
                               	
-                              	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                              	
                            
                              	<input type="hidden" name="accountWriter" value="${loginUser.memberNo}">
                              	<table id="accountList" class="table" >
@@ -240,18 +240,36 @@
 				
 				var value="";
 			
-				
+				if(a.accountStatus == 'INCOME'){
 					value += '<tr>' +
 									'<td>' + a.accountDate + '</td>' +
 									'<td>' + a.accountItem + '</td>' +
 									'<td>' + a.accountDetailItem + '</td>' +
-									'<td>' + a.accountDivision + '</td>' +
-									'<td>' + a.accountStatus + '</td>' +
+									'<td>' + a.accountDivision + '</td>' +									
+									'<td>' + '수입' + '</td>' +									
 									'<td>' + a.accountMoney + '</td>' +
 									'<td>' + a.accountDataIls+ '</td>' +
 						'</tr>';
+				}else{
+					value += '<tr>' +
+									'<td>' + a.accountDate + '</td>' +
+									'<td>' + a.accountItem + '</td>' +
+									'<td>' + a.accountDetailItem + '</td>' +
+									'<td>' + a.accountDivision + '</td>' +									
+									'<td>' + '지출' + '</td>' +									
+									'<td>' + a.accountMoney + '</td>' +
+									'<td>' + a.accountDataIls+ '</td>' +
+							'</tr>';
+					}
 				
 					$("#accountList tbody:last").append(value);
+					
+				
+					$('select').prop('selectedIndex',0);
+
+				
+					
+					$(':text').val('');
 			
 			},error:function(){
 				
