@@ -37,4 +37,68 @@
 		  )
 	</insert>
 	
+	<select id="selectList"
+			parameterType="_int"
+			resultMap="calendarResultSet">
+		select 
+		       calendar_no
+		     , calendar_writer
+		     , calendar_begin_date
+		     , calendar_end_date
+		     , calendar_bg_color
+		     , calendar_font_color
+		     , calendar_begin_time
+		     , calendar_end_time
+		     , calendar_title
+		     , calendar_content
+		     , calendar_status
+		  from calendar
+		 where calendar_writer = #{calendarWriter} 
+		 order
+		    by calendar_begin_date, calendar_begin_time
+	</select>
+	
+	<select id="selectDetail"
+			parameterType="Calendar"
+			resultMap="calendarResultSet">
+		select 
+		       calendar_no
+		     , calendar_writer
+		     , calendar_begin_date
+		     , calendar_end_date
+		     , calendar_bg_color
+		     , calendar_font_color
+		     , calendar_begin_time
+		     , calendar_end_time
+		     , calendar_title
+		     , calendar_content
+		     , calendar_status
+		  from calendar
+		 where calendar_writer = #{calendarWriter} 
+		   and calendar_no = #{calendarNo}
+	</select>
+	
+	<delete id="deleteCalendar"
+			parameterType="_int">
+		delete 
+		  from calendar
+		 where calendar_no = #{calendarNo}
+	</delete>
+	
+	<update id="updateCalendar"
+			parameterType="Calendar">
+		update calendar
+		   set 
+		       calendar_begin_date = #{calendarBeginDate}
+		     , calendar_end_date = #{calendarEndDate}
+		     , calendar_bg_color = #{calendarBgColor}
+		     , calendar_font_color = #{calendarFontColor}
+		     , calendar_begin_time = #{calendarBeginTime}
+		     , calendar_end_time = #{calendarEndTime}
+		     , calendar_title = #{calendarTitle}
+		     , calendar_content = #{calendarContent}
+		 where calendar_writer = #{calendarWriter} 
+		   and calendar_no = #{calendarNo}
+	</update>
+	
 </mapper>

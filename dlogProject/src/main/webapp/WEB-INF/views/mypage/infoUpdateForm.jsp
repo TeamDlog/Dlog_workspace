@@ -39,6 +39,7 @@
 	}
 </style>
 </head>
+
 <body>
 
 	<jsp:include page="../common/myPageHeader.jsp" />
@@ -48,14 +49,17 @@
          Content body start
      ***********************************-->
      <div class="content-body" style="float: left;">
+     	<div class="row page-titles mx-0">
          <div class="col p-md-0">
 	            <ol class="breadcrumb">
 	                <li class="breadcrumb-item"><a href="infoList.my">개인정보 조회</a></li>
 	                <li class="breadcrumb-item active">개인정보 수정</li>
 	            </ol>
 	        </div>
+	       </div> 
          <!-- row -->
 
+		
          <div class="container-fluid">
              <div class="row">
                  <div class="col-12">
@@ -68,20 +72,28 @@
                                    <input type="hidden" name="memberNo" value="${loginUser.memberNo }">
                                      <table id="infoUpdateFormTable">
                                          <div class="card-body">
+                                         <c:if test="${loginUser.profile == null}">
+	                                     <div class="card-body">
+	                                         <div class="text-center" Style=border1px solid black">
+	                                             <img alt="" class="rounded-circle mt-4" src="resources/images/default-profile-pic.jpg" width="90px">
+	                                         </div>
+	                                     </div>
+	                                     </c:if>
                                              <div class="text-center">
-                                                 <img alt="" class="rounded-circle mt-4" src="${log.profile }" width="90px">
+                                                 <img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px">
                                              </div>
-                                         </div>
+                                        </div>
+                                       <tr>
                                          <td> 이름 : </td>
-                                         <td colspan="2"> <input type="text" style="width:200px;" id="writer" class="form-control" value="${loginUser.memberName }" name="memberName" readonly></td>
+                                         <td colspan="2"> ${loginUser.memberName }</td>
                                       </tr>
                                       <tr>
                                          <td>&nbsp;</td>
-                                         <td>&nbsp;</td>
+                                         <td colspan="2">&nbsp;</td>
                                      </tr>
                                        <tr>
                                          <td> 아이디 : </td>
-                                         <td colspan="2"> <input type="text" style="width:200px;" id="memberId" class="form-control" value="${loginUser.memberId }" name="memberId" readonly></td>
+                                         <td colspan="2"> ${loginUser.memberId }</td>
                                        </tr>
                                      
                                        <tr>
@@ -90,11 +102,12 @@
                                        </tr>
                                        <tr>
                                          <td> 별명 : </td>
-                                         <td colspan="2"><input style="width:200px;" type="text"  name="nickname" id="nickName" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" required value="${loginUser.nickname }"></td>
+                                         <td><input style="width:200px;" type="text"  name="nickname" id="nickname" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" value="${loginUser.nickname }"></td>
+                                         <td><button onclick="nicknameCheck2();" class="btn btn-secondary btn-sm">중복확인</button></td>
                                          </tr>
                                        <tr>
-                                         <td>&nbsp;</td>
-                                         <td>&nbsp;</td>
+                                         <td colspan="3"><p id="checkResult"></p></td>
+                                         
                                       </tr>
                                      
                                         <tr>
@@ -115,7 +128,7 @@
                                        </tr>
                                        <tr>
                                          <td>인증번호 입력 : </td>
-                                         <td><input type="text" id="inputCertifiedNumber" name="inputCertifiedNumber" placeholder="인증번호를 입력하세요" style="width: 200px;" required></td>
+                                         <td><input type="text" id="inputCertifiedNumber" name="inputCertifiedNumber" placeholder="인증번호를 입력하세요" style="width: 200px;" ></td>
                                       	 <td><button id="checkBtn" type="button" class="btn btn-secondary btn-sm">인증확인</button></td>
                                       </tr>
                                       <tr>
@@ -133,12 +146,44 @@
                                      </tr>
                                     </table>
                                    <br><br>
-                                 <button type="submit" id="infoUpdateBtn" class="btn btn-success">확인</button>
+                                 <button type="submit" id="infoUpdateBtn" class="btn btn-success" >확인</button>
                                   
                                 </form>
                                </div>
                                <br><br><br>
-                           		<script>
+                               <script>
+                           		function nicknameCheck2(){
+                            		
+                            		var $nicknameCheck2 = $("#infoUpdateForm input[name=nickname]");
+                            		
+                            		if($nicknameCheck2.val() == ""){
+                            			alert("별명을 입력해 주세요");
+                            		}else{
+                            			
+                            			$.ajax({
+                        					url:"nameCheck2.my",
+                        					data:{nickname:$nicknameCheck2.val()},
+                        					success:function(result){
+                        						
+                        						if(result == 'success'){
+                                                    
+                                                	alert($nicknameCheck2.val() + " 는(은) 이미 사용하고 있는 별명입니다. 다시 입력해주세요.");
+                                                	$nicknameCheck2.focus();
+                                                    
+                                                }else{
+                                                	
+                                                	alert($nicknameCheck2.val() + " 는(은) 사용가능합니다.");
+                                                	
+                                                }
+                        						
+                        					},error:function(){
+                        						console.log("아이디 중복체크용 ajax통신 실패");
+                        					}
+                        				})
+                            			
+                            		}
+                            		//
+                            	
                            		$('#sendPhoneNumber').click(function(){
                                     var phoneNumber = $('#phoneNumber').val();
                                     
@@ -173,8 +218,9 @@
                                         }
                                     })
                                     
-                                    
+                           		} 
                            		</script>
+                           		
                            		
                            </div>
                            

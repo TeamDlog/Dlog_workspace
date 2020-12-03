@@ -56,23 +56,9 @@ public class MemberDao {
 	
 	
 	
-	public ArrayList<Member> infoList(SqlSessionTemplate sqlSession){
-		
-		return (ArrayList)sqlSession.selectList("memberMapper.infoList", null);
-	}
 	public int infoUpdate(SqlSessionTemplate sqlSession, Member m) {
 		
 		return sqlSession.update("memberMapper.infoUpdate", m);
-	}
-	
-	public ArrayList<Member> introList(SqlSessionTemplate sqlSession) {
-		
-		return (ArrayList)sqlSession.selectList("memberMapper.introList", null);
-	}
-	
-	public ArrayList<Member> introListMn(SqlSessionTemplate sqlSession) {
-		
-		return (ArrayList)sqlSession.selectList("memberMapper.introList", null);
 	}
 	
 	public int introInsert(SqlSessionTemplate sqlSession, Member m) {
@@ -89,8 +75,7 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.updatePwd", m);
 	}
 	
-	public ArrayList<Member> profile(SqlSessionTemplate sqlSession){
-		return (ArrayList)sqlSession.selectList("memberMapper.profile", null);
+	public int nicknameCheck2(SqlSessionTemplate sqlSession, String nickname) {
+		return sqlSession.selectOne("memberMapper.nicknameCheck2", nickname);
 	}
-	
 }

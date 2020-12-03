@@ -188,50 +188,53 @@
         ***********************************-->
         <script>
         
-        	// memo
-           	$(function(){
-           		
-          		$(".memo_widget").hover(function(){
-           			$(this).children().eq(1).css({
-           				"font-size":"17px",
-               			"border":"0px",
-               			"padding":"20px",
-               			"resize":"none",
-               			"overflow":"auto",
-               			"color":"rgb(100,100,100)"
-           			});
-           		},function(){
-           			$(this).children().eq(1).css({
-           				"font-size":"17px",
-               			"border":"0px",
-               			"resize":"none",
-               			"padding":"20px",
-               			"overflow":"hidden",
-               			"color":"rgb(100,100,100)"
-           			});
-           		});
-           		
-           		$(".memo_widget_title").css({
-           			"background":"rgb(132,200,185)",
-           			"color":"white",
-           			"text-align":"center",
-           			"font-size":"25px",
-           			"height":"40px",
-           			"padding-top":"3px",
-           			"border-radius":"10px 10px 0px 0px"
-           		});
-           		
-           		$(".memo_widget_content").css({
-           			"font-size":"17px",
+     	// memo
+       	$(function(){
+
+       		$(".memo_widget").hover(function(){
+       			$(this).children().eq(1).css({
+       				"font-size":"17px",
            			"border":"0px",
-           			"width":"100%",
-           			"resize":"none",
            			"padding":"20px",
-           			"overflow":"hidden",
+           			"resize":"none",
+           			"overflow":"auto",
            			"color":"rgb(100,100,100)"
-           		});
+       			});
+	       		},function(){
+	       			$(this).children().eq(1).css({
+	       				"font-size":"17px",
+	           			"border":"0px",
+	           			"resize":"none",
+	           			"padding":"20px",
+	           			"padding-right":"35px",
+	           			"overflow":"hidden",
+	           			"color":"rgb(100,100,100)"
+	       			});
+	       		});
+	
+	       		$(".memo_widget_title").css({
+	       			"background":"rgb(132,200,185)",
+	       			"color":"white",
+	       			"text-align":"center",
+	       			"font-size":"25px",
+	       			"height":"40px",
+	       			"padding-top":"3px",
+	       			"border-radius":"10px 10px 0px 0px"
+	       		});
+	
+	       		$(".memo_widget_content").css({
+	       			"font-size":"17px",
+	       			"border":"0px",
+	       			"width":"100%",
+	       			"resize":"none",
+	       			"padding":"20px",
+	       			"padding-right":"35px",
+	       			"overflow":"hidden",
+	       			"color":"rgb(100,100,100)"
+	       		});
+
+       		})
            		
-           	})
         </script>
         
         <script>

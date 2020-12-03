@@ -19,6 +19,7 @@ a {
 
 <jsp:include page="../../common/diaryHeader.jsp" />
 
+
   <!--**********************************
       Content body start
   ***********************************-->
@@ -73,9 +74,7 @@ a {
                                       </c:if>
                                   </tbody>
                               </table>
-                                      <div width="100" align="right">
-                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
-                                      </div>
+                                      
                             	<script>
 	                           	$("#list>tbody>tr").click(function(){
 	           				    	var dno = $(this).children().eq(0).text();
@@ -85,7 +84,8 @@ a {
                               <br>
                               <!-- 페이징 -->
                               <table align="center">
-                                  <tr>
+                            <c:if test="${d.diaryNo != null}">
+                            	<tr>
                                       <td width="100" align="center"></td>
                                       <td width="600">
                                           <ul class="pagination justify-content-center">
@@ -116,8 +116,25 @@ a {
                                             </c:choose> 
                                           </ul>
                                       </td>
+                                      <td>
+                                      <div width="300" align="right">
+                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
+                                      </div>
+                                      </td>
                                      
                                   </tr>
+                                  </c:if>
+                                  <c:if test="${ empty list }">
+                                  	<tr>
+                                  		<td width="100" align="center"></td>
+                                      	<td width="600"></td>
+                                      	<td>
+                                      		<div width="300" align="right">
+                                         	 <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
+                                      		</div>
+                                      	</td>
+                                  	</tr>
+                                  </c:if>
                               </table>
                           </div>                                
                       </div>
