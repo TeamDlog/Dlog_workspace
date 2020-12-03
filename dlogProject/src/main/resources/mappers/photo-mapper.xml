@@ -30,7 +30,7 @@
 		values 
 		       (
 		         seq_photono.nextval
-		       , 2
+		       , #{photoWriter}
 		       , #{photoOriginName}
 		       , #{photoChangeName}
 		       , #{photoDate}
@@ -45,7 +45,7 @@
 			resultType="_int">
 		select count(*)
 		  from photo
-		 where photo_writer = #{photoWrtier}		
+		 where photo_writer = #{photoWriter}		
 	</select>
 			
 	<select id="selectPhotoList"
