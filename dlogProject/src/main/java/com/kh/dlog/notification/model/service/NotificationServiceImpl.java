@@ -19,23 +19,23 @@ public class NotificationServiceImpl implements NotificationService {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int likePostNotify(String loginUserNickname, String freenoteTitle, int freenoteWriterNo) {
+	public Notification likePostNotify(String loginUserNickname, String freenoteTitle, int freenoteWriterNo) {
 		Notification n = new Notification();
 		n.setNotificationContent(loginUserNickname + "님이 게시글 \"" + freenoteTitle + "\"에 좋아요를 표시했습니다.");
 		n.setNotificationCategory(1);
 		n.setMemberNo(freenoteWriterNo);
-		
-		return nDao.insertNotification(sqlSession, n);
+		nDao.insertNotification(sqlSession, n);
+		return n;
 	}
 	
 	@Override
-	public int likeReplyNotify(String loginUserNickname, String replyContent, int replyWriter) {
+	public Notification likeReplyNotify(String loginUserNickname, String replyContent, int replyWriter) {
 		Notification n = new Notification();
 		n.setNotificationContent(loginUserNickname + "님이 댓글 \"" + replyContent + "\"에 좋아요를 표시했습니다.");
 		n.setNotificationCategory(1);
 		n.setMemberNo(replyWriter);
-		
-		return nDao.insertNotification(sqlSession, n);
+		nDao.insertNotification(sqlSession, n);
+		return n;
 	}
 	
 	@Override
@@ -44,33 +44,33 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	@Override
-	public int replyNotify(String loginUserNickname, String freenoteTitle, int freenoteWriterNo) {
+	public Notification replyNotify(String loginUserNickname, String freenoteTitle, int freenoteWriterNo) {
 		Notification n = new Notification();
 		n.setNotificationContent(loginUserNickname + "님이 게시글 \"" + freenoteTitle + "\"에 댓글을 남겼습니다.");
 		n.setNotificationCategory(2);
 		n.setMemberNo(freenoteWriterNo);
-		
-		return nDao.insertNotification(sqlSession, n);
+		nDao.insertNotification(sqlSession, n);
+		return n;
 	}
 
 	@Override
-	public int friendRequestNotify(String loginUserNickname, int friendAccepted) {
+	public Notification friendRequestNotify(String loginUserNickname, int friendAccepted) {
 		Notification n = new Notification();
 		n.setNotificationContent(loginUserNickname + "님이 친구 요청하셨습니다.");
 		n.setNotificationCategory(3);
 		n.setMemberNo(friendAccepted);
-		
-		return nDao.insertNotification(sqlSession, n);
+		nDao.insertNotification(sqlSession, n);
+		return n;
 	}
 
 	@Override
-	public int friendAcceptNotify(String loginUserNickname, int friendAccepted) {
+	public Notification friendAcceptNotify(String loginUserNickname, int friendAccepted) {
 		Notification n = new Notification();
 		n.setNotificationContent(loginUserNickname + "님이 친구 수락하셨습니다.");
 		n.setNotificationCategory(4);
 		n.setMemberNo(friendAccepted);
-		
-		return nDao.insertNotification(sqlSession, n);
+		nDao.insertNotification(sqlSession, n);
+		return n;
 	}
 
 	@Override
@@ -79,30 +79,33 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	@Override
-	public int friendNewPostNotify(int loginUserNo, String loginUserNickname) {
+	public Notification friendNewPostNotify(int loginUserNo, String loginUserNickname) {
 		Notification n = new Notification();
 		n.setNotificationContent("친구 " + loginUserNickname + "님이 새글을 등록했습니다.");
 		n.setNotificationCategory(5);
 		ArrayList flist = selectFriendList(loginUserNo);
-		return nDao.insertNotifications(sqlSession, n, flist);
+		nDao.insertNotifications(sqlSession, n, flist);
+		return n;
 	}
 	
 	@Override
-	public int inquiryEmailNotify(int inquiryWriterNo) {
+	public Notification inquiryEmailNotify(int inquiryWriterNo) {
 		Notification n = new Notification();
 		n.setNotificationContent("1:1문의 답변이 이메일로 전송되었습니다.");
 		n.setNotificationCategory(6);
 		n.setMemberNo(inquiryWriterNo);
-		return nDao.insertNotification(sqlSession, n);
+		nDao.insertNotification(sqlSession, n);
+		return n;
 	}
 
 	@Override
-	public int reportCheckNotify(int reportWriterNo) {
+	public Notification reportCheckNotify(int reportWriterNo) {
 		Notification n = new Notification();
 		n.setNotificationContent("신고하신 내역이 처리되었습니다.");
 		n.setNotificationCategory(7);
 		n.setMemberNo(reportWriterNo);
-		return nDao.insertNotification(sqlSession, n);
+		nDao.insertNotification(sqlSession, n);
+		return n;
 	}
 
 	@Override

@@ -175,8 +175,14 @@
         					friendOwner:${loginUser.memberNo}
         				}, success:function(result){
         					
-        					if(result == 1){
+        					if(result.result == 1){
         						alert("친구 요청 되었습니다.");
+        						
+        						if(socket && result.n != null){
+        							var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+        							socket.send(socketMsg);
+        						}
+        						
         					}else{
         						alert("이미 친구이거나 친구 승인 대기 중 입니다.");
         					}
@@ -259,9 +265,15 @@
 					freenoteWriterNo:${ fn.memberNo }
 				}, success:function(result){
 					
-					if(result>0){
+					if(result.result>0){
 						$("#likeCount").html( parseInt($("#likeCount").text()) + 1);
 						$("#heart").html("<i class='fas fa-heart' style='color: black;'></i>");
+						
+						if(socket && result.n != null){
+							var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+							socket.send(socketMsg);
+						}
+						
 					}else{
 						$("#likeCount").html( parseInt($("#likeCount").text()) - 1 );
 						$("#heart").html("<i class='far fa-heart' style='color: black;'></i>");
@@ -283,9 +295,15 @@
 					loginUserNickname:'${ loginUser.nickname }'
 				}, success:function(result){
 					
-					if(result>0){
+					if(result.result>0){
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) + 1);
 						$("#heart-" + rno).html("<i class='fas fa-heart'></i>");
+						
+						if(socket && result.n != null){
+							var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+							socket.send(socketMsg);
+						}
+						
 					}else{
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) - 1 );
 						$("#heart-" + rno).html("<i class='far fa-heart'></i>");
@@ -512,13 +530,14 @@
 						freenoteTitle:'${ fn.freenoteTitle }',
 						freenoteWriterNo:${ fn.memberNo }
 					}, success:function(result){
-						if(result>0){
+						if(result.result>0){
 							$("#addReply2-" + refRno).find("textarea").val("");
 							$("#addReply2-" + refRno).children("span").text("0");
 							selectReplyList(cPage, refRno);
 							
-							if(socket){
-								var socketMsg = "reply,${ loginUser.nickname },${ fn.freenoteWriter },${ fn.freenoteTitle }";
+							if(socket && result.n != null){
+								//var socketMsg = "reply,${ loginUser.nickname },${ fn.freenoteWriter },${ fn.freenoteTitle }";
+								var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
 								socket.send(socketMsg);
 							}
 						}

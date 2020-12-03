@@ -22,6 +22,7 @@ import com.kh.dlog.mainmenu.freenote.model.vo.Freenote;
 import com.kh.dlog.mainmenu.freenote.model.vo.SearchCondition;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.notification.model.service.NotificationService;
+import com.kh.dlog.notification.model.vo.Notification;
 
 @Controller
 public class CommunityController {
@@ -118,17 +119,19 @@ public class CommunityController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="friend.co", produces="text/html; charset=utf-8")
+	@RequestMapping(value="friend.co", produces="application/json; charset=utf-8")
 	public String requestFriend(Friend friend, HttpSession session) {
-		
 		int result = fService.checkFriend(friend);
+		JSONObject jobj = new JSONObject();
 		if(result==0) {
-			nService.friendRequestNotify(((Member)session.getAttribute("loginUser")).getNickname(), friend.getFriendAccepted());
-			result = fService.requestFriend(friend);
-			return "1";
+			fService.requestFriend(friend);
+			Notification n = nService.friendRequestNotify(((Member)session.getAttribute("loginUser")).getNickname(), friend.getFriendAccepted());
+			jobj.put("result", 1);
+			jobj.put("n", n);
 		}else {
-			return "0";
+			jobj.put("result", 0);
 		}
+		return new Gson().toJson(jobj);
 	}
 	
 	

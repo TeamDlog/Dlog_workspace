@@ -176,7 +176,7 @@
                                     <i class="mdi mdi-bell-outline"></i>
                                     <span class="badge badge-pill gradient-2 badge-primary" id="notificationCount"></span>
                                 </a>
-                                <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication" style="max-height: 500px; overflow: auto;">
+                                <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication" id="notifyDiv" style="max-height: 500px; overflow: auto;">
                                     <div class="dropdown-content-heading d-flex justify-content-between">
                                         <span><font id="notificationCount2">0</font>개의 새로운 알림</span>  
                                         
@@ -190,6 +190,7 @@
                             <script>
                             	$(function(){
                             		loadNotification(${loginUser.memberNo});
+                            		//setInterval(loadNotification, 2000, ${loginUser.memberNo});
                             	});
                             	
                             	function loadNotification(loginUserNo){
@@ -222,7 +223,7 @@
 				                                                                    "<h6 class='notification-heading'>" + result.list[i].notificationContent + "</h6>" +
 				                                                                "</td>" +
 				                                                                "<td>" +
-				                                                                   "<a class='alertDeleteBtn' onclick='deleteNotification(" + result.list[i].notificationNo + ");' style='font-size: 20px; font-weight: bold; margin-left: 10px;'><i class='mdi mdi-check'></i><a>" +
+				                                                                   "<a class='alertDeleteBtn' onclick='deleteNotification(" + result.list[i].notificationNo + ");' style='font-size: 20px; font-weight: bold; margin-left: 10px;'><i class='mdi mdi-close'></i><a>" +
 				                                                                "</td>" +
 				                                                            "</tr>" +
 				                                                        "</table>" +

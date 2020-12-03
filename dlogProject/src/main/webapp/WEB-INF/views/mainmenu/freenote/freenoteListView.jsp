@@ -24,6 +24,7 @@
 			$(".metismenu a[href*='list.fn']").parent().addClass("active");
 		});
 	</script>
+	
 	<!--**********************************
 	             Content body start
 	***********************************-->
@@ -214,7 +215,7 @@
     						paging += "<li class='page-item'><a class='page-link' onclick='pageNo(" + ($currentPage + 1) + ");'>Next</a></li>";
     					}
     					$(".container-fluid .pagination").html(paging);
-                        
+    					
 					}else{
 						$("#listArea>tbody").html("<td colspan='5'>조회된 글이 없습니다.</td>");
 						$(".container-fluid .pagination").html("");
@@ -225,7 +226,28 @@
 				}
 			});
 		}
-	
+	</script>
+	<script>
+		function friendNewPostNotify(){
+			$.ajax({
+				url:"newpost.nf",
+				success:function(result){
+					console.log('hi');
+					socket.send("3,hi");
+					if(result.n != null && socket != null){
+						
+						for(i in result.flist){
+							var socketMsg = flist[i] + "," + result.n.notificationContent;
+			                console.log(socketMsg);
+			                socket.send(socketMsg);
+						}
+					}
+					
+				},error:function(){
+					console.log("친구 새로운 글 등록 알림 ajax 통신 실패");
+				}
+			});
+		}
 	</script>
 	
 	

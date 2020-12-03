@@ -22,6 +22,7 @@ import com.kh.dlog.mainmenu.freenote.model.vo.Reply;
 import com.kh.dlog.mainmenu.freenote.model.vo.SearchCondition;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.notification.model.service.NotificationService;
+import com.kh.dlog.notification.model.vo.Notification;
 
 @Controller
 public class FreenoteController {
@@ -74,7 +75,10 @@ public class FreenoteController {
 
 		if(result>0) {
 			if(fn.getFreenotePrivacy().equals("Y")) {
-				nService.friendNewPostNotify(((Member)session.getAttribute("loginUser")).getMemberNo(), ((Member)session.getAttribute("loginUser")).getNickname());
+				ArrayList flist = nService.selectFriendList(((Member)session.getAttribute("loginUser")).getMemberNo());
+				Notification n = nService.friendNewPostNotify(((Member)session.getAttribute("loginUser")).getMemberNo(), ((Member)session.getAttribute("loginUser")).getNickname());
+				//session.setAttribute("n", n);
+				//session.setAttribute("flist", flist);
 			}
 			session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
 			return "redirect:list.fn";
@@ -164,7 +168,7 @@ public class FreenoteController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="rinsert.fn", produces="text/html; charset=utf-8")
+	@RequestMapping(value="rinsert.fn", produces="application/json; charset=utf-8")
 	public String insertReply(Reply r, String loginUserNickname, String freenoteTitle, int freenoteWriterNo) {
 
 		if(r.getRefRno()==0) {
@@ -173,14 +177,15 @@ public class FreenoteController {
 			r.setReplyLevel(2);
 		}
 		int result = fService.insertReply(r);
-		if(result>0) {
+		JSONObject jobj = new JSONObject();
+		jobj.put("result", result);
+		if(result>0 && Integer.parseInt(r.getReplyWriter()) != freenoteWriterNo) {
 			// 내 글이 아닐때만
-			if(Integer.parseInt(r.getReplyWriter()) != freenoteWriterNo) {
-				nService.replyNotify(loginUserNickname, freenoteTitle, freenoteWriterNo);
-			}
+			Notification n = nService.replyNotify(loginUserNickname, freenoteTitle, freenoteWriterNo);
+			jobj.put("n", n);
 		}
 		
-		return result + "";
+		return new Gson().toJson(jobj);
 	}
 	
 	@ResponseBody
@@ -190,63 +195,45 @@ public class FreenoteController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="likePost.fn", produces="text/html; charset=utf-8")
+	@RequestMapping(value="likePost.fn", produces="application/json; charset=utf-8")
 	public String likePost(int memberNo, int fno, String loginUserNickname, String freenoteTitle, int freenoteWriterNo) {
 		Freenote fn = new Freenote();
 		fn.setFreenoteWriter(memberNo+"");
 		fn.setFreenoteNo(fno);
 		int result = fService.checkLikePost(fn);
+		JSONObject jobj = new JSONObject();
 		if(result == 0) {
 			fService.likePost(fn);
-			nService.likePostNotify(loginUserNickname, freenoteTitle, freenoteWriterNo);
-			return "1";
+			Notification n = nService.likePostNotify(loginUserNickname, freenoteTitle, freenoteWriterNo);
+			jobj.put("result", 1);
+			jobj.put("n", n);
 		}else {
 			fService.dislikePost(fn);
-			return "0";
+			jobj.put("result", 0);
 		}
+		return new Gson().toJson(jobj);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="likeReply.fn", produces="text/html; charset=utf-8")
+	@RequestMapping(value="likeReply.fn", produces="application/json; charset=utf-8")
 	public String likeReply(int memberNo, int rno, String loginUserNickname) {
 		Reply r = new Reply();
 		r.setReplyWriter(memberNo+"");
 		r.setReplyNo(rno);
 		int result = fService.checkLikeReply(r);
+		JSONObject jobj = new JSONObject();
 		if(result == 0) {
 			fService.likeReply(r);
 			Reply reply = nService.selectReplyContent(rno);
-			nService.likeReplyNotify(loginUserNickname, reply.getReplyContent(), Integer.parseInt(reply.getReplyWriter()));
-			return "1";
+			Notification n = nService.likeReplyNotify(loginUserNickname, reply.getReplyContent(), Integer.parseInt(reply.getReplyWriter()));
+			jobj.put("result", 1);
+			jobj.put("n", n);
 		}else {
 			fService.dislikeReply(r);
-			return "0";
+			jobj.put("result", 0);
 		}
+		return new Gson().toJson(jobj);
 	}
 
-	
-	
-    
-    @RequestMapping("test.ws")
-    public String testWs() {
-    	return "mainmenu/freenote/webSocketTest";
-    }
-    
-    @RequestMapping("test2.ws")
-    public String testWs2() {
-    	return "mainmenu/freenote/wetest2";
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -24,14 +24,14 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception{
 //		System.out.println("afterConnectionEstablished:" + session);
 		sessions.add(session);
-		String senderNickname = getNickname(session);
-		userSessions.put(senderNickname, session);
+		String senderUserNo = getUserNo(session);
+		userSessions.put(senderUserNo, session);
 	}
 	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception{
 //		System.out.println("handleTextMessage:" + session + " : " + message);
-		String senderNickname = getNickname(session);
+//		String senderNickname = getNickname(session);
 //		for(WebSocketSession sess: sessions) {
 //			sess.sendMessage(new TextMessage(senderId + ": " + message.getPayload()));
 //		}
@@ -40,16 +40,22 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 		if(StringUtils.isNotEmpty(msg)) {
 			String[] strs = message.getPayload().split(",");
-			if(strs != null && strs.length == 4) {
-				String cmd = strs[0];
-				String replyWriter = strs[1];
-				String boardWriter = strs[2];
-				String title = strs[3];
+			if(strs != null) {
+//				String cmd = strs[0];
+//				String replyWriter = strs[1];
+//				String boardWriter = strs[2];
+//				String title = strs[3];
+//				WebSocketSession boardWriterSession = userSessions.get(boardWriter);
+//				if("reply".equals(cmd) && boardWriterSession != null) {
+//					TextMessage tmpMsg = new TextMessage(replyWriter + "님이 게시글 \"" + title + "\"에 댓글을 달았습니다.");
+//					boardWriterSession.sendMessage(tmpMsg);
+//				}
 				
-				WebSocketSession boardWriterSession = userSessions.get(boardWriter);
-				if("reply".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(replyWriter + "님이 게시글 \"" + title + "\"에 댓글을 달았습니다.");
-					boardWriterSession.sendMessage(tmpMsg);
+				String memberNo = strs[0];
+				String content = strs[1];
+				WebSocketSession WriterSession = userSessions.get(memberNo);
+				if(WriterSession != null) {
+					WriterSession.sendMessage(new TextMessage(content));
 				}
 			}
 		}
@@ -62,6 +68,15 @@ public class WebSocketHandler extends TextWebSocketHandler {
 			return session.getId();
 		else
 			return loginUser.getNickname();
+	}
+	
+	private String getUserNo(WebSocketSession session) {
+		Map<String, Object> httpSession = session.getAttributes();
+		Member loginUser = (Member)httpSession.get("loginUser");
+		if(null == loginUser)
+			return session.getId();
+		else
+			return loginUser.getMemberNo() + "";
 	}
 
 	@Override

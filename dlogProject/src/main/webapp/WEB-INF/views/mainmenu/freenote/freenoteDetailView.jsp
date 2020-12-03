@@ -163,7 +163,6 @@
 		*/
 		
 		// 댓글 좋아요 hover
-		$()
 		
 		// 글 좋아요 버튼
 	    function likePost(){
@@ -179,9 +178,15 @@
 				}, success:function(result){
 					
 					
-					if(result>0){
+					if(result.result>0){
 						$("#likeCount").html( parseInt($("#likeCount").text()) + 1);
 						$("#heart").html("<i class='mdi mdi-heart'></i>");
+						
+						if(socket && result.n != null){
+							var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+							socket.send(socketMsg);
+						}
+						
 					}else{
 						$("#likeCount").html( parseInt($("#likeCount").text()) - 1 );
 						$("#heart").html("<i class='mdi mdi-heart-outline'></i>");
@@ -206,9 +211,15 @@
 					freenoteWriterNo:${ fn.memberNo }
 				}, success:function(result){
 					
-					if(result>0){
+					if(result.result>0){
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) + 1);
 						$("#heart-" + rno).html("<i class='mdi mdi-heart'></i>");
+						
+						if(socket && result.n != null){
+							var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+							socket.send(socketMsg);
+						}
+						
 					}else{
 						$("#likeCount-" + rno).html( parseInt($("#likeCount-" + rno).text()) - 1 );
 						$("#heart-" + rno).html("<i class='mdi mdi-heart-outline'></i>");
@@ -419,13 +430,14 @@
 						freenoteTitle:'${ fn.freenoteTitle }',
 						freenoteWriterNo:${ fn.memberNo }
 					}, success:function(result){
-						if(result>0){
+						if(result.result>0){
 							$("#addReply2-" + refRno).find("textarea").val("");
 							$("#addReply2-" + refRno).children("span").text("0");
 							selectReplyList(cPage, refRno);
 							
-							if(socket){
-								var socketMsg = "reply,${ loginUser.nickname },${ fn.freenoteWriter },${ fn.freenoteTitle }";
+							if(socket && result.n != null){
+								//var socketMsg = "reply,${ loginUser.nickname },${ fn.freenoteWriter },${ fn.freenoteTitle }";
+								var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
 								socket.send(socketMsg);
 							}
 						}

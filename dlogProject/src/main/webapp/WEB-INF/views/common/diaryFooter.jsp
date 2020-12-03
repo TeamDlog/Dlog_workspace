@@ -74,7 +74,7 @@
 		    	//console.log('Info: connection closed.'); 
 		        //setTimeout( function(){ connect(); }, 1000); // retry connection!!
 		    };
-		    ws.onerror = function (err) { console.log('Error:', err); };
+		    ws.onerror = function (err) { console.log('Error:' + err); };
 	    }
     </script>
     
