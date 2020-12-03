@@ -79,29 +79,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 
-	@Override
-	public ArrayList<Member> infoList() {
-		
-		return mDao.infoList(sqlSession);
-		
-	}
-
 	
 	@Override
 	public int infoUpdate(Member m) {
 		return mDao.infoUpdate(sqlSession, m);
 		
-	}
-
-
-	@Override
-	public ArrayList<Member> introList() {
-		return mDao.introList(sqlSession);
-	}
-
-	@Override
-	public ArrayList<Member> introListMn() {
-		return mDao.introListMn(sqlSession);
 	}
 
 	@Override
@@ -120,9 +102,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<Member> profile() {
-		return mDao.profile(sqlSession);
+	public int nicknameCheck2(String nickname) {
+		return mDao.nicknameCheck2(sqlSession, nickname);;
 	}
+
+	
 	
 
 }
