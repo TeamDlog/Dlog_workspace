@@ -1,22 +1,31 @@
 package com.kh.dlog.member.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
+import com.kh.dlog.template.Coolsms;
 import com.kh.dlog.widget.dday.model.service.DdayService;
 import com.kh.dlog.widget.timetable.model.Service.TimetableService;
 import com.kh.dlog.widget.timetable.model.vo.Timetable;
@@ -324,31 +333,99 @@ public class MemberController {
 	}
 	
 	@RequestMapping("infoUpdateForm.my")
-	public String infoUpdateForm() {
+	public String infoUpdateForm(Member m,HttpSession session) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		session.setAttribute("loginUser", mService.loginMember(m));
+		
+		
 		return "mypage/infoUpdateForm";
 	}
 	
 	
 	
 	@RequestMapping("infoUpdate.my")
-	public String updateMember(Member m, HttpSession session, Model model) {
+	public String updateMember(Member m, HttpSession session, Model model, MultipartFile upfile) {
+		
+		//System.out.println(m); 누락확인
+		
+		if(!upfile.getOriginalFilename().equals("")) {
+			
+			if(m.getProfile() != null) {
+				
+				String removeFilePath = session.getServletContext().getRealPath(m.getProfile());//그파일의 물리적경로
+				new File(removeFilePath).delete();
+			}
+			
+			String changeName = saveFile(upfile, session); //
+			m.setProfile("resources/uploads/" + changeName);
+		}
+		
+		
 		
 		int result = mService.infoUpdate(m);
 		
 		if(result > 0) { 
 			
-			session.setAttribute("loginUser", mService.loginMember(m));  
 			session.setAttribute("alertMsg", "성공적으로 정보 변경되었습니다.");
 			
-			return "redirect:infoUpdateForm";
+			return "redirect:infoUpdateForm.my";
 		}else {
 			
 			model.addAttribute("errorMsg", "정보 변경 실패");
 			return "common/errorPage";
 		}
-	
+		 
+		
+		
+		
+		
+		
+		
+		/* insert
+		//프로필, 전화번호 / 이메일, 별명
+		
+		//넘어온 파일이 없으면 "", 넘어온 파일이 있으면 "원본명"
+		//전달된 파일이 있을 경우 => 파일명 수정 작업 후 업로드
+		if(!upfile.getOriginalFilename().equals("")) {
+
+			String changeName = saveFile(upfile, session);
+			
+			if(changeName != null) {
+				m.setProfile("resources/uploads/"+changeName);
+			
+			}
+		}
+		*/
 
 	}
+	
+	//업로드용 
+	public String saveFile(MultipartFile upfile, HttpSession session) {
+		
+		String originName = upfile.getOriginalFilename();
+		
+		String savePath = session.getServletContext().getRealPath("/resources/uploads/"); //물리적인 경로를 알아야 폴더에 업로드가능
+		
+		//원본면 aa.jpg-> 실제업로드("202022038338483434.jpg") 
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		int ranNum = (int)(Math.random() * 90000 + 10000);
+		String ext = originName.substring(originName.lastIndexOf("."));//.부터 끝
+		
+		String changeName = currentTime + ranNum + ext; //서버에 업로드될 이름
+		
+		try {
+			upfile.transferTo(new File(savePath + changeName));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return changeName;
+	}
+
 	 @RequestMapping("introList.my")
 	 public String introList(HttpSession session, Model model) {
 		 
