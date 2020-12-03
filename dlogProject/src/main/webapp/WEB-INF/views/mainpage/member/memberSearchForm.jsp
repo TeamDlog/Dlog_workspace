@@ -152,12 +152,19 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">아이디 조회</h5>
-                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                    <button type="button" id="closeIdCheck" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body" align="center">
                                     <br>
-                                    <h6>${ result }</h6>
+                                    <c:choose>
+                                    	<c:when test="${ result eq null }">
+                                    		<h6>회원님의 아이디를 찾을 수 없습니다.</h6>
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    		<h6>${ result }</h6>
+                                    	</c:otherwise>
+                                    </c:choose>
                                     <br>
                                 </div>
                                 <div class="modal-footer">
@@ -246,6 +253,10 @@
                 		
                 	})
                 	*/
+                	
+                	$("#closeIdCheck").click(function(){
+                		$("#idSearchFrom")[0].reset();
+                	})
         </script>
 
         <img id="bug1" src="resources/images/bug.png">

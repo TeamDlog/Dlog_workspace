@@ -180,7 +180,6 @@ public class MemberController {
 			
 		}else {
 			
-			session.setAttribute("result", "회원님의 아이디를 찾을 수 없습니다.");
 			return "fail";
 			
 		}
