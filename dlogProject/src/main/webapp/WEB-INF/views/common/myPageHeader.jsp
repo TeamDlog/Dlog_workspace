@@ -62,7 +62,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <div class="brand-logo" id="logoColor" style="background:rgb(204, 202, 202)">
+                <div class="brand-logo" id="logoColor">
                     <a href="#">
                         <b class="logo-abbr"><img src="resources/images/DlogLogo-text-short.png" alt="" width="19px"></b>
                         <span class="logo-compact"><img src="resources/images/DlogLogo-text.png" alt="" width="87"></span>
