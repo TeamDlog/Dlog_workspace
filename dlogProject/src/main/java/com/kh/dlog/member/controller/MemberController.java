@@ -19,14 +19,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.dlog.common.model.vo.PageInfo;
+import com.kh.dlog.common.template.Pagination;
+import com.kh.dlog.friend.model.service.FriendService;
+import com.kh.dlog.friend.model.vo.Friend;
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
 import com.kh.dlog.template.Coolsms;
 import com.kh.dlog.widget.dday.model.service.DdayService;
+import com.kh.dlog.widget.memo.model.service.MemoService;
+import com.kh.dlog.widget.memo.model.vo.Memo;
 import com.kh.dlog.widget.timetable.model.Service.TimetableService;
 import com.kh.dlog.widget.timetable.model.vo.Timetable;
 
@@ -46,6 +53,10 @@ public class MemberController {
 	private TimetableService tService;
 	@Autowired
 	private DdayService dService;
+	@Autowired
+	private FriendService fService;
+	@Autowired
+	private MemoService meService;
 
 	@RequestMapping("mainpage.me")
 	public String mainpage() {
@@ -216,10 +227,19 @@ public class MemberController {
 	}
 
 	@RequestMapping("login.me")
-	public String loginMember(Member m, HttpSession session, Model model) {
+	public String loginMember(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Member m, HttpSession session, Model model) {
 		
 		Member loginUser = mService.loginMember(m);
 		ArrayList<Member> list = mService.selectMemberList();
+		
+		// friend session 넣기
+		int friendListCount = fService.selectFriendListCount(loginUser.getMemberNo());
+		PageInfo pi2 = Pagination.getPageInfo(friendListCount, currentPage, 3, 5);
+		ArrayList<Friend> friendList = fService.selectFriendList(loginUser.getMemberNo(), pi2);
+		Memo memoWidget = meService.selectMemoWidget(loginUser.getMemberNo());
+		
+		// request friendList
+		ArrayList<Friend> requestFriend = fService.requestFriend(loginUser.getMemberNo());
 		
 		if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getMemberPwd(), loginUser.getMemberPwd())*/) {
 			
@@ -253,6 +273,13 @@ public class MemberController {
 				session.setAttribute("timetableList", tlist);
 				// diaryMemberNo 추가한 로그인유저 객체 세션에 보관
 				session.setAttribute("loginUser", loginUser);
+				
+				// friend, memoWidget
+				session.setAttribute("pi2",pi2);
+				session.setAttribute("friendList",friendList);
+				session.setAttribute("requestFriend", requestFriend);
+				session.setAttribute("memoWidget", memoWidget);
+				
 				return "redirect:/";
 				
 			}else {
