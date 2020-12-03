@@ -29,22 +29,15 @@ public interface MemberService {
 	int insertColor();
 	
 	
-	ArrayList<Member> infoList();
-	
 	int infoUpdate(Member m);
 	
-	ArrayList<Member> introList();
-	
-	ArrayList<Member> introListMn();
+	int nicknameCheck2(String nickname);
 	
 	int introInsert(Member m);
 	
 	int deleteMember(String memberId);
 
 	int updatePwd(Member m);
-	
-	ArrayList<Member> profile();
-	
 	
 	
 

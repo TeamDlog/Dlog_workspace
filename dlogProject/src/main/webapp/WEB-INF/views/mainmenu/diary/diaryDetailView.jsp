@@ -24,6 +24,13 @@
 
 <jsp:include page="../../common/diaryHeader.jsp" />
 
+ <script>
+      $(function(){
+         $(".metismenu a[href*='list.di']").addClass("active");
+         $(".metismenu a[href*='list.di']").parent().addClass("active");
+      });
+   </script>
+
 <!--**********************************
                Content body start
  ***********************************-->

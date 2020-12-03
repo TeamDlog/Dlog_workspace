@@ -319,11 +319,6 @@ public class MemberController {
 	@RequestMapping("infoList.my")
 	public String infoList(HttpSession session, Model model) {
 		
-		ArrayList<Member> list = mService.infoList();
-		
-		
-		model.addAttribute("list",list);
-		
 		return "mypage/infoListView";
 	}
 	
@@ -361,11 +356,6 @@ public class MemberController {
 	@RequestMapping("infoUpdateForm.my")
 	public String infoUpdateForm(Member m,HttpSession session) {
 		
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		session.setAttribute("loginUser", mService.loginMember(m));
-		
-		
 		return "mypage/infoUpdateForm";
 	}
 	
@@ -394,8 +384,11 @@ public class MemberController {
 		
 		if(result > 0) { 
 			
+			((Member)session.getAttribute("loginUser")).setNickname(m.getNickname());
+			((Member)session.getAttribute("loginUser")).setEmail(m.getEmail());
+			((Member)session.getAttribute("loginUser")).setPhone(m.getPhone());
+			((Member)session.getAttribute("loginUser")).setProfile(m.getProfile());
 			session.setAttribute("alertMsg", "성공적으로 정보 변경되었습니다.");
-			
 			return "redirect:infoUpdateForm.my";
 		}else {
 			
@@ -403,30 +396,7 @@ public class MemberController {
 			return "common/errorPage";
 		}
 		 
-		
-		
-		
-		
-		
-		
-		/* insert
-		//프로필, 전화번호 / 이메일, 별명
-		
-		//넘어온 파일이 없으면 "", 넘어온 파일이 있으면 "원본명"
-		//전달된 파일이 있을 경우 => 파일명 수정 작업 후 업로드
-		if(!upfile.getOriginalFilename().equals("")) {
-
-			String changeName = saveFile(upfile, session);
-			
-			if(changeName != null) {
-				m.setProfile("resources/uploads/"+changeName);
-			
-			}
-		}
-		*/
-
 	}
-	
 	//업로드용 
 	public String saveFile(MultipartFile upfile, HttpSession session) {
 		
@@ -451,15 +421,24 @@ public class MemberController {
 		
 		return changeName;
 	}
+	
+	@ResponseBody
+	@RequestMapping("nameCheck2.my")
+	public String nicknameCheck2(String nickname) {
+		
+		int count = mService.nicknameCheck2(nickname);
+		
+		if(count > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+	
 
 	 @RequestMapping("introList.my")
 	 public String introList(HttpSession session, Model model) {
-		 
-		 Member loginUser = (Member)session.getAttribute("loginUser");
-
-		 ArrayList<Member> list = mService.introList();
-		 
-		 model.addAttribute("list",list);
 		 
 		 return "mypage/introListView";
 	 }
@@ -467,19 +446,13 @@ public class MemberController {
 	 @RequestMapping("introListMn.my")
 	 public String introListMn(HttpSession session, Model model) {
 		 
-		 Member loginUser = (Member)session.getAttribute("loginUser");
-		 
-		 ArrayList<Member> list = mService.introListMn();
-		 
-		 model.addAttribute("list",list);
-		 
 		 return "mypage/introListViewManagement";
 	 }
 	 
 	 
 	 
 	 @RequestMapping("introEnrollForm.my")
-		public String enrollForm(Model model) {
+		public String enrollForm() {
 		 
 		 return "mypage/introEnrollForm";
 		}
@@ -487,10 +460,17 @@ public class MemberController {
 	 @RequestMapping("introInsert.my")
 	 public String introInsert(Member m, HttpSession session, Model model) {
 		 
+		 System.out.println(m.getIntroductionTitle());
+		 System.out.println(m.getIntroductionContent());
+		 
 		 int result = mService.introInsert(m);
 			
+		 
 			if(result > 0) { 
-				session.setAttribute("loginUser", mService.loginMember(m));
+				((Member)session.getAttribute("loginUser")).setIntroductionTitle(m.getIntroductionTitle());
+				((Member)session.getAttribute("loginUser")).setIntroductionContent(m.getIntroductionContent());
+				
+				//session.setAttribute("loginUser", mService.loginMember(m));
 				session.setAttribute("alertMsg", "성공적으로 소개글이 저장되었습니다.");
 				return "redirect:introListMn.my";
 				
@@ -525,6 +505,7 @@ public class MemberController {
 				
 				if(result > 0) {
 					
+					((Member)session.getAttribute("loginUser")).setMemberPwd(m.getMemberPwd());
 					session.setAttribute("alertMsg", "성공적으로 비밀번호가 변경되었습니다.");
 					return "redirect:updatePwdForm.my";
 					
@@ -650,17 +631,6 @@ public class MemberController {
 			}
 		
 		}
-	 @RequestMapping("profile.pf")
-		public String profile(HttpSession session, Model model) {
-			
-		 ArrayList<Member> list = mService.profile();
-			
-			
-			model.addAttribute("list",list);
-			
-			return "common/diaryWidget";
-		}
-	 
 }
 	 
 	 

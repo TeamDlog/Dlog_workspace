@@ -193,19 +193,6 @@
 		  )
 	</insert>
 
-	<select id="infoList" parameterType="Member" resultMap="memberResultSet">
-	select
-			member_no
-	      , profile  
-		  ,	member_name
-	      , member_id
-	      , nickname
-	      , email
-	      , phone
-	  from member
-	 where status='Y'
-	   and member_id=#{memberId}
-	</select>
 	<update id="infoUpdate" parameterType="Member">
 		 update
 		        member
@@ -217,32 +204,20 @@
 		  where member_No=#{memberNo} 
 	</update>
 	
-	 <select id ="introList" parameterType="Member" resultMap="memberResultSet">
-		 select
-		 		member_no
-		      , introduction_title
-		      , introduction_content  
+	<select id="nicknameCheck2" parameterType="string" resultType ="_int">
+		select count(*)
+		       nickname
 		  from member
-		  where member_id=#{memberId}
-	 </select >
-	 
-	 <select id ="introListMn" parameterType="Member" resultMap="memberResultSet">
-		 select
-		 		member_no
-		      , introduction_title
-		      , introduction_content  
-		  from member
-		  where member_id=#{memberId}
-	 </select >
-	 
+		 where nickname = #{nickname}
+	</select>
+	
 	 <update id="introInsert" parameterType="Member">
 		update
 		        member
 		    set
-		     	member_no=2
-		      , introduction_title=#{introductionTitle}
+		       introduction_title=#{introductionTitle}
 		      , introduction_content=#{introductionContent}  
-		  where member_id=#{memberId} 
+		  where member_no=#{memberNo} 
 	</update>
 	
 	<delete id="deleteMember" parameterType="string">
