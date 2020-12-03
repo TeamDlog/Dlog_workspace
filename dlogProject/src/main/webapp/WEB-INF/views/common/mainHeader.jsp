@@ -21,6 +21,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Toastr -->
+    <link href="resources/plugins/toastr/css/toastr.min.css" rel="stylesheet">
+    
+    <style>
+    	/* toast css */
+		.toast-success{ background:rgb(136, 136, 136);}
+    </style>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -56,8 +63,8 @@
             </div>
         </div>
     </nav>
-
     
+	<input type="hidden" class="btn btn-success m-b-10 m-l-5 socketAlert" id="toastr-success-bottom-right">
 
 </body>
 </html>

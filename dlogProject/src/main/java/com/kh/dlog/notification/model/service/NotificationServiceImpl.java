@@ -84,19 +84,35 @@ public class NotificationServiceImpl implements NotificationService {
 		n.setNotificationContent("친구 " + loginUserNickname + "님이 새글을 등록했습니다.");
 		n.setNotificationCategory(5);
 		ArrayList flist = selectFriendList(loginUserNo);
-		return nDao.insertNotifiactions(sqlSession, n, flist);
+		return nDao.insertNotifications(sqlSession, n, flist);
+	}
+	
+	@Override
+	public int inquiryEmailNotify(int inquiryWriterNo) {
+		Notification n = new Notification();
+		n.setNotificationContent("1:1문의 답변이 이메일로 전송되었습니다.");
+		n.setNotificationCategory(6);
+		n.setMemberNo(inquiryWriterNo);
+		return nDao.insertNotification(sqlSession, n);
+	}
+
+	@Override
+	public int reportCheckNotify(int reportWriterNo) {
+		Notification n = new Notification();
+		n.setNotificationContent("신고하신 내역이 처리되었습니다.");
+		n.setNotificationCategory(7);
+		n.setMemberNo(reportWriterNo);
+		return nDao.insertNotification(sqlSession, n);
 	}
 
 	@Override
 	public ArrayList<Notification> selectNotificationList(int loginUserNo) {
-		// TODO Auto-generated method stub
 		return nDao.selectNotificationList(sqlSession, loginUserNo);
 	}
 
 	@Override
 	public int deleteNotification(int notificationNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return nDao.deleteNotification(sqlSession, notificationNo);
 	}
 
 	

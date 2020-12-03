@@ -20,8 +20,13 @@
 
 	<!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Toastr -->
+    <link href="resources/plugins/toastr/css/toastr.min.css" rel="stylesheet">
 
 	<style>
+		/* toast css */
+		.toast-success{ background:rgb(136, 136, 136);}
+	
 		/* 메뉴바색상 */
     	.menubarColor, #menubarColor,.menubarColor li{background:${ ca.myColorMenubar };}
     	/* 배경색상 */
@@ -181,6 +186,7 @@
                                     </div>
                                 </div>
                             </li>
+                            <input type="hidden" class="btn btn-success m-b-10 m-l-5" id="toastr-success-top-right">
                             <script>
                             	$(function(){
                             		loadNotification(${loginUser.memberNo});
@@ -201,22 +207,14 @@
 	                            					list += "<li>" +
 				                                                "<a href='javascript:void()'>";
 				                                    switch(result.list[i].notificationCategory){
-				                                    	case 1:
-				                                    		list += "<span class='mr-3 avatar-icon' style='background: rgb(245, 195, 204);'><i class='icon-heart'></i></span>"; break;
-				                                    	case 2:
-				                                    		list += "<span class='mr-3 avatar-icon' style='background: rgb(186, 219, 231);'><i class='icon-bubble'></i></span>"; break;
-				                                    	case 3:
-				                                    		list += "<span class='mr-3 avatar-icon' style='background: rgb(183, 154, 238);'><i class='icon-user'></i></span>"; break;
-				                                    	case 4:
-				                                    		list += "<span class='mr-3 avatar-icon' style='background: rgb(193, 224, 156);'><i class='icon-user-following'></i></span>"; break;
-				                                    	case 5:
-				                                    		list += "<span class='mr-3 avatar-icon' style='background: rgb(122, 163, 211);'><i class='icon-note'></i></span>"; break;
-				                                    	case 6:
-				                                    		list += "<span class='mr-3 avatar-icon' style='background: rgb(174, 182, 190);'><i class='icon-envelope'></i></span>"; break;
-				                                    	case 7:
-				                                    		list += "<span class='mr-3 avatar-icon' style='background: rgb(117, 131, 146);'><i class='icon-earphones-alt'></i></span>"; break;
+				                                    	case 1:list += "<span class='mr-3 avatar-icon' style='background: rgb(245, 195, 204);'><i class='icon-heart'></i></span>"; break;
+				                                    	case 2:list += "<span class='mr-3 avatar-icon' style='background: rgb(186, 219, 231);'><i class='icon-bubble'></i></span>"; break;
+				                                    	case 3:list += "<span class='mr-3 avatar-icon' style='background: rgb(183, 154, 238);'><i class='icon-user'></i></span>"; break;
+				                                    	case 4:list += "<span class='mr-3 avatar-icon' style='background: rgb(193, 224, 156);'><i class='icon-user-following'></i></span>"; break;
+				                                    	case 5:list += "<span class='mr-3 avatar-icon' style='background: rgb(122, 163, 211);'><i class='icon-note'></i></span>"; break;
+				                                    	case 6:list += "<span class='mr-3 avatar-icon' style='background: rgb(174, 182, 190);'><i class='icon-envelope'></i></span>"; break;
+				                                    	case 7:list += "<span class='mr-3 avatar-icon' style='background: rgb(117, 131, 146);'><i class='icon-earphones-alt'></i></span>"; break;
 				                                    }
-				                                    	
 				                                    list +=         "<div class='notification-content' style='margin-right:0;'>" +
 				                                                        "<table>" +
 				                                                            "<tr>" +
@@ -224,7 +222,7 @@
 				                                                                    "<h6 class='notification-heading'>" + result.list[i].notificationContent + "</h6>" +
 				                                                                "</td>" +
 				                                                                "<td>" +
-				                                                                   "<a class='alertDeleteBtn' style='font-size: 20px; font-weight: bold; margin-left: 10px;'><i class='mdi mdi-check'></i><a>" +
+				                                                                   "<a class='alertDeleteBtn' onclick='deleteNotification(" + result.list[i].notificationNo + ");' style='font-size: 20px; font-weight: bold; margin-left: 10px;'><i class='mdi mdi-check'></i><a>" +
 				                                                                "</td>" +
 				                                                            "</tr>" +
 				                                                        "</table>" +
@@ -238,6 +236,29 @@
                             				}
                             			}, error:function(){
                             				console.log("알림창 ajax 통신 실패");
+                            			}
+                            		});
+                            	}
+                            	
+                            	function deleteNotification(notificationNo){
+                            		$.ajax({
+                            			url:"delete.nf",
+                            			data:{notificationNo:notificationNo},
+                            			success:function(result){
+                            				if(result > 0){
+	                            				loadNotification(${loginUser.memberNo});
+	                            				
+	                            				var notificationCount = parseInt($("#notificationCount").text()) - 1;
+	                            				if(notificationCount > 0){
+	                            					$("#notificationCount").text(notificationCount);
+		                            				$("#notificationCount2").text(notificationCount);
+	                            				}else{
+	                            					$("#notificationCount").text("");
+		                            				$("#notificationCount2").text("0");
+	                            				}
+                            				}
+                            			}, error:function(){
+                            				console.log("알림삭제 ajax 통신 실패");
                             			}
                             		});
                             	}

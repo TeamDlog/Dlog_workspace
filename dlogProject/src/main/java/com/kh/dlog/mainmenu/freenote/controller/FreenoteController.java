@@ -73,6 +73,9 @@ public class FreenoteController {
 		int result = fService.insertFreenote(fn);
 
 		if(result>0) {
+			if(fn.getFreenotePrivacy().equals("Y")) {
+				nService.friendNewPostNotify(((Member)session.getAttribute("loginUser")).getMemberNo(), ((Member)session.getAttribute("loginUser")).getNickname());
+			}
 			session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
 			return "redirect:list.fn";
 		}else {
@@ -226,12 +229,12 @@ public class FreenoteController {
     
     @RequestMapping("test.ws")
     public String testWs() {
-    	return "common/webSocketTest";
+    	return "mainmenu/freenote/webSocketTest";
     }
     
     @RequestMapping("test2.ws")
     public String testWs2() {
-    	return "common/wetest2";
+    	return "mainmenu/freenote/wetest2";
     }
 }
 
