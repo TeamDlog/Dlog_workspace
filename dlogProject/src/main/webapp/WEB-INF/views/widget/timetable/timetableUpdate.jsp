@@ -22,6 +22,12 @@
         Preloader start
     ********************-->
     <jsp:include page="../../common/diaryHeader.jsp"/>
+    <script>
+	    $(function(){
+	       $(".metismenu a[href*='main.ti']").addClass("active");
+	       $(".metismenu a[href*='main.ti']").parent().addClass("active");
+	    });
+   </script>
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -42,20 +48,20 @@
                                 <div class="card-body backgroundColor" >
                                 
                                 <!-- 여기다가 작성 -->
-                                <c:if test="${ !empty t }">
+                                <c:if test="${ !empty timetable }">
                                 	<script>
                                 		$(function(){
-                                			$("#timetableTitle").val("${t.timetableTitle}");
-                                			$("#timetableDay").val("${t.timetableDay}");
-                                			$("#timetableStart").val("${t.timetableStart}");
-                                			$("#timetableEnd").val("${t.timetableEnd}");
-                                			$("#timetableBackground").val("${t.timetableBackground}");
-                                			$("#timetableColor").val("${t.timetableColor}");
-                                			$("#timetableContent").text("${t.timetableContent}");
-                                			$("#timetableNo").val("${t.timetableNo}");
+                                			$("#timetableTitle").val("${timetable.timetableTitle}");
+                                			$("#timetableDay").val("${timetable.timetableDay}");
+                                			$("#timetableStart").val("${timetable.timetableStart}");
+                                			$("#timetableEnd").val("${timetable.timetableEnd}");
+                                			$("#timetableBackground").val("${timetable.timetableBackground}");
+                                			$("#timetableColor").val("${timetable.timetableColor}");
+                                			$("#timetableContent").text("${timetable.timetableContent}");
+                                			$("#timetableNo").val("${timetable.timetableNo}");
                                 		});
                                 	</script>
-                                	<c:remove var="t" scope="session"/>
+                                	<c:remove var="timetable" scope="session"/>
                                 </c:if>
                                 <form action="update.ti" method="post">
                                 	<input id="timetableNo" type="hidden" name="timetableNo" >
@@ -91,8 +97,8 @@
                                             <td>
                                                 &nbsp;&nbsp;
                                                 <select name="timetableStart" id="timetableStart" style="width: 90%; height: 25px;">
-                                                    <option value="8">08:00 ~ 09:00</option>
-                                                    <option value="9">09:00 ~ 10:00</option>
+                                                    <option value="08">08:00 ~ 09:00</option>
+                                                    <option value="09">09:00 ~ 10:00</option>
                                                     <option value="10">10:00 ~ 11:00</option>
                                                     <option value="11">11:00 ~ 12:00</option>
                                                     <option value="12">12:00 ~ 13:00</option>
@@ -115,8 +121,8 @@
                                             <td>
                                                 &nbsp;&nbsp;
                                                 <select name="timetableEnd" id="timetableEnd" style="width: 90%; height: 25px;">
-                                                    <option value="8">08:00 ~ 09:00</option>
-                                                    <option value="9">09:00 ~ 10:00</option>
+                                                    <option value="08">08:00 ~ 09:00</option>
+                                                    <option value="09">09:00 ~ 10:00</option>
                                                     <option value="10">10:00 ~ 11:00</option>
                                                     <option value="11">11:00 ~ 12:00</option>
                                                     <option value="12">12:00 ~ 13:00</option>
@@ -170,25 +176,31 @@
                 Content body end
             ***********************************-->  
             <script>
-            $(function(){
-        		
-            	for(var i=8; i<$("#timetableStart").val(); i++){
-   					$("#timetableEnd option[value="+i+"]").attr("disabled", true);
-   				}
-            	
-        		$("#timetableStart").change(function(){
-        			var start = $(this).val()
-        			var end = $("#timetableEnd").val()
-        			if(start > end){
-        				$("#timetableEnd").val($(this).val());
-        			}
-        			$("#timetableEnd option").attr("disabled", false);
-       				for(var i=8; i<$("#timetableStart").val(); i++){
-       					$("#timetableEnd option[value="+i+"]").attr("disabled", true);
-       				}
-        		});
-        		
-        	});
+	            $(function(){
+	        		
+	            	for(var i=8; i<$("#timetableStart").val(); i++){
+	            		if(i == 8 || i == 9){
+       						$("#timetableEnd option[value=0"+i+"]").attr("disabled", true);
+       					}else{
+       						$("#timetableEnd option[value="+i+"]").attr("disabled", true);
+       					}
+	   				}
+	            	
+	            	$("#timetableStart").change(function(){
+            			$("#timetableEnd option").attr("disabled", false);
+            			if($(this).val() > $("#timetableEnd").val()){
+            				$("#timetableEnd").val($(this).val());
+            			}
+           				for(var i=8; i<$("#timetableStart").val(); i++){
+           					if(i == 8 || i == 9){
+           						$("#timetableEnd option[value=0"+i+"]").attr("disabled", true);
+           					}else{
+           						$("#timetableEnd option[value="+i+"]").attr("disabled", true);
+           					}
+           				}
+            		});
+	        		
+	        	});
             </script>
             
         </div>

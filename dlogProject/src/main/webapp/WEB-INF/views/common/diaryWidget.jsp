@@ -75,7 +75,7 @@
                         <table id="timetableWidget"  style="width: 100%; text-align: center; font-size:13px">
                         	<c:choose>
                         	
-                        		<c:when test="${ !empty tlist }">
+                        		<c:when test="${ !empty timetableList }">
 		                        	<thead>
 			                        	<tr style="height: 30px;">
 			                                <th>
@@ -85,17 +85,17 @@
 		                        	</thead>
 		                        	<c:choose>
 		                        		<c:when test="${ timetableToDay != '토요일' || timetableToDay != '일요일'}">
-				                        	<c:forEach var="t" items="${ tlist }">
-				                        		<c:if test="${ t.timetableDay == t.timetableToDay }">
+				                        	<c:forEach var="timetable" items="${ timetableList }">
+				                        		<c:if test="${ timetable.timetableDay == timetable.timetableToDay }">
 						                        	<tbody>
 							                        	<tr style="height: 30px;">
 							                                <th>
-							                                  	  ${ t.timetableTitle }
+							                                  	  ${ timetable.timetableTitle }
 							                                </th>
 							                            </tr>
 							                            <tr>
 							                                <td style="height: 20px;">
-							                                	${ t.timetableStart }:00 ~ ${ t.timetableEnd }:00
+							                                	${ timetable.timetableStart }:00 ~ ${ timetable.timetableEnd }:00
 							                                </td>
 							                            </tr>
 						                            </tbody>

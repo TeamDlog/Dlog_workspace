@@ -41,12 +41,10 @@ public class TimeTableController {
 						case 7 : t.setTimetableToDay("토요일"); break;
 					}
 				}
-				
-				model.addAttribute("tlist", tlist);
-				return "widget/timetable/timetableMain";
-			}else {
-				return "widget/timetable/timetableMain";
 			}
+			session.setAttribute("timetableList", tlist);
+			return "widget/timetable/timetableMain";
+				
 		}else {
 			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
 			return "redirect:/";
@@ -70,6 +68,7 @@ public class TimeTableController {
 	public String insertTimetable(Timetable t, HttpSession session) {
 		
 		if(session.getAttribute("loginUser") != null) {
+			
 			String timetableTime = "";
 			
 			for(int i=Integer.parseInt(t.getTimetableStart()); i<=Integer.parseInt(t.getTimetableEnd()); i++) {
@@ -101,7 +100,7 @@ public class TimeTableController {
 				
 			}else {
 				
-				session.setAttribute("t", t);
+				session.setAttribute("timetable", t);
 				session.setAttribute("timetableInsertCheck", 1);
 				return "redirect:main.ti";
 				
@@ -119,6 +118,7 @@ public class TimeTableController {
 	public String deleteAndInsertTimetable(Timetable t, Model model, HttpSession session) {
 		
 		if(session.getAttribute("loginUser") != null) {
+
 			int result = tService.insertDeleteTimetable(t);
 			if(result > 0) {
 				insertTimetable(t, session);
@@ -137,7 +137,7 @@ public class TimeTableController {
 	@RequestMapping("updateForm.ti")
 	public String updateFormTimetable(Timetable t, HttpSession session) {
 		if(session.getAttribute("loginUser") != null) {
-			session.setAttribute("t", t);
+			session.setAttribute("timetable", t);
 			return "widget/timetable/timetableUpdate";
 		}else {
 			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
@@ -148,8 +148,9 @@ public class TimeTableController {
 	
 	@RequestMapping("update.ti")
 	public String updateTimetable(Timetable t, HttpSession session) {
-		
+	
 		if(session.getAttribute("loginUser") != null) {
+			
 			String timetableTime = "";
 			
 			for(int i=Integer.parseInt(t.getTimetableStart()); i<=Integer.parseInt(t.getTimetableEnd()); i++) {
@@ -172,7 +173,7 @@ public class TimeTableController {
 					return "redirect:main.ti";
 				}
 			}else {
-				session.setAttribute("t", t);
+				session.setAttribute("timetable", t);
 				session.setAttribute("timetableUpdateCheck", 1);
 				return "redirect:main.ti";
 			}

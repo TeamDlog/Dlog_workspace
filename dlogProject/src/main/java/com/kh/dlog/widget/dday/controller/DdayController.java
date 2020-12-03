@@ -27,10 +27,9 @@ public class DdayController {
 			String memberNo = loginUser.getDiaryMemberNo()+"";
 			ArrayList<Dday> list = dService.ddayMain(memberNo);
 			
-			if(!list.isEmpty()) {
-				model.addAttribute("dlist", list);
-				
-			}
+			
+			session.setAttribute("dlist", list);
+			
 			return "widget/dday/ddayMain";
 			
 		}else {

@@ -250,7 +250,7 @@ public class MemberController {
 				// 디데이 객체리스트 세션에 보관
 				session.setAttribute("dlist", dService.ddayMain(loginUser.getDiaryMemberNo()+""));
 				// 시간표 객체리스트 세션에 보관
-				session.setAttribute("tlist", tlist);
+				session.setAttribute("timetableList", tlist);
 				// diaryMemberNo 추가한 로그인유저 객체 세션에 보관
 				session.setAttribute("loginUser", loginUser);
 				return "redirect:/";

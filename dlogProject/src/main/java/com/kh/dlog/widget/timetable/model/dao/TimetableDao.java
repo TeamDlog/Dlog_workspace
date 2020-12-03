@@ -55,7 +55,13 @@ public class TimetableDao {
 	}
 	
 	public int updateDeleteTimetable(SqlSessionTemplate sqlSession, Timetable t) {
-		return sqlSession.delete("timetableMapper.updateDeleteTimetable", t);
+		int result = 0;
+		for(int i=Integer.parseInt(t.getTimetableStart()); i<=Integer.parseInt(t.getTimetableEnd()); i++) {
+			t.setTimetableTimeCheck(i);
+			int resulti = sqlSession.delete("timetableMapper.updateDeleteTimetable", t);
+			result = result+resulti;
+		}
+		return result;
 	}
 	
 	public int deleteTimetable(SqlSessionTemplate sqlSession, String[] deleteTimetableCheck) {

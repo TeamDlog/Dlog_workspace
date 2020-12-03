@@ -23,6 +23,7 @@
     	.backgroundColor div{background:${ca.myColorBackground};}
     	/* 글자색상 */
     	.backgroundColor div{color:${ ca.myColorFont };}
+    	.backgroundColor h4{color:${ ca.myColorFont };}
     	.menubarColor li *{color:${ ca.myColorFont };}
     	/* 로고색상 */
     	#logoColor{background:${ca.myColorLogo};}
@@ -30,6 +31,12 @@
 </head>
 
 <body>
+	<c:if test="${ !empty alertMsg }">
+		<script>
+			alert("${alertMsg}");
+		</script>
+		<c:remove var="alertMsg" scope="session" />
+	</c:if>
        <!--*******************
         Preloader start
     ********************-->
