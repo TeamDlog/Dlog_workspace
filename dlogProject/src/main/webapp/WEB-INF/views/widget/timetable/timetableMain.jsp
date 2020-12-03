@@ -28,28 +28,28 @@
 <body>
 	<jsp:include page="../../common/diaryHeader.jsp"/>
 	<form action="deleteAndInsert.ti" method="post">
-    	<input type="hidden" name="timetableWriter" value="${ t.timetableWriter }">
-         <input type="hidden" name="timetableDay" value="${ t.timetableDay }" >
-         <input type="hidden" name="timetableStart" value="${ t.timetableStart }">
-         <input type="hidden" name="timetableEnd" value="${ t.timetableEnd }">
-         <input type="hidden" name="timetableTime" value="${ t.timetableTime }">
-         <input type="hidden" name="timetableTitle" value="${ t.timetableTitle }">
-         <input type="hidden" name="timetableContent" value="${ t.timetableContent }">
-         <input type="hidden" name="timetableBackground" value="${ t.timetableBackground }">
-         <input type="hidden" name="timetableColor" value="${ t.timetableColor }">
+    	<input type="hidden" name="timetableWriter" value="${ timetable.timetableWriter }">
+         <input type="hidden" name="timetableDay" value="${ timetable.timetableDay }" >
+         <input type="hidden" name="timetableStart" value="${ timetable.timetableStart }">
+         <input type="hidden" name="timetableEnd" value="${ timetable.timetableEnd }">
+         <input type="hidden" name="timetableTime" value="${ timetable.timetableTime }">
+         <input type="hidden" name="timetableTitle" value="${ timetable.timetableTitle }">
+         <input type="hidden" name="timetableContent" value="${ timetable.timetableContent }">
+         <input type="hidden" name="timetableBackground" value="${ timetable.timetableBackground }">
+         <input type="hidden" name="timetableColor" value="${ timetable.timetableColor }">
          <button id="deleteAndInsertBtn" type="submit" style="display: none;"></button>
      </form>
      <form action="deleteAndUpdate.ti" method="post">
-     	 <input type="hidden" name="timetableNo" value="${ t.timetableNo }">
-    	 <input type="hidden" name="timetableWriter" value="${ t.timetableWriter }">
-         <input type="hidden" name="timetableDay" value="${ t.timetableDay }" >
-         <input type="hidden" name="timetableStart" value="${ t.timetableStart }">
-         <input type="hidden" name="timetableEnd" value="${ t.timetableEnd }">
-         <input type="hidden" name="timetableTime" value="${ t.timetableTime }">
-         <input type="hidden" name="timetableTitle" value="${ t.timetableTitle }">
-         <input type="hidden" name="timetableContent" value="${ t.timetableContent }">
-         <input type="hidden" name="timetableBackground" value="${ t.timetableBackground }">
-         <input type="hidden" name="timetableColor" value="${ t.timetableColor }">
+     	 <input type="hidden" name="timetableNo" value="${ timetable.timetableNo }">
+    	 <input type="hidden" name="timetableWriter" value="${ timetable.timetableWriter }">
+         <input type="hidden" name="timetableDay" value="${ timetable.timetableDay }" >
+         <input type="hidden" name="timetableStart" value="${ timetable.timetableStart }">
+         <input type="hidden" name="timetableEnd" value="${ timetable.timetableEnd }">
+         <input type="hidden" name="timetableTime" value="${ timetable.timetableTime }">
+         <input type="hidden" name="timetableTitle" value="${ timetable.timetableTitle }">
+         <input type="hidden" name="timetableContent" value="${ timetable.timetableContent }">
+         <input type="hidden" name="timetableBackground" value="${ timetable.timetableBackground }">
+         <input type="hidden" name="timetableColor" value="${ timetable.timetableColor }">
          <button id="deleteAndUpdateBtn" type="submit" style="display: none;"></button>
      </form>
 	 <c:if test="${ timetableInsertCheck == 1 }">
@@ -58,11 +58,11 @@
     			
    				$("#deleteAndInsertBtn").click();
     			
-    			<c:remove var="t" scope="session"/>
+    			<c:remove var="timetable" scope="session"/>
     			<c:remove var="timetableInsertCheck" scope="session"/>
     		}else{
     			alert("최소되었습니다.");
-    			<c:remove var="t" scope="session"/>
+    			<c:remove var="timetable" scope="session"/>
    				<c:remove var="timetableInsertCheck" scope="session"/>
     		}
     	</script>
@@ -74,11 +74,11 @@
     			
    				$("#deleteAndUpdateBtn").click();
     			
-    			<c:remove var="t" scope="session"/>
+    			<c:remove var="timetable" scope="session"/>
     			<c:remove var="timetableUpdateCheck" scope="session"/>
     		}else{
     			alert("최소되었습니다.");
-    			<c:remove var="t" scope="session"/>
+    			<c:remove var="timetable" scope="session"/>
    				<c:remove var="timetableUpdateCheck" scope="session"/>
     		}
     	</script>
@@ -119,8 +119,8 @@
 							     </form>
                                 <!-- 여기다가 작성 -->
                                 <form action="delete.ti" method="post">
-                              	<c:if test="${ !empty tlist }">
-                              		<c:forEach var="timetable" items="${ tlist }">
+                              	<c:if test="${ !empty timetableList }">
+                              		<c:forEach var="timetable" items="${ timetableList }">
 	                           			<script>
                        						$(function(){
                        							if("${timetable.timetableDay}" == '월요일'){
@@ -151,7 +151,12 @@
 		                       									$("#updateTimetableBtn").click();
 	                       									});
 	                       									for(var i=${timetable.timetableStart}+1; i<=${timetable.timetableEnd}; i++){
-	                       										$(".mon"+i).remove();
+	                       										if(i==9){
+	                       											$(".mon0"+i).remove();
+	                       										}else{
+	                       											$(".mon"+i).remove();
+	                       										}
+	                       										
 	                       									}
 	                       								}
 	                       							}
@@ -184,7 +189,12 @@
 		                       									$("#updateTimetableBtn").click();
 	                       									});
 	                       									for(var i=${timetable.timetableStart}+1; i<=${timetable.timetableEnd}; i++){
-	                       										$(".tue"+i).remove();
+	                       										if(i==9){
+	                       											$(".tue0"+i).remove();
+	                       										}else{
+	                       											$(".tue"+i).remove();
+	                       										}
+	                       										
 	                       									}
 	                       								}
 	                       							}
@@ -217,7 +227,12 @@
 		                       									$("#updateTimetableBtn").click();
 	                       									});
 	                       									for(var i=${timetable.timetableStart}+1; i<=${timetable.timetableEnd}; i++){
-	                       										$(".wed"+i).remove();
+	                       										if(i==9){
+	                       											$(".wed0"+i).remove();
+	                       										}else{
+	                       											$(".wed"+i).remove();
+	                       										}
+	                       										
 	                       									}
 	                       								}
 	                       							}
@@ -250,7 +265,12 @@
 		                       									$("#updateTimetableBtn").click();
 	                       									});
 	                       									for(var i=${timetable.timetableStart}+1; i<=${timetable.timetableEnd}; i++){
-	                       										$(".thu"+i).remove();
+	                       										if(i==9){
+	                       											$(".thu0"+i).remove();
+	                       										}else{
+	                       											$(".thu"+i).remove();
+	                       										}
+	                       										
 	                       									}
 	                       								}
 	                       							}
@@ -283,7 +303,12 @@
 		                       									$("#updateTimetableBtn").click();
 	                       									});
 	                       									for(var i=${timetable.timetableStart}+1; i<=${timetable.timetableEnd}; i++){
-	                       										$(".fri"+i).remove();
+	                       										if(i==9){
+	                       											$(".fri0"+i).remove();
+	                       										}else{
+	                       											$(".fri"+i).remove();
+	                       										}
+	                       										
 	                       									}
 	                       								}
 	                       							}
@@ -307,19 +332,19 @@
                                     <tbody>
                                         <tr>
                                             <td>08:00 - 09:00</td>
-                                            <td class="mon8 mon"></td>
-                                            <td class="tue8 tue"></td>
-                                            <td class="wed8 wed"></td>
-                                            <td class="thu8 thu"></td>
-                                            <td class="fri8 fri"></td>
+                                            <td class="mon08 mon"></td>
+                                            <td class="tue08 tue"></td>
+                                            <td class="wed08 wed"></td>
+                                            <td class="thu08 thu"></td>
+                                            <td class="fri08 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>09:00 - 10:00</td>
-                                            <td class="mon9 mon"></td>
-                                            <td class="tue9 tue"></td>
-                                            <td class="wed9 wed"></td>
-                                            <td class="thu9 thu"></td>
-                                         <td class="fri9 fri"></td>
+                                            <td class="mon09 mon"></td>
+                                            <td class="tue09 tue"></td>
+                                            <td class="wed09 wed"></td>
+                                            <td class="thu09 thu"></td>
+                                         	<td class="fri09 fri"></td>
                                         </tr>
                                         <tr>
                                             <td>10:00 - 11:00</td>
@@ -425,7 +450,9 @@
 	                                <button id="deleteTimetableCancel" type="button" style="float: right; display: none;" class="btn btn-success">취소</button>
 	                                <button id="deleteTimetable" type="button" style="float: right;  display: none; margin-right: 15px;" class="btn btn-danger">삭제</button>
 	                                <button id="deleteTimetableSubmit" type="submit" style="float: right; display: none;" class="btn btn-danger">삭제</button>
-	                                <button id="resetTimetable"type="button" style="float: right; margin-right: 15px" class="btn btn-danger">초기화</button>
+	                                <c:if test="${ !empty timetableList }">
+	                                	<button id="resetTimetable"type="button" style="float: right; margin-right: 15px" class="btn btn-danger">초기화</button>
+									</c:if>	                                
 	                                <a id="insertTimetable" href="enrollForm.ti" style="float: right; margin-right: 15px;" class="btn btn-success">등록</a>
                                 </c:if>
                                 </div>
@@ -458,6 +485,7 @@
     <jsp:include page="../../common/diaryFooter.jsp"/>
     <script>
        	$(function(){
+       		
        		$("#deleteTimetableCheck").click(function(){
        			$(this).css("display", "none");
        			$("#deleteTimetableCancel").css("display", "block");

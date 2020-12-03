@@ -65,15 +65,15 @@
                          <!-- 여기다가 작성 -->
                          <div class="infoUpdateForm" align="center">
                                <form action="infoUpdate.my" id="infoUpdateForm" method="post" enctype="multipart/form-data">
-                                   
+                                   <input type="hidden" name="memberNo" value="${loginUser.memberNo }">
                                      <table id="infoUpdateFormTable">
                                          <div class="card-body">
                                              <div class="text-center">
-                                                 <img alt="" class="rounded-circle mt-4" src="resources/images/default-profile-pic.jpg" width="90px">
+                                                 <img alt="" class="rounded-circle mt-4" src="${log.profile }" width="90px">
                                              </div>
                                          </div>
                                          <td> 이름 : </td>
-                                         <td colspan="2" readonly>${loginUser.memberName }</td>
+                                         <td colspan="2"> <input type="text" style="width:200px;" id="writer" class="form-control" value="${loginUser.memberName }" name="memberName" readonly></td>
                                       </tr>
                                       <tr>
                                          <td>&nbsp;</td>
@@ -81,9 +81,8 @@
                                      </tr>
                                        <tr>
                                          <td> 아이디 : </td>
-                                         <td colspan="2" readonly>${loginUser.memberId }</td>
-                                       
-                                      </tr>
+                                         <td colspan="2"> <input type="text" style="width:200px;" id="memberId" class="form-control" value="${loginUser.memberId }" name="memberId" readonly></td>
+                                       </tr>
                                      
                                        <tr>
                                            <td>&nbsp;</td>
@@ -91,7 +90,7 @@
                                        </tr>
                                        <tr>
                                          <td> 별명 : </td>
-                                         <td colspan="2"><input style="width:200px;" type="text"  name="userName" id="userName" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" required value="${loginUser.nickname }"></td>
+                                         <td colspan="2"><input style="width:200px;" type="text"  name="nickname" id="nickName" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" required value="${loginUser.nickname }"></td>
                                          </tr>
                                        <tr>
                                          <td>&nbsp;</td>
@@ -125,7 +124,12 @@
                                       <tr>
                                          <td class="profileimg"> 프로필 이미지 :  &nbsp;&nbsp;</td>
                                          
-                                         <td colspan="2">&nbsp;&nbsp;<input type="file" name="profile" class="form-control-e" id="exampleFormControlFile2" value=""></td>
+                                         <td colspan="2">&nbsp;&nbsp;<input type="file" name="upfile" class="form-control-e" id="upfile" value=""></td>
+                                         
+                                         <c:if test="${!empty loginUser.profile }">
+                                         <input type="hidden" name="profile" value="${loginUser.profile }">
+                                     	</c:if>
+                                     
                                      </tr>
                                     </table>
                                    <br><br>

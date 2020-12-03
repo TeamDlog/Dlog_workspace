@@ -234,7 +234,7 @@
                                 }
         						
         					},error:function(){
-        						console.log("아이디 중복체크용 ajax통신 실패");
+        						console.log("ajax통신 실패");
         					}
         				})
 

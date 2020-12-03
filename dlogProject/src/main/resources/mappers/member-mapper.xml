@@ -210,13 +210,11 @@
 		 update
 		        member
 		    set 
-		        member_name=#{memberName}
-		      , member_id=#{memberId}
-		      , nickname=#{nickname}
+		     	nickname=#{nickname}
 		      , email=#{email}
 		      , phone=#{phone}
 		      , profile=#{profile}  
-		  where member_id=#{memberId} 
+		  where member_No=#{memberNo} 
 	</update>
 	
 	 <select id ="introList" parameterType="Member" resultMap="memberResultSet">

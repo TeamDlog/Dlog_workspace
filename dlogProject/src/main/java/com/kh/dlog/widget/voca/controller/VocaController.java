@@ -91,5 +91,25 @@ public class VocaController {
 		
 		return "widget/voca/vocaListView";
 	}
+	
+	@ResponseBody
+	@RequestMapping("random.vo")
+	public void randomVoca(HttpSession session) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int mno = loginUser.getMemberNo();
+		
+		Voca v = vService.randomList(mno);
+		
+		if(v != null) {
+			
+			session.setAttribute("vocaWord", v.getVocaWord());
+			session.setAttribute("vocaMean", v.getVocaMean());
+			
+		}else {
+			session.setAttribute("v", v);
+		}
+		
+	}
 
 }

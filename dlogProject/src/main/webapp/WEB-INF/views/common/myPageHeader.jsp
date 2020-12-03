@@ -23,6 +23,7 @@
     	.backgroundColor div{background:${ca.myColorBackground};}
     	/* 글자색상 */
     	.backgroundColor div{color:${ ca.myColorFont };}
+    	.backgroundColor h4{color:${ ca.myColorFont };}
     	.menubarColor li *{color:${ ca.myColorFont };}
     	/* 로고색상 */
     	#logoColor{background:${ca.myColorLogo};}
@@ -30,6 +31,12 @@
 </head>
 
 <body>
+	<c:if test="${ !empty alertMsg }">
+		<script>
+			alert("${alertMsg}");
+		</script>
+		<c:remove var="alertMsg" scope="session" />
+	</c:if>
        <!--*******************
         Preloader start
     ********************-->
@@ -55,7 +62,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <div class="brand-logo" id="logoColor" style="background:rgb(204, 202, 202)">
+                <div class="brand-logo" id="logoColor">
                     <a href="#">
                         <b class="logo-abbr"><img src="resources/images/DlogLogo-text-short.png" alt="" width="19px"></b>
                         <span class="logo-compact"><img src="resources/images/DlogLogo-text.png" alt="" width="87"></span>

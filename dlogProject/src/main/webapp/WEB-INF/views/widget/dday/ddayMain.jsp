@@ -130,36 +130,36 @@
 	                                        	<button id="insertDdayBtn" type="button" style="float: right; width: 30px; background:white; margin-right: 15px;" class="ion-plus"  data-toggle="modal" data-target="#insertModal"></button>
 	                                    	</c:if>
 	                                    </div>
-	                                    <c:if test="${ !empty dlist }">
-	                                   	 <c:forEach var="dday" items="${ dlist }">
-			                                   <div class="ddayWrap">
-			                                        <div class="dday">
-			                                            <div class="ddayCheck"><input type="checkbox" name="deleteDday" value="${ dday.ddayNo }"></div>
-			                                            <div class="ddayRadio">
-			                                                <span class="ddayRadioClick <c:if test="${ dday.ddayWidget == 'Y' }">rclick</c:if>"></span>
-			                                            </div>
-			                                            <div class="ddayContent" data-toggle="modal" data-target="#updateModal">
-			                                            	<div class="ddayDateWrap">
-			                                            		<span class="ddayDate">${ dday.ddayDate }</span>
-			                                            		<span class="ddayTitle">&nbsp;${ dday.ddayTitle }</span>
-			                                            		<span class="widgetStatus">
-			                                            			<c:if test="${ dday.ddayWidget == 'Y' }">위젯 사용중</c:if>
-			                                            		</span>
-			                                            		<input type="hidden" name="ddayNo" value="${ dday.ddayNo }">
-		                                            		</div>
-				                                     	</div>
-		                                            	<div class="ddayCount" align="center">
-		                                            		<c:set var="ddayCount" value="${dday.ddayCount}"></c:set>
-	                                            		 	<c:set var="length" value="${fn:length(ddayCount)}"></c:set>
-		                                            		 <c:choose>
-		                                            		 	<c:when test="${ dday.ddayCount == 0}">D - Day</c:when>
-		                                            		 	<c:when test="${ dday.ddayCount < 0 }">D + ${fn:substring(ddayCount, 1, length+1)}</c:when>
-		                                            		 	<c:otherwise>D - ${fn:substring(ddayCount, 0, length+1)}</c:otherwise>
-		                                            		 </c:choose> 
-		                                            	</div>
-	                                        		</div>
-	                                       		</div>
-	                                      </c:forEach>
+	                                    	<c:if test="${ !empty dlist }">
+		                                   		<c:forEach var="dday" items="${ dlist }">
+				                                   <div class="ddayWrap">
+				                                        <div class="dday">
+				                                            <div class="ddayCheck"><input type="checkbox" name="deleteDday" value="${ dday.ddayNo }"></div>
+				                                            <div class="ddayRadio">
+				                                                <span class="ddayRadioClick <c:if test="${ dday.ddayWidget == 'Y' }">rclick</c:if>"></span>
+				                                            </div>
+				                                            <div class="ddayContent" data-toggle="modal" data-target="#updateModal">
+				                                            	<div class="ddayDateWrap">
+				                                            		<span class="ddayDate">${ dday.ddayDate }</span>
+				                                            		<span class="ddayTitle">&nbsp;${ dday.ddayTitle }</span>
+				                                            		<span class="widgetStatus">
+				                                            			<c:if test="${ dday.ddayWidget == 'Y' }">위젯 사용중</c:if>
+				                                            		</span>
+				                                            		<input type="hidden" name="ddayNo" value="${ dday.ddayNo }">
+			                                            		</div>
+					                                     	</div>
+			                                            	<div class="ddayCount" align="center">
+			                                            		<c:set var="ddayCount" value="${dday.ddayCount}"></c:set>
+		                                            		 	<c:set var="length" value="${fn:length(ddayCount)}"></c:set>
+			                                            		 <c:choose>
+			                                            		 	<c:when test="${ dday.ddayCount == 0}">D - Day</c:when>
+			                                            		 	<c:when test="${ dday.ddayCount < 0 }">D + ${fn:substring(ddayCount, 1, length+1)}</c:when>
+			                                            		 	<c:otherwise>D - ${fn:substring(ddayCount, 0, length+1)}</c:otherwise>
+			                                            		 </c:choose> 
+			                                            	</div>
+		                                        		</div>
+		                                       		</div>
+	                                      		</c:forEach>
 	                                        	<c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
 		                                        	<button type="button" id="checkDdayBtn" style="float: right;" class="btn btn-success">위젯 설정</button>
 												</c:if>
@@ -217,9 +217,9 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                    	 디데이 제목
-                    <input type="text" name="ddayTitle" style="width: 100%; height: 40px;"> <br><br>
+                    <input type="text" name="ddayTitle" required style="width: 100%; height: 40px;"> <br><br>
                    	 날짜 설정 
-                    <input type="date" name="ddayDate" style="width: 100%; height: 40px;">
+                    <input type="date" name="ddayDate" required style="width: 100%; height: 40px;">
                     <input type="hidden" name="memberNo" value="${ loginUser.memberNo }">
                 </div>
         
@@ -241,16 +241,16 @@
         
                 <!-- Modal Header -->
                 <div class="modal-header">
-                <h4 class="modal-title">디데이 추가</h4>
+                <h4 class="modal-title">디데이 수정</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
         
                 <!-- Modal body -->
                 <div class="modal-body">
                     	디데이 제목
-                    <input type="text" name="ddayTitle" id="updateDdayTitle" style="width: 100%; height: 40px;"> <br><br>
+                    <input type="text" name="ddayTitle" required id="updateDdayTitle" style="width: 100%; height: 40px;"> <br><br>
                    	 날짜 설정 
-                    <input type="date" name="ddayDate" id="updateDdayDate" style="width: 100%; height: 40px;">
+                    <input type="date" name="ddayDate" required id="updateDdayDate" style="width: 100%; height: 40px;">
                     <input type="hidden" name="ddayNo" id="updateDdayNo">
                     <input type="hidden" name="memberNo" value="${ loginUser.memberNo }">
                 </div>
@@ -294,14 +294,23 @@
 	            $('.ddayRadio').click(function(){
 	                if($(this).children('.ddayRadioClick').hasClass('rclick')){
 	                    $(this).children('.ddayRadioClick').removeClass('rclick')
-	                    $("#widgetCheck"+ (widgetCount+1)).val("")
+	                    for(var i=1; i<4; i++){
+	                    	if($("#widgetCheck"+i).val() == $(this).next().children().children().eq(3).val()){
+	                    		$("#widgetCheck"+i).val("");
+	                    	}
+	                    }
 	                    widgetCount = widgetCount-1;
 	                }else{
 	                    if(widgetCount >= 3){
 	                        alert("최대 3개까지 선택 가능합니다.")
 	                    }else{
 	                        $(this).children('.ddayRadioClick').addClass('rclick')
-	                        $("#widgetCheck"+(widgetCount+1)).val($(this).next().children().children().eq(3).val())
+	                        for(var i=1; i<4; i++){
+	                        	if($("#widgetCheck"+i).val() == ""){
+	                        		$("#widgetCheck"+i).val($(this).next().children().children().eq(3).val())
+	                        		break;
+	                        	}
+	                        }
 	                       widgetCount = widgetCount+1;
 	                    }
 	                }
