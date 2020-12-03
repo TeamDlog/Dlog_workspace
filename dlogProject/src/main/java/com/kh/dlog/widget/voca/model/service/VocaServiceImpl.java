@@ -48,4 +48,9 @@ public class VocaServiceImpl implements VocaService {
 		return vDao.searchVoca(sqlSession, v, pi);
 	}
 
+	@Override
+	public Voca randomList(int mno) {
+		return vDao.randomVoca(sqlSession, mno);
+	}
+
 }

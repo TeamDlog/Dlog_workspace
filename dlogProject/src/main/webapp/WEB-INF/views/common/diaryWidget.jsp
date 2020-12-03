@@ -41,11 +41,31 @@
 	        <div class="card widgetVoca">
                 <div class="stat-widget-one" style="padding: 10px">
                     <div class="stat-content">
-                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">hello</div>
-                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">안녕</div>
+                    <c:choose>
+                    	<c:when test="${ vocaWord eq null }">
+                    		<div class="stat-text" style="padding: 0px; margin: 0px; font-size: 13px">등록된 단어가 없습니다.</div>
+                        </c:when>
+                        <c:otherwise>
+	                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">${ vocaWord }</div>
+	                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">${ vocaMean }</div>
+                        </c:otherwise>
+                    </c:choose>
                     </div>
                 </div>
             </div>
+            
+            <script>
+            	window.onload=function(){
+            		$.ajax({
+            			url:"random.vo",
+            			success:function(result){
+            				console.log("왜");
+            			},error:function(){
+            				console.log("ajax통신 실패");
+            			}
+            		})
+            	};
+            </script>
 	        
 	        
 	        <!-- 시간표위젯 -->
