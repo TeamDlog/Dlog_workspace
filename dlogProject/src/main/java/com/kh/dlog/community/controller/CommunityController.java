@@ -21,12 +21,15 @@ import com.kh.dlog.mainmenu.freenote.model.service.FreenoteService;
 import com.kh.dlog.mainmenu.freenote.model.vo.Freenote;
 import com.kh.dlog.mainmenu.freenote.model.vo.SearchCondition;
 import com.kh.dlog.member.model.vo.Member;
+import com.kh.dlog.notification.model.service.NotificationService;
 
 @Controller
 public class CommunityController {
 	
 	@Autowired
 	private FreenoteService fService;
+	@Autowired
+	private NotificationService nService;
 	
 	@RequestMapping("list.co")
 	public String community() {
@@ -116,16 +119,18 @@ public class CommunityController {
 	
 	@ResponseBody
 	@RequestMapping(value="friend.co", produces="text/html; charset=utf-8")
-	public String requestFriend(Friend friend) {
+	public String requestFriend(Friend friend, HttpSession session) {
 		
 		int result = fService.checkFriend(friend);
 		if(result==0) {
+			nService.friendRequestNotify(((Member)session.getAttribute("loginUser")).getNickname(), friend.getFriendAccepted());
 			result = fService.requestFriend(friend);
 			return "1";
 		}else {
 			return "0";
 		}
 	}
+	
 	
 }
 

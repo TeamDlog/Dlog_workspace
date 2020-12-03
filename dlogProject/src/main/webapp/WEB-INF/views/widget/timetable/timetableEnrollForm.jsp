@@ -19,6 +19,12 @@
 <body>
 
     <jsp:include page="../../common/diaryHeader.jsp"/>
+    <script>
+	    $(function(){
+	       $(".metismenu a[href*='main.ti']").addClass("active");
+	       $(".metismenu a[href*='main.ti']").parent().addClass("active");
+	    });
+   </script>
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -73,8 +79,8 @@
                                             <td>
                                                 &nbsp;&nbsp;
                                                 <select name="timetableStart" id="timetableStart" style="width: 90%; height: 25px;">
-                                                    <option value="8">08:00 ~ 09:00</option>
-                                                    <option value="9">09:00 ~ 10:00</option>
+                                                    <option value="08">08:00 ~ 09:00</option>
+                                                    <option value="09">09:00 ~ 10:00</option>
                                                     <option value="10">10:00 ~ 11:00</option>
                                                     <option value="11">11:00 ~ 12:00</option>
                                                     <option value="12">12:00 ~ 13:00</option>
@@ -97,8 +103,8 @@
                                             <td>
                                                 &nbsp;&nbsp;
                                                 <select name="timetableEnd" id="timetableEnd" style="width: 90%; height: 25px;">
-                                                    <option value="8">08:00 ~ 09:00</option>
-                                                    <option value="9">09:00 ~ 10:00</option>
+                                                    <option value="08">08:00 ~ 09:00</option>
+                                                    <option value="09">09:00 ~ 10:00</option>
                                                     <option value="10">10:00 ~ 11:00</option>
                                                     <option value="11">11:00 ~ 12:00</option>
                                                     <option value="12">12:00 ~ 13:00</option>
@@ -155,12 +161,16 @@
             	$(function(){
             		
             		$("#timetableStart").change(function(){
+            			$("#timetableEnd option").attr("disabled", false);
             			if($(this).val() > $("#timetableEnd").val()){
             				$("#timetableEnd").val($(this).val());
             			}
-            			$("#timetableEnd option").attr("disabled", false);
            				for(var i=8; i<$("#timetableStart").val(); i++){
-           					$("#timetableEnd option[value="+i+"]").attr("disabled", true);
+           					if(i == 8 || i == 9){
+           						$("#timetableEnd option[value=0"+i+"]").attr("disabled", true);
+           					}else{
+           						$("#timetableEnd option[value="+i+"]").attr("disabled", true);
+           					}
            				}
             		});
             		

@@ -24,6 +24,7 @@ import com.kh.dlog.friend.model.service.FriendService;
 import com.kh.dlog.friend.model.vo.Friend;
 import com.kh.dlog.mainmenu.photo.model.service.PhotoService;
 import com.kh.dlog.mainmenu.photo.model.vo.Photo;
+import com.kh.dlog.member.model.vo.Member;
 
 @Controller
 public class PhotoController {
@@ -96,22 +97,12 @@ public class PhotoController {
 	@RequestMapping("selectList.ph")
 	public String selectPhotoList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model, HttpSession session) {
 		
-		int listCount = pService.selectPhotoListCount(2);
+		Member m = (Member)session.getAttribute("loginUser");
+		int listCount = pService.selectPhotoListCount(m.getMemberNo());
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 12);
-		ArrayList<Photo> list = pService.selectPhotoList(2, pi);
+		ArrayList<Photo> list = pService.selectPhotoList(m.getMemberNo(), pi);
 		model.addAttribute("pi",pi);
 		model.addAttribute("list",list);
-		
-		// friend session 넣기
-		int friendListCount = fService.selectFriendListCount(2);
-		PageInfo pi2 = Pagination.getPageInfo(friendListCount, currentPage, 3, 5);
-		ArrayList<Friend> friendList = fService.selectFriendList(2, pi2);
-		session.setAttribute("pi2",pi2);
-		session.setAttribute("friendList",friendList);
-		
-		// request friendList
-		ArrayList<Friend> requestFriend = fService.requestFriend(2);
-		session.setAttribute("requestFriend", requestFriend);
 		
 		return "mainmenu/photo/photoMain";
 		

@@ -42,6 +42,43 @@
     <script src="resources/plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="resources/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="resources/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+    
+    <!-- Toastr -->
+    <script src="resources/plugins/toastr/js/toastr.min.js"></script>
+    <script src="resources/plugins/toastr/js/toastr.init.js"></script>
+    
+    
+    <!-- 웹소켓 -->
+    <script>
+	    var socket = null;
+		
+	    $(document).ready(function(){
+	    	connectWS();
+	    });
+	    
+	    function connectWS(){
+	    	var ws = new WebSocket("ws://localhost:8888/dlog/echo");
+	    	socket = ws;
+		    ws.onopen = function () {
+		        //console.log('Info: connection opened.');
+		    };
+		
+		    ws.onmessage = function (event) {
+		        //console.log("ReceiveMessage: ", event.data+'\n');
+		        $("#toastr-success-top-right").click();
+		        $(".toast-title").text("새로운 알림");
+	    		$(".toast-message").text(event.data);
+		    };
+		
+		    ws.onclose = function (event) { 
+		    	//console.log('Info: connection closed.'); 
+		        //setTimeout( function(){ connect(); }, 1000); // retry connection!!
+		    };
+		    ws.onerror = function (err) { console.log('Error:', err); };
+	    }
+    </script>
+    
+    
 	
 	<!-- 공개비공개/화설비활성 스크립트 -->
 	<script>

@@ -78,6 +78,21 @@
 		 where voca_no=#{vocaNo}
 	 
 	</delete>
-
+	
+	<select id="randomVoca" parameterType="_int" resultMap="vocaResultSet">
+		select *
+		  from(
+		        select
+		               voca_no
+		             , voca_writer
+		             , voca_word
+		             , voca_mean
+		          from voca v
+		          join member m on(v.voca_writer=m.member_no)
+		         where member_no = #{memberNo}
+		         order by dbms_random.value
+			  )
+			  where rownum = 1
+	</select>
 
 </mapper>

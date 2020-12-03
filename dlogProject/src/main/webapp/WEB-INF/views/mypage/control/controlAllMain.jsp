@@ -38,16 +38,7 @@
             width: 100px;
             height: 30px;
         }
-        /* 메뉴바색상 */
-    	.menubarColor, #menubarColor,.menubarColor li{background:${ ca.myColorMenubar };}
-    	/* 배경색상 */
-    	.backgroundColor{background:${ca.myColorBackground};}
-    	.backgroundColor div{background:${ca.myColorBackground};}
-    	/* 글자색상 */
-    	.backgroundColor div{color:${ ca.myColorFont };}
-    	.menubarColor li *{color:${ ca.myColorFont };}
-    	/* 로고색상 */
-    	#logoColor{background:${ca.myColorLogo};}
+        
     	
     </style>
     

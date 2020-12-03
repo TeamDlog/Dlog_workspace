@@ -21,7 +21,7 @@ public class ControlAllConctroller {
 	@RequestMapping("main.ca")
 	public String ControlAllMain(HttpSession session,Model model) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		model.addAttribute("ca", caService.ControlAllMain(loginUser.getMemberNo()+""));
+		session.setAttribute("ca", caService.ControlAllMain(loginUser.getDiaryMemberNo()+""));
 		return "mypage/control/controlAllMain";
 	}
 	

@@ -52,5 +52,9 @@ public class VocaDao {
 		
 		return (ArrayList)sqlSession.selectList("vocaMapper.searchVoca", v, rowBounds);
 	}
+	
+	public Voca randomVoca(SqlSessionTemplate sqlSession, int mno){
+		return sqlSession.selectOne("vocaMapper.randomVoca", mno);
+	}
 
 }

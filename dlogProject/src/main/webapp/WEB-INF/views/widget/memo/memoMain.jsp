@@ -67,6 +67,14 @@
 	
 	$(function(){
 		
+		// 메모 10개 한정
+		$("#memo_count_10").click(function(e){
+			if($("#memo_count").val() == 10){
+				alert("메모는 최대 10개까지 작성할 수 있습니다.");
+				e.preventDefault();
+			}
+		})
+		
 		// 첫 로딩 시 Y인 것을 on
 		$(".switch>input:hidden").each(function(){
 			if($(this).val()=='Y'){
@@ -81,11 +89,11 @@
 					url:"widgetNtoY.mo",
 					data:{
 						memoNo:$(this).val(),
-						memoWriter:2
+						memoWriter:${loginUser.memberNo}
 					},
 					success:function(memoWidget){
 						$(".memo_widget_content").text(memoWidget.memoContent);
-						
+
 					},error:function(){
 						console.log("ajax통신 실패");
 					}
@@ -94,7 +102,7 @@
 				$.ajax({
 					url:"widgetAlltoN.mo",
 					data:{
-						memoWriter:2
+						memoWriter:${loginUser.memberNo}
 					},
 					success:function(data){
 						$(".memo_widget_content").text("");
@@ -114,13 +122,13 @@
 				$(".removeBox").css("display","");
 			}else{
 				if($("input:checkbox[class=removeBox]:checked").length > 0){
-					
+
 					var checkArr = [];
 					$("input:checkbox[class=removeBox]:checked").each(function(){
 						checkArr.push($(this).val());
 					})
 					console.log(checkArr);
-					
+
 					var test = confirm("정말 삭제하시겠습니까?");
 					if(test == true){
 						$(".delete_memo_form").submit();
@@ -132,10 +140,10 @@
 				$(".removeBox").css("display","none");
 			}
 		})
-	                     			
+
 		// 제목 hover
 		$(".memo_main_title").hover().css("cursor","pointer");
-		
+
 		// 상세 조회
 		$(".memo_main_title").click(function(){
 			location.href="updateForm.mo?memoNo="+$(this).children().eq(0).val();

@@ -109,8 +109,7 @@
 		 where timetable_writer = #{timetableWriter}
 		   and timetable_no != #{timetableNo}
 		   and timetable_day = #{timetableDay}
-		   and (timetable_time like '%'||#{ timetableStart }||'%'
-		    or timetable_time like '%'||#{ timetableEnd }||'%')
+		   and timetable_time like '%'||#{ timetableTimeCheck }||'%'
 	</delete>
 	
 	<delete id="deleteTimetable" parameterType="string">

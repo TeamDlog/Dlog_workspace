@@ -27,23 +27,18 @@ public class CalendarServiceImpl implements CalendarService{
 	}
 
 	@Override
-	public int enrollCalendar(int calendarWriter) { // 캘린더 작성 폼
-		return cDao.enrollCalendar(sqlSession, calendarWriter);
+	public ArrayList<Calendar> selectCalendarList(int calendarWriter) {  // 캘린더 전체 조회 
+		return cDao.selectCalendarList(sqlSession, calendarWriter);
 	}
-	
+
+	@Override
+	public Calendar selectCalendarDetail(Calendar c) { // 캘린더 상세 조회
+		return cDao.selectCalendarDetail(sqlSession, c);
+	}
+
 	@Override
 	public int deleteCalendar(int calendarNo) { // 캘린더 삭제
 		return cDao.deleteCalendar(sqlSession, calendarNo);
-	}
-
-	@Override
-	public ArrayList<Calendar> selectCalendarList(int calendarWriter) {  // 캘린더 전체 조회 
-		return null;
-	}
-
-	@Override
-	public Calendar selectCalendarDetail(int calendarNo) { // 캘린더 상세 조회
-		return null;
 	}
 
 	@Override

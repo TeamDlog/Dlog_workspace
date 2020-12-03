@@ -16,5 +16,7 @@ public interface VocaService {
 	
 	int searchListCount(Voca v);
 	ArrayList<Voca> searchVoca(PageInfo pi, Voca v);
+	
+	Voca randomList(int mno);
 
 }

@@ -516,6 +516,11 @@
 							$("#addReply2-" + refRno).find("textarea").val("");
 							$("#addReply2-" + refRno).children("span").text("0");
 							selectReplyList(cPage, refRno);
+							
+							if(socket){
+								var socketMsg = "reply,${ loginUser.nickname },${ fn.freenoteWriter },${ fn.freenoteTitle }";
+								socket.send(socketMsg);
+							}
 						}
 					}, error:function(){
 						console.log("댓글 작성용 ajax 통신 실패");

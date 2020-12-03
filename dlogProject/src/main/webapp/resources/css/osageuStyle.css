@@ -169,6 +169,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 	color:gray !important;
 }
 #photo_main_modal_content{
+	margin-top:15px;
 	font-size:25px !important;
 	color:white;
 }
@@ -508,18 +509,10 @@ input:checked + .slider:before {
 
 /* 캘린더 */
 /* 메인 */
-#calendar_main_head{
-  width: 100%;
-  height: 120px;
-  padding-top: 30px;
-}
-#calendar_main_head>div{
-  float: left;
-}
 #calendar_main_head_left{
   width: 30%;
-  height: 100%;
   padding-top:45px;
+  border:0px;
   position: relative;
 }
 #calendar_main_head_left button:nth-child(1){
@@ -528,9 +521,12 @@ input:checked + .slider:before {
   border: 0px;
   font-size: 20px;
   background: rgb(240,240,240);
-  box-shadow: 0px -4px 8px lightgray inset;
+  border-right:1px solid white;
+  /* box-shadow: 0px -4px 8px lightgray inset; */
   border-radius: 3px 0px 0px 3px;
   outline: 0;
+  cursor:pointer;
+  
 }
 #calendar_main_head_left button:nth-child(2){
   width: 40px;
@@ -538,74 +534,46 @@ input:checked + .slider:before {
   border: 0px;
   font-size: 20px;
   background: rgb(240,240,240);
-  box-shadow: 0px -4px 8px lightgray inset;
+  /* box-shadow: 0px -4px 8px lightgray inset; */
   margin-left: -3px;
   border-radius: 0px 3px 3px 0px;
   outline: 0;
+  cursor:pointer;
 }
-#calendar_main_head_left button:nth-child(3){
-  width: 60px;
-  height: 30px;
-  border: 0px;
-  font-size: 15px;
-  background: rgb(240,240,240);
-  box-shadow: 0px -4px 8px lightgray inset;
-  margin-left: 10px;
-  position: absolute;
-  border-radius: 3px;
-}
-#calendar_main_head_center{
-  width: 40%;
-  height: 100%;
+#calendar_main_head_center_td{
   text-align: center;
   font-size: 25px;
   font-weight: 800;
+  border:0px;
 }
 #calendar_main_head_right{
   width: 30%;
-  height: 100%;
   padding-top:45px;
+  border:0px;
 }
 #calendar_main_head_right a{
   background: rgb(185, 143, 233);
   font-size:15px;
   border:0px;
 }
-.button_click_effect{
-  box-shadow: 2px 2px 10px rgb(140, 59, 232) inset;
+#calendar_day{
+	height:50px; 
+	background:rgb(240,240,240); 
+	color:gray; 
+	font-weight:900; 
+	font-size:18px;
 }
-#calendar_main_table{
-  width: 100%; 
-  height: 650px;
+.calendar2{
+	border-collapse:collapse;
 }
-#calendar_main_table tr{
-  height: 13.1428571429%;
+.calendar2 td{
+	width:14.28%;
 }
-#calendar_main_table tr:nth-child(1){
-  height: 7%;
-  text-align: center;
-  background: rgb(240,240,240);
-  font-size: 17px;
-  font-weight: bold;
+.calendar_event:hover{
+	cursor:pointer;
 }
-#calendar_main_table td{
-  width: 14.2857142857%;
-  border: 1px solid lightgray;
-}
-.calendar_td div:nth-child(2){
-  text-align: right;
-  padding:5px;
-  height:25%;
-}
-.calendar_td div:nth-child(3){
-  height:25%;
-}
-.calendar_td div:nth-child(4){
-  height:25%;
-}
-.calendar_td div:nth-child(5){
-  height:25%;
-}
+
+
 
 /* 등록 */
 #calendar_enroll_outer>div{
@@ -647,6 +615,13 @@ input:checked + .slider:before {
   border-radius: 3px;
   color:rgb(70,70,70);
 }
+#calendar_enroll_event input[type=checkbox]{
+	width:20px;
+	height:20px;
+	position:relative;
+	top:3px;
+}
+
 textarea[name=calendarContent]{
   width: 100%;
   padding: 15px;
@@ -655,8 +630,52 @@ textarea[name=calendarContent]{
   border-radius: 3px;
 }
 
-
-
+/* 상세 */
+#calendar_detail_outer>div{
+	float:left;
+}
+#calendar_detail_outer{
+	color:rgb(70,70,70);
+}
+#calendar_detail_date{
+  padding-left:5px;
+  font-size: 20px;
+  width: 50%;
+  height:170px;
+}
+#calendar_detail_date>div{
+  margin-bottom: 8px;
+}
+#calendar_detail_date input[type=date]{
+  width: 50%;
+  border: 0;
+  color: lightgray;
+}
+#calendar_detail_event{
+  font-size: 20px;
+  width: 50%;
+  height:170px;
+}
+#calendar_detail_event>div{
+  margin-bottom: 8px;
+}
+#calendar_detail_event input[type=time]{
+  border: 0;
+  color: lightgray;
+  width: 36%;
+}
+#calendar_detail_event input[type=text]{
+  padding-left: 15px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  color:rgb(70,70,70);
+}
+#calendar_detail_event input[type=checkbox]{
+	width:20px;
+	height:20px;
+	position:relative;
+	top:3px;
+}
 
 
 

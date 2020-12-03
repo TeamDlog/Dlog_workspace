@@ -75,7 +75,7 @@
 		values 
 		       (
 		         seq_memono.nextval
-		       , 2
+		       , #{memoWriter}
 		       , #{memoTitle}
 		       , #{memoContent}
 		       , default

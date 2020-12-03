@@ -21,8 +21,9 @@ public interface NotificationService {
 	ArrayList selectFriendList(int loginUserNo);
 	int friendNewPostNotify(int loginUserNo, String loginUserNickname);
 	// 1:1문의답변 이메일 전송(6)
-	
+	int inquiryEmailNotify(int inquiryWriterNo);
 	// 신고내역처리(7)
+	int reportCheckNotify(int reportWriterNo);
 	
 
 	// 알림창 조회

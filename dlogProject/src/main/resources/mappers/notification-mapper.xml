@@ -42,7 +42,7 @@
 		 where reply_no = #{rno}
 	</select>
 	
-	<select id="selectFriend" parameterType="_int" resultType="_int">
+	<select id="selectFriendList" parameterType="_int" resultType="_int">
 		select
 		       friend_owner
 		  from friend
@@ -68,5 +68,12 @@
 		 order
 		    by notification_no desc
 	</select>
+	
+	<update id="deleteNotification" parameterType="_int">
+		update
+		       notification
+		   set status = 'N'
+		 where notification_no = #{notificationNo}
+	</update>
 
 </mapper>

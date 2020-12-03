@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.widget.memo.model.service.MemoService;
 import com.kh.dlog.widget.memo.model.vo.Memo;
 
@@ -25,9 +26,9 @@ public class MemoController {
 	private MemoService mService;
 	
 	@RequestMapping("enroll.mo")
-	public String enrollMemo(Model model) {
-		
-		Memo m = mService.selectMemoWidget(2);
+	public String enrollMemo(Model model, HttpSession session) {
+		Member mem = (Member)session.getAttribute("loginUser");
+		Memo m = mService.selectMemoWidget(mem.getMemberNo());
 		model.addAttribute("m", m);
 		
 		return "widget/memo/memoEnroll";
@@ -35,6 +36,7 @@ public class MemoController {
 	
 	@RequestMapping("insert.mo")
 	public String insertMemo(Memo m, HttpSession session) {
+		
 		int result = mService.insertMemo(m);
 		if(result > 0) {
 			session.setAttribute("alertMsg", "저장 성공!!");
@@ -95,10 +97,11 @@ public class MemoController {
 	@RequestMapping("selectList.mo")
 	public String selectList(Model model, HttpSession session) {
 		
-		ArrayList<Memo> list = mService.selectMemoList(2);
-		Memo memoWidget = mService.selectMemoWidget(2);
-		session.setAttribute("memoWidget", memoWidget);
+		Member m = (Member)session.getAttribute("loginUser");
+		ArrayList<Memo> list = mService.selectMemoList(m.getMemberNo());
+		int count = list.size();
 		model.addAttribute("list", list);
+		model.addAttribute("count", count);
 		
 		return "widget/memo/memoMain";
 	}
@@ -106,8 +109,9 @@ public class MemoController {
 	@ResponseBody
 	@RequestMapping(value="widgetNtoY.mo", produces="application/json; charset=utf-8")
 	public String widgetMemoNtoY(Memo m, HttpSession session) {
+		Member mem = (Member)session.getAttribute("loginUser");
 		int result = mService.widgetMemoNtoY(m);
-		Memo memoWidget = mService.selectMemoWidget(2);
+		Memo memoWidget = mService.selectMemoWidget(mem.getMemberNo());
 		if(result > 0) {
 			session.setAttribute("memoWidget", memoWidget);
 			return new Gson().toJson(memoWidget);

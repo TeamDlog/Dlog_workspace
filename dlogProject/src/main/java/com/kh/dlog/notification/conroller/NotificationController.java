@@ -24,5 +24,11 @@ public class NotificationController {
 		
 		return new Gson().toJson(jobj);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="delete.nf", produces="text/html; charset:utf-8")
+	public String deleteNotification(int notificationNo) {
+		return nService.deleteNotification(notificationNo)+"";
+	}
 
 }

@@ -41,11 +41,31 @@
 	        <div class="card widgetVoca">
                 <div class="stat-widget-one" style="padding: 10px">
                     <div class="stat-content">
-                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">hello</div>
-                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">안녕</div>
+                    <c:choose>
+                    	<c:when test="${ vocaWord eq null }">
+                    		<div class="stat-text" style="padding: 0px; margin: 0px; font-size: 13px">등록된 단어가 없습니다.</div>
+                        </c:when>
+                        <c:otherwise>
+	                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">${ vocaWord }</div>
+	                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">${ vocaMean }</div>
+                        </c:otherwise>
+                    </c:choose>
                     </div>
                 </div>
             </div>
+            
+            <script>
+            	window.onload=function(){
+            		$.ajax({
+            			url:"random.vo",
+            			success:function(result){
+            				console.log("왜");
+            			},error:function(){
+            				console.log("ajax통신 실패");
+            			}
+            		})
+            	};
+            </script>
 	        
 	        
 	        <!-- 시간표위젯 -->
@@ -55,7 +75,7 @@
                         <table id="timetableWidget"  style="width: 100%; text-align: center; font-size:13px">
                         	<c:choose>
                         	
-                        		<c:when test="${ !empty tlist }">
+                        		<c:when test="${ !empty timetableList }">
 		                        	<thead>
 			                        	<tr style="height: 30px;">
 			                                <th>
@@ -65,17 +85,17 @@
 		                        	</thead>
 		                        	<c:choose>
 		                        		<c:when test="${ timetableToDay != '토요일' || timetableToDay != '일요일'}">
-				                        	<c:forEach var="t" items="${ tlist }">
-				                        		<c:if test="${ t.timetableDay == t.timetableToDay }">
+				                        	<c:forEach var="timetable" items="${ timetableList }">
+				                        		<c:if test="${ timetable.timetableDay == timetable.timetableToDay }">
 						                        	<tbody>
 							                        	<tr style="height: 30px;">
 							                                <th>
-							                                  	  ${ t.timetableTitle }
+							                                  	  ${ timetable.timetableTitle }
 							                                </th>
 							                            </tr>
 							                            <tr>
 							                                <td style="height: 20px;">
-							                                	${ t.timetableStart }:00 ~ ${ t.timetableEnd }:00
+							                                	${ timetable.timetableStart }:00 ~ ${ timetable.timetableEnd }:00
 							                                </td>
 							                            </tr>
 						                            </tbody>
@@ -168,50 +188,53 @@
         ***********************************-->
         <script>
         
-        	// memo
-           	$(function(){
-           		
-          		$(".memo_widget").hover(function(){
-           			$(this).children().eq(1).css({
-           				"font-size":"17px",
-               			"border":"0px",
-               			"padding":"20px",
-               			"resize":"none",
-               			"overflow":"auto",
-               			"color":"rgb(100,100,100)"
-           			});
-           		},function(){
-           			$(this).children().eq(1).css({
-           				"font-size":"17px",
-               			"border":"0px",
-               			"resize":"none",
-               			"padding":"20px",
-               			"overflow":"hidden",
-               			"color":"rgb(100,100,100)"
-           			});
-           		});
-           		
-           		$(".memo_widget_title").css({
-           			"background":"rgb(132,200,185)",
-           			"color":"white",
-           			"text-align":"center",
-           			"font-size":"25px",
-           			"height":"40px",
-           			"padding-top":"3px",
-           			"border-radius":"10px 10px 0px 0px"
-           		});
-           		
-           		$(".memo_widget_content").css({
-           			"font-size":"17px",
+     	// memo
+       	$(function(){
+
+       		$(".memo_widget").hover(function(){
+       			$(this).children().eq(1).css({
+       				"font-size":"17px",
            			"border":"0px",
-           			"width":"100%",
-           			"resize":"none",
            			"padding":"20px",
-           			"overflow":"hidden",
+           			"resize":"none",
+           			"overflow":"auto",
            			"color":"rgb(100,100,100)"
-           		});
+       			});
+	       		},function(){
+	       			$(this).children().eq(1).css({
+	       				"font-size":"17px",
+	           			"border":"0px",
+	           			"resize":"none",
+	           			"padding":"20px",
+	           			"padding-right":"35px",
+	           			"overflow":"hidden",
+	           			"color":"rgb(100,100,100)"
+	       			});
+	       		});
+	
+	       		$(".memo_widget_title").css({
+	       			"background":"rgb(132,200,185)",
+	       			"color":"white",
+	       			"text-align":"center",
+	       			"font-size":"25px",
+	       			"height":"40px",
+	       			"padding-top":"3px",
+	       			"border-radius":"10px 10px 0px 0px"
+	       		});
+	
+	       		$(".memo_widget_content").css({
+	       			"font-size":"17px",
+	       			"border":"0px",
+	       			"width":"100%",
+	       			"resize":"none",
+	       			"padding":"20px",
+	       			"padding-right":"35px",
+	       			"overflow":"hidden",
+	       			"color":"rgb(100,100,100)"
+	       		});
+
+       		})
            		
-           	})
         </script>
         
         <script>

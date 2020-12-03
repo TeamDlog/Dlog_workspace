@@ -33,9 +33,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px;">
-                        <div class="card-body backgroundColor" >
-                            
+                        <div class="card-body" >
+
                         <form action="insert.mo" method="post">
+                        	<input type="hidden" name="memoWriter" value="${ loginUser.memberNo }">
 	                        <div class="memo_enroll_title">
 	                            <input type="text" name="memoTitle" placeholder="제목을 입력해주세요">
 	                        </div>

@@ -16,7 +16,7 @@ public class NotificationDao {
 		return sqlSession.insert("notificationMapper.insertNotification", n);
 	}
 	
-	public int insertNotifiactions(SqlSessionTemplate sqlSession, Notification n, ArrayList flist) {
+	public int insertNotifications(SqlSessionTemplate sqlSession, Notification n, ArrayList flist) {
 		int result = 0;
 		for(int i=0; i<flist.size(); i++) {
 			n.setMemberNo((int)flist.get(i));
@@ -30,11 +30,15 @@ public class NotificationDao {
 	}
 	
 	public ArrayList selectFriendList(SqlSessionTemplate sqlSession, int loginUserNo) {
-		return (ArrayList)sqlSession.selectList("notificationMapper.selectFriednList", loginUserNo);
+		return (ArrayList)sqlSession.selectList("notificationMapper.selectFriendList", loginUserNo);
 	}
 	
 	public ArrayList<Notification> selectNotificationList(SqlSessionTemplate sqlSession, int loginUserNo) {
 		return (ArrayList)sqlSession.selectList("notificationMapper.selectNotificationList", loginUserNo);
+	}
+	
+	public int deleteNotification(SqlSessionTemplate sqlSession, int notificationNo) {
+		return sqlSession.update("notificationMapper.deleteNotification", notificationNo);
 	}
 
 }
