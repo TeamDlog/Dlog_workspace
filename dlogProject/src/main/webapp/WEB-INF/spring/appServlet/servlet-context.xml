@@ -37,15 +37,33 @@
     </websocket:handlers>
     
     
-    <!-- <interceptors>
+    <interceptors>
 		<interceptor>
-			<mapping path="/myPage.me"/>
-			<mapping path="/list.bo"/>
-			<mapping path="/detail.bo"/>
-			<mapping path="/enrollForm.bo"/>
-			<beans:bean class="com.kh.spring.common.interceptor.LoginInterceptor" id="loginIntercept"/>
+			<!-- 로그인한 사용자만 이용가능한 기능 -->
+			<mapping path="/list.fn"/>
+			<mapping path="/enrollForm.fn"/>
+			<mapping path="/updateForm.fn"/>
+			<mapping path="/detail.fn"/>
+			<mapping path="/detail.co"/>
+
+			
+			
+			
+			
+			
+			<beans:bean class="com.kh.dlog.common.interceptor.LoginInterceptor" id="loginIntercept"/>
 		</interceptor>
-	</interceptors> -->
-	
+		<interceptor>
+			<!-- 관리자만 이용가능한 기능 -->
+			<mapping path="/adminList.co"/>
+			<mapping path="/adminDetail.co"/>
+			
+			
+			
+			
+			
+			<beans:bean class="com.kh.dlog.common.interceptor.AdminInterceptor" id="AdminIntercept"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

@@ -38,7 +38,7 @@ public class NotificationDao {
 	}
 	
 	public int deleteNotification(SqlSessionTemplate sqlSession, int notificationNo) {
-		return sqlSession.update("notificationMapper.deleteNotification", notificationNo);
+		return sqlSession.delete("notificationMapper.deleteNotification", notificationNo);
 	}
 
 }
