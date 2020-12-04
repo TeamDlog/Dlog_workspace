@@ -70,9 +70,8 @@
 	</select>
 	
 	<update id="deleteNotification" parameterType="_int">
-		update
-		       notification
-		   set status = 'N'
+		delete
+		  from notification
 		 where notification_no = #{notificationNo}
 	</update>
 

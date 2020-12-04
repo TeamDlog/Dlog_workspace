@@ -93,7 +93,12 @@
             <script>
 	        	$(function(){
 	         		$("#listArea").on("click", "div", function(){
-	         			location.href="detail.co?fno=" + $(this).find("input").val();
+	         			if('${loginUser}' != ''){
+		         			location.href="detail.co?fno=" + $(this).find("input").val();
+	         			}else{
+	         				alert("로그인 후 이용 가능한 서비스입니다.");
+	         			}
+	         				
 	         		});
 	         	});
             </script>
@@ -136,9 +141,13 @@
 		                    		"<input type='hidden' value='" + result.list[i].freenoteNo + "'>" +
 		    	                    "<table>" +
 		    	                        "<tr>" +
-		    	                            "<td width='790' height='40'>" +
-		    	                                "<img src='resources/images/default-profile-pic.jpg' width='40' height='40' class='rounded-circle'> &nbsp;&nbsp;" +
-		    	                                result.list[i].freenoteWriter +
+		    	                            "<td width='790' height='40'>";
+		    	            if(result.list[i].profile != null){
+		    	            	listCard += "<img src='" + result.list[i].profile + "' width='40' height='40' class='rounded-circle'> &nbsp;&nbsp;";
+		    	            } else{
+		    	            	listCard += "<img src='resources/images/default-profile-pic.jpg' width='40' height='40' class='rounded-circle'> &nbsp;&nbsp;";
+		    	            }
+		    	            listCard +=         result.list[i].freenoteWriter +
 		    	                            "</td>" +
 		    	                            "<td width='140' align='right'>";
                             if(result.list[i].freenoteTopic != '주제선택안함'){

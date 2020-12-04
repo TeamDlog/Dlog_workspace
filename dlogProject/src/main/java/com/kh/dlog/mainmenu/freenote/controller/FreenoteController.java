@@ -139,6 +139,8 @@ public class FreenoteController {
 			session.setAttribute("alertMsg", "삭제되었습니다.");
 			if(index != null && index.equals("admin")) {
 				mv.setViewName("redirect:adminList.co");
+			}else if(index.equals("community")) {
+				mv.setViewName("redirect:list.co");
 			}else {
 				mv.setViewName("redirect:list.fn");
 			}
