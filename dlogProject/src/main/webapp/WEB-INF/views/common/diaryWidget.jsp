@@ -44,12 +44,12 @@
                 <div class="stat-widget-one" style="padding: 10px">
                     <div class="stat-content">
                     <c:choose>
-                    	<c:when test="${ vocaWord eq null }">
+                    	<c:when test="${ voca eq null }">
                     		<div class="stat-text" style="padding: 0px; margin: 0px; font-size: 13px">등록된 단어가 없습니다.</div>
                         </c:when>
                         <c:otherwise>
-	                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">${ vocaWord }</div>
-	                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">${ vocaMean }</div>
+	                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">${ voca.vocaWord }</div>
+	                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">${ voca.vocaMean }</div>
                         </c:otherwise>
                     </c:choose>
                     </div>
@@ -61,7 +61,7 @@
             		$.ajax({
             			url:"random.vo",
             			success:function(result){
-            				console.log("왜");
+            				
             			},error:function(){
             				console.log("ajax통신 실패");
             			}
