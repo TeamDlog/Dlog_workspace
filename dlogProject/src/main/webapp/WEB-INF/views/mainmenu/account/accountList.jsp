@@ -30,7 +30,7 @@
   ***********************************-->
   <div class="content-body" style="float: left;">
       <div class="row page-titles mx-0">
-          <h3 style="color:rgb(94, 94, 94); padding-left: 15px; font-size:17px; font-weight:bolder">가계부</h3>
+          <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">가계부</h3>
       </div>
 
       <!-- row -->
@@ -38,7 +38,7 @@
       <div class="container-fluid">
           <div class="row">
               <div class="col-12">
-                  <div class="card backgroundColor" style="width:870px;" >
+                  <div class="card backgroundColor" style="width:900px; min-height:500px;" >
                       <div class="card-body" >
                           <div class="table-responsive">
                               <!-- 검색영역 -->
