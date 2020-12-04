@@ -109,15 +109,15 @@
                 Content body start
             ***********************************-->
             <div class="content-body" style="float: left;">
-                <div class="row page-titles mx-0">
-                    <h3 style="color:rgb(94, 94, 94); padding-left: 15px; "><b>디데이</b></h3>
-                </div>
+		       <div class="row page-titles mx-0">
+		           <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">디데이</h3>
+		       </div>
                 <!-- row -->
                 <form action="delete.dd" method="post">
 	                <div class="container-fluid">
 	                    <div class="row">
 	                        <div class="col-12">
-	                            <div class="card backgroundColor" style="width:900px;">
+	                            <div class="card backgroundColor" style="width:900px; min-height:500px;">
 	                                <div class="card-body" >
 	                                    <!-- 여기다가 작성 -->
 	                                    <div style="height: 50px;">
