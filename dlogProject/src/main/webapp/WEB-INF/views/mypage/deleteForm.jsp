@@ -9,7 +9,7 @@
 <style>
 	.deleteForm{
 		margin-top: 70px;
-        margin-left:15%;
+        margin-left:23%;
         border: solid 1px rgb(207, 202, 202);
         padding: 31px;
         width: 450px;
@@ -27,6 +27,13 @@
 
 <jsp:include page="../common/myPageHeader.jsp" />
 
+<script>
+      $(function(){
+         $(".metismenu a[href*='deleteForm.me']").addClass("active");
+         $(".metismenu a[href*='deleteForm.me']").parent().addClass("active");
+      });
+   </script>
+
 <!--**********************************
     Content body start
 ***********************************-->
@@ -39,7 +46,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card" style="width:710px;">
+                <div class="card" style="width:900px;">
                     <div class="card-body" >
                         
                     <!-- 여기다가 작성 -->
@@ -110,12 +117,8 @@
     Content body end
 ***********************************-->  
        
-</div>
-<!--**********************************
-    Main wrapper end
-***********************************-->
-
-	<jsp:include page="../common/myPageFooter.jsp" />
+	<jsp:include page="../common/diaryWidget.jsp" />
+	<jsp:include page="../common/diaryFooter.jsp" />
    
    
 </body>
