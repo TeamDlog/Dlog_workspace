@@ -60,6 +60,56 @@ public class MemberController {
 	@Autowired
 	private MemoService meService;
 
+	public void widgetSessionUpdate(HttpSession session, int currentPage) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		// friend session 넣기
+		int friendListCount = fService.selectFriendListCount(loginUser.getDiaryMemberNo());
+		PageInfo pi2 = Pagination.getPageInfo(friendListCount, currentPage, 3, 5);
+		ArrayList<Friend> friendList = fService.selectFriendList(loginUser.getDiaryMemberNo(), pi2);
+		Memo memoWidget = meService.selectMemoWidget(loginUser.getDiaryMemberNo());
+		
+		// request friendList
+		ArrayList<Friend> requestFriend = fService.requestFriend(loginUser.getMemberNo());
+		
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		
+		// 위젯관리, 메뉴관리, 테마관리 객체
+		session.setAttribute("ca", caService.ControlAllMain(loginUser.getDiaryMemberNo()+""));
+		
+		// 시간표 객체리스트
+		ArrayList<Timetable> tlist = tService.timetableList(loginUser.getDiaryMemberNo());
+		
+		// 시간표 객체리스트에 오늘날짜 추가하는 조건문/반복문
+		if(!tlist.isEmpty()) {
+			for(Timetable t : tlist) {
+				switch(today.get(Calendar.DAY_OF_WEEK)) {
+					case 1 : t.setTimetableToDay("일요일"); break;
+					case 2 : t.setTimetableToDay("월요일"); break;
+					case 3 : t.setTimetableToDay("화요일"); break;
+					case 4 : t.setTimetableToDay("수요일"); break;
+					case 5 : t.setTimetableToDay("목요일"); break;
+					case 6 : t.setTimetableToDay("금요일"); break;
+					case 7 : t.setTimetableToDay("토요일"); break;
+				}
+			}
+		}
+		
+		// 디데이 객체리스트 세션에 보관
+		session.setAttribute("dlist", dService.ddayMain(loginUser.getDiaryMemberNo()+""));
+		// 시간표 객체리스트 세션에 보관
+		session.setAttribute("timetableList", tlist);
+		// diaryMemberNo 추가한 로그인유저 객체 세션에 보관
+		session.setAttribute("loginUser", loginUser);
+		
+		// friend, memoWidget
+		session.setAttribute("pi2",pi2);
+		session.setAttribute("friendList",friendList);
+		session.setAttribute("requestFriend", requestFriend);
+		session.setAttribute("memoWidget", memoWidget);
+	}
+	
 	@RequestMapping("mainpage.me")
 	public String mainpage() {
 		return "mainpage/mainPage";
