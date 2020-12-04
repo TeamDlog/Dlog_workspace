@@ -15,10 +15,10 @@ import lombok.ToString;
 @ToString
 public class Diary {
 	private int diaryNo;
-	private String diaryWriter;
+	private int diaryWriter;
 	private String diaryTitle;
 	private String diaryContent;
-	private String diaryDate;
+	private Date diaryDate;
 	private String diaryStatus;
 	
 	

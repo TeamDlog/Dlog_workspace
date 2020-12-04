@@ -86,7 +86,7 @@
                                           		<td style="font-size:1.5em; font-weight:bolder;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;환영합니다 ! </td>
                                           	</tr>
                                           	<tr>
-                                          		<td class="bug2" style="font-size:1em;" ><img class="wrap" id="buga" src="resources/images/bug.png" style="width: 40px; height: 40px;">
+                                          		<td class="bug2" style="font-size:1em;" ><img class="wrap" id="buga" src="resources/images/bug.png" style="width: 34px; height: 34px;">
                                           		</td>
                                           	</tr>
                                           	<tr>
@@ -96,12 +96,13 @@
                                           	<tr>
                                           		<td style="font-size:1.5em;"> </td>	
                                           	</tr>
-                                          </c:if>	
+                                          </c:if>
+                                          <c:if test="${loginUser.introductionTitle != null and loginUser.introductionContent != null }">
                                           <tr>
                                                  <td style="font-size:30px;">&nbsp;</td>
                                            </tr>      
                                              <tr>
-                                                 <td style="font-size:23px; font-weight: bolder; ">&nbsp;&nbsp; ${ loginUser.introductionTitle } <img float=right; class="wrap" id="buga" src="resources/images/bug.png" style="width: 40px; height: 40px;"> </td>
+                                                 <td style="font-size:23px; font-weight: bolder; ">&nbsp;&nbsp; ${ loginUser.introductionTitle } <img float=right; class="wrap" id="bugb" src="resources/images/bug.png" style="width: 30px; height: 30px;"> </td>
                                              </tr>
                                              
                                              <tr>
@@ -115,7 +116,7 @@
                                             <tr>
                                                  <td id="content">${ loginUser.introductionContent } </td>
                                              </tr>
-                                             
+                                             </c:if>
                                          </table>
                                      </div>
                                      <div align="right">

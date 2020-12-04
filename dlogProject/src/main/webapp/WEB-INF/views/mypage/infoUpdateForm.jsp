@@ -150,7 +150,7 @@
                                      </tr>
                                     </table>
                                    <br><br>
-                                 <button type="submit" id="infoUpdateBtn" class="btn btn-success" >확인</button>
+                                 <button type="submit" id="infoUpdateBtn" class="btn btn-success" disabled>확인</button>
                                   
                                 </form>
                                </div>
@@ -187,7 +187,7 @@
                             		}	
                             	}
                             		//
-                            	
+                            	<!--
                            		$('#sendPhoneNumber').click(function(){
                                     var phoneNumber = $('#phoneNumber').val();
                                     
@@ -220,9 +220,9 @@
 
 
                                         }
-                                    })
-                                    
-                           		} 
+                                    });
+                           		});
+                           		 -->
                            		</script>
                            		
                            		

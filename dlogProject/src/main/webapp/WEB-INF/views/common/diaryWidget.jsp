@@ -16,7 +16,7 @@
             Widget area start
         ***********************************-->
         <div class="widget-area" style="float:left; margin-top: 100px;">
-            <div class="card" style="max-width:220px; height:250px;">
+            <div class="card" style="max-width:220px; height:267px;">
                 <div class="card-body">
                     <div class="text-center">
                     	<c:if test="${loginUser.profile == null}">

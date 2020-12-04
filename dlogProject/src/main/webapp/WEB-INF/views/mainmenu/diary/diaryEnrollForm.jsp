@@ -11,11 +11,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="resources/images/DlogLogo-title.png">
 
 </head>
-<style>
-	.card-body{
-	 width:94%;
-	}
-</style>
+
 <body>
 
 <jsp:include page="../../common/diaryHeader.jsp" />
@@ -52,7 +48,7 @@
                         	 <div>
                                  <input type="text" name="diaryTitle" style="width:680px; height: 35px; border: .5px solid lightgrey; border-radius: 4px; margin-left:30px; " placeholder="&nbsp;제목을 입력해주세요" required>
                              </div>
-                             <div class="card-body">
+                             <div class="card-body" style="width:88%">
                                  <textarea class="summernote" name="diaryContent" required>
                                  </textarea>
                              </div>

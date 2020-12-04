@@ -42,7 +42,7 @@
 		  values
 		  (
 		     seq_diaryno.nextval
-		   , 2
+		   , #{diaryWriter}
 		   , #{diaryTitle}
 		   , #{diaryContent}
 		    )
