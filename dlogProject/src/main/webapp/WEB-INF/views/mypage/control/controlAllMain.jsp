@@ -206,7 +206,7 @@
     <!--**********************************
         Widget area end
     ***********************************-->
-   <jsp:include page="../../common/myPageFooter.jsp"/>
+   <jsp:include page="../../common/diaryFooter.jsp"/>
     <script>
         $(document).on('click', '.toggleBG', function () {
             var toggleBG = $(this);
