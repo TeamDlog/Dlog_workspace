@@ -126,7 +126,6 @@
     ***********************************-->  
     <jsp:include page="../../common/diaryWidget.jsp" />
     <jsp:include page="../../common/diaryFooter.jsp" />
-    <jsp:include page="../../common/friendjQuery.jsp" />
     
 </body>
 </html>

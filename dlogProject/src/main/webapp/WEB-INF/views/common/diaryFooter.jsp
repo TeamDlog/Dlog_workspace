@@ -140,5 +140,7 @@
 	</script>
 	<!-- 공개비공개/화설비활성 스크립트 -->
 	
+	<jsp:include page="friendjQuery.jsp" />
+	
 </body>
 </html>
