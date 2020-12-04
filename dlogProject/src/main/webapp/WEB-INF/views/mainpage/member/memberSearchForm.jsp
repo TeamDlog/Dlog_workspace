@@ -157,14 +157,7 @@
                                 </div>
                                 <div class="modal-body" align="center">
                                     <br>
-                                    <c:choose>
-                                    	<c:when test="${ result eq null }">
-                                    		<h6>회원님의 아이디를 찾을 수 없습니다.</h6>
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    		<h6>${ result }</h6>
-                                    	</c:otherwise>
-                                    </c:choose>
+                                   		<h6 id="idSearchResultArea">회원님의 아이디를 찾을 수 없습니다.</h6>
                                     <br>
                                 </div>
                                 <div class="modal-footer">
@@ -210,19 +203,17 @@
                 			data:{"memberName":$name.val(),"phone":$phone.val()},
                 			success:function(result){
                 				
-                				if(result == 'success'){
-                					
-                					$("#exampleModalCenter").html();
-                                    $('#exampleModalCenter').modal('toggle');
-                                    $("#loginFrom").removeAttr("disabled");
-	
-                					
-                				}else{
-                					
+                				if(result == 'fail'){
+                					$("#idSearchResultArea").text("회원님의 아이디를 찾을 수 없습니다.")
                 					$("#exampleModalCenter").html();
                                     $('#exampleModalCenter').modal('toggle');
                                     $("#loginFrom").attr("disabled", true);
-                					
+	
+                				}else{
+                					$("#idSearchResultArea").text(result);
+                					$("#exampleModalCenter").html();
+                                    $('#exampleModalCenter').modal('toggle');
+                                    $("#loginFrom").removeAttr("disabled");
                 				}
                 				
                 			},error:function(){

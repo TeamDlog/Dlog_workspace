@@ -882,3 +882,74 @@ begin
     end if;
 end;
 /
+
+-- 회원가입시 실행할 트리거
+create or replace trigger trg_member_enroll
+after insert on member
+for each row
+begin
+    insert 
+      into active
+      (
+           member_no
+         , active_dday
+         , active_voca
+         , active_memo
+         , active_timetable
+      )
+      values
+      (
+           :new.member_no
+         , 'Y'
+         , 'Y'
+         , 'Y'
+         , 'Y'
+      );
+          
+    insert 
+      into privacy
+      (
+           member_no
+         , privacy_calendar
+         , privacy_diary
+         , privacy_freenote
+         , privacy_photo
+         , privacy_account
+         , privacy_dday
+         , privacy_voca
+         , privacy_memo
+         , privacy_timetable
+      )
+      values
+      (
+           :new.member_no
+         , 'Y'
+         , 'Y'
+         , 'Y'
+         , 'Y'
+         , 'Y'
+         , 'Y'
+         , 'Y'
+         , 'Y'
+         , 'Y'
+      );
+      
+    insert 
+      into my_color
+      (
+           member_no
+         , my_color_logo
+         , my_color_background
+         , my_color_menubar
+         , my_color_font
+      )
+      values
+      (
+           :new.member_no
+         , '#84c8b9'
+         , '#ffffff'	
+         , '#ffffff'	
+         , '#464a53'	
+      ); 
+end;
+/

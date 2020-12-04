@@ -2,6 +2,7 @@ package com.kh.dlog.member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,6 +12,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -167,22 +169,22 @@ public class MemberController {
 	}
 	*/
 	
-	@ResponseBody
+	
 	@RequestMapping("idSearch.me")
-	public String idSearch(Member m, HttpSession session) {
+	public void idSearch(Member m, HttpSession session, HttpServletResponse response) throws IOException {
 		
 		String result = mService.idSearch(m);
-		
+		String str ="";
 		if(result != null) {
 			
-			session.setAttribute("result", "회원님의 아이디는 " + result + " 입니다.");
-			return "success";
+			str =  "회원님의 아이디는 " + result + " 입니다.";
 			
 		}else {
-			
-			return "fail";
-			
+			str = "fail";
 		}
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(str);
 		
 	}
 	
