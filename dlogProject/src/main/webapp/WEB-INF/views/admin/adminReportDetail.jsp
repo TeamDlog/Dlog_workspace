@@ -88,6 +88,7 @@
 						           <br><br>
 						        <form action="adminReportProcess.ro" method="post" id="b">
 						         	<input type="hidden" name="reportNo" value="${r.reportNo }">
+						         	<input type="hidden" name="reportWriterNo" value="${r.reportWriterNo}">
 						         	<button class="btn mb-1 btn-rounded btn-primary" type="submit" >처리완료</button>
 						         </form>
 						      	<input class="btn mb-1 btn-rounded btn-primary" type="button" value="삭제" data-toggle="modal" data-target="#deleteForm" id="a">

@@ -304,7 +304,14 @@
                             </script>
                             <li class="icons dropdown">
                                 <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                                    <img src="resources/images/default-profile-pic.jpg" height="40" width="40" alt="">
+                                    <c:choose>
+	                                    <c:when test="${ loginUser.profile ne null }">
+	                                    	<img src="${ loginUser.profile }" height="40" width="40" alt="">
+	                                    </c:when>
+	                                    <c:otherwise>
+	                                    	<img src="resources/images/default-profile-pic.jpg" height="40" width="40" alt="">
+	                                    </c:otherwise>
+	                            	</c:choose>
                                 </div>
                                 <div class="drop-down dropdown-profile   dropdown-menu">
                                     <div class="dropdown-content-body">

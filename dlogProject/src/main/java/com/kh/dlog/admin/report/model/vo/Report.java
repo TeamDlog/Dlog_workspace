@@ -23,4 +23,5 @@ public class Report {
 		private int reportPostNo;
 		private String reportProcess;
 		private String memberId;
+		private int reportWriterNo;
 }
