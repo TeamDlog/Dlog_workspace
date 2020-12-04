@@ -24,5 +24,6 @@ public class Reply {
 	private int refRno;
 	private int replyLevel;
 	private int likeStatus;
+	private String profile;
 
 }

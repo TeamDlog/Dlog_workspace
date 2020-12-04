@@ -25,7 +25,7 @@ a {
   ***********************************-->
   <div class="content-body" style="float: left;">
       <div class="row page-titles mx-0">
-          <h3 style="color:rgb(94, 94, 94); padding-left: 15px; font-size:17px; font-weight:bolder">다이어리</h3>
+          <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">다이어리</h3>
       </div>
 
       <!-- row -->
@@ -33,7 +33,7 @@ a {
       <div class="container-fluid">
           <div class="row">
               <div class="col-12">
-                  <div class="card" style="width:900px;">
+                  <div class="card" style="width:900px; min-height:500px;">
                       <div class="card-body backgroundColor" >
                           <div class="table-responsive">
                               <!-- 검색영역 -->
@@ -129,7 +129,7 @@ a {
                                   		<td width="100" align="center"></td>
                                       	<td width="600"></td>
                                       	<td>
-                                      		<div width="300" align="right">
+                                      		<div width="300" style="margin-left:90%">
                                          	 <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
                                       		</div>
                                       	</td>

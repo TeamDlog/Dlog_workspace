@@ -81,9 +81,17 @@
                             <div>
                                 <table>
                                     <tr>
-                                    	
-                                        <td width="400"><img src="resources/images/default-profile-pic.jpg" class="rounded-circle" height="30" width="30"> 
-                            			&nbsp;<b>${ fn.memberId }&nbsp;(${ fn.freenoteWriter })</b></td>
+                                        <td width="400">
+                                        	<c:choose>
+	                                        	<c:when test="${ fn.profile ne null }">
+	                                        		<img src="${ fn.profile }" class="rounded-circle" height="30" width="30"> 
+	                                        	</c:when>
+	                                        	<c:otherwise>
+	                                        		<img src="resources/images/default-profile-pic.jpg" class="rounded-circle" height="30" width="30"> 
+	                                        	</c:otherwise>
+                                        	</c:choose>
+                            				&nbsp;<b>${ fn.memberId }&nbsp;(${ fn.freenoteWriter })</b>
+                            			</td>
                                         <td width="500" align="right">${fn.createDate}</td>
                                     </tr>
                                 </table>
@@ -116,7 +124,7 @@
 		// 글 삭제 확인용
 	    $("#deleteBtn").click(function(){
 			if(confirm("정말 삭제하시겠습니까?")) {
-				location.href="delete.fn?fno=${ fn.freenoteNo }";
+				location.href="delete.fn?fno=${ fn.freenoteNo }&index=admin";
 			}
 		});
 		
@@ -160,8 +168,13 @@
 	                                            "<td width='35'>" +
 	                                                "<img src='resources/images/reply_arrow.png' width='17'>" +
 	                                            "</td>" +
-	                                            "<td colspan='2' height='40'>" +                            
-	                                                "<img src='resources/images/default-profile-pic.jpg' class='rounded-circle' height='35' width='35'> &nbsp;" + result.rlist2[j].replyWriter +
+	                                            "<td colspan='2' height='40'>";
+	                        		if(result.rlist2[j].profile != null){
+	                                	comment2 += "<img src='" + result.rlist2[j].profile + "' class='rounded-circle' height='35' width='35'> &nbsp;";
+	                                }else{
+	                                	comment2 += "<img src='resources/images/default-profile-pic.jpg' class='rounded-circle' height='35' width='35'> &nbsp;";
+	                                }
+									comment2 +=     result.rlist2[j].replyWriter +
 	                                            "</td>" +
 	                                        "</tr>" +
 	                                        "<tr>" +
@@ -189,8 +202,13 @@
 							var comment1 = "<div class='reply1'>" +
 			                    "<table>" + 
 			                        "<tr>" +
-			                            "<td colspan='2' height='40'>" +                            
-			                                "<img src='resources/images/default-profile-pic.jpg' class='rounded-circle' height='35' width='35'> &nbsp;" + result.rlist[i].replyWriter + 
+			                            "<td colspan='2' height='40'>";
+							if(result.rlist[i].profile != null){
+			                	comment1 += "<img src='" + result.rlist[i].profile + "' class='rounded-circle' height='35' width='35'> &nbsp;";
+			                } else{
+			                	comment1 += "<img src='resources/images/default-profile-pic.jpg' class='rounded-circle' height='35' width='35'> &nbsp;";
+			                }
+			                comment1 +=     result.rlist[i].replyWriter + 
 			                            "</td>" +
 			                        "</tr>" +
 			                        "<tr>" +

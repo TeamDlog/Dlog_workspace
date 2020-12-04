@@ -132,12 +132,18 @@ public class FreenoteController {
 	}
 	
 	@RequestMapping("delete.fn")
-	public ModelAndView deleteFreenote(int fno, HttpSession session, ModelAndView mv) {
+	public ModelAndView deleteFreenote(int fno, String index, HttpSession session, ModelAndView mv) {
 		int result = fService.deleteFreenote(fno);
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "삭제되었습니다.");
-			mv.setViewName("redirect:list.fn");
+			if(index != null && index.equals("admin")) {
+				mv.setViewName("redirect:adminList.co");
+			}else if(index.equals("community")) {
+				mv.setViewName("redirect:list.co");
+			}else {
+				mv.setViewName("redirect:list.fn");
+			}
 		}else {
 			mv.setViewName("common/errorPage");
 		}

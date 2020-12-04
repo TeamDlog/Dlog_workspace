@@ -57,8 +57,8 @@
                                  </textarea>
                              </div>
                          <div align="right">
-                             <button type="submit" class="btn btn-primary btn-sm"  onclick="insert(this.form)">등록</button>
-                             <button onclick="history.back();" class="btn btn-dark btn-sm">취소</button>
+                             <button type="submit" class="btn btn-success btn-sm"  onclick="insert(this.form)">등록</button>
+                             <button onclick="history.back();" class="btn btn-secondary btn-sm">취소</button>
                          </div>
                          </form>
                         

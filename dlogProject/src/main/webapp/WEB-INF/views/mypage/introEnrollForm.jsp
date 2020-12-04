@@ -30,6 +30,13 @@
 </head>
 <body>
 		<jsp:include page="../common/myPageHeader.jsp" />
+		
+		<script>
+      $(function(){
+         $(".metismenu a[href*='introListMn.my']").addClass("active");
+         $(".metismenu a[href*='introListMn.my']").parent().addClass("active");
+      });
+   </script>
 	
 <!--**********************************
       Content body start
@@ -48,7 +55,7 @@
       <div class="container-fluid">
           <div class="row">
               <div class="col-12">
-                  <div class="card" style="width:730px;">
+                  <div class="card" style="width:900px;">
                       <div class="card-body" >
                           
                       <!-- 여기다가 작성 -->
@@ -62,7 +69,7 @@
                                           <td style="font-size:30px;">&nbsp;</td>
                                       </tr>
                                       <tr>
-                                          <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp;<input type="text" name="introductionTitle" style="border:0px; background-color:transparent; width:605px;" value="${loginUser.introductionTitle }" required></th>
+                                          <th style="font-size:30px; font-weight: bolder;">&nbsp;&nbsp;<input type="text" name="introductionTitle" style="border:0px; background-color:transparent; width:800px;" value="${loginUser.introductionTitle }" required></th>
                                       </tr>
                                       <tr>
                                           <td ><hr id="line"></td>
@@ -91,12 +98,9 @@
       Content body end
   ***********************************-->  
     
-</div>
-<!--**********************************
-    Main wrapper end
-***********************************-->
 
- <jsp:include page="../common/myPageFooter.jsp" />
+ <jsp:include page="../common/diaryWidget.jsp" />
+ <jsp:include page="../common/diaryFooter.jsp" />
 	
 </body>
 </html>

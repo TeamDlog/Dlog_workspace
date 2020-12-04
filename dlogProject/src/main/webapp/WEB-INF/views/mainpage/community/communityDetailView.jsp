@@ -123,10 +123,18 @@
                     <tr>
                         <td width="750" style="font-size: 20px;">${ fn.freenoteTitle }</td>
                         <td width="200" align="right">
-                            <img src="resources/images/default-profile-pic.jpg" class="rounded-circle" height="35" width="35"> 
+                        	<c:choose>
+	                        	<c:when test="${ fn.profile ne null }">
+                               		<img src="${ fn.profile }" class="rounded-circle" height="30" width="30"> 
+                            	</c:when>
+                               	<c:otherwise>
+		                            <img src="resources/images/default-profile-pic.jpg" class="rounded-circle" height="35" width="35"> 
+                               	</c:otherwise>
+                            </c:choose>
+                            
                             &nbsp; 
                             <c:choose>
-                            	<c:when test="${loginUser.memberNo eq fn.memberNo }">
+                            	<c:when test="${loginUser.nickname eq fn.freenoteWriter || loginUser.memberNo == 1 }">
                             		${ fn.freenoteWriter }
                             	</c:when>
                             	<c:otherwise>
@@ -208,7 +216,7 @@
                             댓글&nbsp; <span id="rcount"></span> &emsp;
                             <!-- 좋아요 -->
                             <c:choose>
-                            	<c:when test="${ fn.freenoteWriter != loginUser.nickname }">
+                            	<c:when test="${ fn.freenoteWriter != loginUser.nickname && loginUser.memberNo != 1 }">
                               		<a class="likeBtn" onclick="likePost();" style="text-decoration: none; color: black">
                             		<c:choose>
                             			<c:when test="${ fn.likeStatus eq 0 }">
@@ -230,6 +238,9 @@
                         		<c:when test="${ loginUser.nickname == fn.freenoteWriter }">
 		                            <a href="detail.fn?fno=${ fn.freenoteNo }" style="color:black;">내 다이어리에서 보기 &#8594;</a>
 		                        </c:when>
+		                        <c:when test="${ loginUser.memberNo == 1 }">
+		                            <button class="deleteBtn" onclick="location.href='delete.fn?fno=${ fn.freenoteNo }&index=community';">삭제</button>&nbsp;&nbsp;
+		                        </c:when>
 		                        <c:otherwise>
 		                            <button class="deleteBtn" id="report" onclick="report(${fn.freenoteNo}, ${fn.freenoteNo}, '글');">신고</button>&nbsp;&nbsp;
 		                        </c:otherwise>
@@ -241,7 +252,7 @@
             <hr>
             <div id="replyArea"></div>
             <div id="replyPagination" align="center"></div>
-            <c:if test="${fn.freenoteCommentYN eq 'Y' }">
+            <c:if test="${fn.freenoteCommentYN eq 'Y' && loginUser.memberNo != 1}">
 	            <div class="enrollReply1" id="addReply2-0" align="right" style="padding-top: 30px;">
 	                <textarea name="" id="enrollReply1" placeholder="내용을 입력해주세요"  maxlength="500"></textarea>
 	                <span id="count">0</span>/500&nbsp;&nbsp;<button class="enrollBtn" onclick="addReply(0, 1);">등록</button>
@@ -356,8 +367,13 @@
 	                                            "<td width='40'>" +
 	                                                "<img src='resources/images/reply_arrow.png' width='20'>" +
 	                                            "</td>" +
-	                                            "<td colspan='2' height='40'>" +                            
-	                                                "<img src='resources/images/default-profile-pic.jpg' class='rounded-circle' height='35' width='35'> &nbsp;" + result.rlist2[j].replyWriter +
+	                                            "<td colspan='2' height='40'>";
+                                	if(result.rlist2[j].profile != null){
+	                                	comment2 += "<img src='" + result.rlist2[j].profile + "' class='rounded-circle' height='35' width='35'> &nbsp;";
+	                                }else{
+	                                	comment2 += "<img src='resources/images/default-profile-pic.jpg' class='rounded-circle' height='35' width='35'> &nbsp;";
+	                                }
+									comment2 +=       result.rlist2[j].replyWriter +
 	                                            "</td>" +
 	                                        "</tr>" +
 	                                        "<tr>" +
@@ -370,7 +386,7 @@
 	                                            "<td></td>" +
 	                                            "<td width='900'>" +
 	                                            	result.rlist2[j].createDate + "&emsp;";
-	                                if(result.rlist2[j].replyWriter != '${loginUser.nickname}'){
+	                                if(result.rlist2[j].replyWriter != '${loginUser.nickname}' && ${ loginUser.memberNo } != 1){
 	                                	if(result.rlist2[j].likeStatus == 0){
 	                                		comment2 += "<a class='likeBtn' onclick='likeReply(" + result.rlist2[j].replyNo + ")' style='text-decoration: none; color: black;'>" +
 	                                					"<span id='heart-" + result.rlist2[j].replyNo + "'><i class='far fa-heart'></i></span> 좋아요</a>&nbsp;" +
@@ -386,7 +402,7 @@
 	                                                
 	                                comment2+=  "</td>" +
 	                                            "<td width='200' align='right'>";
-	                                if(result.rlist2[j].replyWriter =='${loginUser.nickname}' || '${fn.freenoteWriter}' == '${loginUser.nickname}'){
+	                                if(result.rlist2[j].replyWriter =='${loginUser.nickname}' || '${fn.freenoteWriter}' == '${loginUser.nickname}' || ${ loginUser.memberNo } == 1){
 	                                	comment2 += "<button class='deleteBtn' onclick='confirmDeleteReply(" + result.rlist2[j].replyNo + ", " + result.rlist[i].replyNo + ", " + result.pi.currentPage + ");'>삭제</button>";
 	                                	
 	                                }else{
@@ -404,8 +420,13 @@
 							var comment1 = "<div class='reply1'>" +
 			                    "<table>" + 
 			                        "<tr>" +
-			                            "<td colspan='2' height='40'>" +                            
-			                                "<img src='resources/images/default-profile-pic.jpg' class='rounded-circle' height='35' width='35'> &nbsp;" + result.rlist[i].replyWriter + 
+			                            "<td colspan='2' height='40'>";
+			                if(result.rlist[i].profile != null){
+			                	comment1 += "<img src='" + result.rlist[i].profile + "' class='rounded-circle' height='35' width='35'> &nbsp;";
+			                } else{
+			                	comment1 += "<img src='resources/images/default-profile-pic.jpg' class='rounded-circle' height='35' width='35'> &nbsp;";
+			                }
+			                comment1 +=       result.rlist[i].replyWriter + 
 			                            "</td>" +
 			                        "</tr>" +
 			                        "<tr>" +
@@ -421,7 +442,7 @@
 			                        "<tr height='30'>" +
 			                            "<td width='400'>" +
 			                            	result.rlist[i].createDate + "&emsp;";
-							if(result.rlist[i].status == 'Y' && '${loginUser.nickname}' != result.rlist[i].replyWriter){
+							if(result.rlist[i].status == 'Y' && '${loginUser.nickname}' != result.rlist[i].replyWriter && ${ loginUser.memberNo } != 1){
 			                	if(result.rlist[i].likeStatus == 0){
 			                		comment1 += "<a class='likeBtn' onclick='likeReply(" + result.rlist[i].replyNo + ")' style='text-decoration: none; color: black;'>" +
 			                					"<span id='heart-" + result.rlist[i].replyNo + "'><i class='far fa-heart'></i></span> 좋아요</a>&nbsp;" +
@@ -439,7 +460,7 @@
 			                            "</td>" +
 			                            "<td width='650' align='right'>";
 			                if(result.rlist[i].status == 'Y'){ 
-			                	if(result.rlist[i].replyWriter =='${loginUser.nickname}' || '${fn.freenoteWriter}' == '${loginUser.nickname}'){
+			                	if(result.rlist[i].replyWriter =='${loginUser.nickname}' || '${fn.freenoteWriter}' == '${loginUser.nickname}' || ${ loginUser.memberNo } == 1){
 			                		comment1 += "<button class='deleteBtn' onclick='confirmDeleteReply(" + result.rlist[i].replyNo + ", 0, 1);'>삭제</button>";
 			                	}else{
 	                                comment1 += "<button class='reportBtn' id='report' onclick='report(" + ${fn.freenoteNo} + ", " + result.rlist[i].replyNo + ", 2);'>신고</button>";
@@ -454,7 +475,7 @@
 	                        comment += comment1;
 	                        comment += comment2;
 	                        
-	                        if(result.rlist[i].status == 'Y' && '${fn.freenoteCommentYN}' == 'Y'){
+	                        if(result.rlist[i].status == 'Y' && '${fn.freenoteCommentYN}' == 'Y' && ${ loginUser.memberNo } != 1){
 		                     	// 대댓글 작성 후 해당 대댓글 영역 display 속성 block으로 주기 위해
 	                    		if(result.rlist[i].replyNo == refRno){
 	                    			comment += "<div class='enrollReply2' id='addReply2-" + result.rlist[i].replyNo + "' align='right' style='display:block;'>";

@@ -20,7 +20,8 @@
 		<result column="member_no" property="memberNo" />
 		<result column="member_id" property="memberId" />
 		<result column="replyCount" property="replyCount" />
-		<result column="likestatus" property="likeStatus" />		
+		<result column="likestatus" property="likeStatus" />	
+		<result column="profile" property="profile" />	
 	</resultMap>
 	
 	<resultMap type="Reply" id="replyResultSet">
@@ -35,6 +36,7 @@
 		<result column="ref_rno" property="refRno" />
 		<result column="reply_level" property="replyLevel" />
 		<result column="likestatus" property="likeStatus" />
+		<result column="profile" property="profile" />	
 	</resultMap>
 
 	<select id="selectListCount" parameterType="SearchCondition" resultType="_int">
@@ -130,6 +132,7 @@
 		     , nickname
 		     , member_id
 		     , member_no
+		     , profile
 		     , (select count(*)
                   from reply
                  where ref_fno = freenote_no
@@ -210,6 +213,7 @@
 		             , reply_like
 		             , to_char(create_date, 'yyyy.mm.dd hh24:mi') as create_date
 		             , nickname
+		             , profile
 		             , ref_rno
 		             , reply_level
 		             , r2.status
@@ -239,6 +243,7 @@
 		     , reply_like
 		     , to_char(create_date, 'yyyy.mm.dd hh24:mi') as create_date
 		     , nickname
+		     , profile
 		     , ref_rno
 		     , reply_level
 		     , r.status
@@ -264,6 +269,7 @@
 		     , reply_like
 		     , to_char(create_date, 'yyyy.mm.dd hh24:mi') as create_date
 		     , nickname
+		     , profile
 		     , ref_rno
 		     , reply_level
 		     , (
@@ -384,6 +390,7 @@
 	<select id="selectCommList" parameterType="string" resultMap="freenoteResultSet">
 		select 
 		       nickname
+		     , profile
 		     , freenote_no
 		     , freenote_title
 		     , freenote_like
@@ -428,6 +435,7 @@
 		<select id="selectSearchList" parameterType="SearchCondition" resultMap="freenoteResultSet">
 		select 
 		       nickname
+		     , profile  
 		     , freenote_no
 		     , freenote_title
 		     , freenote_like

@@ -9,7 +9,7 @@
 <style>
   .infoSelectForm{
       margin-top: 50px;
-      margin-left:12%;
+      margin-left:20%;
       border: solid 1px rgb(207, 202, 202);
       padding: 31px;
       width: 500px;
@@ -36,20 +36,27 @@
 <body>
 
 	<jsp:include page="../common/myPageHeader.jsp" />
+	
+	<script>
+      $(function(){
+         $(".metismenu a[href*='infoList.my']").addClass("active");
+         $(".metismenu a[href*='infoList.my']").parent().addClass("active");
+      });
+   </script>
 
 <!--**********************************
          Content body start
      ***********************************-->
      <div class="content-body" style="float: left;">
          <div class="row page-titles mx-0">
-             <h3 style="color:rgb(94, 94, 94); padding-left: 15px; font-size:17px; font-weight:bolder;">개인정보 조회</h3>
+             <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">개인정보 조회</h3>
          </div>
          <!-- row -->
 
          <div class="container-fluid">
              <div class="row">
                  <div class="col-12">
-                     <div class="card" style="width:710px;">
+                     <div class="card" style="width:900px;">
                          <div class="card-body" >
                              
                          <!-- 여기다가 작성 -->
@@ -115,42 +122,11 @@
                                  
                               </table>
                               <br>
-                             <input type="submit" onclick="return validate();"  type="submit" id="nextBtn" class="btn btn-success" value="수정"></input>
+                             <button id="nextBtn" onclick="location.href='infoUpdateForm.my'"class="btn btn-success style="width:"15px;">수정</button>
                              
                              </div>
                              <br><br>
                              
-                             <!-- 수정 버튼 클릭시 보여질 Modal -->
-	                    	<div class="modal" id="deleteForm">
-	                        <div class="modal-dialog">
-	                            <div class="modal-content">
-	                            
-	                                <!-- Modal Header -->
-	                                <div class="modal-header">
-	                                <h4 class="modal-title">개인정보수정</h4>
-	                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                                </div>
-	                                
-	                                <!-- Modal body -->
-	                                <div class="modal-body" align="center">
-	                                
-	                                    <b>
-	                                                    수정하시려면 비밀번호를 입력해주세요. 
-	                                                  
-	                                    </b>
-	
-	                                    <form action="infoUpdate.my" method="post">
-	                                      	  비밀번호 : 
-	                                    <input type="password" name="memberPwd" required>
-	                                        
-	                                    <button type="submit" class="btn btn-danger btn-sm" >확인</button>
-	                               
-                                    </form>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
                           </div>
                          </div>
                      </div>
@@ -163,12 +139,8 @@
          Content body end
      ***********************************-->  
      
- </div>
- <!--**********************************
-     Main wrapper end
- ***********************************-->
-   
-   <jsp:include page="../common/myPageFooter.jsp" />
+   <jsp:include page="../common/diaryWidget.jsp" />
+   <jsp:include page="../common/diaryFooter.jsp" />
    
 </body>
 </html>

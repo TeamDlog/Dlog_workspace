@@ -33,5 +33,6 @@ public class Freenote {
 	private int likeStatus;
 	private String memberId;
 	private int memberNo;
+	private String profile;
 
 }

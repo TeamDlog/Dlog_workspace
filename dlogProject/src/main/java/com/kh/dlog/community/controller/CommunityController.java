@@ -110,7 +110,6 @@ public class CommunityController {
 	@ResponseBody
 	@RequestMapping(value="report.co", produces="text/html; charset=utf-8")
 	public String reportPost(Report r) {
-		System.out.println(r);
 		if(fService.checkReport(r)==0) {
 			return fService.insertReport(r) + "";
 		}else {
