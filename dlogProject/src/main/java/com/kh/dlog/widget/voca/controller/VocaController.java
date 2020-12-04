@@ -100,15 +100,8 @@ public class VocaController {
 		int mno = loginUser.getMemberNo();
 		
 		Voca v = vService.randomList(mno);
-		
-		if(v != null) {
-			
-			session.setAttribute("vocaWord", v.getVocaWord());
-			session.setAttribute("vocaMean", v.getVocaMean());
-			
-		}else {
-			session.setAttribute("v", v);
-		}
+		 
+		session.setAttribute("voca", v);
 		
 	}
 
