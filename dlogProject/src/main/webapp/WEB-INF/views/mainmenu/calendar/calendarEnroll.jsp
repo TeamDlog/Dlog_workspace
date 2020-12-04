@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<jsp:include page="../../common/osageuDiaryHeader.jsp" />
+	<jsp:include page="../../common/diaryHeader.jsp" />
 	
 	<script>
 		$(function(){
@@ -39,23 +39,23 @@
 	                            <input type="hidden" name="calendarWriter" value="${ loginUser.memberNo }">
 	                            <div id="calendar_enroll_outer">
 	                                <div id="calendar_enroll_date">
-	                                    <div>시작 : <input type="date" id="calendarBeginDate" name="calendarBeginDate"></div>
-	                                    <div>종료 : <input type="date" id="calendarEndDate" name="calendarEndDate"></div>
-	                                    <div>배경색 : <input type="color" name="calendarBgColor"></div>
-	                                    <div>글자색 : <input type="color" name="calendarFontColor"></div>
+	                                    <div>시작 : <input type="date" id="calendarBeginDate" name="calendarBeginDate" required></div>
+	                                    <div>종료 : <input type="date" id="calendarEndDate" name="calendarEndDate" required></div>
+	                                    <div>배경색 : <input type="color" name="calendarBgColor" required></div>
+	                                    <div>글자색 : <input type="color" name="calendarFontColor" required></div>
 	                                </div>
 	                            	<div id="calendar_enroll_event">
-	                                	<div>시작 시간 : <input class="cal_time cal_time_begin" type="time" name="calendarBeginTime"></div>
-	                                	<div>종료 시간 : <input class="cal_time cal_time_end" type="time" name="calendarEndTime"></div>
+	                                	<div>시작 시간 : <input class="cal_time cal_time_begin" type="time" name="calendarBeginTime" required></div>
+	                                	<div>종료 시간 : <input class="cal_time cal_time_end" type="time" name="calendarEndTime" required></div>
 	                                	<div>하루 종일 : <input id="allDay" type="checkbox"></div>
-	                                	<div>제목 : <input type="text" name="calendarTitle" placeholder="제목을 입력해주세요" maxlength="8"></div>
+	                                	<div>제목 : <input type="text" name="calendarTitle" placeholder="제목을 입력해주세요" maxlength="8" required></div>
 	                                	<br>
 	                            	</div>
 	                            </div>
-	                            <textarea name="calendarContent" id="" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
+	                            <textarea name="calendarContent" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" required></textarea>
 	                            <br><br>
-	                            <button type="button" class="btn mb-1 btn-success" style="margin-left: 668px; margin-right:15px; font-size: 18px;">초기화</button>
-	                            <button type="submit" onclick="return confirmDate();" class="btn mb-1 btn-success" style="font-size: 18px;">작성</button>
+	                            <button type="button" class="btn mb-1 btn-success btn-sm" style="margin-left: 720px; margin-right:10px; font-size: 15px;">초기화</button>
+	                            <button type="submit" onclick="return confirmDate();" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;">작성</button>
 							</form>
 	
                         </div>
@@ -97,6 +97,10 @@
             confirmDate = function(){
             	if(parse($("#calendarEndDate").val()).getDate() - parse($("#calendarBeginDate").val()).getDate() > 9){
 	            	alert("일정은 최대 10일까지 등록 가능합니다.");
+	            	return false;
+            	}
+            	if(parse($("#calendarEndDate").val()).getDate() - parse($("#calendarBeginDate").val()).getDate() < 0){
+	            	alert("시작일이 종료일보다 먼저 오거나 같아야 합니다.");
 	            	return false;
             	}
             }

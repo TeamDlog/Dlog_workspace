@@ -29,10 +29,15 @@
 	<select id="selectFriendList"
 			parameterType="_int"
 			resultMap="friendResultSet">
-		select friend_no, friend_owner, m.nickname friend_nickname, friend_accepted, friend_status
+		select friend_no, friend_owner, 
+                                case when friend_owner = #{friendOwner} then m.nickname 
+                                    else (select nickname
+                                           from member
+                                          where member_no = to_char(f.friend_owner)) end friend_nickname, 
+                                                                    friend_accepted, friend_status
 		  from friend f
 		  join member m on(f.friend_accepted=m.member_no)
-		 where friend_owner = #{friendOwner}
+		 where (friend_owner = #{friendOwner} or friend_accepted = #{friendOwner})
 		   and friend_status = 'Y'
 		 order 
 		    by friend_no
@@ -42,47 +47,70 @@
 			parameterType="_int"
 			resultType="_int">
 		select count(*)
-		  from friend
-		 where friend_owner = #{friendOwner}
-		   and friend_status = 'Y'
+		  from (
+				select friend_no, friend_owner, 
+				                                case when friend_owner = #{friendOwner} then m.nickname 
+				                                    else (select nickname
+				                                           from member
+				                                          where member_no = to_char(f.friend_owner)) end friend_nickname, 
+				                                                                    friend_accepted, friend_status
+				  from friend f
+				  join member m on(f.friend_accepted=m.member_no)
+				 where (friend_owner = #{friendOwner} or friend_accepted = #{friendOwner})
+				   and friend_status = 'Y'
+				 order 
+				    by friend_no)
 	</select>
 	
 	<delete id="deleteFriend"
 			parameterType="Friend">
 		delete 
 	      from friend
-	     where friend_owner = #{friendOwner}
-	       and friend_accepted = #{friendAccepted}
+	     where friend_no = #{friendNo}
 	</delete>
 	
 	<select id="searchFriend"
 			parameterType="Member"
-			resultMap="memberResultSet">
-		select m.*
+			resultMap="friendResultSet">
+		select *
+		from (select friend_no, friend_owner, 
+                                case when friend_owner = #{memberNo} then m.nickname 
+                                    else (select nickname
+                                           from member
+                                          where member_no = to_char(f.friend_owner)) end friend_nickname, 
+                                                                    friend_accepted, friend_status
 		  from friend f
-		  join member m on(f.friend_accepted = m.member_no) 
-		 where friend_owner = #{memberNo}
-		   and m.nickname like '%'|| #{nickname} ||'%'
+		  join member m on(f.friend_accepted=m.member_no)
+		 where (friend_owner = #{memberNo} or friend_accepted = #{memberNo})
+		   and friend_status = 'Y'
+		 order 
+		    by friend_no)
+	 where friend_nickname like '%'|| #{nickname} ||'%'
 	</select>
 	
 	<select id="findFriend"
 			parameterType="Member"
 			resultMap="memberResultSet">
 		select *
-		  from member
-		 where nickname = #{nickname}
+		  from member m
+		 where member_no not in (select case when friend_owner = #{memberNo} then friend_accepted
+		                                    else friend_owner end friendNo
+		                          from friend
+		                         where (friend_owner = 2 or friend_accepted = #{memberNo}))
+		   and member_no not in (1, #{memberNo})
+		   and nickname like '%' || #{nickname} || '%'
+		 order
+		    by member_no
 	</select>
 	
 	<select id="requestFriend"
 			parameterType="_int"
 			resultMap="friendResultSet">
-		select friend_no, friend_owner, m.nickname friend_nickname, friend_accepted, friend_status
+		select friend_no, friend_owner, nickname friend_nickname, friend_accepted, friend_status
 		  from friend f
-		  join member m on(f.friend_accepted=m.member_no)
-		 where friend_owner = #{friendOwner}
-		   and friend_status = 'N'
-		 order 
-		    by friend_no
+		  join member m on (member_no = friend_owner)
+		 where friend_accepted = #{friendAccepted}
+		   and f.friend_status = 'N'
 	</select>
 	
 	<update id="acceptFriend"
@@ -98,5 +126,18 @@
 		  from friend
 		 where friend_no = #{friendNo}
 	</delete>
+	
+	<insert id="insertFriend"
+			parameterType="Friend">
+		insert 
+		  into friend
+		values
+		     (
+		       seq_friendno.nextval
+		     , #{friendOwner}
+		     , #{friendAccepted}
+		     , 'N'
+		     )
+	</insert>
 	
 </mapper>

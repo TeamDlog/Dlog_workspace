@@ -53,6 +53,7 @@ public class MemoController {
 		int result = mService.deleteMemo(intNums);
 		if(result > 0) {
 			session.setAttribute("alertMsg", "삭제 성공!!");
+			session.removeAttribute("memoWidget");
 			return "redirect:selectList.mo";
 		}else {
 			session.setAttribute("alertMsg", "삭제 실패..");
@@ -109,15 +110,11 @@ public class MemoController {
 	@ResponseBody
 	@RequestMapping(value="widgetNtoY.mo", produces="application/json; charset=utf-8")
 	public String widgetMemoNtoY(Memo m, HttpSession session) {
-		Member mem = (Member)session.getAttribute("loginUser");
 		int result = mService.widgetMemoNtoY(m);
-		Memo memoWidget = mService.selectMemoWidget(mem.getMemberNo());
-		if(result > 0) {
-			session.setAttribute("memoWidget", memoWidget);
-			return new Gson().toJson(memoWidget);
-		}else {
-			return "변경 실패..";
-		}
+		Memo memoWidget = mService.selectMemoWidget(m.getMemoWriter());
+		session.setAttribute("memoWidget", memoWidget);
+		return new Gson().toJson(memoWidget);
+		
 	}
 	
 	@ResponseBody

@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<jsp:include page="../../common/osageuDiaryHeader.jsp" />
+	<jsp:include page="../../common/diaryHeader.jsp" />
 
 	<script>
 		$(function(){
@@ -28,14 +28,15 @@
             <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">사진게시판</h3>
         </div>
         <!-- row -->
-        <a class="btn mb-1 btn-success" style="margin-left: 690px; margin-right:15px; font-size: 20px;" href="enroll.ph">사진 올리기</a>
-        <a class="btn mb-1 btn-success deleteButton" style="font-size: 20px;">삭제</a>
         <div class="container-fluid" style="margin-top:15px;">
             <div class="row">
                 <div class="col-12">
-                    <div class="card backgroundColor" style="width:900px;">
+                    <div class="card backgroundColor" style="width:900px; min-height:500px;">
                         <div class="card-body" >
-
+							<c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo}">
+						        <a class="btn mb-1 btn-success btn-sm" style="margin-left: 690px; margin-right:10px; font-size: 15px;" href="enroll.ph">사진 올리기</a>
+						        <a class="btn mb-1 btn-success btn-sm deleteButton" style="font-size: 15px;">삭제</a>
+					        </c:if>
                         	<form action = "delete.ph" method="post" id="photo_form">
 	                            <c:forEach var="p" items="${ list }" varStatus="status">
 		                            <div class="photo_main portfolio-item">
@@ -53,34 +54,35 @@
 		                            </div>
 	                            </c:forEach>
 							</form>
-
-                         	<div class="bootstrap-pagination" align="center">
-                                <nav>
-                                    <ul class="pagination justify-content-center">
-                                     <c:choose>
-					               		<c:when test="${ pi.currentPage eq 1 }">
-						                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-					               		</c:when>
-					               		<c:otherwise>
-						                    <li class="page-item"><a class="page-link" href="selectList.ph?currentPage=${ pi.currentPage-1 }">Previous</a></li>
-					               		</c:otherwise>
-					                   </c:choose>
-
-					                   <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-					                   	<li class="page-item"><a class="page-link page-number" href="selectList.ph?currentPage=${ p }">${ p }</a></li>
-					                   </c:forEach>
-
-					                   <c:choose>
-					               		<c:when test="${ pi.currentPage eq pi.maxPage }">
-						                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-					               		</c:when>
-					               		<c:otherwise>
-					                   		<li class="page-item"><a class="page-link" href="selectList.ph?currentPage=${ pi.currentPage+1 }">Next</a></li>
-					               		</c:otherwise>
-					                   </c:choose>
-                                    </ul>
-                                </nav>
-                            </div>
+							<c:if test = "${ !empty list }">
+	                         	<div class="bootstrap-pagination" align="center">
+	                                <nav>
+	                                    <ul class="pagination justify-content-center">
+	                                     <c:choose>
+						               		<c:when test="${ pi.currentPage eq 1 }">
+							                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+						               		</c:when>
+						               		<c:otherwise>
+							                    <li class="page-item"><a class="page-link" href="selectList.ph?currentPage=${ pi.currentPage-1 }">Previous</a></li>
+						               		</c:otherwise>
+						                   </c:choose>
+	
+						                   <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+						                   	<li class="page-item"><a class="page-link page-number" href="selectList.ph?currentPage=${ p }">${ p }</a></li>
+						                   </c:forEach>
+	
+						                   <c:choose>
+						               		<c:when test="${ pi.currentPage eq pi.maxPage }">
+							                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+						               		</c:when>
+						               		<c:otherwise>
+						                   		<li class="page-item"><a class="page-link" href="selectList.ph?currentPage=${ pi.currentPage+1 }">Next</a></li>
+						               		</c:otherwise>
+						                   </c:choose>
+	                                    </ul>
+	                                </nav>
+	                            </div>
+                            </c:if>
                         </div>
                     </div>
                 </div>

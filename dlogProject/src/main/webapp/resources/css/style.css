@@ -24,6 +24,675 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 @import url(../plugins/animate/animate.min.css);
 @import url(../plugins/metismenu/css/metisMenu.min.css);
 @import url(../plugins/bootstrap-select/dist/css/bootstrap-select.min.css);
+
+
+
+
+/* 여기 부터는 나의 css */
+/* 사진 게시판 */
+.deleteButton{
+	color: white !important;
+}
+.photo_main{
+  width: 192px;
+  height: 230px;
+  margin:7px;
+  display:inline-block;
+  margin-bottom: 40px;
+}
+.photo_main_photo{
+  width:192px;
+  height: 192px;
+  border: 1px solid rgb(230,230,230);
+  position: relative;
+}
+.photo_main_photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.photo_main_photo input[type=checkbox]{
+	position:absolute;
+	width:20px;
+	height:20px;
+}
+.photo_main_date{
+  width: 100%;
+  height: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  color:rgb(100,100,100);
+  padding-left: 5px;
+}
+.photo_main_content{
+  width: 100%;
+  height: 15px;
+  font-size: 15px;
+  color:rgb(100,100,100);
+  padding-left: 5px;
+}
+.photo_insertForm{
+  width: 47%;
+  height: 550px;
+  float: left;
+  margin-right: 3%;
+  padding-top: 30px;
+}
+.photo_insertForm_thumbnail{
+  width: 100%;
+  height: 70%;
+  border:1px solid lightgray;
+}
+.photo_insertForm_thumbnail img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.photo_insertForm_date input[type=date]{
+	color:gray;
+	font-size:20px;
+	outline:0px;
+}
+.photo_enroll_info{
+  background: rgb(132,200,185);
+  color: white;
+  padding: 5px 7px;
+  font-size: 20px;
+  height: 100%;
+  display: inline-block;
+}
+.photo_insertForm_file label{
+  display: inline-block;
+  padding: 5px 7px;
+  color: white;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 1.5em;
+  vertical-align: middle;
+  background-color: rgb(132,200,185);
+  cursor: pointer;
+  height: 100%;
+}
+.photo_insertForm_file input[type="file"]{ /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height:1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+.photo_insertForm_file{
+	position:relative;
+}
+.photo_insertForm_file div{
+	width:250px;
+	font-size:18px;
+	color:#3b3b3b;
+	left:105px;
+	top:5px;
+	position:absolute;
+	display:inline-block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.photo_insertFom_choice{
+  width: 100%;
+  height: 8%;
+  margin-top: 2%;
+  border: 2px solid rgb(132, 200, 185);
+}
+.photo_enroll_date{
+  width: 70%;
+  height: 70%;
+  border: 0px;
+  font-size: 18px;
+  padding-left: 10px;
+}
+.photo_enroll_content{
+  width: 70%;
+  height: 70%;
+  border: 0px;
+  font-size: 18px;
+  padding-left: 10px;
+  color:rgb(70,70,70);
+}
+#addFrame{
+	width:40px !important;
+	height:40px !important;
+	color:gray !important;
+	margin-left:700px;
+	margin-right:10px;
+}
+#removeFrame{
+	width:40px !important;
+	height:40px !important;
+	color:gray !important;
+}
+#photo_main_modal_content{
+	margin-top:15px;
+	font-size:25px !important;
+	color:white;
+}
+.main_photo_modal_outer{
+	width:100%;
+	height:500px;
+	margin-top:20px;
+}
+.main_photo_modal{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.page_move_span{
+	width:60px;
+	height:60px;
+	margin-top:300px;
+}
+.page_move{
+	width:100% !important;
+	height:100% !important;
+	color:white;
+}
+.showurl{
+	color:rgb(70,70,70);
+}
+
+
+/* 메모장 */
+.memo_main{
+  width: 100%;
+  margin: 30px;
+}
+.memo_main_title{
+  width: 500px;
+  padding-left:20px;
+  padding-top:5px;
+  margin-right:20px;
+  border: 2px solid rgb(132, 200, 185);
+  border-radius: 5px;
+  height: 80%;
+  font-size: 30px;
+  font-weight: 400;
+  display:inline-block;
+}
+.memo_enroll_title{
+  width: 100%;
+  height: 70px;
+  margin-bottom: 20px;
+}
+.memo_enroll_title input{
+  width: 100%;
+  height: 100%;
+  border:1px solid lightgray;
+  padding-left: 15px;
+  font-size: 30px;
+  box-shadow: 1px 1px 3px lightgray inset;
+}
+.memo_enroll_content{
+  width: 100%;
+  height: 230px;
+  margin-bottom: 10px;
+}
+.memo_enroll_content textarea{
+  width: 100%;
+  height: 100%;
+  resize: none;
+  font-size: 20px;
+  padding:15px;
+  border:1px solid lightgray;
+  box-shadow: 1px 1px 3px lightgray inset;
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  vertical-align:middle;
+  margin-bottom:16px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #2196F3;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.memo_main .removeBox{
+	margin-left:20px;
+	width:30px;
+	height:30px;
+}
+.removeBox{
+	vertical-align:middle;
+	margin-bottom:16px;
+}
+
+
+
+/* 친구관리 */
+.cursor_to_pointer{
+	cursor:pointer;
+}
+.osageu_ml-23{
+	margin-left:23px;
+}
+.friend_request_button{
+  background: lightgray;
+  border-radius: 0px 5px 0px 0px;
+}
+.friend_list{
+  padding: 0px !important;
+  height: 50px;
+}
+.scrolling{
+	overflow:scroll;
+}
+.friend_list>div{
+  float:left;
+}
+.friend_list>div:nth-child(3){
+  width: 20%;
+  height: 100%;
+  padding-top: 5px;
+}
+.friend_list img{
+  border-radius: 50px;
+  border:2px solid rgb(132, 200, 185);
+  width: 40px;
+  height: 40px;
+}
+.friend_list button{
+  background: lightgray;
+  border-radius: 4px;
+  border: 0px;
+  width: 50px;
+  height: 25px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+#friend_list_buttons{
+  height: 50px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+#friend_list_buttons div{
+  float: left;
+  width: 50%;
+  height: 100%;
+  font-size:18px;
+  text-align: center;
+  padding-top:2px;
+}
+.friend_list_button{
+  border-radius: 5px 0px 0px 0px;
+  background:white;
+  color:rgb(40,40,40);
+}
+.friend_request_button{
+  background: lightgray;
+  border-radius: 0px 5px 0px 0px;
+  background:lightgray;
+  color:rgb(40,40,40);
+}
+.friend_request{
+  padding: 0px !important;
+  height: 50px;
+}
+.friend_request>div{
+  float:left;
+}
+.friend_request>div:nth-child(3){
+  width: 30%;
+  height: 100%;
+  padding-top: 5px;
+}
+.friend_request>div:nth-child(1) img{
+  border-radius: 50px;
+  border:2px solid rgb(132, 200, 185);
+  width: 40px;
+  height: 40px;
+}
+.friend_list_search{
+  height: 40px;
+  width: 88%;
+  margin-top:20px;
+  margin-left:20px;
+  margin-bottom: 30px;
+  box-shadow: 1px 1px 1px lightgray inset;
+  border: 1px solid lightgray;
+  position: relative;
+}
+.friend_list_search input{
+  height: 90%;
+  width: 90%;
+  padding: 10px;
+  border: 0;
+  position: absolute;
+  top:2px;
+  left:2px;
+}
+#friend_ajax_count{
+	position: absolute;
+	left:250px;
+	top:-4px;
+	color:rgb(70,70,70);
+}
+.friend_list_height{
+	height:250px;
+}
+.friend_request_height{
+	height:250px;
+}
+.friend_request_search{
+  height: 40px;
+  width: 278px;
+  margin:auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  box-shadow: 1px 1px 1px lightgray inset;
+  border: 1px solid lightgray;
+}
+.friend_request_search div{
+	float:left;
+}
+#frs_left{
+	width:235px;
+	height:90%;
+	position:relative;
+}
+#frs_left input{
+	position:absolute;
+	left:2px;
+}
+#frs_right{
+	width:41px;
+	height:100%;
+	background:rgb(132,200,185);
+	position:relative;
+}
+#frs_right:hover{
+	cursor:pointer;
+}
+.friend_request_search input{
+	width:100%;
+	height:100%;
+	border:0px;
+	padding-left:10px;
+	margin-top:2px;
+	margin-left:2px;
+}
+.friend_request_search svg{
+	width:20px;
+	height:20px;
+	color:white;
+	position:absolute;
+	left:15px;
+	top:10px;
+}
+#friend_modal{
+	left:400px;
+	top:50px;
+}
+.friend_list_images{
+	width:55px !important;
+	height:100%;
+}
+.friend_list_nickname{
+	height: 100%;
+  	width: 150px;
+  	padding-top: 12px;
+}
+.friend_list_delete{
+	margin-left:17px;
+}
+.friend_request_images{
+	width:55px;
+	height:100%;
+}
+.friend_request_nickname{
+	height: 100%;
+	width: 135px;
+	padding-top: 12px;
+}
+.friend_request_yesorno{
+	width:72px !important;
+}
+.friend_request_yesorno>img:hover{
+	cursor:pointer;
+}
+.accept_friend_icon{
+	margin-right:10px;
+}
+
+
+
+
+
+
+/* 캘린더 */
+/* 메인 */
+#calendar_main_head_left{
+  width: 30%;
+  padding-top:45px;
+  border:0px;
+  position: relative;
+}
+#calendar_main_head_left button:nth-child(1){
+  width: 40px;
+  height: 30px;
+  border: 0px;
+  font-size: 20px;
+  background: rgb(240,240,240);
+  border-right:1px solid white;
+  /* box-shadow: 0px -4px 8px lightgray inset; */
+  border-radius: 3px 0px 0px 3px;
+  outline: 0;
+  cursor:pointer;
+
+}
+#calendar_main_head_left button:nth-child(2){
+  width: 40px;
+  height: 30px;
+  border: 0px;
+  font-size: 20px;
+  background: rgb(240,240,240);
+  /* box-shadow: 0px -4px 8px lightgray inset; */
+  margin-left: -3px;
+  border-radius: 0px 3px 3px 0px;
+  outline: 0;
+  cursor:pointer;
+}
+#calendar_main_head_center_td{
+  text-align: center;
+  font-size: 25px;
+  font-weight: 800;
+  border:0px;
+}
+#calendar_main_head_right{
+  width: 30%;
+  padding-top:45px;
+  border:0px;
+}
+#calendar_main_head_right a{
+  background: rgb(185, 143, 233);
+  font-size:15px;
+  border:0px;
+}
+#calendar_day{
+	height:50px;
+	background:rgb(240,240,240);
+	color:gray;
+	font-weight:900;
+	font-size:18px;
+}
+.calendar2{
+	border-collapse:collapse;
+}
+.calendar2 td{
+	width:14.28%;
+}
+
+.calendar_event{
+	opacity:0.8;
+}
+
+.calendar_event:hover{
+	cursor:pointer;
+}
+
+
+
+/* 등록 */
+#calendar_enroll_outer>div{
+	float:left;
+}
+#calendar_enroll_outer{
+	color:rgb(70,70,70);
+}
+#calendar_enroll_date{
+  padding-left:5px;
+  font-size: 20px;
+  width: 50%;
+  height:170px;
+}
+#calendar_enroll_date>div{
+  margin-bottom: 8px;
+}
+#calendar_enroll_date input[type=date]{
+  width: 50%;
+  border: 0;
+  color: lightgray;
+}
+#calendar_enroll_event{
+  font-size: 20px;
+  width: 50%;
+  height:170px;
+}
+#calendar_enroll_event>div{
+  margin-bottom: 8px;
+}
+#calendar_enroll_event input[type=time]{
+  border: 0;
+  color: lightgray;
+  width: 36%;
+}
+#calendar_enroll_event input[type=text]{
+  padding-left: 15px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  color:rgb(70,70,70);
+}
+#calendar_enroll_event input[type=checkbox]{
+	width:20px;
+	height:20px;
+	position:relative;
+	top:3px;
+}
+
+textarea[name=calendarContent]{
+  width: 100%;
+  padding: 15px;
+  resize: none;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+}
+
+/* 상세 */
+#calendar_detail_outer>div{
+	float:left;
+}
+#calendar_detail_outer{
+	color:rgb(70,70,70);
+}
+#calendar_detail_date{
+  padding-left:5px;
+  font-size: 20px;
+  width: 50%;
+  height:170px;
+}
+#calendar_detail_date>div{
+  margin-bottom: 8px;
+}
+#calendar_detail_date input[type=date]{
+  width: 50%;
+  border: 0;
+  color: lightgray;
+}
+#calendar_detail_event{
+  font-size: 20px;
+  width: 50%;
+  height:170px;
+}
+#calendar_detail_event>div{
+  margin-bottom: 8px;
+}
+#calendar_detail_event input[type=time]{
+  border: 0;
+  color: lightgray;
+  width: 36%;
+}
+#calendar_detail_event input[type=text]{
+  padding-left: 15px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  color:rgb(70,70,70);
+}
+#calendar_detail_event input[type=checkbox]{
+	width:20px;
+	height:20px;
+	position:relative;
+	top:3px;
+}
+
+
+
+
 .gradient-1, .dropdown-mega-menu .ext-link.link-1 a, .morris-hover, .datamaps-hoverover {
   background-image: linear-gradient(230deg, #759bff, #843cf6); }
 
@@ -9992,7 +10661,7 @@ Input Style
 .bootstrap-touchspin .form-control {
   margin: 10px 0px 0px; }
 
-input[type="checkbox"]:after {
+/* input[type="checkbox"]:after {
   line-height: 1.5em;
   content: '';
   display: block;
@@ -10013,7 +10682,7 @@ input[type="checkbox"]:checked:after {
   font-family: 'FontAwesome';
   color: #7571f9;
   font-weight: 100;
-  text-align: center; }
+  text-align: center; } */
 
 .form-check-label {
   margin-left: 5px; }

@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<jsp:include page="../../common/osageuDiaryHeader.jsp" />
+	<jsp:include page="../../common/diaryHeader.jsp" />
 
 	<script>
 		$(function(){
@@ -32,19 +32,23 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card backgroundColor" style="width:900px;">
-                        <div class="card-body" >
+                    <div class="card backgroundColor" style="width:900px; height:700px;">
+                        <div class="card-body" style="background-image:url('resources/images/memoEnroll.png'); background-position: 30px 20px ;background-size:850px 650px; background-repeat: no-repeat; position:relative;">
 
-                        <form action="insert.mo" method="post">
-                        	<input type="hidden" name="memoWriter" value="${ loginUser.memberNo }">
-	                        <div class="memo_enroll_title">
-	                            <input type="text" name="memoTitle" placeholder="제목을 입력해주세요">
-	                        </div>
-	                        <div class="memo_enroll_content">
-	                            <textarea name="memoContent" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
-	                        </div>
-	                        <button type="submit" class="btn mb-1 btn-success" style="margin-left: 765px; margin-right:15px; font-size: 20px; letter-spacing:2px;">저장</button>
-						</form>
+	                        <form action="insert.mo" method="post">
+	                        	<div style="width:70%; height:40%; position:absolute; top:200px; left:120px;">
+		                        	<input type="hidden" name="memoWriter" value="${ loginUser.diaryMemberNo }">
+			                        <div class="memo_enroll_title">
+			                            <input type="text" name="memoTitle" placeholder="제목을 입력해주세요">
+			                        </div>
+			                        <div class="memo_enroll_content">
+			                            <textarea name="memoContent" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
+			                        </div>
+			                        <div align="right">
+				                        <button type="submit" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;">저장</button>
+			                        </div>
+		                        </div>
+							</form>
 
                         </div>
                     </div>

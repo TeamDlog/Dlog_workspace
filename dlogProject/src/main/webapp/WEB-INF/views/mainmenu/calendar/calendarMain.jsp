@@ -278,15 +278,18 @@
     }
     
     function selectDetail(calendarNo){
-    	console.log(calendarNo);
-    	location.href="selectDetail.ca?calendarNo="+calendarNo;
+    	if(${ loginUser.memberNo eq loginUser.diaryMemberNo}){
+    		location.href="selectDetail.ca?calendarNo="+calendarNo;
+    	}else{
+    		alert("작성자만 조회할 수 있습니다.");
+    	}
     }
     
 </script>	
 </head>
 <body>
 
-	<jsp:include page="../../common/osageuDiaryHeader.jsp" />
+	<jsp:include page="../../common/diaryHeader.jsp" />
 	
 	<script>
 		$(function(){
@@ -322,7 +325,9 @@
 											<div id="calendar_main_head_center"></div>
 										</td>
 										<td colspan="2" id="calendar_main_head_right" align="right">
-											<a class="btn mb-1 btn-primary btn-sm" href="enroll.ca">일정 등록</a>
+											<c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo}">
+												<a class="btn mb-1 btn-primary btn-sm" href="enroll.ca">일정 등록</a>
+											</c:if>
 										</td>
 									</tr>
 								    <tr id="calendar_day">
@@ -346,14 +351,6 @@
         </div>
         <!-- #/ container -->
     </div>   
-    <script>
-        $(function(){
-            $("#calendar_main_head_right button").click(function(){
-                $(this).addClass("button_click_effect");
-            });
-        })
-    </script>
-    
     <!--**********************************
         Content body end
     ***********************************-->  

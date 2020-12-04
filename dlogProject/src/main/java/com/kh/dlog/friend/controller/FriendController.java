@@ -34,15 +34,17 @@ public class FriendController {
 		List<Object> send = new ArrayList<>();
 		send.add(friendList);
 		send.add(pi2);
+		session.setAttribute("pi2",pi2);
+		session.setAttribute("friendList",friendList);
 		return new Gson().toJson(send);
 		
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="delete.fr", produces="text/html; charset=utf-8")
-	public String deleteFriend(Friend f) {
+	public String deleteFriend(int friendNo) {
 		
-		int result = fService.deleteFriend(f);
+		int result = fService.deleteFriend(friendNo);
 		if(result > 0) {
 			return "삭제 성공";
 		}else {
@@ -55,7 +57,7 @@ public class FriendController {
 	@RequestMapping(value="search.fr", produces="application/json; charset=utf-8")
 	public String searchFriend(Member m) {
 		
-		ArrayList<Member> friendList = fService.searchFriend(m);
+		ArrayList<Friend> friendList = fService.searchFriend(m);
 		if(m.getNickname().equals("")) {
 			friendList.clear();
 		}
@@ -101,5 +103,39 @@ public class FriendController {
 		}
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="insert.fr", produces="text/html; charset=utf-8")
+	public String insertFriend(Friend f) {
+		
+		int result = fService.insertFriend(f);
+		if(result > 0) {
+			return "거절 성공";
+		}else {
+			return "거절 실패";
+		}
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="reloadRequest.fr", produces="application/json; charset=utf-8")
+	public String reloadRequest(int friendAccepted) {
+		
+		ArrayList<Friend> friendList = fService.requestFriend(friendAccepted);
+		return new Gson().toJson(friendList);
+		
+	}
+	
+	@RequestMapping(value="visitFriend.fr")
+	public String vistiFriend(int diaryMemberNo, HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("loginUser");
+		m.setDiaryMemberNo(diaryMemberNo);
+		
+		session.setAttribute("loginUser", m);
+		return "redirect:introList.my";
+	}
+	
+	
 	
 }

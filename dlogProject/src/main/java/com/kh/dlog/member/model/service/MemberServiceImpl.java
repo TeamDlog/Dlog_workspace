@@ -103,7 +103,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int nicknameCheck2(String nickname) {
-		return mDao.nicknameCheck2(sqlSession, nickname);;
+		return mDao.nicknameCheck2(sqlSession, nickname);
 	}
 
 	

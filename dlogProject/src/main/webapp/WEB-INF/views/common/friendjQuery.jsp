@@ -49,8 +49,9 @@
 			$(".pre-page-moving-li").addClass("disabled");
 			
 			// 커서 모양
-			$(".friend_list_button").hover().css("cursor","pointer");
-			$(".friend_request_button").hover().css("cursor","pointer");
+			$(".friend_list_button").addClass("cursor_to_pointer");
+			$(".friend_request_button").addClass("cursor_to_pointer");
+			$(".friend_delete_DB").addClass("cursor_to_pointer");
 			
 			// 초기에 request 숨기기
 			$("#friend_request_outer").css("display","none");
@@ -61,12 +62,104 @@
 				$("#friend_request_outer").css("display","none");
 				$(this).css({background:"white", color:"rgb(40,40,40)"})
 				$(".friend_request_button").css({background:"lightgray", color:"rgb(40,40,40)"})
+				$("#friend_ajax_search").val("");
+				$("#friend_ajax_count").text("");
+				
+				$.ajax({
+             		url:"selectList.fr",
+     				data:{
+     					currentPage:1,
+     					friendOwner:${loginUser.memberNo}
+     				},
+     				success:function(friendList){
+     					$(".friend_list").remove();
+                          
+     					var value="";
+     					$.each(friendList[0], function(i, obj){
+     						value += "<li class='friend_list'>" + 
+     									"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
+     									"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
+     									"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB cursor_to_pointer' onclick='deleteFriend(" + obj.friendAccepted + ");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
+     								"</li>";
+     					})
+     					$(".friend_list_ul").append(value);
+     					$("#this_page_friend_currentPage").val(friendList[1].currentPage);
+     						
+     					// 비활성화
+     					if(friendList[1].currentPage == 1){
+     						$(".pre-page-moving-li").addClass("disabled");
+     					}else{
+     						$(".pre-page-moving-li").removeClass("disabled");
+     					}
+     					
+     					var realEnd = Math.ceil(friendList[1].listCount/5)
+     					if(friendList[1].currentPage != realEnd){
+     						$(".next-page-moving-li").removeClass("disabled");
+     					} else{
+     						$(".next-page-moving-li").addClass("disabled");
+     					}
+     					
+     					// 현재 페이지에 색 입히기
+     					$(".friend_pagination .page-link").not(".page-moving").each(function(){
+                     		if($(this).text() == friendList[1].currentPage){
+                     			$(this).parent().addClass("disabled");
+     		               		$(".friend_pagination .page-link").not($(this)).not(".page-moving").parent().removeClass("disabled");
+     		               		$(this).css({background:"rgb(132,200,185)", color:"white"});
+     		               		$(".friend_pagination .page-link").not($(this)).not(".page-moving").css({background:"", color:"gray"});
+     		               		$(this).removeClass("hovered");
+     		               		$(".friend_pagination .page-link").not($(this)).not(".page-moving").addClass("hovered");
+                     		}
+                     	})
+     						
+     				},error:function(){
+     					console.log("ajax통신 실패");
+     				}
+             	})
+				
 			})
 			$(".friend_request_button").click(function(){
 				$("#friend_list_outer").css("display","none");
 				$("#friend_request_outer").css("display","");
 				$(this).css({background:"white", color:"rgb(40,40,40)"})
 				$(".friend_list_button").css({background:"lightgray", color:"rgb(40,40,40)"})
+				$("#find_friend_keyword").val("");
+				
+				$.ajax({
+             		url:"reloadRequest.fr",
+     				data:{
+     					friendAccepted:${loginUser.memberNo}
+     				},
+     				success:function(friendList){
+     					$(".friend_request").remove();
+                          
+     					var value="";
+     					$.each(friendList, function(i, obj){
+     						value += "<li class='friend_request will_disapper" + obj.friendNo + "'>" + 
+						                      "<div class='friend_request_images'>" + 
+					                          "<img src='resources/images/avatar/2.jpg'>" + 
+					                      "</div>" + 
+					                      "<div class='friend_request_nickname'>" + 
+					                          "<div class='notification-heading'>" + obj.friendNickname + "</div>" + 
+					                      "</div>" + 
+					                      "<div class='friend_request_yesorno' align='right'>" +
+					                          "<img src='resources/images/checked.png' onclick='acceptFriend(" + obj.friendNo + ")' width='25' height='25' class='accept_friend_icon'>" +
+					                          "<img src='resources/images/close.png' onclick='rejectFriend(" + obj.friendNo +")' width='20' height='20'>" +
+					                      "</div>" +
+					                 "</li>"
+     					})
+     					$(".friend_request_ul").append(value);
+     					
+     					if(friendList.length >= 5){
+    		      			$(".friend_request_ul").addClass("scrolling");
+    	      			}else{
+    		      			$(".friend_request_ul").removeClass("scrolling");
+    	      			}
+     					
+     				},error:function(){
+     					console.log("ajax통신 실패");
+     				}
+             	})
+				
 			})
 				
              // 친구목록 페이지 이동
@@ -84,8 +177,8 @@
      					var value="";
      					$.each(friendList[0], function(i, obj){
      						value += "<li class='friend_list'>" + 
-     									"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
-     									"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.friendNickname + "</div>" + "</div>" + 
+     									"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
+     									"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
      									"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend(" + obj.friendAccepted + ");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
      								"</li>";
      					})
@@ -141,9 +234,9 @@
        						var value2="";
        						$.each(friendList[0], function(i, obj){
        							value1 += "<li class='friend_list'>" + 
-       										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
-       										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.friendNickname + "</div>" + "</div>" + 
-       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend("+ obj.friendAccepted +");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
+       										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
+       										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
+       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend("+ obj.friendAccepted +");' value='" + obj.friendAccepted + "'>삭제</button>" + "</div>" + 
        									"</li>";
        						})
        						
@@ -212,8 +305,8 @@
        						var value2="";
        						$.each(friendList[0], function(i, obj){
        							value1 += "<li class='friend_list'>" + 
-       										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
-       										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.friendNickname + "</div>" + "</div>" + 
+       										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
+       										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer'>" + obj.friendNickname + "</div>" + "</div>" + 
        										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend("+ obj.friendAccepted +");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
        									"</li>";
        						})
@@ -281,11 +374,11 @@
                 		$.ajax({
                 			url:"delete.fr",
         					data:{
-        						friendOwner:$("#friend_owner").val(),
-        						friendAccepted:index
+        						friendNo:index
         					},
         					success:function(result){
 	                            console.log("ajax통신 성공");
+	                            $(".friend_list_button").click();
 	                            reloadFriend();
         					},error:function(){
         						console.log("ajax통신 실패");
@@ -300,7 +393,7 @@
                			url:"search.fr",
                			data:{
                				nickname:$("#friend_ajax_search").val(),
-               				memberNo:$("#friend_owner").val()
+               				memberNo:${loginUser.memberNo}
                			},
                			success:function(friendList){
                				$(".friend_pagination .page-link").remove();
@@ -309,9 +402,9 @@
        						var value="";
        						$.each(friendList[0], function(i, obj){
        							value += "<li class='friend_list'>" + 
-       										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg'>" + "</div>" + 
-       										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick'>" + obj.nickname + "</div>" + "</div>" + 
-       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend(" + obj.memberNo + ");' value='" + obj.memberNo + "'>삭제</button>" + "</div>" + 
+       										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer'>" + "</div>" + 
+       										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer''>" + obj.friendNickname + "</div>" + "</div>" + 
+       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB cursor_to_pointer' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
        									"</li>";
        						})
        						$(".friend_list_ul").append(value);
@@ -323,7 +416,13 @@
        						$("#friend_ajax_count").text("(" + friendList[1] + ")");
        						
        						// 검색 스크롤 때문에 폭 줄이기
-       						$(".friend_list_ul").addClass("scrolling");
+       						if(friendList[0] >= 5){
+	       						$(".friend_list_ul").addClass("scrolling");
+	       						$(".friend_delete_DB").removeClass("osageu_ml-23");
+       						}else{
+	       						$(".friend_list_ul").removeClass("scrolling");
+	       						$(".friend_delete_DB").addClass("osageu_ml-23");
+       						}
        						$(".friend_list_delete").css("margin-left","0");
        						
                			},error:function(){
@@ -340,36 +439,41 @@
       		$.ajax({
       			url:"find.fr",
       			data:{
-      				nickname:$("#find_friend_keyword").val()
+      				nickname:$("#find_friend_keyword").val(),
+      				memberNo:${loginUser.memberNo}
       			},
       			success:function(friendList){
       				$(".friend_request").remove();
       				
       				var value="";
-				$.each(friendList, function(i, obj){
-					value += "<li class='friend_request'>" + 
-								"<div class='friend_request_images'>" + "<img src='resources/images/avatar/2.jpg'>" + "</div>" + 
-								"<div class='friend_request_nickname'>" + "<div class='notification-heading'>" + obj.nickname + "</div>" + "</div>" + 
-								"<div class='friend_request_appeal' align='right'>" + "<button class='friend_insert_DB' value='" + obj.memberNo + "'>추가</button>" + "</div>" + 
-							"</li>";
-				})
+					$.each(friendList, function(i, obj){
+						value += "<li class='friend_request will_disapper" + obj.memberNo + "'>" + 
+									"<div class='friend_request_images'>" + "<img src='resources/images/avatar/2.jpg'>" + "</div>" + 
+									"<div class='friend_request_nickname'>" + "<div class='notification-heading'>" + obj.nickname + "</div>" + "</div>" + 
+									"<div class='friend_request_appeal' align='right'>" + "<button class='friend_insert_DB' onclick='insertDB(" + obj.memberNo + ");'>추가</button>" + "</div>" + 
+								"</li>";
+					})
 				
-				$(".friend_request_ul").append(value);
-      				$(".friend_insert_DB").css({"background":"rgb(132,200,185)", "border":"0", "border-radius":"5px", "color":"white", "width":"50px", "height":"27px", "font-size":"15px"});
-      				$(".friend_request_appeal").css("width","70px");
+					$(".friend_request_ul").append(value);
+	      				$(".friend_insert_DB").css({"background":"rgb(132,200,185)", "border":"0", "border-radius":"5px", "color":"white", "width":"50px", "height":"27px", "font-size":"15px"});
+	      				$(".friend_insert_DB").css("cursor","pointer");
+	      				$(".friend_request_appeal").css("width","70px");
+	      			
+	      			if(friendList.length >= 5){
+		      			$(".friend_request_ul").addClass("scrolling");
+	      			}else{
+		      			$(".friend_request_ul").removeClass("scrolling");
+	      			}
+	      				
       			},error:function(){
       				console.log("ajax 통신 실패..")
       			}
       		})
       	}
 		$("#find_friend_keyword").keydown(function(key) {
-
 			if (key.keyCode == 13) {
-
 				findFriend();
-				
 			}
-
 		});
 		
 		// 친구 수락, 거절
@@ -401,6 +505,35 @@
       			}
       		})
 		}
+		
+		insertDB = function(index){
+			$.ajax({
+      			url:"insert.fr",
+      			data:{
+      				friendAccepted:index,
+      				friendOwner:${loginUser.memberNo}
+      			},
+      			success:function(result){
+      				alert("친구 요청을 보냈습니다.");
+      				$(".will_disapper"+index).remove();
+      				
+      			},error:function(){
+      				console.log("ajax 통신 실패..")
+      			}
+      		})
+		}
+		
+		visitFriend = function(owner, accept){
+			var send = 0;
+			if(owner != ${loginUser.memberNo}){
+				send = owner;
+			}else{
+				send = accept;
+			}
+			$("#diaryMemberNo").val(send);
+			$("#goToFriend").submit();
+		}
+				
 		
 	</script>    
 </body>

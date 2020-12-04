@@ -10,11 +10,12 @@ public interface FriendService {
 
 	int selectFriendListCount(int friendOwner);
 	ArrayList<Friend> selectFriendList(int friendOwner, PageInfo pi);
-	int deleteFriend(Friend f);
-	ArrayList<Member> searchFriend(Member m);
+	int deleteFriend(int friendNo);
+	ArrayList<Friend> searchFriend(Member m);
 	ArrayList<Member> findFriend(Member m);
-	ArrayList<Friend> requestFriend(int friendOwner);
+	ArrayList<Friend> requestFriend(int friendAccepted);
 	int acceptFriend(Friend f);
 	int rejectFriend(Friend f);
+	int insertFriend(Friend f);
 	
 }

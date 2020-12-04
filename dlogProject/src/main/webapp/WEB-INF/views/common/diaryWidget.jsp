@@ -190,12 +190,12 @@
         ***********************************-->
         <script>
         
-     	// memo
+     // memo
        	$(function(){
 
        		$(".memo_widget").hover(function(){
        			$(this).children().eq(1).css({
-       				"font-size":"17px",
+       				"font-size":"13px",
            			"border":"0px",
            			"padding":"20px",
            			"resize":"none",
@@ -204,7 +204,7 @@
        			});
 	       		},function(){
 	       			$(this).children().eq(1).css({
-	       				"font-size":"17px",
+	       				"font-size":"13px",
 	           			"border":"0px",
 	           			"resize":"none",
 	           			"padding":"20px",
@@ -213,19 +213,19 @@
 	           			"color":"rgb(100,100,100)"
 	       			});
 	       		});
-	
+
 	       		$(".memo_widget_title").css({
 	       			"background":"rgb(132,200,185)",
 	       			"color":"white",
 	       			"text-align":"center",
-	       			"font-size":"25px",
+	       			"font-size":"20px",
 	       			"height":"40px",
-	       			"padding-top":"3px",
+	       			"padding-top":"5px",
 	       			"border-radius":"10px 10px 0px 0px"
 	       		});
-	
+
 	       		$(".memo_widget_content").css({
-	       			"font-size":"17px",
+	       			"font-size":"13px",
 	       			"border":"0px",
 	       			"width":"100%",
 	       			"resize":"none",
