@@ -33,19 +33,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px; height:700px;">
-                        <div class="card-body" style="background-image:url('resources/images/memoEnroll.png'); background-position: 30px 20px ;background-size:850px 650px; background-repeat: no-repeat; position:relative;">
+                        <div class="card-body" style="background-image:url('resources/images/memo_bg.png'); background-position: 120px 20px ;background-size:650px 650px; background-repeat: no-repeat; position:relative;">
 
 	                        <form action="insert.mo" method="post">
-	                        	<div style="width:70%; height:40%; position:absolute; top:200px; left:120px;">
-		                        	<input type="hidden" name="memoWriter" value="${ loginUser.diaryMemberNo }">
-			                        <div class="memo_enroll_title">
-			                            <input type="text" name="memoTitle" placeholder="제목을 입력해주세요">
-			                        </div>
-			                        <div class="memo_enroll_content">
-			                            <textarea name="memoContent" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
-			                        </div>
-			                        <div align="right">
-				                        <button type="submit" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;">저장</button>
+	                        	<input type="hidden" name="memoWriter" value="${ loginUser.diaryMemberNo }">
+		                        <div align="center" style="width:450px; margin:auto; margin-top:130px;">
+		                            <input type="text" name="memoTitle" placeholder="제목을 입력해주세요" style="width:450px; height:50px; padding:10px;" required><br><br>
+		                            <textarea name="memoContent" placeholder="내용을 입력해주세요" style="height:270px; width:450px; padding:10px; resize:none" required></textarea>
+			                        <div align="right"  style="margin-top:20px;">
+				                        <button type="submit" class="btn btn-success">저장</button>
 			                        </div>
 		                        </div>
 							</form>
