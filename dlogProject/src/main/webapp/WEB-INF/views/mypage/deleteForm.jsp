@@ -39,7 +39,7 @@
 ***********************************-->
 <div class="content-body" style="float: left;">
     <div class="row page-titles mx-0">
-        <h3 style="color:rgb(94, 94, 94); padding-left: 15px; font-size:17px; font-weight:bolder;">회원탈퇴</h3>
+        <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">회원탈퇴</h3>
     </div>
     <!-- row -->
 
@@ -86,7 +86,7 @@
                                                     정말로 탈퇴 하시겠습니까?
                                     </b>
 
-                                    <form action="deleteMember.me" method="post">
+                                    <form action="deleteMember.my" method="post">
                                       	  비밀번호 : 
                                         <input type="password" name="memberPwd" required>
                                         

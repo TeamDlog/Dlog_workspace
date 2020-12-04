@@ -39,7 +39,7 @@
 ***********************************-->
 <div class="content-body" style="float: left;">
     <div class="row page-titles mx-0">
-        <h3 style="color:rgb(94, 94, 94); padding-left:15px; font-size:17px; font-weight:bolder;"><b>비밀번호 변경</b></h3>
+        <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">비밀번호 변경</h3>
     </div>
     <!-- row -->
 

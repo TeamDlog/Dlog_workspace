@@ -631,14 +631,14 @@ public class MemberController {
 	 }
 	 
 	 
-	 @RequestMapping("deleteForm.me")
+	 @RequestMapping("deleteForm.my")
 		public String deleteForm(HttpSession session) {
 		 
 			return "mypage/deleteForm";
 		}
 	 
 	 
-	 @RequestMapping("deleteMember.me")
+	 @RequestMapping("deleteMember.my")
 	 public String deleteMember(String memberPwd, HttpSession session, Model model) {
 		 
 			Member loginUser = (Member)session.getAttribute("loginUser");
