@@ -32,8 +32,10 @@ import com.kh.dlog.friend.model.vo.Friend;
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
+import com.kh.dlog.mypage.controlAll.model.vo.ControlAll;
 import com.kh.dlog.template.Coolsms;
 import com.kh.dlog.widget.dday.model.service.DdayService;
+import com.kh.dlog.widget.dday.model.vo.Dday;
 import com.kh.dlog.widget.memo.model.service.MemoService;
 import com.kh.dlog.widget.memo.model.vo.Memo;
 import com.kh.dlog.widget.timetable.model.Service.TimetableService;
@@ -60,6 +62,44 @@ public class MemberController {
 	@Autowired
 	private MemoService meService;
 
+	public void widgetSessionUpdate(HttpSession session, int diaryMemberNo) {
+		
+		// 메모위젯 객체
+		Memo memoWidget = meService.selectMemoWidget(diaryMemberNo);
+		
+		// 위젯관리, 메뉴관리, 테마관리 객체
+		ControlAll ca = caService.ControlAllMain(diaryMemberNo+"");
+		
+		// 시간표 객체리스트
+		ArrayList<Timetable> tlist = tService.timetableList(diaryMemberNo);
+		
+		ArrayList<Dday> dlist = dService.ddayMain(diaryMemberNo+"");
+		
+		// 시간표 객체리스트에 오늘날짜 추가하는 조건문/반복문
+		if(!tlist.isEmpty()) {
+			for(Timetable t : tlist) {
+				switch(today.get(Calendar.DAY_OF_WEEK)) {
+					case 1 : t.setTimetableToDay("일요일"); break;
+					case 2 : t.setTimetableToDay("월요일"); break;
+					case 3 : t.setTimetableToDay("화요일"); break;
+					case 4 : t.setTimetableToDay("수요일"); break;
+					case 5 : t.setTimetableToDay("목요일"); break;
+					case 6 : t.setTimetableToDay("금요일"); break;
+					case 7 : t.setTimetableToDay("토요일"); break;
+				}
+			}
+		}
+		
+		// 위젯관리, 메뉴관리, 테마관리 객체 세션보관
+		session.setAttribute("ca", ca);
+		// 디데이 객체리스트 세션에 보관
+		session.setAttribute("dlist", dlist);
+		// 시간표 객체리스트 세션에 보관
+		session.setAttribute("timetableList", tlist);
+		// 메모 위젯 객체 세션에 보관
+		session.setAttribute("memoWidget", memoWidget);
+	}
+	
 	@RequestMapping("mainpage.me")
 	public String mainpage() {
 		return "mainpage/mainPage";
@@ -215,12 +255,10 @@ public class MemberController {
 		
 		if(result > 0) {
 			
-			session.setAttribute("resultChange", "성공적으로 비밀번호가 변경되었습니다.");
-			return "success";
+			return "성공적으로 비밀번호가 변경되었습니다.";
 			
 		}else {
 			
-			session.setAttribute("resultChange", "비밀번호 변경에 실패했습니다.");
 			return "fail";
 			
 		}

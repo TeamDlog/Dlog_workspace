@@ -55,7 +55,7 @@
             ***********************************-->
             <div id="mainContents" class="content-body" style="float: left;">
                 <div class="row page-titles mx-0">
-                    <h3 style="color:rgb(94, 94, 94); padding-left: 15px; "><b>통합 관리</b></h3>
+                    <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">통합 관리</h3>
                 </div>
                 <!-- row -->
                 <div class="container-fluid">
@@ -206,7 +206,7 @@
     <!--**********************************
         Widget area end
     ***********************************-->
-   <jsp:include page="../../common/myPageFooter.jsp"/>
+   <jsp:include page="../../common/diaryFooter.jsp"/>
     <script>
         $(document).on('click', '.toggleBG', function () {
             var toggleBG = $(this);

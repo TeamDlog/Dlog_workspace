@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="modal-body" align="center">
                                     <br>
-                                    <h6>${ resultChange }</h6>
+                                    <h6 id="updatePwdResult"></h6>
                                     <br>
                                 </div>
                                 <div class="modal-footer">
@@ -238,17 +238,20 @@
         			data:{"memberPwd":$memberPwd.val(),"memberNo":$memberNo.val()},
         			success:function(result){
         				
-        				if(result == 'success'){
-        					
-        					$("#exampleModalCenter").html();
-                            $('#exampleModalCenter').modal('toggle');
-                            $("#loginFrom").removeAttr("disabled");
-        					
-        				}else{
+        				if(result == 'fail'){
         					
         					$("#exampleModalCenter").html();
                             $('#exampleModalCenter').modal('toggle');
                             $("#loginFrom").attr("disabled", true);
+                            $("#updatePwdResult").html("비밀번호 변경에 실패하였습니다.");
+        					
+        					
+        				}else{
+
+        					$("#exampleModalCenter").html();
+                            $('#exampleModalCenter').modal('toggle');
+                            $("#loginFrom").removeAttr("disabled");
+                            $("#updatePwdResult").html("성공적으로 비밀번호가 변경되었습니다.");
         					
         				}
         				
