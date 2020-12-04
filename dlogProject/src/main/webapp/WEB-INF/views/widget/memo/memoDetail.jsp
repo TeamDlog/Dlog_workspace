@@ -33,12 +33,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px; height:700px;">
-                        <div class="card-body backgroundColor" style="background-image:url('resources/images/memo_bg.png'); background-position:120px 20px ;background-size:650px 650px; background-repeat: no-repeat; position:relative;">
+                        <div class="card-body backgroundColor" style="background-image:url('resources/images/grid_bg2.png'); background-position:200px 70px ;background-size:500px 500px; background-repeat: no-repeat; position:relative;">
                         
                         <form action="" method="post" id="update_form">
                        		<input type="hidden" name="memoNo" value="${ m.memoNo }">
-	                        <div align="center" style="width:450px; margin: auto; margin-top:130px;">
-	                            <input type="text" name="memoTitle" value="${ m.memoTitle }" style="width:450px; height:50px; padding:10px;" required><br><br>
+	                        <div align="center" style="width:450px; margin: auto; margin-top:100px;">
+	                            <input type="text" name="memoTitle" value="${ m.memoTitle }" style="width:450px; height:40px; padding:10px;" required><br><br>
 	                            <textarea name="memoContent" style="height:270px; width:450px; padding:10px; resize:none" required>${ m.memoContent }</textarea>
 		                        <div align="right"  style="margin-top:20px;">
 			                        <button type="submit" class="btn btn-success" style="margin-right:5px;" onclick="modifyMemo();">수정</button>
