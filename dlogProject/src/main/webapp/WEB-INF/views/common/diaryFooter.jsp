@@ -54,6 +54,7 @@
 		
 	    $(document).ready(function(){
 	    	connectWS();
+	    	setTimeout(Notify,1000);
 	    });
 	    
 	    function connectWS(){
@@ -76,7 +77,31 @@
 		    };
 		    ws.onerror = function (err) { console.log('Error:' + err); };
 	    }
-    </script>
+    
+		function Notify(){
+			$.ajax({
+				url:"notify.nf",
+				success:function(result){
+					
+					if(result.flist != null && socket != null){
+						for(i in result.flist){
+							var socketMsg = result.flist[i] + "," + result.n.notificationContent;
+			                console.log(socketMsg);
+			                socket.send(socketMsg);
+						}
+					}else if(result.n != null && socket != null){
+						var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+						socket.send(socketMsg);
+					}
+					
+				},error:function(){
+					console.log("알림 ajax 통신 실패");
+				}
+			});
+		}
+	</script>
+	
+    	
     
     
 	

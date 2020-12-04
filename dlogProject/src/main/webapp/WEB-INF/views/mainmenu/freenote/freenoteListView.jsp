@@ -222,34 +222,11 @@
 					}
 					
 				}, error:function(){
-					
+					console.log("프리노트 목록 ajax 통신 실패");
 				}
 			});
 		}
 	</script>
-	<script>
-		function friendNewPostNotify(){
-			$.ajax({
-				url:"newpost.nf",
-				success:function(result){
-					console.log('hi');
-					socket.send("3,hi");
-					if(result.n != null && socket != null){
-						
-						for(i in result.flist){
-							var socketMsg = flist[i] + "," + result.n.notificationContent;
-			                console.log(socketMsg);
-			                socket.send(socketMsg);
-						}
-					}
-					
-				},error:function(){
-					console.log("친구 새로운 글 등록 알림 ajax 통신 실패");
-				}
-			});
-		}
-	</script>
-	
 	
 	     
 	<!--**********************************

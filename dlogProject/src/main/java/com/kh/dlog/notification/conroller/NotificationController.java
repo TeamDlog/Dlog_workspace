@@ -37,15 +37,19 @@ public class NotificationController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="newpost.nf", produces="application/json; charset:utf-8")
+	@RequestMapping(value="notify.nf", produces="application/json; charset:utf-8")
 	public String friendNewPostNotification(HttpSession session) {
-		
-		Notification n = (Notification)session.getAttribute("n");
-		ArrayList flist = (ArrayList)session.getAttribute("flist");
-		
 		JSONObject jobj = new JSONObject();
-		jobj.put("n", n);
-		jobj.put("flist", flist);
+		
+		if(session.getAttribute("notification") != null) {
+			Notification n = (Notification)session.getAttribute("notification");
+			ArrayList flist = (ArrayList)session.getAttribute("flist");
+			session.removeAttribute("n");
+			session.removeAttribute("flist");
+			jobj.put("n", n);
+			jobj.put("flist", flist);
+		}
+		
 		return new Gson().toJson(jobj);
 	}
 
