@@ -12,6 +12,7 @@
 		<result column="report_link" property="reportLink" />	
 		<result column="report_postNo" property="reportPostNo" />
 		<result column="member_id" property="memberId" />	
+		<result column="report_writer_no" property="reportWriterNo" />
 	</resultMap>
 	<resultMap type="Reply" id="replyResultSet">
 		<id column = "reply_no" property="replyNo" />
@@ -73,6 +74,7 @@
 		        , report_type
 		        , report_link
 		        , report_postNo
+		        , report_writer as report_writer_no
 		    from report
 		    join member on(member_no = report_writer)
 		    where report_no = #{bno}

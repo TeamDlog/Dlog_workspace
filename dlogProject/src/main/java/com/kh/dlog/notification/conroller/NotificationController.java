@@ -44,7 +44,7 @@ public class NotificationController {
 		if(session.getAttribute("notification") != null) {
 			Notification n = (Notification)session.getAttribute("notification");
 			ArrayList flist = (ArrayList)session.getAttribute("flist");
-			session.removeAttribute("n");
+			session.removeAttribute("notification");
 			session.removeAttribute("flist");
 			jobj.put("n", n);
 			jobj.put("flist", flist);

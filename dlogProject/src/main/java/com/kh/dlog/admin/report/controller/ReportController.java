@@ -16,12 +16,16 @@ import com.kh.dlog.common.model.vo.PageInfo;
 import com.kh.dlog.common.template.Pagination;
 import com.kh.dlog.mainmenu.freenote.model.vo.Freenote;
 import com.kh.dlog.mainmenu.freenote.model.vo.Reply;
+import com.kh.dlog.notification.model.service.NotificationService;
+import com.kh.dlog.notification.model.vo.Notification;
 
 @Controller
 public class ReportController {
 	
 	@Autowired
 	private ReportService rService;
+	@Autowired
+	private NotificationService nService;
 	
 	@RequestMapping("adminReportList.ro")
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
@@ -52,9 +56,13 @@ public class ReportController {
 	}
 	
 	@RequestMapping("adminReportProcess.ro")
-	public String updateReportProcess(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Report r ,Model model) {
+	public String updateReportProcess(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Report r ,Model model, HttpSession session) {
 	
 		rService.updateReportProcess(r);
+		
+		// 알림서비스
+		Notification n = nService.reportCheckNotify(r.getReportWriterNo());
+		session.setAttribute("notification", n);
 		
 		int listCount = rService.selectListCount();
 		
