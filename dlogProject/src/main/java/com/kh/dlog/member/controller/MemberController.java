@@ -35,6 +35,7 @@ import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
 import com.kh.dlog.mypage.controlAll.model.vo.ControlAll;
 import com.kh.dlog.template.Coolsms;
 import com.kh.dlog.widget.dday.model.service.DdayService;
+import com.kh.dlog.widget.dday.model.vo.Dday;
 import com.kh.dlog.widget.memo.model.service.MemoService;
 import com.kh.dlog.widget.memo.model.vo.Memo;
 import com.kh.dlog.widget.timetable.model.Service.TimetableService;
