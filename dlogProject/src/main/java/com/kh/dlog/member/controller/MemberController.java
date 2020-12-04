@@ -415,7 +415,7 @@ public class MemberController {
 			}
 			
 			String changeName = saveFile(upfile, session); //
-			m.setProfile("resources/uploads/" + changeName);
+			m.setProfile("resources/profiles/" + changeName);
 		}
 		
 		
@@ -442,7 +442,7 @@ public class MemberController {
 		
 		String originName = upfile.getOriginalFilename();
 		
-		String savePath = session.getServletContext().getRealPath("/resources/uploads/"); //물리적인 경로를 알아야 폴더에 업로드가능
+		String savePath = session.getServletContext().getRealPath("/resources/profiles/"); //물리적인 경로를 알아야 폴더에 업로드가능
 		
 		//원본면 aa.jpg-> 실제업로드("202022038338483434.jpg") 
 		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
