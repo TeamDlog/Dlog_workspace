@@ -20,7 +20,7 @@
      }
      #line{
         border:gray 2px dashed;
-        width:671px;
+        width:832px;
         line-height: 30px;
      }
     
@@ -49,6 +49,12 @@
 
 <jsp:include page="../common/myPageHeader.jsp" />
 
+<script>
+      $(function(){
+         $(".metismenu a[href*='introListMn.my']").addClass("active");
+         $(".metismenu a[href*='introListMn.my']").parent().addClass("active");
+      });
+   </script>
 
  <!--**********************************
      Content body start
@@ -62,7 +68,7 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-12">
-                 <div class="card" style="width:730px;">
+                 <div class="card" style="width:900px;">
                      <div class="card-body" >
                          <div class="table-responsive">
                              <!--시작-->
@@ -95,7 +101,7 @@
                                                  <td style="font-size:30px;">&nbsp;</td>
                                            </tr>      
                                              <tr>
-                                                 <td style="font-size:23px; font-weight: bolder; ">&nbsp;&nbsp; ${ loginUser.introductionTitle } </td>
+                                                 <td style="font-size:23px; font-weight: bolder; ">&nbsp;&nbsp; ${ loginUser.introductionTitle } <img float=right; class="wrap" id="buga" src="resources/images/bug.png" style="width: 40px; height: 40px;"> </td>
                                              </tr>
                                              
                                              <tr>
@@ -136,7 +142,8 @@
      Content body end
  ***********************************--> 
  
-  <jsp:include page="../common/myPageFooter.jsp" />
+  <jsp:include page="../common/diaryWidget.jsp" />
+  <jsp:include page="../common/diaryFooter.jsp" />
  
 </body>
 </html>

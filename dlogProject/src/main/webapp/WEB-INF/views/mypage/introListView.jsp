@@ -21,7 +21,7 @@
          }
         #line{
         border:gray 2px dashed;
-        width:671px;
+        width:832px;
         line-height: 30px;
      }
     .bug2{
@@ -49,20 +49,27 @@
 
 <jsp:include page="../common/diaryHeader.jsp" />
 
+<script>
+      $(function(){
+         $(".metismenu a[href*='introList.my']").addClass("active");
+         $(".metismenu a[href*='introList.my']").parent().addClass("active");
+      });
+   </script>
+
 
  <!--**********************************
      Content body start
  ***********************************-->
  <div class="content-body" style="float: left;">
      <div class="row page-titles mx-0">
-         <h3 style="color:rgb(94, 94, 94); padding-left:15px; font-size:17px;  font-weight:bolder;"><b>소개글</b></h3>
+         <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">소개글</h3>
      </div>
      <!-- row -->
 
      <div class="container-fluid">
          <div class="row">
              <div class="col-12">
-                 <div class="card backgroundColor" style="width:730px;">
+                 <div class="card backgroundColor" style="width:900px;">
                      <div class="card-body backgroundColor" >
                          <div class="table-responsive">
                              <!--시작-->
@@ -95,14 +102,14 @@
                                                  <td style="font-size:30px;">&nbsp;</td>
                                            </tr>      
                                              <tr>
-                                                 <td style="font-size:23px; font-weight: bolder;">&nbsp;&nbsp; ${ loginUser.introductionTitle } </td>
+                                                 <td style="font-size:23px; font-weight: bolder;">&nbsp;&nbsp; ${ loginUser.introductionTitle } <img float=right; class="wrap" id="buga" src="resources/images/bug.png" style="width: 40px; height: 40px;"> </td>
                                              </tr>
                                              <tr>
                                              	<td style="font-size:7px;">&nbsp;</td>
                                              </tr>
                                               <c:if test="${not empty loginUser.introductionTitle and not empty loginUser.introductionContent  }">
                                          	<tr>
-                                                 <td><div id="line"></div></td>
+                                                 <td><h3 id="line"></h3></td>
                                             </tr>
                                             </c:if>
                                             <tr>

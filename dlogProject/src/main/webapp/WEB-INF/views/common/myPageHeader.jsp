@@ -249,13 +249,13 @@
                     <ul class="metismenu" id="menu">
                         <li class="nav-label">마이페이지</li>
                         <li>
-                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <a class="has-arrow" href="infoList.my" aria-expanded="false">
                                 <i class="icon-user-following"></i><span class="nav-text">개인정보조회</span>
                             </a>
                         </li>
                         
                         <li class="mega-menu mega-menu-sm">
-                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <a class="has-arrow" href="introListMn.my" aria-expanded="false">
                                 <i class="icon-layers"></i><span class="nav-text">소개글 관리</span>
                             </a>
                         </li>
@@ -265,12 +265,12 @@
                             </a>
                         </li>
                         <li>
-                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <a class="has-arrow" href="updatePwdForm.my" aria-expanded="false">
                                 <i class="icon-shield"></i><span class="nav-text">비밀번호 변경</span>
                             </a>
                         </li>
                         <li>
-                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <a class="has-arrow" href="deleteForm.my" aria-expanded="false">
                                 <i class="icon-user"></i><span class="nav-text">회원탈퇴</span>
                             </a>
                         </li>

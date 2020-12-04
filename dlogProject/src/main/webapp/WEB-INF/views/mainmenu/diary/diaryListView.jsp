@@ -33,7 +33,7 @@ a {
       <div class="container-fluid">
           <div class="row">
               <div class="col-12">
-                  <div class="card" style="width:900px;">
+                  <div class="card" style="width:900px; min-height:500px;">
                       <div class="card-body backgroundColor" >
                           <div class="table-responsive">
                               <!-- 검색영역 -->
@@ -129,7 +129,7 @@ a {
                                   		<td width="100" align="center"></td>
                                       	<td width="600"></td>
                                       	<td>
-                                      		<div width="300" align="right">
+                                      		<div width="300" style="margin-left:90%">
                                          	 <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
                                       		</div>
                                       	</td>
