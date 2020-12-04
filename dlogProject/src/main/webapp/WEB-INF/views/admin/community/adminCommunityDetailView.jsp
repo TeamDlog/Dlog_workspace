@@ -116,7 +116,7 @@
 		// 글 삭제 확인용
 	    $("#deleteBtn").click(function(){
 			if(confirm("정말 삭제하시겠습니까?")) {
-				location.href="delete.fn?fno=${ fn.freenoteNo }";
+				location.href="delete.fn?fno=${ fn.freenoteNo }&index=admin";
 			}
 		});
 		

@@ -101,19 +101,6 @@
                             <span class="toggle-icon"><i class="icon-menu"></i></span>
                         </div>
                     </div>
-                    <div class="header-left">
-                        <div class="input-group icons">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-                            </div>
-                            <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
-                            <div class="drop-down   d-md-none">
-                                <form action="#">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                     <div class="header-right">
                         <ul class="clearfix">
                             <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
@@ -176,7 +163,7 @@
                                     <i class="mdi mdi-bell-outline"></i>
                                     <span class="badge badge-pill gradient-2 badge-primary" id="notificationCount"></span>
                                 </a>
-                                <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication" id="notifyDiv" style="max-height: 500px; overflow: auto;">
+                                <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication" id="notification_list"  style="max-height: 500px; overflow: auto;">
                                     <div class="dropdown-content-heading d-flex justify-content-between">
                                         <span><font id="notificationCount2">0</font>개의 새로운 알림</span>  
                                         
@@ -188,6 +175,11 @@
                             </li>
                             <input type="hidden" class="btn btn-success m-b-10 m-l-5" id="toastr-success-top-right">
                             <script>
+	                         	// dropdown inside 클릭 시 안 사라지게
+	                			$("#notification_list").click(function(){
+	                				event.stopPropagation();
+	                			});
+	                			
                             	$(function(){
                             		loadNotification(${loginUser.memberNo});
                             		//setInterval(loadNotification, 2000, ${loginUser.memberNo});

@@ -23,6 +23,7 @@
 #inuquiryProcess{float:right;}
 .bootstrap-pagination{width:fit-content;margin:auto;}
 #listTable>tbody>tr:hover{cursor:pointer;}
+.pagination .active>a{background: #7571f9 !important;}
 </style>
 </head>
 

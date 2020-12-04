@@ -63,7 +63,7 @@
             ***********************************-->
             <div class="nav-header">
                 <div class="brand-logo" id="logoColor">
-                    <a href="#">
+                    <a href="${ pageContext.servletContext.contextPath }">
                         <b class="logo-abbr"><img src="resources/images/DlogLogo-text-short.png" alt="" width="19px"></b>
                         <span class="logo-compact"><img src="resources/images/DlogLogo-text.png" alt="" width="87"></span>
                         <span class="brand-title">
