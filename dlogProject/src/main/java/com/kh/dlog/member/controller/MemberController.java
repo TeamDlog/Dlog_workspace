@@ -215,12 +215,10 @@ public class MemberController {
 		
 		if(result > 0) {
 			
-			session.setAttribute("resultChange", "성공적으로 비밀번호가 변경되었습니다.");
-			return "success";
+			return "성공적으로 비밀번호가 변경되었습니다.";
 			
 		}else {
 			
-			session.setAttribute("resultChange", "비밀번호 변경에 실패했습니다.");
 			return "fail";
 			
 		}
