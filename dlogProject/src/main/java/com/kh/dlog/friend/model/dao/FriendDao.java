@@ -24,11 +24,11 @@ public class FriendDao {
 		return (ArrayList)sqlSession.selectList("friendMapper.selectFriendList", friendOwner, rowBounds);
 	}
 	
-	public int deleteFriend(SqlSessionTemplate sqlSession, Friend f) {
-		return sqlSession.delete("friendMapper.deleteFriend", f);
+	public int deleteFriend(SqlSessionTemplate sqlSession, int friendNo) {
+		return sqlSession.delete("friendMapper.deleteFriend", friendNo);
 	}
 	
-	public ArrayList<Member> searchFriend(SqlSessionTemplate sqlSession, Member m){
+	public ArrayList<Friend> searchFriend(SqlSessionTemplate sqlSession, Member m){
 		return (ArrayList)sqlSession.selectList("friendMapper.searchFriend", m);
 	}
 	
@@ -36,8 +36,8 @@ public class FriendDao {
 		return (ArrayList)sqlSession.selectList("friendMapper.findFriend", m);
 	}
 	
-	public ArrayList<Friend> requestFriend(SqlSessionTemplate sqlSession, int friendOwner){
-		return (ArrayList)sqlSession.selectList("friendMapper.requestFriend", friendOwner);
+	public ArrayList<Friend> requestFriend(SqlSessionTemplate sqlSession, int friendAccepted){
+		return (ArrayList)sqlSession.selectList("friendMapper.requestFriend", friendAccepted);
 	}
 	
 	public int acceptFriend(SqlSessionTemplate sqlSession, Friend f) {
@@ -46,6 +46,10 @@ public class FriendDao {
 	
 	public int rejectFriend(SqlSessionTemplate sqlSession, Friend f) {
 		return sqlSession.delete("friendMapper.rejectFriend",f);
+	}
+	
+	public int insertFriend(SqlSessionTemplate sqlSession, Friend f) {
+		return sqlSession.insert("friendMapper.insertFriend",f);
 	}
 	
 }

@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<jsp:include page="../../common/osageuDiaryHeader.jsp" />
+	<jsp:include page="../../common/diaryHeader.jsp" />
 	
 	<script>
 		$(function(){
@@ -32,19 +32,23 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card backgroundColor" style="width:900px;">
-                        <div class="card-body backgroundColor" >
+                    <div class="card backgroundColor" style="width:900px; height:700px;">
+                        <div class="card-body backgroundColor" style="background-image:url('resources/images/memoEnroll.png'); background-position: 30px 20px ;background-size:850px 650px; background-repeat: no-repeat; position:relative;">
                         
                         <form action="" method="post" id="update_form">
-                        	 <input type="hidden" name="memoNo" value="${ m.memoNo }">
-	                         <div class="memo_enroll_title">
-	                             <input type="text" name="memoTitle" value="${ m.memoTitle }">
-	                         </div>
-	                         <div class="memo_enroll_content">
-	                             <textarea name="memoContent" id="" cols="30" rows="10">${ m.memoContent }</textarea>
-	                         </div>
-	                         <button type="submit" class="btn mb-1 btn-success" style="margin-left: 670px; margin-right:15px; font-size: 20px; letter-spacing:2px;" onclick="modifyMemo();">수정</button>
-	                         <button type="button" class="btn mb-1 btn-success" style="font-size: 20px; letter-spacing:2px;" onclick="deleteMemo();">삭제</button>
+                        	<div style="width:70%; height:40%; position:absolute; top:200px; left:120px;">
+	                        	<input type="hidden" name="memoNo" value="${ m.memoNo }">
+		                        <div class="memo_enroll_title">
+		                            <input type="text" name="memoTitle" value="${ m.memoTitle }">
+		                        </div>
+		                        <div class="memo_enroll_content">
+		                            <textarea name="memoContent" id="" cols="30" rows="10">${ m.memoContent }</textarea>
+		                        </div>
+		                        <div align="right">
+			                        <button type="submit" class="btn mb-1 btn-success btn-sm" style="margin-right:10px; font-size: 15px;" onclick="modifyMemo();">수정</button>
+			                        <button type="button" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;" onclick="deleteMemo();">삭제</button>
+		                        </div>
+	                        </div>
 						</form>
 						
                         </div>
@@ -74,7 +78,6 @@
     ***********************************-->  
     <jsp:include page="../../common/diaryWidget.jsp" />
     <jsp:include page="../../common/diaryFooter.jsp" />
-    <jsp:include page="../../common/friendjQuery.jsp" />
 
 </body>
 </html>

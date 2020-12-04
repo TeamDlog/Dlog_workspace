@@ -25,7 +25,7 @@
                 <div class="container-fluid" style="padding-top: 0px;">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card backgroundColor" style="width:900px;">
+                            <div class="card backgroundColor" style="width:900px; min-height:500px">
                                 <div class="card-body" >
                                     <div class="table-responsive">
 
@@ -82,70 +82,84 @@
                                                 <th width="40%">뜻</th>
                                                 <th>삭제</th>
                                             </tr>
-                                            <c:forEach var="vo" items="${ list }" varStatus="status">
-	                                            <tr style="height: 40px;">
-	                                                <td>${ (pi.listCount - status.index)-((pi.currentPage-1)*10) }</td>
-	                                                <td>${ vo.vocaWord }</td>
-	                                                <td>${ vo.vocaMean }</td>
-	                                                <td><input type="checkbox" id="vocaNo" name="vocaNo" value="${ vo.vocaNo }"></td>
-	                                            </tr>
-                                            </c:forEach>
+                                            <c:choose>
+	                                            <c:when test="${ empty list }">
+	                                            	<tr style="height: 40px;">
+			                                        	<td colspan="4"><h6>등록된 단어가 없습니다.</h6></td>
+			                                        </tr>
+	                                            </c:when>
+	                                            <c:otherwise>
+		                                            <c:forEach var="vo" items="${ list }" varStatus="status">
+			                                            <tr style="height: 40px;">
+			                                                <td>${ (pi.listCount - status.index)-((pi.currentPage-1)*10) }</td>
+			                                                <td>${ vo.vocaWord }</td>
+			                                                <td>${ vo.vocaMean }</td>
+			                                                <td><input type="checkbox" id="vocaNo" name="vocaNo" value="${ vo.vocaNo }"></td>
+			                                            </tr>
+		                                            </c:forEach>
+		                                        </c:otherwise>
+                                            </c:choose>
                                         </table>
                                         
                                         <br>
 
-                                        
-                                        <table align="center">
-                                            <tr>
-                                                <td width="100" align="center"></td>
-                                                <td width="600">
-                                                    <ul class="pagination justify-content-center" style="margin-bottom: 0px;">
-                                                    <c:choose>
-                                                    	<c:when test="${ pi.currentPage eq 1 }">
-	                                                        <li class="page-item disabled">
-	                                                            <a class="page-link" href="#">Previous</a>
-	                                                        </li>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                        	<li class="page-item">
-	                                                            <a class="page-link" href="list.vo?currentPage=${ pi.currentPage-1 }">Previous</a>
-	                                                        </li>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                    
-                                                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                                                    <c:choose>
-                                                    	<c:when test="${ pi.currentPage == p}">
-	                                                        <li class="page-item active">
-	                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
-	                                                        </li>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                        	<li class="page-item">
-	                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
-	                                                        </li>
-                                                        </c:otherwise>
-                                                    </c:choose>
-													</c:forEach>
-													
-													<c:choose>
-														<c:when test="${ pi.currentPage eq pi.maxPage }">
-	                                                        <li class="page-item disabled">
-	                                                            <a class="page-link" href="#">Next</a>
-	                                                        </li>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                        	 <li class="page-item">
-	                                                            <a class="page-link" href="list.vo?currentPage=${ pi.currentPage+1 }">Next</a>
-	                                                        </li>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                    </ul>
-                                                </td>
-                            
-                                            </tr>
-                                        </table>
-                                        
+                                        <c:choose>
+                                        	<c:when test="${ empty list }">
+                                        		
+                                        	</c:when>
+                                        	<c:otherwise>
+		                                        <table align="center">
+		                                            <tr>
+		                                                <td width="100" align="center"></td>
+		                                                <td width="600">
+		                                                    <ul class="pagination justify-content-center" style="margin-bottom: 0px;">
+		                                                    <c:choose>
+		                                                    	<c:when test="${ pi.currentPage eq 1 }">
+			                                                        <li class="page-item disabled">
+			                                                            <a class="page-link" href="#">Previous</a>
+			                                                        </li>
+		                                                        </c:when>
+		                                                        <c:otherwise>
+		                                                        	<li class="page-item">
+			                                                            <a class="page-link" href="list.vo?currentPage=${ pi.currentPage-1 }">Previous</a>
+			                                                        </li>
+		                                                        </c:otherwise>
+		                                                    </c:choose>
+		                                                    
+		                                                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+		                                                    <c:choose>
+		                                                    	<c:when test="${ pi.currentPage == p}">
+			                                                        <li class="page-item active">
+			                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
+			                                                        </li>
+		                                                        </c:when>
+		                                                        <c:otherwise>
+		                                                        	<li class="page-item">
+			                                                            <a class="page-link" href="list.vo?currentPage=${ p }">${ p }</a>
+			                                                        </li>
+		                                                        </c:otherwise>
+		                                                    </c:choose>
+															</c:forEach>
+															
+															<c:choose>
+																<c:when test="${ pi.currentPage eq pi.maxPage }">
+			                                                        <li class="page-item disabled">
+			                                                            <a class="page-link" href="#">Next</a>
+			                                                        </li>
+		                                                        </c:when>
+		                                                        <c:otherwise>
+		                                                        	 <li class="page-item">
+			                                                            <a class="page-link" href="list.vo?currentPage=${ pi.currentPage+1 }">Next</a>
+			                                                        </li>
+		                                                        </c:otherwise>
+		                                                    </c:choose>
+		                                                    </ul>
+		                                                </td>
+		                            
+		                                            </tr>
+		                                        </table>
+	                                        </c:otherwise>
+                                        </c:choose>
 
                                     </div>  
                                     

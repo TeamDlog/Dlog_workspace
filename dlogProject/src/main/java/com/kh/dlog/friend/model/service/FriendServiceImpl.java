@@ -31,12 +31,12 @@ public class FriendServiceImpl implements FriendService{
 	}
 
 	@Override
-	public int deleteFriend(Friend f) {
-		return fDao.deleteFriend(sqlSession, f);
+	public int deleteFriend(int friendNo) {
+		return fDao.deleteFriend(sqlSession, friendNo);
 	}
 
 	@Override
-	public ArrayList<Member> searchFriend(Member m) { // 친구 목록에서의 검색
+	public ArrayList<Friend> searchFriend(Member m) { // 친구 목록에서의 검색
 		return fDao.searchFriend(sqlSession, m);
 	}
 
@@ -46,8 +46,8 @@ public class FriendServiceImpl implements FriendService{
 	}
 	
 	@Override
-	public ArrayList<Friend> requestFriend(int friendOwner) {
-		return fDao.requestFriend(sqlSession, friendOwner);
+	public ArrayList<Friend> requestFriend(int friendAccepted) {
+		return fDao.requestFriend(sqlSession, friendAccepted);
 	}
 
 	@Override
@@ -58,6 +58,11 @@ public class FriendServiceImpl implements FriendService{
 	@Override
 	public int rejectFriend(Friend f) {
 		return fDao.rejectFriend(sqlSession, f);
+	}
+
+	@Override
+	public int insertFriend(Friend f) {
+		return fDao.insertFriend(sqlSession, f);
 	}
 
 	

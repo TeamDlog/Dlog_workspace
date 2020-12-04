@@ -40,6 +40,8 @@ import com.kh.dlog.widget.memo.model.service.MemoService;
 import com.kh.dlog.widget.memo.model.vo.Memo;
 import com.kh.dlog.widget.timetable.model.Service.TimetableService;
 import com.kh.dlog.widget.timetable.model.vo.Timetable;
+import com.kh.dlog.widget.voca.model.service.VocaService;
+import com.kh.dlog.widget.voca.model.vo.Voca;
 
 
 @Controller
@@ -61,6 +63,8 @@ public class MemberController {
 	private FriendService fService;
 	@Autowired
 	private MemoService meService;
+	@Autowired
+	private VocaService vService;
 
 	public void widgetSessionUpdate(HttpSession session, int diaryMemberNo) {
 		
@@ -271,6 +275,10 @@ public class MemberController {
 		Member loginUser = mService.loginMember(m);
 		ArrayList<Member> list = mService.selectMemberList();
 		
+		int mno = loginUser.getMemberNo();
+		
+		Voca v = vService.randomList(mno);
+		
 		// friend session 넣기
 		int friendListCount = fService.selectFriendListCount(loginUser.getMemberNo());
 		PageInfo pi2 = Pagination.getPageInfo(friendListCount, currentPage, 3, 5);
@@ -318,6 +326,8 @@ public class MemberController {
 				session.setAttribute("friendList",friendList);
 				session.setAttribute("requestFriend", requestFriend);
 				session.setAttribute("memoWidget", memoWidget);
+				
+				session.setAttribute("voca", v);
 				
 				return "redirect:/";
 				
@@ -415,7 +425,7 @@ public class MemberController {
 			}
 			
 			String changeName = saveFile(upfile, session); //
-			m.setProfile("resources/uploads/" + changeName);
+			m.setProfile("resources/profiles/" + changeName);
 		}
 		
 		
@@ -442,7 +452,7 @@ public class MemberController {
 		
 		String originName = upfile.getOriginalFilename();
 		
-		String savePath = session.getServletContext().getRealPath("/resources/uploads/"); //물리적인 경로를 알아야 폴더에 업로드가능
+		String savePath = session.getServletContext().getRealPath("/resources/profiles/"); //물리적인 경로를 알아야 폴더에 업로드가능
 		
 		//원본면 aa.jpg-> 실제업로드("202022038338483434.jpg") 
 		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());

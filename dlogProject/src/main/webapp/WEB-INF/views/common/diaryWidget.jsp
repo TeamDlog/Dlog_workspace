@@ -16,15 +16,17 @@
             Widget area start
         ***********************************-->
         <div class="widget-area" style="float:left; margin-top: 100px;">
-            <div class="card" style="max-width:170px; height:275px;">
+            <div class="card" style="max-width:220px; height:250px;">
                 <div class="card-body">
                     <div class="text-center">
                     	<c:if test="${loginUser.profile == null}">
-                        <img alt="" class="rounded-circle mt-4" src="resources/images/default-profile-pic.jpg" width="90px">
+                        	<img alt="" class="rounded-circle mt-4" src="resources/images/default-profile-pic.jpg" width="90px">
                         </c:if>
+                        <div class="text-center">
+                            <img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px">
+                        </div>
                         <h4 class="card-widget__title text-dark mt-3" style="font-size:18px; font-weight:bolder;">${loginUser.nickname }</h4>
-                        <p class="text-muted" style="font-size:0.8em;">${loginUser.email }</p>
-                        <p class="text-muted" style="font-weight:bolder;">${loginUser.introductionTitle }</p>
+                         <p class="text-muted" style="font-weight:bolder;">${loginUser.introductionTitle }</p>
                     </div>
                 </div>
             </div>
@@ -42,12 +44,12 @@
                 <div class="stat-widget-one" style="padding: 10px">
                     <div class="stat-content">
                     <c:choose>
-                    	<c:when test="${ vocaWord eq null }">
+                    	<c:when test="${ voca eq null }">
                     		<div class="stat-text" style="padding: 0px; margin: 0px; font-size: 13px">등록된 단어가 없습니다.</div>
                         </c:when>
                         <c:otherwise>
-	                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">${ vocaWord }</div>
-	                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">${ vocaMean }</div>
+	                        <div class="stat-digit" style="color: #84c8b9; font-size: 30px">${ voca.vocaWord }</div>
+	                        <div class="stat-text" style="padding: 0px; margin: 0px; font-size: 17px">${ voca.vocaMean }</div>
                         </c:otherwise>
                     </c:choose>
                     </div>
@@ -59,7 +61,7 @@
             		$.ajax({
             			url:"random.vo",
             			success:function(result){
-            				console.log("왜");
+            				
             			},error:function(){
             				console.log("ajax통신 실패");
             			}
@@ -188,12 +190,12 @@
         ***********************************-->
         <script>
         
-     	// memo
+     // memo
        	$(function(){
 
        		$(".memo_widget").hover(function(){
        			$(this).children().eq(1).css({
-       				"font-size":"17px",
+       				"font-size":"13px",
            			"border":"0px",
            			"padding":"20px",
            			"resize":"none",
@@ -202,7 +204,7 @@
        			});
 	       		},function(){
 	       			$(this).children().eq(1).css({
-	       				"font-size":"17px",
+	       				"font-size":"13px",
 	           			"border":"0px",
 	           			"resize":"none",
 	           			"padding":"20px",
@@ -211,19 +213,19 @@
 	           			"color":"rgb(100,100,100)"
 	       			});
 	       		});
-	
+
 	       		$(".memo_widget_title").css({
 	       			"background":"rgb(132,200,185)",
 	       			"color":"white",
 	       			"text-align":"center",
-	       			"font-size":"25px",
+	       			"font-size":"20px",
 	       			"height":"40px",
-	       			"padding-top":"3px",
+	       			"padding-top":"5px",
 	       			"border-radius":"10px 10px 0px 0px"
 	       		});
-	
+
 	       		$(".memo_widget_content").css({
-	       			"font-size":"17px",
+	       			"font-size":"13px",
 	       			"border":"0px",
 	       			"width":"100%",
 	       			"resize":"none",

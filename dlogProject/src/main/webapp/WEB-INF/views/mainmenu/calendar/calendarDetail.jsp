@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<jsp:include page="../../common/osageuDiaryHeader.jsp" />
+	<jsp:include page="../../common/diaryHeader.jsp" />
 	
 	<script>
 		$(function(){
@@ -126,7 +126,6 @@
     ***********************************-->  
     <jsp:include page="../../common/diaryWidget.jsp" />
     <jsp:include page="../../common/diaryFooter.jsp" />
-    <jsp:include page="../../common/friendjQuery.jsp" />
     
 </body>
 </html>

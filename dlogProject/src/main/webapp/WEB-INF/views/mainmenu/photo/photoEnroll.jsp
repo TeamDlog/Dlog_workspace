@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<jsp:include page="../../common/osageuDiaryHeader.jsp" />
+	<jsp:include page="../../common/diaryHeader.jsp" />
 	
 	<script>
 		$(function(){
@@ -28,14 +28,14 @@
         </div>
         <!-- row -->
 
-        <i id="addFrame" class="fas fa-plus-square" onclick="addFrame();"></i>
-        <i id="removeFrame" class="fas fa-minus-square" onclick="removeFrame();"></i>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px; height: auto;">
                         <div class="card-body" style="margin-left: 30px;">
 
+					        <i id="addFrame" class="fas fa-plus-square" onclick="addFrame();"></i>
+					        <i id="removeFrame" class="fas fa-minus-square" onclick="removeFrame();"></i>
                             <form method="post" action="insert.ph" enctype="multipart/form-data">
 	                            <div class="photo_outer">
 		                            <div class="photo_insertForm">
@@ -60,8 +60,8 @@
                             	 </div>
 	                             <br clear="both">
 	                             <br><br><br><br>
-	                             <button type="button" class="btn mb-1 btn-success" style="margin-left: 605px; margin-right:15px; font-size: 20px;" onclick="resetFrame();">초기화</button>
-	                             <button type="submit" class="btn mb-1 btn-success" style="font-size: 20px;">작성</button>
+	                             <button type="button" class="btn mb-1 btn-success btn-sm" style="margin-left: 680px; margin-right:10px; font-size: 15px;" onclick="resetFrame();">초기화</button>
+	                             <button type="submit" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;">작성</button>
                             </form>
                         </div>
                     </div>
@@ -149,7 +149,6 @@
     ***********************************-->  
     <jsp:include page="../../common/diaryWidget.jsp" />
     <jsp:include page="../../common/diaryFooter.jsp" />
-    <jsp:include page="../../common/friendjQuery.jsp" />
         
 </body>
 </html>

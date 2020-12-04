@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <jsp:include page="../../common/osageuDiaryHeader.jsp" />
+    <jsp:include page="../../common/diaryHeader.jsp" />
 	
 	<script>
 		$(function(){
@@ -29,30 +29,33 @@
             <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">메모장</h3>
         </div>
         <!-- row -->
-        <a class="btn mb-1 btn-success" href="enroll.mo" style="margin-left: 710px; margin-right:15px; font-size: 20px;">메모 작성</a>
-        <button type="button" class="btn mb-1 btn-success deleteButton" style="font-size: 20px;">삭제</button>
         <br>
         <div class="container-fluid" style="margin-top:20px;">
             <div class="row">
                 <div class="col-12">
-                    <div class="card backgroundColor" style="width:900px;">
+                    <div class="card backgroundColor" style="width:900px; min-height:500px;">
                         <div class="card-body backgroundColor" >
-                        
+                        	<c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo}">
+						        <a class="btn mb-1 btn-success btn-sm" href="enroll.mo" style="margin-left: 700px; margin-right:10px; font-size: 15px;">메모 작성</a>
+						        <button type="button" class="btn mb-1 btn-success btn-sm deleteButton" style="font-size: 15px;">삭제</button>
+                        	</c:if>
                             <form action="delete.mo" method="post" class="delete_memo_form update_memo_form">
-                             <c:forEach var="m" items="${ list }">
-                          	<div class="memo_main">
-                               <div class="memo_main_title">
-									<input type="hidden" name="memoNum" value="${ m.memoNo }">
-                               	<c:out value="${ m.memoTitle }"/>
-                                </div>
-								<label class="switch">
-								<input type="hidden" value="${ m.memoWidget }">
-								<input type="checkbox" name="memoNo" value="${ m.memoNo }">
-								<span class="slider round"></span>
-							</label>
-                            <input type="checkbox" name="checkArr" class="removeBox" value="${ m.memoNo }">
-                          	</div>
-                         	</c:forEach>
+	                            <c:forEach var="m" items="${ list }">
+		                          	<div class="memo_main">
+		                               <div class="memo_main_title">
+											<input type="hidden" name="memoNum" value="${ m.memoNo }">
+		                               	<c:out value="${ m.memoTitle }"/>
+		                                </div>
+		                                <c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo}">
+											<label class="switch">
+												<input type="hidden" value="${ m.memoWidget }">
+												<input type="checkbox" name="memoNo" value="${ m.memoNo }">
+												<span class="slider round"></span>
+											</label>
+										</c:if>
+		                            <input type="checkbox" name="checkArr" class="removeBox" value="${ m.memoNo }">
+		                          	</div>
+	                         	</c:forEach>
                         	</form>
                         	
                         </div>
@@ -89,9 +92,10 @@
 					url:"widgetNtoY.mo",
 					data:{
 						memoNo:$(this).val(),
-						memoWriter:${loginUser.memberNo}
+						memoWriter:${loginUser.diaryMemberNo}
 					},
 					success:function(memoWidget){
+						console.log(memoWidget);
 						$(".memo_widget_content").text(memoWidget.memoContent);
 
 					},error:function(){
@@ -102,7 +106,7 @@
 				$.ajax({
 					url:"widgetAlltoN.mo",
 					data:{
-						memoWriter:${loginUser.memberNo}
+						memoWriter:${loginUser.diaryMemberNo}
 					},
 					success:function(data){
 						$(".memo_widget_content").text("");
@@ -146,7 +150,11 @@
 
 		// 상세 조회
 		$(".memo_main_title").click(function(){
-			location.href="updateForm.mo?memoNo="+$(this).children().eq(0).val();
+			if(${ loginUser.memberNo eq loginUser.diaryMemberNo}){
+				location.href="updateForm.mo?memoNo="+$(this).children().eq(0).val();
+			}else{
+				alert("작성자만 조회할 수 있습니다.");
+			}
 		})
 	})
 	</script>
@@ -156,7 +164,6 @@
     ***********************************-->  
 	<jsp:include page="../../common/diaryWidget.jsp" />
     <jsp:include page="../../common/diaryFooter.jsp" />
-    <jsp:include page="../../common/friendjQuery.jsp" />
     
 </body>
 </html>
