@@ -72,7 +72,7 @@
 							                <tbody>
 							                	<c:forEach var="f" items="${list}">
 							                    <tr>
-							                    	<td><input type="checkbox" name="chkRow" ></td>
+							                    	<td onclick="event.cancelBubble=true"><input type="checkbox" name="chkRow" ></td>
 							                        <td class="bno">${f.faqNo}</td>
 							                        <td>${f.faqTitle }</td>
 							                        <td>${f.faqDate }</td>							                  
@@ -127,12 +127,14 @@
 	       $(document).ready(function() {
 				
 	    			
-		    		$('#listTable td:not(:nth-child(1))').click(function(){
+		    		$('#listTable tbody tr').click(function(){
 						
 		    			
-		    				location.href="adminFaqDetail.no?bno=" + $(this).closest("td").siblings(".bno").text();
+		    				location.href="adminFaqDetail.no?bno=" +  $(this).children(".bno").text();
 		    		
 		    		});
+		    		
+		    		
 		    		
 		    		
 		    			    	 
