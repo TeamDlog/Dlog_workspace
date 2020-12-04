@@ -32,6 +32,7 @@ import com.kh.dlog.friend.model.vo.Friend;
 import com.kh.dlog.member.model.service.MemberService;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
+import com.kh.dlog.mypage.controlAll.model.vo.ControlAll;
 import com.kh.dlog.template.Coolsms;
 import com.kh.dlog.widget.dday.model.service.DdayService;
 import com.kh.dlog.widget.memo.model.service.MemoService;
@@ -60,26 +61,18 @@ public class MemberController {
 	@Autowired
 	private MemoService meService;
 
-	public void widgetSessionUpdate(HttpSession session, int currentPage) {
+	public void widgetSessionUpdate(HttpSession session, int diaryMemberNo) {
 		
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		// friend session 넣기
-		int friendListCount = fService.selectFriendListCount(loginUser.getDiaryMemberNo());
-		PageInfo pi2 = Pagination.getPageInfo(friendListCount, currentPage, 3, 5);
-		ArrayList<Friend> friendList = fService.selectFriendList(loginUser.getDiaryMemberNo(), pi2);
-		Memo memoWidget = meService.selectMemoWidget(loginUser.getDiaryMemberNo());
-		
-		// request friendList
-		ArrayList<Friend> requestFriend = fService.requestFriend(loginUser.getMemberNo());
-		
-		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		// 메모위젯 객체
+		Memo memoWidget = meService.selectMemoWidget(diaryMemberNo);
 		
 		// 위젯관리, 메뉴관리, 테마관리 객체
-		session.setAttribute("ca", caService.ControlAllMain(loginUser.getDiaryMemberNo()+""));
+		ControlAll ca = caService.ControlAllMain(diaryMemberNo+"");
 		
 		// 시간표 객체리스트
-		ArrayList<Timetable> tlist = tService.timetableList(loginUser.getDiaryMemberNo());
+		ArrayList<Timetable> tlist = tService.timetableList(diaryMemberNo);
+		
+		ArrayList<Dday> dlist = dService.ddayMain(diaryMemberNo+"");
 		
 		// 시간표 객체리스트에 오늘날짜 추가하는 조건문/반복문
 		if(!tlist.isEmpty()) {
@@ -96,17 +89,13 @@ public class MemberController {
 			}
 		}
 		
+		// 위젯관리, 메뉴관리, 테마관리 객체 세션보관
+		session.setAttribute("ca", ca);
 		// 디데이 객체리스트 세션에 보관
-		session.setAttribute("dlist", dService.ddayMain(loginUser.getDiaryMemberNo()+""));
+		session.setAttribute("dlist", dlist);
 		// 시간표 객체리스트 세션에 보관
 		session.setAttribute("timetableList", tlist);
-		// diaryMemberNo 추가한 로그인유저 객체 세션에 보관
-		session.setAttribute("loginUser", loginUser);
-		
-		// friend, memoWidget
-		session.setAttribute("pi2",pi2);
-		session.setAttribute("friendList",friendList);
-		session.setAttribute("requestFriend", requestFriend);
+		// 메모 위젯 객체 세션에 보관
 		session.setAttribute("memoWidget", memoWidget);
 	}
 	
