@@ -22,12 +22,15 @@ import com.kh.dlog.admin.inquiry.model.vo.Inquiry;
 import com.kh.dlog.common.model.vo.PageInfo;
 import com.kh.dlog.common.template.Pagination;
 import com.kh.dlog.member.model.vo.Member;
+import com.kh.dlog.notification.model.service.NotificationService;
 
 @Controller
 public class InquiryController {
 	
 	@Autowired
 	private InquiryService iService;
+	@Autowired
+	private NotificationService nService;
 	
 	@RequestMapping("enrollForm.io")
 	public String enrollForm() {
@@ -93,9 +96,12 @@ public class InquiryController {
 	}
 	
 	@RequestMapping("adminInquiryProcess.io")
-	public String updateInquiryProcess(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Inquiry i , Member m,Model model) {
+	public String updateInquiryProcess(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Inquiry i , Member m,Model model, HttpSession session) {
 	
 		iService.updateInquiryProcess(i);
+		
+		//알림서비스
+		session.setAttribute("notification", nService.inquiryEmailNotify(i.getInquiryWriter()));
 		
 		int listCount = iService.selectListCount();
 		

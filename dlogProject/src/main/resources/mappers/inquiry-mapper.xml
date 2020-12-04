@@ -49,6 +49,7 @@
 		        , member_id
 		        , inquiry_answer
 		        , inquiry_email
+		        , inquiry_writer
 		    from inquiry
 		    join member on(member_no = inquiry_writer)
 		    where inquiry_no = #{bno}

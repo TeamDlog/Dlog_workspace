@@ -74,6 +74,7 @@
 						           <br><br>
 						        <form action="adminInquiryProcess.io" method="post" id="b">
 						         	<input type="hidden" name="inquiryNo" value="${i.inquiryNo }">
+						         	<input type="hidden" name="inquiryWriter" value="${i.inquiryWriter }">
 						         	<button class="btn mb-1 btn-rounded btn-primary" type="submit" id="btnMail">처리완료</button>
 						         </form>
 						         <input class="btn mb-1 btn-rounded btn-primary" type="button" value="답변 " data-toggle="modal" data-target="#insertForm" id="a">

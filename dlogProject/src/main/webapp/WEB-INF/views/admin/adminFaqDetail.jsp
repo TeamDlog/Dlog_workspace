@@ -24,7 +24,7 @@
             ***********************************-->
             <div class="content-body" style="float: left;">
                 <div class="row page-titles mx-0">
-                    <h3 style="color:rgb(94, 94, 94); padding-left: 15px;">공지사항</h3>
+                    <h3 style="color:rgb(94, 94, 94); padding-left: 15px;">FAQ</h3>
                 </div>
                 <!-- row -->
 

@@ -61,8 +61,7 @@ public class ReportController {
 		rService.updateReportProcess(r);
 		
 		// 알림서비스
-		Notification n = nService.reportCheckNotify(r.getReportWriterNo());
-		session.setAttribute("notification", n);
+		session.setAttribute("notification", nService.reportCheckNotify(r.getReportWriterNo()));
 		
 		int listCount = rService.selectListCount();
 		

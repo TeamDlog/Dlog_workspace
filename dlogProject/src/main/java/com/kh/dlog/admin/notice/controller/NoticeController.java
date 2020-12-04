@@ -79,7 +79,7 @@ public class NoticeController {
 	}
 	@RequestMapping("adminNoticeDetail.no")
 	public String adminSelectNotice(int bno, Model model) {
-		System.out.println("bno = " + bno);
+		//System.out.println("bno = " + bno);
 		Notice n = nService.selectNotice(bno);
 		
 		model.addAttribute("n", n);
