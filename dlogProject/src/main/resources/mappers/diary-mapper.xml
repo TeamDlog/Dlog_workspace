@@ -53,7 +53,7 @@
 			diary_no
 		  , diary_title
 		  , diary_content
-		  , to_char(diary_date, 'yyyy.mm.dd hh24:mi') as diary_date
+		  , diary_date
        from diary 
       where diary_no = #{dno}
         and diary_status='Y' 

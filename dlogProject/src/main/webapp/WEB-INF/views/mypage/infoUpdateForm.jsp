@@ -91,7 +91,7 @@
                                              </div>
                                         </div>
                                        <tr>
-                                         <td> 이름 : </td>
+                                         <td> 이름  </td>
                                          <td colspan="2"> ${loginUser.memberName }</td>
                                       </tr>
                                       <tr>
@@ -99,7 +99,7 @@
                                          <td colspan="2">&nbsp;</td>
                                      </tr>
                                        <tr>
-                                         <td> 아이디 : </td>
+                                         <td> 아이디  </td>
                                          <td colspan="2"> ${loginUser.memberId }</td>
                                        </tr>
                                      
@@ -108,41 +108,38 @@
                                            <td>&nbsp;</td>
                                        </tr>
                                        <tr>
-                                         <td> 별명 : </td>
-                                         <td><input style="width:200px;" type="text"  name="nickname" id="nickname" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" value="${loginUser.nickname }"></td>
-                                         <td><button onclick="nicknameCheck2();" class="btn btn-secondary btn-sm">중복확인</button></td>
+                                         <td> 별명  </td>
+                                         <td><input style="width:180px;" type="text"  name="nickname" id="nickname" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" value="${loginUser.nickname }"></td>
+                                         <td>&nbsp;<button type="button" onclick="nicknameCheck2();" class="btn btn-secondary btn-sm">중복확인</button></td>
                                          </tr>
                                        <tr>
-                                         <td colspan="3"><p id="checkResult"></p></td>
-                                         
-                                      </tr>
-                                     
-                                        <tr>
-                                           <td> 이메일 : </td>
-                                           <td colspan="2"><input style="width:200px;" type="email" name="email" placeholder="&nbsp;&nbsp;이메일을 입력해주세요." required value="${loginUser.email }"></td>
+                                         <td colspan="3">&nbsp;</td>
+                                       </tr>
+                                     	 <tr>
+                                           <td> 이메일  </td>
+                                           <td colspan="2"><input style="width:180px;" type="email" name="email" placeholder="&nbsp;&nbsp;이메일을 입력해주세요." required value="${loginUser.email }"></td>
                                        </tr>
                                        <tr>
-                                         <td>&nbsp;</td>
-                                         <td>&nbsp;</td>
+                                         <td colspan="3">&nbsp;</td>
                                        </tr>
                                        <tr>
-                                         <td>전화번호 :</td> 
-                                 		 <td><input id="phoneNumber" name="phone" style="width:200px;" type="text" maxlength="13" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." value="${loginUser.phone }" required></td>
-                                         <td>&nbsp;&nbsp;<button id="sendPhoneNumber" class="btn btn-secondary btn-sm">인증</button></td>
+                                         <td>전화번호 </td> 
+                                 		 <td><input id="phoneNumber" name="phone" style="width:180px;" type="text" maxlength="13" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." value="${loginUser.phone }" required></td>
+                                         <td>&nbsp;<button type="button" id="sendPhoneNumber" class="btn btn-secondary btn-sm">인증요청</button></td>
                                        </tr>
                                        <tr>
                                          <td colspan="3">&nbsp;</td> 
                                        </tr>
                                        <tr>
-                                         <td>인증번호 입력 : </td>
-                                         <td><input type="text" id="inputCertifiedNumber" name="inputCertifiedNumber" placeholder="인증번호를 입력하세요" style="width: 200px;" ></td>
-                                      	 <td><button id="checkBtn" type="button" class="btn btn-secondary btn-sm">인증확인</button></td>
+                                         <td>인증번호 입력 &nbsp;&nbsp;</td>
+                                         <td><input type="text" id="inputCertifiedNumber" name="inputCertifiedNumber" placeholder="인증번호를 입력하세요" style="width: 180px;" ></td>
+                                      	 <td>&nbsp;<button id="checkBtn" type="button" class="btn btn-secondary btn-sm">인증확인</button></td>
                                       </tr>
                                       <tr>
                                          <td colspan="3">&nbsp;</td> 
                                        </tr>
                                       <tr>
-                                         <td class="profileimg"> 프로필 이미지 :  &nbsp;&nbsp;</td>
+                                         <td class="profileimg"> 프로필 이미지   </td>
                                          
                                          <td colspan="2">&nbsp;&nbsp;<input type="file" name="upfile" class="form-control-e" id="upfile" value=""></td>
                                          
@@ -187,8 +184,8 @@
                         						console.log("아이디 중복체크용 ajax통신 실패");
                         					}
                         				})
-                            			
-                            		}
+                            		}	
+                            	}
                             		//
                             	
                            		$('#sendPhoneNumber').click(function(){

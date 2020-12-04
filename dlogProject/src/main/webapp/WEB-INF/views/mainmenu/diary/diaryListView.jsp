@@ -50,6 +50,7 @@ a {
                               <br><br>
 								
                               <!-- 목록 -->
+                              
                               <table class="table table-hover" id="list"> 
                                   <thead align="center">
                                       <tr>
@@ -84,58 +85,51 @@ a {
                               <br>
                               <!-- 페이징 -->
                               <table align="center">
-                            <c:if test="${d.diaryNo != null}">
-                            	<tr>
+                             <c:if test = "${ !empty list }">
+                            	  <tr>
                                       <td width="100" align="center"></td>
                                       <td width="600">
                                           <ul class="pagination justify-content-center">
                                           
                                           <c:choose>
-                                          	  <c:when test="${ pi.currentPage eq 1} }">
-                                              	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                                              </c:when>
-                                              <c:otherwise>
-                                              	<li class="page-item"><a class="page-link" href="list.di?currentPage=${ pi.currentPage-1 }">Previous</a></li>
-                                              </c:otherwise>
-                                           </c:choose>  
-                                              
-                                              
-                                              
-                                            <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">  
-                                              <li class="page-item active"><a class="page-link" href="list.di?currentPage=${ p }">${ p }</a></li>
-                                         	</c:forEach>
-                                              
-                                              
-                                            <c:choose> 
-                                              <c:when test="${ pi.currentPage eq pi.maxPage }">
-                                              	<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                                              </c:when>
-                                              <c:otherwise>
-                                              	<li class="page-item"><a class="page-link" href="list.di?currentPage=${ pi.currentPage+1 }">Next</a></li>
-                                               </c:otherwise>
-                                            </c:choose> 
+						               		<c:when test="${ pi.currentPage eq 1 }">
+							                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+						               		</c:when>
+						               		<c:otherwise>
+							                    <li class="page-item"><a class="page-link" href="selectList.ph?currentPage=${ pi.currentPage-1 }">Previous</a></li>
+						               		</c:otherwise>
+						                   </c:choose>
+	
+						                   <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+						                   	<li class="page-item"><a class="page-link page-number" href="selectList.ph?currentPage=${ p }">${ p }</a></li>
+						                   </c:forEach>
+	
+						                   <c:choose>
+						               		<c:when test="${ pi.currentPage eq pi.maxPage }">
+							                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+						               		</c:when>
+						               		<c:otherwise>
+						                   		<li class="page-item"><a class="page-link" href="selectList.ph?currentPage=${ pi.currentPage+1 }">Next</a></li>
+						               		</c:otherwise>
+						                   </c:choose>
                                           </ul>
                                       </td>
                                       <td>
-                                      <div width="300" align="right">
+                                      <div width="300" align="right" style="margin-left:100%;">
                                           <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
                                       </div>
                                       </td>
-                                     
+                                      </c:if>
+                                      
+                                      <c:if  test = "${ empty list }">
+                                      
+                                      <div width="300" align="right" style="margin-left:90%;">
+                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
+                                      </div>
+                                       
+                                      </c:if>
                                   </tr>
-                                  </c:if>
-                                  <c:if test="${ empty list }">
-                                  	<tr>
-                                  		<td width="100" align="center"></td>
-                                      	<td width="600"></td>
-                                      	<td>
-                                      		<div width="300" style="margin-left:90%">
-                                         	 <button class="btn btn-success" onclick="location.href='enrollForm.di';">작성</button>
-                                      		</div>
-                                      	</td>
-                                  	</tr>
-                                  </c:if>
-                              </table>
+                               </table>
                           </div>                                
                       </div>
                   </div>
