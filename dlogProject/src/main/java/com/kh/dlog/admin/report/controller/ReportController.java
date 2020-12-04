@@ -77,12 +77,18 @@ public class ReportController {
 	}
 	
 	@RequestMapping("adminReportDelete.ro")
-	public String adminReplyDelete(Integer reNo,Integer frNo, int bno , Model model) {
+	public String adminReplyDelete(Integer reNo,Integer frNo, int bno , Model model, HttpSession session) {
 	
 		if(reNo != null) {
+			session.setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
 			rService.adminReplyDelete(reNo);
-		}else {
+			
+		}else if(frNo != null) {
+			session.setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
 			rService.adminFreenoteDelete(frNo);
+		}else {
+			session.setAttribute("alertMsg", "이미 삭제된 글입니다.");
+			return "redirect:adminReportDetail.ro?bno=" + bno;
 		}
 		
 		
