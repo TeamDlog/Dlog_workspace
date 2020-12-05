@@ -47,8 +47,8 @@ modal-backdrop {
             ***********************************-->
             <div class="content-body" style="float: left;">
                 <div class="row page-titles mx-0">
-                    <h3 style="color:rgb(94, 94, 94); margin: 0px;">프리노트</h3>
-                </div>
+			        <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">단어장</h3>
+			    </div>
                 <!-- row -->
 
                 <div class="container-fluid" style="padding-top: 0px;">
