@@ -58,7 +58,9 @@
 								        <option value="11">11월</option>
 								        <option value="12">12월</option> 
 								 </select>
-								<input id="enroll" type="button" class="btn btn-success" value="등록" onclick="location.href='accountEnrollForm.ac';">
+								<c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+									<input id="enroll" type="button" class="btn btn-success" value="등록" onclick="location.href='accountEnrollForm.ac';">
+								</c:if>
                               	<br><br>
                              	<table id="accountList" class="table">
                              			<c:set var="resultIncome" value="0" />
@@ -79,7 +81,9 @@
 							                    <th>수입/지출</th>
 							                    <th>금액</th>
 							                    <th>내역</th>
-							                    <th>삭제</th>
+							                    <c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+							                   		<th>삭제</th>
+							                    </c:if>
 							                   
 							                  </tr>
 							                </thead>
@@ -95,8 +99,9 @@
 							                        <td>지출</td>
 							                        <td>${a.accountMoney }</td>
 							                        <td>${a.accountDataIls }</td> 
-							                        <td><a href="#"  role="button" class="btn mb-1 btn-light" onclick="location.href='accountDelete.ac?bno=' +${a.accountNo }" >X</a></td>
-							                       
+							                        <c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+							                        	<td><a href="#"  role="button" class="btn mb-1 btn-light" onclick="location.href='accountDelete.ac?bno=' +${a.accountNo }" >X</a></td>
+							                        </c:if>
 							                        <c:set var="resultSpend" value="${a.accountMoney+ resultSpend}" />
 							                           
 							                        </c:when>
@@ -107,8 +112,10 @@
 							                        <td>${a.accountDivision }</td>
 							                        <td>수입</td>
 							                        <td>${a.accountMoney }</td>
-							                        <td>${a.accountDataIls }</td> 
-							                        <td><a href="#"  role="button" class="btn mb-1 btn-light" onclick="location.href='accountDelete.ac?bno=' +${a.accountNo }" >X</a></td>
+							                        <td>${a.accountDataIls }</td>
+							                        <c:if test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+							                        	<td><a href="#"  role="button" class="btn mb-1 btn-light" onclick="location.href='accountDelete.ac?bno=' +${a.accountNo }" >X</a></td>
+							                        </c:if>
 							                        <c:set var="resultIncome" value="${a.accountMoney + resultIncome}" />
 							                        </c:otherwise>
 							                        </c:choose>
