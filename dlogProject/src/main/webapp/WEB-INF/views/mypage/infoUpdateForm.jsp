@@ -84,7 +84,7 @@
                                              </div>
 	                                     </div>
 	                                     <tr>
-	                                     	<td colspan="3" style="width:170px;" align="center"><input type="button" class="btn btn-secondary btn-sm" onclick="location.href='pfUpdate.my'" value="기존 이미지로 변경"></td>
+	                                     	<td colspan="3" style="width:170px;" align="center"><input type="button" class="btn btn-secondary btn-sm" onclick="location.href='pfUpdate.my?mno=${loginUser.memberNo}';" value="기존 이미지로 변경"></td>
 	                                     </tr>
 	                                     <tr>
 	                                     	<td colspan="3">&nbsp;</td>
@@ -231,32 +231,7 @@
                             		}	
                             	}
                             		//
-                            		function pfUpdate(){
                             		
-                            		var $pfUpdate = $("#infoUpdateForm img [name=profile]");
-                            		
-                            			
-                            			$.ajax({
-                        					url:"pfUpdate.my",
-                        					data:{profile:$pfUpdate.val()},
-                        					success:function(result){
-                        						
-                        						if(result == 'success'){
-                                                    
-                                                	alert($pfUpdate.val() + "프로필이 변경되었습니다.");
-                                                	$pfUpdate.focus();
-                                                	
-                                                }else{
-                                                	alert("프로필 변경이 실패되습니다.");
-                                                	
-                                                }
-                        						
-                        					},error:function(){
-                        						console.log("프로필 ajax통신 실패");
-                        					}
-                        				})
-                            			
-                            	}	
                             		
                             		//
                             	

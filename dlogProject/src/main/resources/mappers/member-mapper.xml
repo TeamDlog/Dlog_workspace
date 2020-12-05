@@ -236,11 +236,11 @@
 		   set member_pwd = #{memberPwd}
 		 where member_no = #{memberNo}
 	</update>
-	<update id="pfUpdateForm" parameterType="Member">
+	<update id="pfUpdate" parameterType="_int" >
 		update
 		       member
-		   set profile = default
-		 where member_no = #{memberNo}
+		   set profile = 'resources/images/default-profile-pic.jpg'
+		 where member_no = #{mno}
 	</update>
 	
 	

@@ -510,13 +510,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping("pfUpdate.my")
-	public String pfDeleteForm(Member m, HttpSession session, Model model) {
+	public String pfUpdate(int mno, HttpSession session, Model model) {
 		
-		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		int result = mService.pfUpdateForm(m);
+		int result = mService.pfUpdate(mno);
 		
 		if(result > 0) {
+			
+			Member m = (Member)session.getAttribute("loginUser");
+			m.setProfile("resources/images/default-profile-pic.jpg");
+			session.setAttribute("loginUser", m);
+			
 			session.setAttribute("alertMsg", "프로필이 변경되었습니다..");
 			return "redirect:infoUpdateForm.my";
 		}else {

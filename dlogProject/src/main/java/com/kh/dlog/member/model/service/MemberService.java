@@ -33,7 +33,7 @@ public interface MemberService {
 	
 	int nicknameCheck2(String nickname);
 	
-	int pfUpdateForm(Member m);
+	int pfUpdate(int mno);
 	
 	int introInsert(Member m);
 	

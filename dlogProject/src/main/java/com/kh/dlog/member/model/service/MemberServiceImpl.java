@@ -107,9 +107,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int pfUpdateForm(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int pfUpdate(int mno) {
+		return mDao.pfUpdate(sqlSession, mno);
 	}
 
 	

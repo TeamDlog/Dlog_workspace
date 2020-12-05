@@ -112,10 +112,15 @@ a {
                                           <button class="btn btn-success" onclick="location.href='enrollForm.di';">글쓰기</button>
                                       </div>
                                       </c:if>
+                                      <c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo }">
+                                      <div width="300" align="right" style="margin-left:75%;">
+                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">글쓰기</button>
+                                      </div>
+                                      </c:if>
                                       </td>
                                       </c:if>
                                       
-	                                      <c:if  test = "${ empty list || loginUser.memberNo eq loginUser.diaryMemberNo  }">
+	                                      <c:if  test = "${ empty list }">
 	                                      
 	                                      <div width="300" align="right" style="margin-left:75%;">
 	                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">글쓰기</button>
