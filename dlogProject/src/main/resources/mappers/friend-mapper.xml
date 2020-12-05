@@ -36,7 +36,7 @@
                                            from member
                                           where member_no = to_char(f.friend_owner)) end friend_nickname, 
                                                                     friend_accepted, friend_status, 
-                                                                                                    case when friend_owner = #{friendOwner} then m.nickname 
+                                                                                                    case when friend_owner = #{friendOwner} then m.profile
                                                                                                         else (select profile
                                                                                                                from member
                                                                                                               where member_no = to_char(f.friend_owner)) end friend_profile
@@ -59,7 +59,7 @@
                                            from member
                                           where member_no = to_char(f.friend_owner)) end friend_nickname, 
                                                                     friend_accepted, friend_status, 
-                                                                                                    case when friend_owner = #{friendOwner} then m.nickname 
+                                                                                                    case when friend_owner = #{friendOwner} then m.profile
                                                                                                         else (select profile
                                                                                                                from member
                                                                                                               where member_no = to_char(f.friend_owner)) end friend_profile
@@ -88,7 +88,7 @@
                                            from member
                                           where member_no = to_char(f.friend_owner)) end friend_nickname, 
                                                                     friend_accepted, friend_status,
-                                                                    								case when friend_owner = #{memberNo} then m.nickname 
+                                                                    								case when friend_owner = #{memberNo} then m.profile
                                                                                                         else (select profile
                                                                                                                from member
                                                                                                               where member_no = to_char(f.friend_owner)) end friend_profile
@@ -152,5 +152,13 @@
 		     , 'N'
 		     )
 	</insert>
+	
+	<select id="visitFriend"
+			parameterType="_int"
+			resultMap="memberResultSet">
+		select *
+		  from member 
+		 where member_no = #{memberNo}
+	</select>
 	
 </mapper>

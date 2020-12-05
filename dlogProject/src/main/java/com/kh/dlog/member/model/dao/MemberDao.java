@@ -78,4 +78,9 @@ public class MemberDao {
 	public int nicknameCheck2(SqlSessionTemplate sqlSession, String nickname) {
 		return sqlSession.selectOne("memberMapper.nicknameCheck2", nickname);
 	}
+	
+	public int pfUpdateForm(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.pfUpdateForm", m);
+	}
+	
 }

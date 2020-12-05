@@ -19,14 +19,19 @@
             <div class="card" style="max-width:220px; height:267px;">
                 <div class="card-body">
                     <div class="text-center">
-                    	<c:if test="${loginUser.profile == null}">
-                        	<img alt="" class="rounded-circle mt-2" src="resources/images/default-profile-pic.jpg" width="110px">
-                        </c:if>
-                        <div class="text-center">
-                            <img alt="" class="rounded-circle mt-2" src="${loginUser.profile }" width="110px">
-                        </div>
-                        <h4 class="card-widget__title text-dark mt-2" style="font-size:18px; font-weight:bolder;">${loginUser.nickname }</h4>
-                         <p class="text-muted" style="font-weight:bolder;">${loginUser.introductionTitle }</p>
+
+                    	<c:choose>
+                    		<c:when test="${empty friendInfo}">
+                        		<img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px">
+		                        <h4 class="card-widget__title text-dark mt-3" style="font-size:18px; font-weight:bolder;">${loginUser.nickname }</h4>
+		                        <p class="text-muted" style="font-weight:bolder;">${loginUser.introductionTitle }</p>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<img alt="" class="rounded-circle mt-4" src="${friendInfo.profile }" width="90px">
+		                        <h4 class="card-widget__title text-dark mt-3" style="font-size:18px; font-weight:bolder;">${friendInfo.nickname }</h4>
+		                        <p class="text-muted" style="font-weight:bolder;">${friendInfo.introductionTitle }</p>
+                        	</c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>

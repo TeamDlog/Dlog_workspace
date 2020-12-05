@@ -117,9 +117,6 @@
      					
      					sumPage = pagination1 + pagination2 + pagination3;
      					
-     					console.log(sumPage);
-     					console.log(friendList[1]);
-     					
      					$(".friend_list_ul").append(value);
      					$("#this_page_friend_currentPage").val(friendList[1].currentPage);
 	     				$(".friend_pagination").append(sumPage);

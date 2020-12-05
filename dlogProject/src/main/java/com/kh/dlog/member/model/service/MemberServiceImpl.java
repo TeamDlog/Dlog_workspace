@@ -106,6 +106,12 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.nicknameCheck2(sqlSession, nickname);
 	}
 
+	@Override
+	public int pfUpdateForm(Member m) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 	
 

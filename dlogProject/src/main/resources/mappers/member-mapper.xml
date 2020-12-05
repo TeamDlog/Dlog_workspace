@@ -103,6 +103,7 @@
 		     , email
 		     , phone
 		     , nickname
+		     , profile
 		     , enroll_date
 		     , modify_date
 		     , status 
@@ -116,6 +117,7 @@
 		     , #{email}
 		     , #{phone}
 		     , #{nickname}
+		     , 'resources/images/default-profile-pic.jpg'
 		     , sysdate
 		     , sysdate
 		     , 'Y'
@@ -234,7 +236,12 @@
 		   set member_pwd = #{memberPwd}
 		 where member_no = #{memberNo}
 	</update>
-
+	<update id="pfUpdateForm" parameterType="Member">
+		update
+		       member
+		   set profile = default
+		 where member_no = #{memberNo}
+	</update>
 	
 	
 
