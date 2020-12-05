@@ -69,47 +69,60 @@ modal-backdrop {
                                                     </form>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" style="float: right;">+</button>
-                                                <div class="modal fade" id="exampleModalCenter">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document" style="width: 300px;">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">단어추가</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form action="enroll.vo" method="post">
-                                                            <input type="hidden" name="vocaWriter" value="${ loginUser.memberNo }">
-	                                                            <div class="modal-body">
-	                                                                <h6>단어</h6>
-	                                                                <input type="text" class="form-control" id="vocaWord" name="vocaWord" required>
-	
-	                                                                <br>
-	
-	                                                                <h6>뜻</h6>
-	                                                                <input type="text" class="form-control" id="vocaMean" name="vocaMean" required>
-	                                                            </div> 
-	                                                            <div class="modal-footer">
-	                                                                <button type="submit" class="btn btn-primary" style="background-color: #84c8b9; border-color: #84c8b9;">등록하기</button>
-	                                                            </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <button id="checkDelete" type="button" class="btn btn-secondary btn-sm" style="float: right; margin-right: 10px;">삭제</button>
-                                            </tr>
+                                             <c:choose>
+	                                            <c:when test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+		                                            <tr>
+		                                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" style="float: right;">+</button>
+		                                                <div class="modal fade" id="exampleModalCenter">
+		                                                    <div class="modal-dialog modal-dialog-centered" role="document" style="width: 300px;">
+		                                                        <div class="modal-content">
+		                                                            <div class="modal-header">
+		                                                                <h5 class="modal-title">단어추가</h5>
+		                                                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+		                                                                </button>
+		                                                            </div>
+		                                                            <form action="enroll.vo" method="post">
+		                                                            <input type="hidden" name="vocaWriter" value="${ loginUser.memberNo }">
+			                                                            <div class="modal-body">
+			                                                                <h6>단어</h6>
+			                                                                <input type="text" class="form-control" id="vocaWord" name="vocaWord" required>
+			
+			                                                                <br>
+			
+			                                                                <h6>뜻</h6>
+			                                                                <input type="text" class="form-control" id="vocaMean" name="vocaMean" required>
+			                                                            </div> 
+			                                                            <div class="modal-footer">
+			                                                                <button type="submit" class="btn btn-primary" style="background-color: #84c8b9; border-color: #84c8b9;">등록하기</button>
+			                                                            </div>
+		                                                            </form>
+		                                                        </div>
+		                                                    </div>
+		                                                </div>
+		
+		                                                <button id="checkDelete" type="button" class="btn btn-secondary btn-sm" style="float: right; margin-right: 10px;">삭제</button>
+		                                            </tr>
+	                                            </c:when>
+                                            </c:choose>
                                         </table>
                                         
                                         <br>
     
                                         <table style="text-align: center; width: 100%;">
                                             <tr style="background-color: rgb(241, 240, 240); color: rgb(95, 94, 94); height: 40px;">
-                                                <th width="10%">No.</th>
-                                                <th width="40%">단어</th>
-                                                <th width="40%">뜻</th>
-                                                <th>삭제</th>
+                                                <c:choose>
+                                                	<c:when test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+                                                		<th width="10%">No.</th>
+                                                		<th width="40%">단어</th>
+                                                		<th width="40%">뜻</th>
+                                                		<th>삭제</th>
+                                                	</c:when>
+                                                	<c:otherwise>
+                                                		<th width="10%">No.</th>
+                                                		<th width="40%">단어</th>
+                                                		<th width="40%">뜻</th>
+                                                	</c:otherwise>
+                                                </c:choose>
                                             </tr>
                                             <c:choose>
 	                                            <c:when test="${ empty list }">
@@ -123,7 +136,13 @@ modal-backdrop {
 			                                                <td>${ (pi.listCount - status.index)-((pi.currentPage-1)*10) }</td>
 			                                                <td>${ vo.vocaWord }</td>
 			                                                <td>${ vo.vocaMean }</td>
-			                                                <td><input type="checkbox" id="vocaNo" name="vocaNo" value="${ vo.vocaNo }"></td>
+			                                                <c:choose>
+			                                                	<c:when test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+			                                                		<td><input type="checkbox" id="vocaNo" name="vocaNo" value="${ vo.vocaNo }"></td>
+			                                                	</c:when>
+			                                                	<c:otherwise>
+			                                              		</c:otherwise>
+			                                                </c:choose>
 			                                            </tr>
 		                                            </c:forEach>
 		                                        </c:otherwise>
