@@ -283,7 +283,6 @@ public class MemberController {
 		int friendListCount = fService.selectFriendListCount(loginUser.getMemberNo());
 		PageInfo pi2 = Pagination.getPageInfo(friendListCount, currentPage, 3, 5);
 		ArrayList<Friend> friendList = fService.selectFriendList(loginUser.getMemberNo(), pi2);
-		Memo memoWidget = meService.selectMemoWidget(loginUser.getMemberNo());
 		
 		// request friendList
 		ArrayList<Friend> requestFriend = fService.requestFriend(loginUser.getMemberNo());
@@ -325,9 +324,10 @@ public class MemberController {
 				session.setAttribute("pi2",pi2);
 				session.setAttribute("friendList",friendList);
 				session.setAttribute("requestFriend", requestFriend);
-				session.setAttribute("memoWidget", memoWidget);
 				
 				session.setAttribute("voca", v);
+				
+				widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
 				
 				return "redirect:/";
 				
@@ -690,6 +690,30 @@ public class MemberController {
 			}
 		
 		}
+	 
+	 @RequestMapping(value="visitFriend.fr")
+	 public String vistiFriend(int diaryMemberNo, HttpSession session) {
+
+		Member m = (Member)session.getAttribute("loginUser");
+		m.setDiaryMemberNo(diaryMemberNo);
+		session.setAttribute("loginUser", m);
+
+		widgetSessionUpdate(session, m.getDiaryMemberNo());
+
+		return "redirect:introList.my";
+	}
+
+	@RequestMapping(value="goToMyDiary.fr")
+	public String vistiFriend(HttpSession session) {
+
+		Member m = (Member)session.getAttribute("loginUser");
+		m.setDiaryMemberNo(m.getMemberNo());
+		session.setAttribute("loginUser", m);
+
+		widgetSessionUpdate(session, m.getDiaryMemberNo());
+
+		return "redirect:introList.my";
+	}
 }
 	 
 	 

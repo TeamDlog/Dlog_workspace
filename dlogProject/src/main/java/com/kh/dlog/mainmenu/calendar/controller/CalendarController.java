@@ -40,7 +40,7 @@ public class CalendarController {
 	public String selectList(HttpSession session, Model model) {
 		
 		Member m = (Member)session.getAttribute("loginUser");
-		ArrayList<Calendar> list = cService.selectCalendarList(m.getMemberNo());
+		ArrayList<Calendar> list = cService.selectCalendarList(m.getDiaryMemberNo());
 		int size = list.size();
 		model.addAttribute("list",list);
 		model.addAttribute("size",size);
@@ -53,7 +53,7 @@ public class CalendarController {
 		Member m = (Member)session.getAttribute("loginUser");
 		Calendar c = new Calendar();
 		c.setCalendarNo(calendarNo);
-		c.setCalendarWriter(m.getMemberNo());
+		c.setCalendarWriter(m.getDiaryMemberNo());
 		
 		Calendar list = cService.selectCalendarDetail(c);
 		model.addAttribute("list", list);

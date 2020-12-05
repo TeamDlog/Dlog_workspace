@@ -33,9 +33,10 @@
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px; height: auto;">
                         <div class="card-body" style="margin-left: 30px;">
-
-					        <i id="addFrame" class="fas fa-plus-square" onclick="addFrame();"></i>
-					        <i id="removeFrame" class="fas fa-minus-square" onclick="removeFrame();"></i>
+							<div align="right">
+						        <i id="addFrame" class="fas fa-plus-square" onclick="addFrame();"></i>
+						        <i id="removeFrame" class="fas fa-minus-square" onclick="removeFrame();"></i>
+					        </div>
                             <form method="post" action="insert.ph" enctype="multipart/form-data">
 	                            <div class="photo_outer">
 		                            <div class="photo_insertForm">
@@ -60,8 +61,10 @@
                             	 </div>
 	                             <br clear="both">
 	                             <br><br><br><br>
-	                             <button type="button" class="btn mb-1 btn-success btn-sm" style="margin-left: 680px; margin-right:10px; font-size: 15px;" onclick="resetFrame();">초기화</button>
-	                             <button type="submit" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;">작성</button>
+	                             <div align="right">
+		                             <button type="button" class="btn mb-1 btn-success btn-sm" style="margin-right:10px; font-size: 15px;" onclick="resetFrame();">초기화</button>
+		                             <button type="submit" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;">작성</button>
+	                             </div>
                             </form>
                         </div>
                     </div>
