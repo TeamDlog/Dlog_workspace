@@ -524,6 +524,13 @@
       				friendNo:index
       			},
       			success:function(result){
+      				
+      				// 수락 알림
+      				if(socket && result.n != null){
+						var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+						socket.send(socketMsg);
+					}
+      				
       				$(".will_disapper"+index).remove();
       			},error:function(){
       				console.log("ajax 통신 실패..")
