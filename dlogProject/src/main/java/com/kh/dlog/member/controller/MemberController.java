@@ -104,8 +104,12 @@ public class MemberController {
 		session.setAttribute("memoWidget", memoWidget);
 	}
 	
-	@RequestMapping("mainpage.me")
-	public String mainpage() {
+	@RequestMapping("mainPage.me")
+	public String mainpage(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		return "mainpage/mainPage";
 	}
 	
@@ -368,7 +372,10 @@ public class MemberController {
 	
 	@RequestMapping("infoList.my")
 	public String infoList(HttpSession session, Model model) {
-		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		return "mypage/infoListView";
 	}
 	
@@ -405,7 +412,10 @@ public class MemberController {
 	
 	@RequestMapping("infoUpdateForm.my")
 	public String infoUpdateForm(Member m,HttpSession session) {
-		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		return "mypage/infoUpdateForm";
 	}
 	
@@ -504,15 +514,21 @@ public class MemberController {
 	 
 	 @RequestMapping("introListMn.my")
 	 public String introListMn(HttpSession session, Model model) {
-		 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		 return "mypage/introListViewManagement";
 	 }
 	 
 	 
 	 
 	 @RequestMapping("introEnrollForm.my")
-		public String enrollForm() {
-		 
+		public String enrollForm(HttpSession session) {
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		 return "mypage/introEnrollForm";
 		}
 	 
@@ -544,6 +560,10 @@ public class MemberController {
 	 
 	 @RequestMapping("updatePwdForm.my")
 	 	public String updatePwdForm(HttpSession session) {
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		 return "mypage/pwdUpdateForm";
 	 }
 	 
@@ -652,7 +672,10 @@ public class MemberController {
 	 
 	 @RequestMapping("deleteForm.my")
 		public String deleteForm(HttpSession session) {
-		 
+		 	Member loginUser = (Member)session.getAttribute("loginUser");
+			loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+			widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+			session.setAttribute("loginUser", loginUser);
 			return "mypage/deleteForm";
 		}
 	 
