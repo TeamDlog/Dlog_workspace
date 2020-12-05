@@ -236,7 +236,7 @@
                         <td width="450" align="right">
                         	<c:choose>
                         		<c:when test="${ loginUser.nickname == fn.freenoteWriter }">
-		                            <a href="detail.fn?fno=${ fn.freenoteNo }" style="color:black;">내 다이어리에서 보기 &#8594;</a>
+		                            <a href="goToMyDiary.fr?fno=${ fn.freenoteNo }" style="color:black;">내 다이어리에서 보기 &#8594;</a>
 		                        </c:when>
 		                        <c:when test="${ loginUser.memberNo == 1 }">
 		                            <button class="deleteBtn" onclick="location.href='delete.fn?fno=${ fn.freenoteNo }&index=community';">삭제</button>&nbsp;&nbsp;

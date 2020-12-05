@@ -704,7 +704,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="goToMyDiary.fr")
-	public String vistiFriend(HttpSession session) {
+	public String vistiFriend(String fno, HttpSession session) {
 
 		Member m = (Member)session.getAttribute("loginUser");
 		m.setDiaryMemberNo(m.getMemberNo());
@@ -712,7 +712,13 @@ public class MemberController {
 
 		widgetSessionUpdate(session, m.getDiaryMemberNo());
 
-		return "redirect:introList.my";
+		if(fno != null) {
+			// 커뮤니티에서 내 다이어리로 넘어갈때
+			return "redirect:detail.fn?fno=" + fno;
+		}else {
+			return "redirect:introList.my";			
+		}
+		
 	}
 }
 	 
