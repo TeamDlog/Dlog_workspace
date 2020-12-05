@@ -19,8 +19,8 @@ public class AccountServiceImpl implements AccountService {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public ArrayList<Account> selectList() {
-		return aDao.selectList(sqlSession);
+	public ArrayList<Account> selectList(int diaryMemberNo) {
+		return aDao.selectList(sqlSession, diaryMemberNo);
 	}
 	
 	@Override

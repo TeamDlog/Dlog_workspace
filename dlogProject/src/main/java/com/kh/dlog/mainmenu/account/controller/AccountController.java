@@ -4,6 +4,8 @@ package com.kh.dlog.mainmenu.account.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.kh.dlog.mainmenu.account.model.service.AccountService;
 import com.kh.dlog.mainmenu.account.model.vo.Account;
+import com.kh.dlog.member.model.vo.Member;
 
 
 @Controller
@@ -24,10 +27,10 @@ public class AccountController {
 	private AccountService aService;
 	
 	@RequestMapping("accountList.ac")
-	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
+	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model, HttpSession session) {
 		//System.out.print(currentPage);
-				
-		ArrayList<Account> list = aService.selectList();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		ArrayList<Account> list = aService.selectList(loginUser.getDiaryMemberNo());
 		
 		model.addAttribute("list",list);
 		
