@@ -257,7 +257,7 @@
 				                                    	case 7:list += "<span class='mr-3 avatar-icon' style='background: rgb(117, 131, 146);'><i class='icon-earphones-alt'></i></span>"; break;
 				                                    }
 				                                    list +=         "<div class='notification-content' style='margin-right:0;'>" +
-				                                                        "<table>" +
+				                                                        "<table  style='min-height:40px;'>" +
 				                                                            "<tr>" +
 				                                                                "<td width='200'>" +
 				                                                                    "<h6 class='notification-heading'>" + result.list[i].notificationContent + "</h6>" +

@@ -33,6 +33,10 @@ public class NotificationDao {
 		return (ArrayList)sqlSession.selectList("notificationMapper.selectFriendList", loginUserNo);
 	}
 	
+	public int findFriendOwnerNo(SqlSessionTemplate sqlSession, int friendNo) {
+		return sqlSession.selectOne("notificationMapper.findFriendOwnerNo", friendNo);
+	}
+	
 	public ArrayList<Notification> selectNotificationList(SqlSessionTemplate sqlSession, int loginUserNo) {
 		return (ArrayList)sqlSession.selectList("notificationMapper.selectNotificationList", loginUserNo);
 	}

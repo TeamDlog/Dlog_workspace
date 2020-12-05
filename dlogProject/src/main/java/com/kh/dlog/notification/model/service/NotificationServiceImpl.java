@@ -64,13 +64,18 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	@Override
-	public Notification friendAcceptNotify(String loginUserNickname, int friendAccepted) {
+	public Notification friendAcceptNotify(String loginUserNickname, int friendNo) {
 		Notification n = new Notification();
 		n.setNotificationContent(loginUserNickname + "님이 친구 수락하셨습니다.");
 		n.setNotificationCategory(4);
-		n.setMemberNo(friendAccepted);
+		n.setMemberNo(findFriendOwnerNo(friendNo));
 		nDao.insertNotification(sqlSession, n);
 		return n;
+	}
+	
+	@Override
+	public int findFriendOwnerNo(int friendNo) {
+		return nDao.findFriendOwnerNo(sqlSession, friendNo);
 	}
 
 	@Override
@@ -118,6 +123,5 @@ public class NotificationServiceImpl implements NotificationService {
 		return nDao.deleteNotification(sqlSession, notificationNo);
 	}
 
-	
 
 }
