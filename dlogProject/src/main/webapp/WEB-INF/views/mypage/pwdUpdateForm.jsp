@@ -76,7 +76,7 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                        	<td colspan="3"><div id="pwCheck" style="font-size:0.6em;"></div></td>
+                                        	<td colspan="3"><p id="pwCheck" style="font-size:0.6em;"></p></td>
                                         </tr>
                                         <tr>
                                             <td style="font-size:12px;"><br>비밀번호 확인 : &nbsp;&nbsp;&nbsp; </td>
@@ -104,10 +104,10 @@
 					   
 					   var $pwdCheck1 = $("#updatePwd input[name=memberPwd]");
 					   
-				       $pwdCheck1.keyup(function pwCheck(memberPwd){
+				       $pwdCheck1.keyup(function pwdCheck1(memberPwd){
 							$.ajax({
 								type:"POST",
-								url: "pwCheck",
+								url: "pwdCheck2.my",
 								data : { memberPwd:memberPwd },
 								success:function(result){	
 									if(result == true){				

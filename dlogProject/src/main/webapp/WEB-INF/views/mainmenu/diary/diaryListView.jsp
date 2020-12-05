@@ -66,8 +66,10 @@ a {
 	                                          <td >${ d.diaryNo }</td>
 	                                          <td>${ d.diaryTitle }</td>
 	                                          <td>${ d.diaryDate }</td>
+	                                          <c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo }">
 	                                          <td><a onclick="diaryUpdate(this); event.stopImmediatePropagation();">수정</a>&nbsp;&nbsp;
 												  <a onclick="diaryDelete(this); event.stopImmediatePropagation();">삭제</a></td>
+											</c:if>  
 	                                      </tr>
                                       </c:forEach>
                                       <c:if test="${ empty list }">
@@ -115,19 +117,22 @@ a {
                                           </ul>
                                       </td>
                                       <td>
+                                      <c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo }">
                                       <div width="300" align="right" style="margin-left:75%;">
                                           <button class="btn btn-success" onclick="location.href='enrollForm.di';">글쓰기</button>
                                       </div>
+                                      </c:if>
                                       </td>
                                       </c:if>
                                       
-                                      <c:if  test = "${ empty list }">
+	                                      <c:if  test = "${ empty list || loginUser.memberNo eq loginUser.diaryMemberNo  }">
+	                                      
+	                                      <div width="300" align="right" style="margin-left:75%;">
+	                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">글쓰기</button>
+	                                      </div>
+	                                       
+	                                      </c:if>
                                       
-                                      <div width="300" align="right" style="margin-left:75%;">
-                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">글쓰기</button>
-                                      </div>
-                                       
-                                      </c:if>
                                   </tr>
                                </table>
                           </div>                                

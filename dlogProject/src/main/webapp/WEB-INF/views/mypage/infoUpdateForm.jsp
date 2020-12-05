@@ -79,15 +79,13 @@
                                    <input type="hidden" name="memberNo" value="${loginUser.memberNo }">
                                      <table id="infoUpdateFormTable">
 	                                     <div class="card-body">
-                                         <c:if test="${loginUser.profile == null}">
-	                                         <div class="text-center" Style=border1px solid black">
-	                                             <img alt="" class="rounded-circle mt-4" src="resources/images/default-profile-pic.jpg" width="90px">
-	                                         </div>
-	                                     </c:if>
-                                             <div class="text-center">
+                                       		<div class="text-center">
                                                  <img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px">
                                              </div>
 	                                     </div>
+	                                     <tr>
+	                                     	<td colspan="3" style="width:170px;" align="center"><input type="button" class="btn btn-secondary btn-sm" onclick="loction.href='pfUpdateForm.my'" value="프로필 삭제"></td>
+	                                     </tr>
                                         
                                        <tr>
                                          <td> 이름  </td>
@@ -148,48 +146,48 @@
                                      
                                      </tr>
                                     </table>
-                                   <br><br>
+                                   <br>
                                  <button type="submit" id="infoUpdateBtn" class="btn btn-success" data-toggle="modal" data-target="#updateForm" >확인</button>
                                   <!-- 회원탈퇴 버튼 클릭시 보여질 Modal -->
-                               <div class="modal" id="updateForm">
-                                   <div class="modal-dialog">
-                                       <div class="modal-content">
-                                       
-                                           <!-- Modal Header -->
-                                           <div class="modal-header">
-                                           <h4 class="modal-title">개인정보수정</h4>
-                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                           </div>
-                                           
-                                           <!-- Modal body -->
-                                           <div class="modal-body" align="center">
-                                           
-                                               <b>
-                                                               수정하시려면 비밀번호를 입력해주세요. <br>   
-                                                               
-                                               </b>
-
-                                               <form action="infoUpdate.my" method="post">
-                                               
-                                                 	  비밀번호 : 
-                                                   <input type="password" name="memberPwd" required>
-                                                   
-                                                   <button type="submit" class="btn btn-success btn-sm" >수정</button>
-                                                   <button type="button" id="cancle" class="btn btn-secondary btn-sm" >취소</button>
-           			                      <script>
-           			                      $('#cancle').click(function(){
-           				                      $( '#updateForm' ).modal("hide");
-           			                    	  
-           			                      });
-           			                    	  
-           			                      </script>
-                                               </form>
-                                           </div>
-                                           
-                                       </div>
-                                   </div>
-                               </div>
-                               
+	                               <div class="modal" id="updateForm">
+	                                   <div class="modal-dialog">
+	                                       <div class="modal-content">
+	                                       
+	                                           <!-- Modal Header -->
+	                                           <div class="modal-header">
+	                                           <h4 class="modal-title">개인정보수정</h4>
+	                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                                           </div>
+	                                           
+	                                           <!-- Modal body -->
+	                                           <div class="modal-body" align="center">
+	                                           
+	                                               <b>
+	                                                               수정하시려면 비밀번호를 입력해주세요. <br>   
+	                                                               
+	                                               </b>
+	
+	                                               <form action="infoUpdate.my" method="post">
+	                                               
+	                                                 	  비밀번호 : 
+	                                                   <input type="password" name="memberPwd" required>
+	                                                   
+	                                                   <button type="submit" class="btn btn-success btn-sm" >수정</button>
+	                                                   <button type="button" id="cancle" class="btn btn-secondary btn-sm" >취소</button>
+	           			                      <script>
+	           			                      $('#cancle').click(function(){
+	           				                      $( '#updateForm' ).modal("hide");
+	           			                    	  
+	           			                      });
+	           			                    	  
+	           			                      </script>
+	                                               </form>
+	                                           </div>
+	                                           
+	                                       </div>
+	                                   </div>
+	                               </div>
+	                          
                                 </form>
                                </div>
                                <br><br><br>

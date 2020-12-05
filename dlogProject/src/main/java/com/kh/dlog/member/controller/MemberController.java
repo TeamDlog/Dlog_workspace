@@ -505,6 +505,26 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("pfUpdateForm.my")
+	public String pfDeleteForm(Member m, HttpSession session, Model model) {
+		
+		int result = mService.pfUpdateForm(m);
+		
+		if(result > 0) { 
+			
+			((Member)session.getAttribute("loginUser")).setProfile(m.getProfile());
+			session.setAttribute("alertMsg", "성공적으로 정보 변경되었습니다.");
+			return "redirect:infoUpdateForm.my";
+		}else {
+			
+			model.addAttribute("errorMsg", "프로필 삭제 실패");
+			return "common/errorPage";
+		} 
+		
+	  }
+	
+	
+	
 
 	 @RequestMapping("introList.my")
 	 public String introList(HttpSession session, Model model) {
@@ -637,20 +657,24 @@ public class MemberController {
 	 */
 
 	 @RequestMapping("pwdCheck2.my")
-	 public String pwdCheck2(String memberPwd) {
+	 public boolean pwdCheck2(String memberPwd) {
 		 
-		 String regExp = "^(?=.*[a-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\\\"+=])[a-z[0-9]$@$!%*?&`~'\\\"+=]{8,15}$";
+		 boolean check = false;
 		 
-		 Pattern pSymbol = Pattern.compile(regExp);
+		 String pw_chk = "^(?=.*[a-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\\\"+=])[a-z[0-9]$@$!%*?&`~'\\\"+=]{8,15}$";
+		 
+		 Pattern pSymbol = Pattern.compile(pw_chk);
 		 Matcher mSymbol = pSymbol.matcher(memberPwd);
 		 
 		 if(mSymbol.find()) {
-			 return "true";
-		 }else {
-			return "false";
-			}
+			 check = true;
+		 }
+			return check;
+			
 		 
 	 }
+	
+	 
 	 
 	 @RequestMapping("deleteForm.my")
 		public String deleteForm(HttpSession session) {
@@ -725,6 +749,8 @@ public class MemberController {
 		}
 		
 	}
+	
+	
 }
 	 
 	 

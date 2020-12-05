@@ -26,6 +26,9 @@
                             <img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px">
                         </div>
                         <h4 class="card-widget__title text-dark mt-3" style="font-size:18px; font-weight:bolder;">${loginUser.nickname }</h4>
+                        <c:if test="${loginUser.introductionTitle == null}">
+                        <p class="text-muted" style="font-weight:bolder;">등록된 소개글이 없습니다.</p>
+                        </c:if>
                          <p class="text-muted" style="font-weight:bolder;">${loginUser.introductionTitle }</p>
                     </div>
                 </div>

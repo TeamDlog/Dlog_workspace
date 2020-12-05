@@ -234,7 +234,12 @@
 		   set member_pwd = #{memberPwd}
 		 where member_no = #{memberNo}
 	</update>
-
+	<update id="pfUpdateForm" parameterType="Member">
+		update
+		       member
+		   set profile = default
+		 where member_no = #{memberNo}
+	</update>
 	
 	
 

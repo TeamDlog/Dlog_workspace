@@ -64,14 +64,14 @@
                          
                              <table class="infoSelectTable" >
                                
-                                    <c:if test="${loginUser.profile == null}">
                                      <div class="card-body">
+                                    <c:if test="${loginUser.profile == null}">
                                          <div class="text-center" Style=border1px solid black">
                                              <img alt="" class="rounded-circle mt-4" src="resources/images/default-profile-pic.jpg" width="90px">
                                          </div>
-                                     </div>
+                                     
                                      </c:if>
-                                      <div class="card-body">
+                                     
                                          <div class="text-center" Style=border1px solid black">
                                              <img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px">
                                          </div>
