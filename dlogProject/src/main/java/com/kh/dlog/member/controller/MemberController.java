@@ -690,6 +690,30 @@ public class MemberController {
 			}
 		
 		}
+	 
+	 @RequestMapping(value="visitFriend.fr")
+	 public String vistiFriend(int diaryMemberNo, HttpSession session) {
+
+		Member m = (Member)session.getAttribute("loginUser");
+		m.setDiaryMemberNo(diaryMemberNo);
+		session.setAttribute("loginUser", m);
+
+		widgetSessionUpdate(session, m.getDiaryMemberNo());
+
+		return "redirect:introList.my";
+	}
+
+	@RequestMapping(value="goToMyDiary.fr")
+	public String vistiFriend(HttpSession session) {
+
+		Member m = (Member)session.getAttribute("loginUser");
+		m.setDiaryMemberNo(m.getMemberNo());
+		session.setAttribute("loginUser", m);
+
+		widgetSessionUpdate(session, m.getDiaryMemberNo());
+
+		return "redirect:introList.my";
+	}
 }
 	 
 	 
