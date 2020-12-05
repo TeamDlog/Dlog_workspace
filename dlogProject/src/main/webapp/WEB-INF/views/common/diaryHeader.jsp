@@ -37,6 +37,8 @@
     	.menubarColor li *{color:${ ca.myColorFont };}
     	/* 로고색상 */
     	#logoColor{background:${ca.myColorLogo};}
+    	
+    	.container-fluid .card-body{border-radius:10px;}
 	</style>
 
 </head>
@@ -228,7 +230,7 @@
 	                			
                             	$(function(){
                             		loadNotification(${loginUser.memberNo});
-                            		//setInterval(loadNotification, 2000, ${loginUser.memberNo});
+                            		setInterval(loadNotification, 2000, ${loginUser.memberNo});
                             	});
                             	
                             	function loadNotification(loginUserNo){

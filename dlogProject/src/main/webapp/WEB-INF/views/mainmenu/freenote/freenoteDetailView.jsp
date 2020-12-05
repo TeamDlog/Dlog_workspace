@@ -30,7 +30,7 @@
     .reply1, .reply2{
         margin-bottom: 15px;;
     }
-    #deleteBtn:hover{
+    #deleteBtn:hover, #updateBtn:hover{
     	cursor:pointer;
     }
     #replyPagination button{
@@ -80,7 +80,7 @@
                                             ${fn.createDate}
                                         <c:if test="${ fn.freenoteWriter eq loginUser.nickname }">
                                             &nbsp;|&nbsp;
-                                            <a href="updateForm.fn?fno=${ fn.freenoteNo }">수정</a>
+                                            <a id="updateBtn" onclick="location.href='updateForm.fn?fno=${ fn.freenoteNo }';">수정</a>
                                             &nbsp;|&nbsp;
                                             <a id="deleteBtn">삭제</a>
                                         </c:if>

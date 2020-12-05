@@ -211,56 +211,101 @@
 							</li>
                             <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                                     <i class="mdi mdi-bell-outline"></i>
-                                    <span class="badge badge-pill gradient-2 badge-primary">3</span>
+                                    <span class="badge badge-pill gradient-2 badge-primary" id="notificationCount"></span>
                                 </a>
-                                <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
+                                <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication" id="notification_list"  style="max-height: 500px; overflow: auto;">
                                     <div class="dropdown-content-heading d-flex justify-content-between">
-                                        <span class="">2 New Notifications</span>  
+                                        <span><font id="notificationCount2">0</font>개의 새로운 알림</span>  
                                         
                                     </div>
                                     <div class="dropdown-content-body">
-                                        <ul>
-                                            <li>
-                                                <a href="javascript:void()">
-                                                    <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                    <div class="notification-content">
-                                                        <h6 class="notification-heading">Events near you</h6>
-                                                        <span class="notification-text">Within next 5 days</span> 
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void()">
-                                                    <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                    <div class="notification-content">
-                                                        <h6 class="notification-heading">Event Started</h6>
-                                                        <span class="notification-text">One hour ago</span> 
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void()">
-                                                    <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                    <div class="notification-content">
-                                                        <h6 class="notification-heading">Event Ended Successfully</h6>
-                                                        <span class="notification-text">One hour ago</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void()">
-                                                    <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                    <div class="notification-content">
-                                                        <h6 class="notification-heading">Events to Join</h6>
-                                                        <span class="notification-text">After two days</span> 
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        
+                                        <ul id="notificationArea"></ul>
                                     </div>
                                 </div>
                             </li>
+                            <input type="hidden" class="btn btn-success m-b-10 m-l-5" id="toastr-success-top-right">
+                            <script>
+	                         	// dropdown inside 클릭 시 안 사라지게
+	                			$("#notification_list").click(function(){
+	                				event.stopPropagation();
+	                			});
+	                			
+                            	$(function(){
+                            		loadNotification(${loginUser.memberNo});
+                            		setInterval(loadNotification, 2000, ${loginUser.memberNo});
+                            	});
+                            	
+                            	function loadNotification(loginUserNo){
+                            		$.ajax({
+                            			url:"list.nf",
+                            			data:{loginUserNo:loginUserNo},
+                            			success:function(result){
+	                            			
+                            				if(result.list.length > 0){
+	                            				$("#notificationCount").text(result.list.length);
+	                            				$("#notificationCount2").text(result.list.length);
+                            					
+	                            				var list = "";
+	                            				for(var i in result.list){
+	                            					list += "<li>" +
+				                                                "<a href='javascript:void()'>";
+				                                    switch(result.list[i].notificationCategory){
+				                                    	case 1:list += "<span class='mr-3 avatar-icon' style='background: rgb(245, 195, 204);'><i class='icon-heart'></i></span>"; break;
+				                                    	case 2:list += "<span class='mr-3 avatar-icon' style='background: rgb(186, 219, 231);'><i class='icon-bubble'></i></span>"; break;
+				                                    	case 3:list += "<span class='mr-3 avatar-icon' style='background: rgb(183, 154, 238);'><i class='icon-user'></i></span>"; break;
+				                                    	case 4:list += "<span class='mr-3 avatar-icon' style='background: rgb(193, 224, 156);'><i class='icon-user-following'></i></span>"; break;
+				                                    	case 5:list += "<span class='mr-3 avatar-icon' style='background: rgb(122, 163, 211);'><i class='icon-note'></i></span>"; break;
+				                                    	case 6:list += "<span class='mr-3 avatar-icon' style='background: rgb(174, 182, 190);'><i class='icon-envelope'></i></span>"; break;
+				                                    	case 7:list += "<span class='mr-3 avatar-icon' style='background: rgb(117, 131, 146);'><i class='icon-earphones-alt'></i></span>"; break;
+				                                    }
+				                                    list +=         "<div class='notification-content' style='margin-right:0;'>" +
+				                                                        "<table>" +
+				                                                            "<tr>" +
+				                                                                "<td width='200'>" +
+				                                                                    "<h6 class='notification-heading'>" + result.list[i].notificationContent + "</h6>" +
+				                                                                "</td>" +
+				                                                                "<td>" +
+				                                                                   "<a class='alertDeleteBtn' onclick='deleteNotification(" + result.list[i].notificationNo + ");' style='font-size: 20px; font-weight: bold; margin-left: 10px;'><i class='mdi mdi-close'></i><a>" +
+				                                                                "</td>" +
+				                                                            "</tr>" +
+				                                                        "</table>" +
+				                                                    "</div>" +
+				                                                "</a>" +
+				                                            "</li>";
+	                            				}
+	                            				$("#notificationArea").html(list);
+                            				}else{
+                            					$("#notificationArea").html("새로운 알림 내역이 없습니다.");
+                            				}
+                            			}, error:function(){
+                            				console.log("알림창 ajax 통신 실패");
+                            			}
+                            		});
+                            	}
+                            	
+                            	function deleteNotification(notificationNo){
+                            		$.ajax({
+                            			url:"delete.nf",
+                            			data:{notificationNo:notificationNo},
+                            			success:function(result){
+                            				if(result > 0){
+	                            				loadNotification(${loginUser.memberNo});
+	                            				
+	                            				var notificationCount = parseInt($("#notificationCount").text()) - 1;
+	                            				if(notificationCount > 0){
+	                            					$("#notificationCount").text(notificationCount);
+		                            				$("#notificationCount2").text(notificationCount);
+	                            				}else{
+	                            					$("#notificationCount").text("");
+		                            				$("#notificationCount2").text("0");
+	                            				}
+                            				}
+                            			}, error:function(){
+                            				console.log("알림삭제 ajax 통신 실패");
+                            			}
+                            		});
+                            	}
+                            </script>
                             <li class="icons dropdown">
                                 <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                     <img src="resources/images/default-profile-pic.jpg" height="40" width="40" alt="">
