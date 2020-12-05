@@ -85,7 +85,9 @@
 	                                        </ul>
 	                                    </td>
 	                                    <td width="100" align="right">
-	                                        <button class="btn btn-success" onclick="location.href='enrollForm.fn';">글쓰기</button>
+	                                    	<c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo }">
+	                                       		<button class="btn btn-success" onclick="location.href='enrollForm.fn';">글쓰기</button>
+	                                        </c:if>
 	                                    </td>
 	                                </tr>
 	                            </table>
@@ -145,7 +147,7 @@
 			$.ajax({
 				url:"flist.fn",
 				data:{
-					mno:${loginUser.memberNo},
+					mno:${loginUser.diaryMemberNo},
 					currentPage:cPage,
 					category:category,
 					boardLimit:boardLimit,

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.dlog.member.controller.MemberController;
 import com.kh.dlog.member.model.vo.Member;
 import com.kh.dlog.mypage.controlAll.model.service.ControlAllService;
 import com.kh.dlog.mypage.controlAll.model.vo.ControlAll;
@@ -17,11 +18,16 @@ public class ControlAllConctroller {
 	
 	@Autowired
 	private ControlAllService caService;
+	@Autowired
+	private MemberController mController;
+	
 	
 	@RequestMapping("main.ca")
 	public String ControlAllMain(HttpSession session,Model model) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		session.setAttribute("ca", caService.ControlAllMain(loginUser.getDiaryMemberNo()+""));
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		mController.widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		return "mypage/control/controlAllMain";
 	}
 	

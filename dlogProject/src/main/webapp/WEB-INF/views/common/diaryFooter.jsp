@@ -100,12 +100,8 @@
 			});
 		}
 	</script>
-	
-    	
     
-    
-	
-	<!-- 공개비공개/화설비활성 스크립트 -->
+     <!-- 공개비공개/화설비활성 스크립트 -->
 	<script>
 		$(function(){
 			if(${loginUser.memberNo != loginUser.diaryMemberNo}){
@@ -117,12 +113,12 @@
 				
 				if(${ca.privacyDiary == "N"}){
 					$(".menuDiary i").addClass('ion-android-lock');
-					$(".meniDiary a").removeAttr("href");
+					$(".menuDiary a").removeAttr("href");
 				}
 				
 				if(${ca.privacyFreenote == "N"}){
-					$(".menuFreenote").addClass('ion-android-lock');
-					$(".menuFreenote").removeAttr("href");
+					$(".menuFreenote i").addClass('ion-android-lock');
+					$(".menuFreenote a").removeAttr("href");
 				}
 				
 				if(${ca.privacyPhoto == "N"}){
@@ -132,11 +128,11 @@
 				
 				if(${ca.privacyAccount == "N"}){
 					$(".menuAccount i").addClass('ion-android-lock');
-					$(".meniAccount a").removeAttr('href');
+					$(".menuAccount a").removeAttr('href');
 				}
 				
 				if(${ca.privacyMemo == "N"}){
-					$(".memuMemo i").addClass('ion-android-lock');
+					$(".menuMemo i").addClass('ion-android-lock');
 					$(".menuMemo a").removeAttr("href");
 					$(".widgetMemo").css("display", "none");
 				}
@@ -154,8 +150,8 @@
 				}
 				
 				if(${ca.privacyTimetable == "N"}){
-					$(".widgetTimetable i").addClass('ion-android-lock');
-					$(".widgetTimetable a").removeAttr("href");
+					$(".menuTimetable i").addClass('ion-android-lock');
+					$(".menuTimetable a").removeAttr("href");
 					$(".widgetTimetable").css("display", "none");
 				}
 			

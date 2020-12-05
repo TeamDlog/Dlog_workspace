@@ -55,8 +55,10 @@
 	                            </div>
                                 <textarea name="calendarContent" id="" cols="30" rows="10" placeholder="내용을 입력해주세요">${ list.calendarContent }</textarea>
 	                            <br><br>
-	                            <button id="calendar_detail_delete" type="button" class="btn mb-1 btn-success" style="margin-left: 668px; margin-right:15px; font-size: 18px;">삭제</button>
-	                            <button id="calendar_detail_update" type="button" class="btn mb-1 btn-success" style="font-size: 18px;">수정</button>
+	                            <div align="right">
+		                            <button id="calendar_detail_delete" type="button" class="btn mb-1 btn-success btn-sm" style="margin-right:15px; font-size: 15px;">삭제</button>
+		                            <button id="calendar_detail_update" type="button" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;">수정</button>
+	                            </div>
 							</form>
 							
 							

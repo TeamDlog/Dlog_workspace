@@ -33,10 +33,17 @@
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px; min-height:500px;">
                         <div class="card-body" >
-							<c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo}">
-						        <a class="btn mb-1 btn-success btn-sm" style="margin-left: 690px; margin-right:10px; font-size: 15px;" href="enroll.ph">사진 올리기</a>
-						        <a class="btn mb-1 btn-success btn-sm deleteButton" style="font-size: 15px;">삭제</a>
-					        </c:if>
+							<c:choose> 
+								<c:when test="${ loginUser.memberNo eq loginUser.diaryMemberNo}">
+									<div align="right">
+								        <a class="btn mb-1 btn-success btn-sm" style="margin-right:10px; font-size: 15px;" href="enroll.ph">사진 올리기</a>
+								        <a class="btn mb-1 btn-success btn-sm deleteButton" style="font-size: 15px;">삭제</a>
+							        </div>
+						        </c:when>
+						        <c:otherwise>
+						        	<input type="hidden" id="friendVisiting" value="hi">
+						        </c:otherwise>
+					        </c:choose>
                         	<form action = "delete.ph" method="post" id="photo_form">
 	                            <c:forEach var="p" items="${ list }" varStatus="status">
 		                            <div class="photo_main portfolio-item">
@@ -182,7 +189,7 @@
 
 		// 확대해서 보기
 		$(".photo_main_photo>img").click(function(){
-			if($(".deleteButton").html()=="삭제"){
+			if($(".deleteButton").html()=="삭제" || $("#friendVisiting").val() == 'hi'){
 				$(".photo_main_photo").attr("data-toggle","modal");
 				$(".main_photo_modal").attr("src", $(this).attr("src"));
 	      		$("#photo_main_modal_content").text($(this).parent().siblings().eq(2).text());
@@ -205,6 +212,7 @@
 			}else{
 				$(".photo_main_photo").attr("data-toggle","");
 			}
+			
  	})
     		
     		

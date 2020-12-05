@@ -36,8 +36,10 @@
                     <div class="card backgroundColor" style="width:900px; min-height:500px;">
                         <div class="card-body backgroundColor" >
                         	<c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo}">
-						        <a class="btn mb-1 btn-success btn-sm" href="enroll.mo" style="margin-left: 700px; margin-right:10px; font-size: 15px;">메모 작성</a>
-						        <button type="button" class="btn mb-1 btn-success btn-sm deleteButton" style="font-size: 15px;">삭제</button>
+                        		<div align="right">
+							        <a class="btn mb-1 btn-success btn-sm" href="enroll.mo" style="margin-right:10px; font-size: 15px;">메모 작성</a>
+							        <button type="button" class="btn mb-1 btn-success btn-sm deleteButton" style="font-size: 15px;">삭제</button>
+						        </div>
                         	</c:if>
                             <form action="delete.mo" method="post" class="delete_memo_form update_memo_form">
 	                            <c:forEach var="m" items="${ list }">

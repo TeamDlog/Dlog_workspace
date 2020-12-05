@@ -86,8 +86,17 @@
 			                            </tr>
 		                        	</thead>
 		                        	<c:choose>
-		                        		<c:when test="${ timetableToDay != '토요일' || timetableToDay != '일요일'}">
-				                        	<c:forEach var="timetable" items="${ timetableList }">
+		                        		<c:when test="${ timetableList[0].timetableToDay == '토요일' || timetableList[0].timetableToDay == '일요일'}">
+				                        	<tbody>
+					                        	<tr style="height: 30px;">
+					                                <th>
+					                                  	 편안한 휴식을 가져보세요!
+					                                </th>
+					                            </tr>
+				                            </tbody>
+			                           </c:when>
+			                           <c:otherwise>
+			                           		<c:forEach var="timetable" items="${ timetableList }">
 				                        		<c:if test="${ timetable.timetableDay == timetable.timetableToDay }">
 						                        	<tbody>
 							                        	<tr style="height: 30px;">
@@ -103,15 +112,6 @@
 						                            </tbody>
 						                        </c:if>
 				                           </c:forEach>
-			                           </c:when>
-			                           <c:otherwise>
-				                           <tbody>
-					                        	<tr style="height: 30px;">
-					                                <th>
-					                                  	 편안한 휴식을 가져보세요!
-					                                </th>
-					                            </tr>
-				                            </tbody>
 			                            </c:otherwise>
 		                            </c:choose>
 	                            </c:when>

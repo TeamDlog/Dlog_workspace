@@ -144,10 +144,10 @@
 		
 		var mm = today.getMonth()+1;
 		var date = new Date(today.getFullYear(), mm, 0)
-		
+		console.log(date.getDate());
 		// td에 실제 날짜 넣기
 		cal.children().each(function(index){
-			if (index >= beginEmptyCount && index <= date.getDate()){
+			if (index >= beginEmptyCount && index < date.getDate()+beginEmptyCount){
 				if(mm < 10){
 					if(index+1-beginEmptyCount < 10 ){
 						$(this).attr("class",today.getFullYear() + "-0" + mm + "-0" + (index+1-beginEmptyCount));

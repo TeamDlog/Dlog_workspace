@@ -126,16 +126,4 @@ public class FriendController {
 		
 	}
 	
-	@RequestMapping(value="visitFriend.fr")
-	public String vistiFriend(int diaryMemberNo, HttpSession session) {
-		
-		Member m = (Member)session.getAttribute("loginUser");
-		m.setDiaryMemberNo(diaryMemberNo);
-		
-		session.setAttribute("loginUser", m);
-		return "redirect:introList.my";
-	}
-	
-	
-	
 }

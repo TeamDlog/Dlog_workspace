@@ -104,8 +104,12 @@ public class MemberController {
 		session.setAttribute("memoWidget", memoWidget);
 	}
 	
-	@RequestMapping("mainpage.me")
-	public String mainpage() {
+	@RequestMapping("mainPage.me")
+	public String mainpage(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		return "mainpage/mainPage";
 	}
 	
@@ -283,7 +287,6 @@ public class MemberController {
 		int friendListCount = fService.selectFriendListCount(loginUser.getMemberNo());
 		PageInfo pi2 = Pagination.getPageInfo(friendListCount, currentPage, 3, 5);
 		ArrayList<Friend> friendList = fService.selectFriendList(loginUser.getMemberNo(), pi2);
-		Memo memoWidget = meService.selectMemoWidget(loginUser.getMemberNo());
 		
 		// request friendList
 		ArrayList<Friend> requestFriend = fService.requestFriend(loginUser.getMemberNo());
@@ -325,9 +328,10 @@ public class MemberController {
 				session.setAttribute("pi2",pi2);
 				session.setAttribute("friendList",friendList);
 				session.setAttribute("requestFriend", requestFriend);
-				session.setAttribute("memoWidget", memoWidget);
 				
 				session.setAttribute("voca", v);
+				
+				widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
 				
 				return "redirect:/";
 				
@@ -368,7 +372,10 @@ public class MemberController {
 	
 	@RequestMapping("infoList.my")
 	public String infoList(HttpSession session, Model model) {
-		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		return "mypage/infoListView";
 	}
 	
@@ -405,7 +412,10 @@ public class MemberController {
 	
 	@RequestMapping("infoUpdateForm.my")
 	public String infoUpdateForm(Member m,HttpSession session) {
-		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		return "mypage/infoUpdateForm";
 	}
 	
@@ -504,15 +514,21 @@ public class MemberController {
 	 
 	 @RequestMapping("introListMn.my")
 	 public String introListMn(HttpSession session, Model model) {
-		 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		 return "mypage/introListViewManagement";
 	 }
 	 
 	 
 	 
 	 @RequestMapping("introEnrollForm.my")
-		public String enrollForm() {
-		 
+		public String enrollForm(HttpSession session) {
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		 return "mypage/introEnrollForm";
 		}
 	 
@@ -544,6 +560,10 @@ public class MemberController {
 	 
 	 @RequestMapping("updatePwdForm.my")
 	 	public String updatePwdForm(HttpSession session) {
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		 return "mypage/pwdUpdateForm";
 	 }
 	 
@@ -634,7 +654,10 @@ public class MemberController {
 	 
 	 @RequestMapping("deleteForm.my")
 		public String deleteForm(HttpSession session) {
-		 
+		 	Member loginUser = (Member)session.getAttribute("loginUser");
+			loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+			widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+			session.setAttribute("loginUser", loginUser);
 			return "mypage/deleteForm";
 		}
 	 
@@ -672,6 +695,36 @@ public class MemberController {
 			}
 		
 		}
+	 
+	 @RequestMapping(value="visitFriend.fr")
+	 public String vistiFriend(int diaryMemberNo, HttpSession session) {
+
+		Member m = (Member)session.getAttribute("loginUser");
+		m.setDiaryMemberNo(diaryMemberNo);
+		session.setAttribute("loginUser", m);
+
+		widgetSessionUpdate(session, m.getDiaryMemberNo());
+
+		return "redirect:introList.my";
+	}
+
+	@RequestMapping(value="goToMyDiary.fr")
+	public String vistiFriend(String fno, HttpSession session) {
+
+		Member m = (Member)session.getAttribute("loginUser");
+		m.setDiaryMemberNo(m.getMemberNo());
+		session.setAttribute("loginUser", m);
+
+		widgetSessionUpdate(session, m.getDiaryMemberNo());
+
+		if(fno != null) {
+			// 커뮤니티에서 내 다이어리로 넘어갈때
+			return "redirect:detail.fn?fno=" + fno;
+		}else {
+			return "redirect:introList.my";			
+		}
+		
+	}
 }
 	 
 	 

@@ -45,10 +45,10 @@
 			<mapping path="/updateForm.fn"/>
 			<mapping path="/detail.fn"/>
 			<mapping path="/detail.co"/>
-
-			
-			
-			
+			<mapping path="/main.ti"/>
+			<mapping path="/main.ca"/>
+			<mapping path="/main.dd"/>
+			<mapping path="/enrollForm.ti"/>
 			
 			
 			<beans:bean class="com.kh.dlog.common.interceptor.LoginInterceptor" id="loginIntercept"/>
