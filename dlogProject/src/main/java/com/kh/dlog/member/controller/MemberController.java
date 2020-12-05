@@ -551,9 +551,9 @@ public class MemberController {
 	 	public String updatePwd(String original, Member m, HttpSession session) {
 		 
 		
-		 Member loginUser = mService.loginMember(m);
-		 
-		 if(loginUser != null && bcryptPasswordEncoder.matches(original, loginUser.getMemberPwd())) { 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+			
+		 if(bcryptPasswordEncoder.matches(original, loginUser.getMemberPwd())) { 
 		 
 			 String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
 				
@@ -582,25 +582,7 @@ public class MemberController {
 			 
 		 }
 		  
-		 /*
-			String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
-			
-			
-			m.setMemberPwd(encPwd);
-			
-			int result = mService.updatePwd(m);
-			
-			if(result > 0) {
-				
-				session.setAttribute("alertMsg", "성공적으로 비밀번호가 변경되었습니다.");
-				return "redirect:updatePwdForm.my";
-				
-			}else {
-				
-				session.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
-				return "common/errorPage";
-				
-			}*/
+		 
 		
 	 }
 	 
@@ -633,6 +615,7 @@ public class MemberController {
 	 	
 	 }
 	 */
+
 	 @RequestMapping("pwdCheck2.my")
 	 public String pwdCheck2(String memberPwd) {
 		 
@@ -648,7 +631,6 @@ public class MemberController {
 			}
 		 
 	 }
-	 
 	 
 	 @RequestMapping("deleteForm.my")
 		public String deleteForm(HttpSession session) {
