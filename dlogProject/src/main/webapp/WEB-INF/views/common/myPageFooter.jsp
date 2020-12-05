@@ -30,6 +30,8 @@
     <script src="resources/js/settings.js"></script>
     <script src="resources/js/gleek.js"></script>
     <script src="resources/js/styleSwitcher.js"></script>
-
+    
+	<jsp:include page="friendjQuery.jsp" />
+	
 </body>
 </html>

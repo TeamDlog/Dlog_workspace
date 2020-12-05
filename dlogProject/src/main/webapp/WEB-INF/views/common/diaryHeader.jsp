@@ -126,7 +126,7 @@
 									                 <c:forEach var="f" items="${ friendList }" varStatus="status">
 										                 <li class="friend_list">
 										                      <div class="friend_list_images">
-										                          <img src="resources/images/avatar/1.jpg" class="cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">
+										                          <img src="resources/profiles/lunyang.jpeg" class="cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">
 										                      </div>
 										                      <div class="friend_list_nickname">
 										                          <div class="notification-heading friend_list_nick cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">${ f.friendNickname }</div>
@@ -317,10 +317,10 @@
                                     <div class="dropdown-content-body">
                                         <ul>
                                             <li>
-                                                <a href="app-profile.html"><i class="icon-home"></i> <span>내 다이어리로</span></a>
+                                                <a href="goToMyDiary.fr"><i class="icon-home"></i> <span>내 다이어리로</span></a>
                                             </li>
                                             <li>
-                                                <a href="email-inbox.html"><i class="icon-settings"></i> <span>설정</span></a>
+                                                <a href="infoList.my"><i class="icon-settings"></i> <span>설정</span></a>
                                             </li>
                                             
                                             <hr class="my-2">

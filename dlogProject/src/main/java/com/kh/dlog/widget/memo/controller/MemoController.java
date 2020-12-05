@@ -28,7 +28,7 @@ public class MemoController {
 	@RequestMapping("enroll.mo")
 	public String enrollMemo(Model model, HttpSession session) {
 		Member mem = (Member)session.getAttribute("loginUser");
-		Memo m = mService.selectMemoWidget(mem.getMemberNo());
+		Memo m = mService.selectMemoWidget(mem.getDiaryMemberNo());
 		model.addAttribute("m", m);
 		
 		return "widget/memo/memoEnroll";
@@ -99,7 +99,7 @@ public class MemoController {
 	public String selectList(Model model, HttpSession session) {
 		
 		Member m = (Member)session.getAttribute("loginUser");
-		ArrayList<Memo> list = mService.selectMemoList(m.getMemberNo());
+		ArrayList<Memo> list = mService.selectMemoList(m.getDiaryMemberNo());
 		int count = list.size();
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);

@@ -32,9 +32,6 @@ public class PhotoController {
 	@Autowired
 	private PhotoService pService;
 	
-	@Autowired
-	private FriendService fService;
-	
 	@RequestMapping("enroll.ph")
 	public String enrollPhoto() {
 		return "mainmenu/photo/photoEnroll";
@@ -98,9 +95,9 @@ public class PhotoController {
 	public String selectPhotoList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model, HttpSession session) {
 		
 		Member m = (Member)session.getAttribute("loginUser");
-		int listCount = pService.selectPhotoListCount(m.getMemberNo());
+		int listCount = pService.selectPhotoListCount(m.getDiaryMemberNo());
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 12);
-		ArrayList<Photo> list = pService.selectPhotoList(m.getMemberNo(), pi);
+		ArrayList<Photo> list = pService.selectPhotoList(m.getDiaryMemberNo(), pi);
 		model.addAttribute("pi",pi);
 		model.addAttribute("list",list);
 		

@@ -54,8 +54,10 @@
 	                            </div>
 	                            <textarea name="calendarContent" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" required></textarea>
 	                            <br><br>
-	                            <button type="button" class="btn mb-1 btn-success btn-sm" style="margin-left: 720px; margin-right:10px; font-size: 15px;">초기화</button>
-	                            <button type="submit" onclick="return confirmDate();" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;">작성</button>
+	                            <div align="right">
+		                            <button type="button" class="btn mb-1 btn-success btn-sm" style="margin-left: 720px; margin-right:10px; font-size: 15px;">초기화</button>
+		                            <button type="submit" onclick="return confirmDate();" class="btn mb-1 btn-success btn-sm" style="font-size: 15px;">작성</button>
+	                            </div>
 							</form>
 	
                         </div>
