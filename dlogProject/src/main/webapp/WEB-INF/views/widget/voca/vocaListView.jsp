@@ -73,32 +73,7 @@ modal-backdrop {
 	                                            <c:when test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
 		                                            <tr>
 		                                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" style="float: right;">+</button>
-		                                                <div class="modal fade" id="exampleModalCenter">
-		                                                    <div class="modal-dialog modal-dialog-centered" role="document" style="width: 300px;">
-		                                                        <div class="modal-content">
-		                                                            <div class="modal-header">
-		                                                                <h5 class="modal-title">단어추가</h5>
-		                                                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-		                                                                </button>
-		                                                            </div>
-		                                                            <form action="enroll.vo" method="post">
-		                                                            <input type="hidden" name="vocaWriter" value="${ loginUser.memberNo }">
-			                                                            <div class="modal-body">
-			                                                                <h6>단어</h6>
-			                                                                <input type="text" class="form-control" id="vocaWord" name="vocaWord" required>
-			
-			                                                                <br>
-			
-			                                                                <h6>뜻</h6>
-			                                                                <input type="text" class="form-control" id="vocaMean" name="vocaMean" required>
-			                                                            </div> 
-			                                                            <div class="modal-footer">
-			                                                                <button type="submit" class="btn btn-primary" style="background-color: #84c8b9; border-color: #84c8b9;">등록하기</button>
-			                                                            </div>
-		                                                            </form>
-		                                                        </div>
-		                                                    </div>
-		                                                </div>
+		                                                
 		
 		                                                <button id="checkDelete" type="button" class="btn btn-secondary btn-sm" style="float: right; margin-right: 10px;">삭제</button>
 		                                            </tr>
@@ -211,6 +186,32 @@ modal-backdrop {
 
                                     </div>  
                                     
+                                </div>
+                            </div>
+                            <div class="modal fade" id="exampleModalCenter">
+                                <div class="modal-dialog modal-dialog-centered" role="document" style="width: 300px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">단어추가</h5>
+                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="enroll.vo" method="post">
+                                        <input type="hidden" name="vocaWriter" value="${ loginUser.memberNo }">
+                                         <div class="modal-body">
+                                             <h6>단어</h6>
+                                             <input type="text" class="form-control" id="vocaWord" name="vocaWord" required>
+
+                                             <br>
+
+                                             <h6>뜻</h6>
+                                             <input type="text" class="form-control" id="vocaMean" name="vocaMean" required>
+                                         </div> 
+                                         <div class="modal-footer">
+                                             <button type="submit" class="btn btn-primary" style="background-color: #84c8b9; border-color: #84c8b9;">등록하기</button>
+                                         </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
