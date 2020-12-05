@@ -96,7 +96,7 @@
 		 where member_no not in (select case when friend_owner = #{memberNo} then friend_accepted
 		                                    else friend_owner end friendNo
 		                          from friend
-		                         where (friend_owner = 2 or friend_accepted = #{memberNo}))
+		                         where (friend_owner = #{memberNo} or friend_accepted = #{memberNo}))
 		   and member_no not in (1, #{memberNo})
 		   and nickname like '%' || #{nickname} || '%'
 		 order

@@ -75,16 +75,39 @@
      					$(".friend_list").remove();
                           
      					var value="";
+     					var pagination="";
      					$.each(friendList[0], function(i, obj){
      						value += "<li class='friend_list'>" + 
      									"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
      									"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
      									"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB cursor_to_pointer' onclick='deleteFriend(" + obj.friendAccepted + ");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
      								"</li>";
+     						pagination += "<c:if test='${ !empty friendList }'>" + 
+												"<li class='page-item pre-page-moving-li'>" +
+												"<a class='page-link page-moving pre-page-moving hovered'>" + "&lt;" + "</a>" +
+											"</li>" +
+										"</c:if>" +
+										"<c:forEach var='p' begin='${ pi2.startPage }' end='${ pi2.endPage }'>" +
+											"<li class='page-item page-num'>" + "<a class='page-link' onclick='pageMove(${p});'>" + ${ p } + "</a>" + "</li>" +
+										"</c:forEach>" +
+										"<c:if test='${ !empty friendList }'>" +
+											"<c:choose>" +
+												"<c:when test='${ friendList.size() <= 5}'>" +
+													"<li class='page-item next-page-moving-li disabled'>" +
+														"<a class='page-link page-moving next-page-moving hovered'>" + "&gt;" + "</a>" +
+													"</li>" +
+												"</c:when>" +
+												"<c:otherwise>" +
+													"<li class='page-item next-page-moving-li'>" +
+														"<a class='page-link page-moving next-page-moving hovered'>" + "&gt;" + "</a>" +
+													"</li>" +
+												"</c:otherwise>" +
+											"</c:choose>" +
+										"</c:if>";
      					})
      					$(".friend_list_ul").append(value);
      					$("#this_page_friend_currentPage").val(friendList[1].currentPage);
-     						
+     					$(".friend_pagination").append(pagination);
      					// 비활성화
      					if(friendList[1].currentPage == 1){
      						$(".pre-page-moving-li").addClass("disabled");
@@ -450,7 +473,7 @@
 						value += "<li class='friend_request will_disapper" + obj.memberNo + "'>" + 
 									"<div class='friend_request_images'>" + "<img src='resources/images/avatar/2.jpg'>" + "</div>" + 
 									"<div class='friend_request_nickname'>" + "<div class='notification-heading'>" + obj.nickname + "</div>" + "</div>" + 
-									"<div class='friend_request_appeal' align='right'>" + "<button class='friend_insert_DB' onclick='insertDB(" + obj.memberNo + ");'>추가</button>" + "</div>" + 
+									"<div class='friend_request_appeal' align='right'>" + "<button class='friend_insert_DB' style='outline:0;' onclick='insertDB(" + obj.memberNo + ");'>추가</button>" + "</div>" + 
 								"</li>";
 					})
 				
