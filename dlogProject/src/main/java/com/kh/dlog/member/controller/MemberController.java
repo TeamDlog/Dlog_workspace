@@ -104,8 +104,12 @@ public class MemberController {
 		session.setAttribute("memoWidget", memoWidget);
 	}
 	
-	@RequestMapping("mainpage.me")
-	public String mainpage() {
+	@RequestMapping("mainPage.me")
+	public String mainpage(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setDiaryMemberNo(loginUser.getMemberNo());
+		widgetSessionUpdate(session, loginUser.getDiaryMemberNo());
+		session.setAttribute("loginUser", loginUser);
 		return "mainpage/mainPage";
 	}
 	
