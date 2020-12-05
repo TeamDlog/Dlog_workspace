@@ -60,9 +60,34 @@
 			<mapping path="/infoUpdateForm.my"/>
 			<mapping path="/deleteMember.my"/>
 			<mapping path="/updatePwdForm.my"/>
-			
-			
-			
+			<mapping path="/selectList.fr"/>
+			<mapping path="/delete.fr"/>
+			<mapping path="/search.fr"/>
+			<mapping path="/find.fr"/>
+			<mapping path="/accept.fr"/>
+			<mapping path="/reject.fr"/>
+			<mapping path="/insert.fr"/>
+			<mapping path="/reloadRequest.fr"/>
+			<mapping path="/enroll.ca"/>
+			<mapping path="/insert.ca"/>
+			<mapping path="/selectList.ca"/>
+			<mapping path="/selectDetail.ca"/>
+			<mapping path="/delete.ca"/>
+			<mapping path="/update.ca"/>
+			<mapping path="/enroll.ph"/>
+			<mapping path="/insert.ph"/>
+			<mapping path="/delete.ph"/>
+			<mapping path="/selectList.ph"/>
+			<mapping path="/enroll.mo"/>
+			<mapping path="/insert.mo"/>
+			<mapping path="/delete.mo"/>
+			<mapping path="/updateForm.mo"/>
+			<mapping path="/update.mo"/>
+			<mapping path="/updateDelete.mo"/>
+			<mapping path="/selectList.mo"/>
+			<mapping path="/widgetNtoY.mo"/>
+			<mapping path="/widgetAlltoN.mo"/>
+
 			
 			<beans:bean class="com.kh.dlog.common.interceptor.LoginInterceptor" id="loginIntercept"/>
 		</interceptor>
