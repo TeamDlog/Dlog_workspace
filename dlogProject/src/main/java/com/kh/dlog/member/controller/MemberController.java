@@ -288,7 +288,7 @@ public class MemberController {
 		// request friendList
 		ArrayList<Friend> requestFriend = fService.requestFriend(loginUser.getMemberNo());
 		
-		if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getMemberPwd(), loginUser.getMemberPwd())*/) {
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
 			
 			if(loginUser.getMemberNo() != 1) {
 				
