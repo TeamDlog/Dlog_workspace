@@ -73,41 +73,58 @@
      				},
      				success:function(friendList){
      					$(".friend_list").remove();
-                          
+                        $(".friend_pagination").html("");
      					var value="";
-     					var pagination="";
+     					var pagination1="";
+     					var pagination2="";
+     					var pagination3="";
+     					var sumPage="";
+     					
+						if(friendList[1].listCount != 0){
+							pagination1 =
+									"<li class='page-item pre-page-moving-li'>" + 
+										"<a class='page-link page-moving pre-page-moving hovered'>" + "&lt;" + "</a>" + 
+									"</li>";
+						}
+						
      					$.each(friendList[0], function(i, obj){
      						value += "<li class='friend_list'>" + 
-     									"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
-     									"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
-     									"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB cursor_to_pointer' onclick='deleteFriend(" + obj.friendAccepted + ");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
-     								"</li>";
-     						pagination += "<c:if test='${ !empty friendList }'>" + 
-												"<li class='page-item pre-page-moving-li'>" +
-												"<a class='page-link page-moving pre-page-moving hovered'>" + "&lt;" + "</a>" +
-											"</li>" +
-										"</c:if>" +
-										"<c:forEach var='p' begin='${ pi2.startPage }' end='${ pi2.endPage }'>" +
-											"<li class='page-item page-num'>" + "<a class='page-link' onclick='pageMove(${p});'>" + ${ p } + "</a>" + "</li>" +
-										"</c:forEach>" +
-										"<c:if test='${ !empty friendList }'>" +
-											"<c:choose>" +
-												"<c:when test='${ friendList.size() <= 5}'>" +
-													"<li class='page-item next-page-moving-li disabled'>" +
-														"<a class='page-link page-moving next-page-moving hovered'>" + "&gt;" + "</a>" +
-													"</li>" +
-												"</c:when>" +
-												"<c:otherwise>" +
-													"<li class='page-item next-page-moving-li'>" +
-														"<a class='page-link page-moving next-page-moving hovered'>" + "&gt;" + "</a>" +
-													"</li>" +
-												"</c:otherwise>" +
-											"</c:choose>" +
-										"</c:if>";
+								"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
+								"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
+								"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB cursor_to_pointer' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
+							"</li>";
      					})
+     					
+     					for(var p = friendList[1].startPage ; p <= friendList[1].endPage ; p++){
+     						pagination2 += "<li class='page-item page-num'>" + 
+     											"<a class='page-link' onclick='pageMove(" + p + ");'>" +p + "</a>" + 
+     										"</li>";
+     					}
+     					
+						if(friendList[1].listCount != 0){
+							if(friendList[1].listCount <= 5){
+								pagination3 = 
+										"<li class='page-item next-page-moving-li disabled'>" + 
+											"<a class='page-link page-moving next-page-moving hovered'>" + "&gt;" + "</a>" + 
+										"</li>";
+							}else{
+								pagination3 = 
+									"<li class='page-item next-page-moving-li'>" + 
+										"<a class='page-link page-moving next-page-moving hovered'>" + "&gt;" + "</a>" + 
+									"</li>";
+							}
+						}
+     					
+     					sumPage = pagination1 + pagination2 + pagination3;
+     					
+     					console.log(sumPage);
+     					console.log(friendList[1]);
+     					
      					$(".friend_list_ul").append(value);
      					$("#this_page_friend_currentPage").val(friendList[1].currentPage);
-     					$(".friend_pagination").append(pagination);
+	     				$(".friend_pagination").append(sumPage);
+     					
+     					
      					// 비활성화
      					if(friendList[1].currentPage == 1){
      						$(".pre-page-moving-li").addClass("disabled");
@@ -159,7 +176,7 @@
      					$.each(friendList, function(i, obj){
      						value += "<li class='friend_request will_disapper" + obj.friendNo + "'>" + 
 						                      "<div class='friend_request_images'>" + 
-					                          "<img src='resources/images/avatar/2.jpg'>" + 
+					                          "<img src='" + obj.friendProfile + "'>" + 
 					                      "</div>" + 
 					                      "<div class='friend_request_nickname'>" + 
 					                          "<div class='notification-heading'>" + obj.friendNickname + "</div>" + 
@@ -192,7 +209,7 @@
              		url:"selectList.fr",
      				data:{
      					currentPage:index,
-     					friendOwner:$("#friend_owner").val()
+     					friendOwner:${loginUser.memberNo}
      				},
      				success:function(friendList){
      					$(".friend_list").remove();
@@ -200,9 +217,9 @@
      					var value="";
      					$.each(friendList[0], function(i, obj){
      						value += "<li class='friend_list'>" + 
-     									"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
+     									"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
      									"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
-     									"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend(" + obj.friendAccepted + ");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
+     									"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB cursor_to_pointer' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
      								"</li>";
      					})
      					$(".friend_list_ul").append(value);
@@ -248,7 +265,7 @@
                			url:"selectList.fr",
        					data:{
        						currentPage:Number($("#this_page_friend_currentPage").val())-1,
-       						friendOwner:$("#friend_owner").val()
+       						friendOwner:${loginUser.memberNo}
        					},
        					success:function(friendList){
 							$(".friend_list").remove();
@@ -257,9 +274,9 @@
        						var value2="";
        						$.each(friendList[0], function(i, obj){
        							value1 += "<li class='friend_list'>" + 
-       										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
+       										"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
        										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
-       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend("+ obj.friendAccepted +");' value='" + obj.friendAccepted + "'>삭제</button>" + "</div>" + 
+       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB cursor_to_pointer' onclick='deleteFriend("+ obj.friendNo +");'>삭제</button>" + "</div>" + 
        									"</li>";
        						})
        						
@@ -319,7 +336,7 @@
                			url:"selectList.fr",
        					data:{
        						currentPage:Number($("#this_page_friend_currentPage").val())+1,
-       						friendOwner:$("#friend_owner").val()
+       						friendOwner:${loginUser.memberNo}
        					},
        					success:function(friendList){
 							$(".friend_list").remove();
@@ -328,9 +345,9 @@
        						var value2="";
        						$.each(friendList[0], function(i, obj){
        							value1 += "<li class='friend_list'>" + 
-       										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
+       										"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
        										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer'>" + obj.friendNickname + "</div>" + "</div>" + 
-       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend("+ obj.friendAccepted +");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
+       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB cursor_to_pointer' onclick='deleteFriend("+ obj.friendAccepted +");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
        									"</li>";
        						})
        						var realEnd = Math.ceil(friendList[1].listCount/5)
@@ -425,10 +442,10 @@
        						var value="";
        						$.each(friendList[0], function(i, obj){
        							value += "<li class='friend_list'>" + 
-       										"<div class='friend_list_images'>" + "<img src='resources/images/avatar/1.jpg' class='cursor_to_pointer'>" + "</div>" + 
-       										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer''>" + obj.friendNickname + "</div>" + "</div>" + 
-       										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB cursor_to_pointer' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
-       									"</li>";
+											"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
+											"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
+											"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend(" + obj.friendAccepted + ");' value='" + obj.friendAccepted+ "'>삭제</button>" + "</div>" + 
+										"</li>";
        						})
        						$(".friend_list_ul").append(value);
        						
@@ -439,11 +456,11 @@
        						$("#friend_ajax_count").text("(" + friendList[1] + ")");
        						
        						// 검색 스크롤 때문에 폭 줄이기
-       						if(friendList[0] >= 5){
-	       						$(".friend_list_ul").addClass("scrolling");
+       						if(friendList[1] >= 5){
+	       						$(".friend_list_height").addClass("scrolling");
 	       						$(".friend_delete_DB").removeClass("osageu_ml-23");
        						}else{
-	       						$(".friend_list_ul").removeClass("scrolling");
+	       						$(".friend_list_height").removeClass("scrolling");
 	       						$(".friend_delete_DB").addClass("osageu_ml-23");
        						}
        						$(".friend_list_delete").css("margin-left","0");
@@ -471,7 +488,7 @@
       				var value="";
 					$.each(friendList, function(i, obj){
 						value += "<li class='friend_request will_disapper" + obj.memberNo + "'>" + 
-									"<div class='friend_request_images'>" + "<img src='resources/images/avatar/2.jpg'>" + "</div>" + 
+									"<div class='friend_request_images'>" + "<img src='" + obj.profile + "'>" + "</div>" + 
 									"<div class='friend_request_nickname'>" + "<div class='notification-heading'>" + obj.nickname + "</div>" + "</div>" + 
 									"<div class='friend_request_appeal' align='right'>" + "<button class='friend_insert_DB' style='outline:0;' onclick='insertDB(" + obj.memberNo + ");'>추가</button>" + "</div>" + 
 								"</li>";
@@ -507,6 +524,13 @@
       				friendNo:index
       			},
       			success:function(result){
+      				
+      				// 수락 알림
+      				if(socket && result.n != null){
+						var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+						socket.send(socketMsg);
+					}
+      				
       				$(".will_disapper"+index).remove();
       			},error:function(){
       				console.log("ajax 통신 실패..")
