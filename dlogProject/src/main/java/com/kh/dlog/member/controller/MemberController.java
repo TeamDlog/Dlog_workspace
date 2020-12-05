@@ -68,6 +68,9 @@ public class MemberController {
 
 	public void widgetSessionUpdate(HttpSession session, int diaryMemberNo) {
 		
+		//단어장
+		Voca v = vService.randomList(diaryMemberNo);
+		
 		// 메모위젯 객체
 		Memo memoWidget = meService.selectMemoWidget(diaryMemberNo);
 		
@@ -102,6 +105,8 @@ public class MemberController {
 		session.setAttribute("timetableList", tlist);
 		// 메모 위젯 객체 세션에 보관
 		session.setAttribute("memoWidget", memoWidget);
+		//단어장
+		session.setAttribute("voca", v);
 	}
 	
 	@RequestMapping("mainPage.me")
@@ -242,7 +247,7 @@ public class MemberController {
 		String memberNo = mService.pwdSearch(m);
 		
 		if(memberNo == null) {
-			session.setAttribute("searchAlert", "비밀번호를 찾을 수 없습니다.");
+			session.setAttribute("searchAlert", "회원정보를 찾을 수 없습니다.");
 			return "mainpage/member/memberSearchForm";
 		}else {
 			model.addAttribute("memberNo", Integer.parseInt(memberNo));
@@ -279,9 +284,7 @@ public class MemberController {
 		Member loginUser = mService.loginMember(m);
 		ArrayList<Member> list = mService.selectMemberList();
 		
-		int mno = loginUser.getMemberNo();
-		
-		Voca v = vService.randomList(mno);
+		Voca v = vService.randomList(loginUser.getMemberNo());
 		
 		// friend session 넣기
 		int friendListCount = fService.selectFriendListCount(loginUser.getMemberNo());
@@ -571,9 +574,9 @@ public class MemberController {
 	 	public String updatePwd(String original, Member m, HttpSession session) {
 		 
 		
-		 Member loginUser = mService.loginMember(m);
-		 
-		 if(loginUser != null && bcryptPasswordEncoder.matches(original, loginUser.getMemberPwd())) { 
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+			
+		 if(bcryptPasswordEncoder.matches(original, loginUser.getMemberPwd())) { 
 		 
 			 String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
 				
@@ -602,25 +605,7 @@ public class MemberController {
 			 
 		 }
 		  
-		 /*
-			String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
-			
-			
-			m.setMemberPwd(encPwd);
-			
-			int result = mService.updatePwd(m);
-			
-			if(result > 0) {
-				
-				session.setAttribute("alertMsg", "성공적으로 비밀번호가 변경되었습니다.");
-				return "redirect:updatePwdForm.my";
-				
-			}else {
-				
-				session.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
-				return "common/errorPage";
-				
-			}*/
+		 
 		
 	 }
 	 
@@ -653,6 +638,7 @@ public class MemberController {
 	 	
 	 }
 	 */
+
 	 @RequestMapping("pwdCheck2.my")
 	 public String pwdCheck2(String memberPwd) {
 		 
@@ -668,7 +654,6 @@ public class MemberController {
 			}
 		 
 	 }
-	 
 	 
 	 @RequestMapping("deleteForm.my")
 		public String deleteForm(HttpSession session) {

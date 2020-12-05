@@ -76,7 +76,7 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                        	<td colspan="3" id="checkPwd1" ><div id="checkPwd1" style="font-size:0.6em;"></div></td>
+                                        	<td colspan="3"><div id="pwCheck" style="font-size:0.6em;"></div></td>
                                         </tr>
                                         <tr>
                                             <td style="font-size:12px;"><br>비밀번호 확인 : &nbsp;&nbsp;&nbsp; </td>
@@ -98,96 +98,33 @@
                       </div>   
                      
                       <br><br><br><br><br>
-                        
-                       <script>
-                       <!--
-                       $(document).ready(function(){
-                    		$('#pw1').keyup(function(){
-                    			$('#pwCheckFF').text('');
-                    		}); 
-                    		
-                    		$('#repw1').keyup(function(){
-                    			if($('#pw1').val()!=$('#repw1').val()){
-                    				$('#pwCheckFF').text('');
-                    		  		$('#pwCheckFF').html("패스워드 확인이 불일치 합니다");
-                    		 	}else{
-                    			  	$('#pwCheckFF').text('');
-                    			  	$('#pwCheckFF').html("<font color='#70AD47'>패스워드 확인이 일치 합니다.</font>");
-                    		 	}
-                    		});
-                    	 }); 
-                    	 
-                    	 //비밀번호 실시간 유효성 체크
-                    	function pwCheck(memberPwd){
-                    		$.ajax({
-                    			type:"POST",
-                    			url: "pwdCheck2.my",
-                    			data : { memberPwd: memberPwd },
-                    			success:function(result){	
-                    				if(result == true){				
-                    					checkPwd1.css("color", "green").text("유효한 비밀번호입니다.");	
-                    					$("#updatePwdBtn").removeAttr("disabled");
-                    					
-                    				}else{				
-                    					checkPwd1.css("color", "red").text("비밀번호가 유효하지 않습니다.다시 입력해 주세요.");
-                    				}
-                    			},error:function(){
-									console.log("ajax통신 실패");
-								}
-                    		})
-                    		
-                    	}
-                   
-                    -->
-                       
-                       </script>
-    
-	                	
-	                	
-	                	
-	                	
-	                	
-	                	
-					
+          
 					<script>
 					   //새 비밀번호 유효한지 확인
-				        var $pwdCheck = $("#updatePwd input[name=memberPwd]");
-						
-						$pwdCheck.keyup(function(){
-							
-							if($pwdCheck.val().length >= 8){
-								
-								$.ajax({
-									url:"pwdCheck2.my",
-									data:{memberPwd:$pwdCheck.val()},
-									success:function(result){
-										
-										if(result != 'true'){
-				                            
-				                        	$("#checkPwd1").show();
-				    						$("#checkPwd1").css("color", "red").text("비밀번호가 유효하지 않습니다.다시 입력해 주세요.");
-				                            
-				                        }else{
-				                        	
-				                        	$("#checkPwd1").show();
-				    						$("#checkPwd1").css("color", "green").text("유효한 비밀번호입니다.");
-				    						$("#updatePwdBtn").removeAttr("disabled");
-				                        	
-				                        }
-										
-									},error:function(){
-										console.log("ajax통신 실패");
+					   
+					   var $pwdCheck1 = $("#updatePwd input[name=memberPwd]");
+					   
+				       $pwdCheck1.keyup(function pwCheck(memberPwd){
+							$.ajax({
+								type:"POST",
+								url: "pwCheck",
+								data : { memberPwd:memberPwd },
+								success:function(result){	
+									if(result == true){				
+										pwCheck.innerHTML = "유효성 체크 문제 없음"; 				
+									}else{				
+										pwCheck.innerHTML = "유효성 체크 범위 벗어남"; 
 									}
-								})
-				
-				      		}else{
-				      			
-				      			$("#checkPwd1").hide();
-								$("#updatePwdBtn").attr("disabled", true);
-				      			
-				      		}
-				
-						});//비밀번호 체크
+								},
+								error:function(){
+		    						console.log("아이디 중복체크용 ajax 통신 실패");
+						    	}
+							});	
+							
+						});
+						
+						
+						
 						
 						var $pwdCheck2 = $("#updatePwd input[name=checkPwd]");
 						
@@ -195,7 +132,7 @@
 							
 							if($pwdCheck2.val().length >= 8){
 							
-				    			if($pwdCheck.val() != $pwdCheck2.val()){
+				    			if($pwdCheck1.val() != $pwdCheck2.val()){
 				    				
 				    				$("#checkPwd2").show();
 									$("#checkPwd2").css("color", "red").text("입력한 비밀번호가 일치하지 않습니다.");

@@ -143,7 +143,7 @@
             </div>
             <!-- HowToStart Section Button-->
             <div class="text-center mt-4">
-                <a class="btn btn-lg btn-outline-light" href="">
+                <a class="btn btn-lg btn-outline-light" href="enrollForm.me">
                     회원가입 →
                 </a>
             </div>

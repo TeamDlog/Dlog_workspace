@@ -133,7 +133,7 @@
 	<div class="outer">
 
         <div class="header" align="center">
-            <a href="mainpage.me"><img src="resources/images/mainLogo.png"></a>
+            <a href="${ pageContext.servletContext.contextPath }"><img src="resources/images/mainLogo.png"></a>
         </div>
 
         <img id="bug2" src="resources/images/bug.png">

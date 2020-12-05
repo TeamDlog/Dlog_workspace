@@ -313,7 +313,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px;">
-                        <div class="card-body" >
+                        <div class="card-body" style="border-radius:10px;">
 	                        <div id="calendar_main">
 								<table id="calendar" class="calendar2" style="width:100%; height:700px;">
 									<tr style="height:100px;" id="calendar_main_head">

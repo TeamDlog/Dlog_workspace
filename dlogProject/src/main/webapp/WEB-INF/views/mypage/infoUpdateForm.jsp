@@ -78,18 +78,17 @@
                                <form action="infoUpdate.my" id="infoUpdateForm" method="post" enctype="multipart/form-data">
                                    <input type="hidden" name="memberNo" value="${loginUser.memberNo }">
                                      <table id="infoUpdateFormTable">
-                                         <div class="card-body">
-                                         <c:if test="${loginUser.profile == null}">
 	                                     <div class="card-body">
+                                         <c:if test="${loginUser.profile == null}">
 	                                         <div class="text-center" Style=border1px solid black">
 	                                             <img alt="" class="rounded-circle mt-4" src="resources/images/default-profile-pic.jpg" width="90px">
 	                                         </div>
-	                                     </div>
 	                                     </c:if>
                                              <div class="text-center">
                                                  <img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px">
                                              </div>
-                                        </div>
+	                                     </div>
+                                        
                                        <tr>
                                          <td> 이름  </td>
                                          <td colspan="2"> ${loginUser.memberName }</td>
@@ -124,7 +123,7 @@
                                        </tr>
                                        <tr>
                                          <td>전화번호 </td> 
-                                 		 <td><input id="phoneNumber" name="phone" style="width:180px;" type="text" maxlength="13" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." value="${loginUser.phone }" required></td>
+                                 		 <td><input id="phoneNumber" name="phone" style="width:180px;" type="text" maxlength="13" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." value="${loginUser.phone }"></td>
                                          <td>&nbsp;<button type="button" id="sendPhoneNumber" class="btn btn-secondary btn-sm">인증요청</button></td>
                                        </tr>
                                        <tr>
@@ -150,7 +149,7 @@
                                      </tr>
                                     </table>
                                    <br><br>
-                                 <button type="submit" id="infoUpdateBtn" class="btn btn-success" data-toggle="modal" data-target="#updateForm" disabled>확인</button>
+                                 <button type="submit" id="infoUpdateBtn" class="btn btn-success" data-toggle="modal" data-target="#updateForm" >확인</button>
                                   <!-- 회원탈퇴 버튼 클릭시 보여질 Modal -->
                                <div class="modal" id="updateForm">
                                    <div class="modal-dialog">
@@ -158,7 +157,7 @@
                                        
                                            <!-- Modal Header -->
                                            <div class="modal-header">
-                                           <h4 class="modal-title">회원탈퇴</h4>
+                                           <h4 class="modal-title">개인정보수정</h4>
                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                                            </div>
                                            
@@ -175,8 +174,8 @@
                                                  	  비밀번호 : 
                                                    <input type="password" name="memberPwd" required>
                                                    
-                                                   <button type="submit" class="btn btn-danger btn-sm" >탈퇴</button>
-                                                   <button type="button" id="cancle" class="btn btn-dark btn-sm" >취소</button>
+                                                   <button type="submit" class="btn btn-success btn-sm" >수정</button>
+                                                   <button type="button" id="cancle" class="btn btn-secondary btn-sm" >취소</button>
            			                      <script>
            			                      $('#cancle').click(function(){
            				                      $( '#updateForm' ).modal("hide");
@@ -216,11 +215,12 @@
                                                     
                                                 	alert($nicknameCheck2.val() + " 는(은) 이미 사용하고 있는 별명입니다. 다시 입력해주세요.");
                                                 	$nicknameCheck2.focus();
+                                                	$("#infoUpdateBtn").attr("disabled", true);
                                                     
                                                 }else{
                                                 	
                                                 	alert($nicknameCheck2.val() + " 는(은) 사용가능합니다.");
-                                                	
+                                                	$("#infoUpdateBtn").removeAttr("disabled")
                                                 }
                         						
                         					},error:function(){
@@ -230,7 +230,7 @@
                             		}	
                             	}
                             		//
-                            	<!--
+                            	
                            		$('#sendPhoneNumber').click(function(){
                                     var phoneNumber = $('#phoneNumber').val();
                                     
@@ -265,7 +265,7 @@
                                         }
                                     });
                            		});
-                           		 -->
+                           		 
                            		</script>
                            		
                            		
