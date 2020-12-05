@@ -700,7 +700,7 @@ public class MemberController {
 		}
 	 
 	 @RequestMapping(value="visitFriend.fr")
-	 public String vistiFriend(int diaryMemberNo, HttpSession session) {
+	 public String vistitFriend(int diaryMemberNo, HttpSession session) {
 
 		Member m = (Member)session.getAttribute("loginUser");
 		m.setDiaryMemberNo(diaryMemberNo);
@@ -716,7 +716,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="goToMyDiary.fr")
-	public String vistiFriend(String fno, HttpSession session) {
+	public String combackHome(String fno, HttpSession session) {
 
 		Member m = (Member)session.getAttribute("loginUser");
 		m.setDiaryMemberNo(m.getMemberNo());
