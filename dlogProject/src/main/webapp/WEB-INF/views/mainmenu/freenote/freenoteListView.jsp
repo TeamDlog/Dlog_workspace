@@ -105,7 +105,7 @@
 		$(function(){
 	 		$("#listArea>tbody").on("click", "tr", function(){
 					if($(this).find("td:eq(1)").next().val() == 'Y' || $(this).find("td:eq(1)").prev().val() == '${loginUser.memberNo}'){
-	 				location.href="detail.fn?fno=" + $(this).find("td:eq(0)").text();
+	 				location.href="detail.fn?fno=" + $(this).find("td:eq(0)").next().val();
 					}else{
 						alert("비공개 글 입니다.");
 					}
@@ -182,7 +182,8 @@
 						var list = "";
 						for(i in result.list){
 		                	list += "<tr>" +
-				                        "<td>" + result.list[i].freenoteNo + "</td>" +
+		                				"<td>" + result.list[i].rownum + "</td>" +
+				                        "<input type='hidden' value='" + result.list[i].freenoteNo + "'>" +
 				                        "<input type='hidden' value='" + result.list[i].memberNo + "'>" +
 				                        "<td class='freenoteTitle'>" + result.list[i].freenoteTitle + "&nbsp;";
 				            if(result.list[i].freenotePrivacy == 'N'){

@@ -22,6 +22,7 @@
 		<result column="replyCount" property="replyCount" />
 		<result column="likestatus" property="likeStatus" />	
 		<result column="profile" property="profile" />	
+		<result column="rownum" property="rownum" />
 	</resultMap>
 	
 	<resultMap type="Reply" id="replyResultSet">
@@ -51,7 +52,8 @@
 	
 	<select id="selectList" parameterType="SearchCondition" resultMap="freenoteResultSet">
 		select 
-		       freenote_no
+		       rownum
+		     , freenote_no
 		     , freenote_title
 		     , freenote_privacy
 		     , freenote_category

@@ -34,5 +34,6 @@ public class Freenote {
 	private String memberId;
 	private int memberNo;
 	private String profile;
+	private int rownum;
 
 }
