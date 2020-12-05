@@ -16,7 +16,8 @@ public interface NotificationService {
 	// 친구요청(3)
 	Notification friendRequestNotify(String loginUserNickname, int friendAccepted);
 	// 친구수락(4)
-	Notification friendAcceptNotify(String loginUserNickname, int friendAccepted);
+	int findFriendOwnerNo(int friendNo);
+	Notification friendAcceptNotify(String loginUserNickname, int friendNo);
 	// 친구 새글 등록(5)
 	ArrayList selectFriendList(int loginUserNo);
 	Notification friendNewPostNotify(int loginUserNo, String loginUserNickname);

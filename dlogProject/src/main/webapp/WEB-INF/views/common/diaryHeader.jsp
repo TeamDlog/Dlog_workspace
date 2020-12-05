@@ -37,6 +37,8 @@
     	.menubarColor li *{color:${ ca.myColorFont };}
     	/* 로고색상 */
     	#logoColor{background:${ca.myColorLogo};}
+    	
+    	.container-fluid .card-body{border-radius:10px;}
 	</style>
 
 </head>
@@ -77,7 +79,7 @@
             ***********************************-->
             <div class="nav-header">
                 <div class="brand-logo" id="logoColor">
-                    <a href="mainPage.me">
+                    <a href="${ pageContext.servletContext.contextPath }">
                         <b class="logo-abbr"><img src="resources/images/DlogLogo-text-short.png" alt="" width="19px"></b>
                         <span class="logo-compact"><img src="resources/images/DlogLogo-text.png" alt="" width="87"></span>
                         <span class="brand-title">
@@ -126,7 +128,7 @@
 									                 <c:forEach var="f" items="${ friendList }" varStatus="status">
 										                 <li class="friend_list">
 										                      <div class="friend_list_images">
-										                          <img src="resources/profiles/lunyang.jpeg" class="cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">
+										                          <img src="${ f.friendProfile }" class="cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">
 										                      </div>
 										                      <div class="friend_list_nickname">
 										                          <div class="notification-heading friend_list_nick cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">${ f.friendNickname }</div>
@@ -228,7 +230,7 @@
 	                			
                             	$(function(){
                             		loadNotification(${loginUser.memberNo});
-                            		//setInterval(loadNotification, 2000, ${loginUser.memberNo});
+                            		setInterval(loadNotification, 2000, ${loginUser.memberNo});
                             	});
                             	
                             	function loadNotification(loginUserNo){
@@ -255,7 +257,7 @@
 				                                    	case 7:list += "<span class='mr-3 avatar-icon' style='background: rgb(117, 131, 146);'><i class='icon-earphones-alt'></i></span>"; break;
 				                                    }
 				                                    list +=         "<div class='notification-content' style='margin-right:0;'>" +
-				                                                        "<table>" +
+				                                                        "<table style='min-height:40px;'>" +
 				                                                            "<tr>" +
 				                                                                "<td width='200'>" +
 				                                                                    "<h6 class='notification-heading'>" + result.list[i].notificationContent + "</h6>" +

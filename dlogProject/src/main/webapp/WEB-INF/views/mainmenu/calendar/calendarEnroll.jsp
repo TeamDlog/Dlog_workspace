@@ -40,7 +40,7 @@
 	                            <div id="calendar_enroll_outer">
 	                                <div id="calendar_enroll_date">
 	                                    <div>시작 : <input type="date" id="calendarBeginDate" name="calendarBeginDate" required></div>
-	                                    <div>종료 : <input type="date" id="calendarEndDate" name="calendarEndDate" required></div>
+	                                    <div>종료 : <input type="date" id="calendarEndDate" name="calendarEndDate" onchange="confirmDate2();" disabled required></div>
 	                                    <div>배경색 : <input type="color" name="calendarBgColor" required></div>
 	                                    <div>글자색 : <input type="color" name="calendarFontColor" required></div>
 	                                </div>
@@ -95,15 +95,37 @@
 			    return new Date(y,m-1,d);
 			}
             
-            // 최대 10일
+            $("#calendarBeginDate").change(function(){
+            	$("#calendarEndDate").attr("disabled",false);
+            })
+            
+            // 시작, 종료일 조건
             confirmDate = function(){
-            	if(parse($("#calendarEndDate").val()).getDate() - parse($("#calendarBeginDate").val()).getDate() > 9){
-	            	alert("일정은 최대 10일까지 등록 가능합니다.");
+            	if(parse($("#calendarEndDate").val()).getMonth() != parse($("#calendarBeginDate").val()).getMonth()){
+	            	alert("시작과 끝은 같은 달이어야 합니다.");
 	            	return false;
             	}
             	if(parse($("#calendarEndDate").val()).getDate() - parse($("#calendarBeginDate").val()).getDate() < 0){
 	            	alert("시작일이 종료일보다 먼저 오거나 같아야 합니다.");
 	            	return false;
+            	}
+            	if(parse($("#calendarEndDate").val()).getDate() - parse($("#calendarBeginDate").val()).getDate() > 9){
+	            	alert("일정은 최대 10일까지 등록 가능합니다.");
+	            	return false;
+            	}
+            }
+            
+            // 시작, 종료일 조건
+            confirmDate2 = function(){
+            	if(parse($("#calendarEndDate").val()).getMonth() != parse($("#calendarBeginDate").val()).getMonth()){
+	            	alert("시작과 끝은 같은 달이어야 합니다.");
+	            	$("#calendarEndDate").val("");
+            	}else if(parse($("#calendarEndDate").val()).getDate() - parse($("#calendarBeginDate").val()).getDate() < 0){
+	            	alert("시작일이 종료일보다 먼저 오거나 같아야 합니다.");
+	            	$("#calendarEndDate").val("");
+            	}else if(parse($("#calendarEndDate").val()).getDate() - parse($("#calendarBeginDate").val()).getDate() > 9){
+	            	alert("일정은 최대 10일까지 등록 가능합니다.");
+	            	$("#calendarEndDate").val("");
             	}
             }
             

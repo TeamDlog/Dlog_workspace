@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +18,16 @@ import com.kh.dlog.common.template.Pagination;
 import com.kh.dlog.friend.model.service.FriendService;
 import com.kh.dlog.friend.model.vo.Friend;
 import com.kh.dlog.member.model.vo.Member;
+import com.kh.dlog.notification.model.service.NotificationService;
+import com.kh.dlog.notification.model.vo.Notification;
 
 @Controller
 public class FriendController {
 	
 	@Autowired
 	private FriendService fService;
+	@Autowired
+	private NotificationService nService;
 	
 	@ResponseBody
 	@RequestMapping(value="selectList.fr", produces="application/json; charset=utf-8")
@@ -34,8 +39,8 @@ public class FriendController {
 		List<Object> send = new ArrayList<>();
 		send.add(friendList);
 		send.add(pi2);
-		session.setAttribute("pi2",pi2);
 		session.setAttribute("friendList",friendList);
+		session.setAttribute("pi2",pi2);
 		return new Gson().toJson(send);
 		
 	}
@@ -79,16 +84,20 @@ public class FriendController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="accept.fr", produces="text/html; charset=utf-8")
-	public String acceptFriend(Friend f) {
+	@RequestMapping(value="accept.fr", produces="application/json; charset=utf-8")
+	public String acceptFriend(Friend f, HttpSession session) {
 		
 		int result = fService.acceptFriend(f);
+		JSONObject jobj = new JSONObject();
+		String resultStr = "";
 		if(result > 0) {
-			return "승낙 성공";
+			// 친구 수락 알림
+			jobj.put("n", nService.friendAcceptNotify(((Member)session.getAttribute("loginUser")).getNickname(), f.getFriendNo()));
+			jobj.put("result","승낙 성공");
 		}else {
-			return "승낙 실패";
+			jobj.put("result","승낙 실패");
 		}
-		
+		return new Gson().toJson(jobj);
 	}
 	
 	@ResponseBody

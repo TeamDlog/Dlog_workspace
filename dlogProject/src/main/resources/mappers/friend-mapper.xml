@@ -8,6 +8,7 @@
 		<result column="friend_nickname" property="friendNickname" />
 		<result column="friend_accepted" property="friendAccepted" />
 		<result column="friend_status" property="friendStatus" />
+		<result column="friend_profile" property="friendProfile" />
 	</resultMap>
 	
 	<resultMap id="memberResultSet" type="Member">
@@ -34,7 +35,11 @@
                                     else (select nickname
                                            from member
                                           where member_no = to_char(f.friend_owner)) end friend_nickname, 
-                                                                    friend_accepted, friend_status
+                                                                    friend_accepted, friend_status, 
+                                                                                                    case when friend_owner = #{friendOwner} then m.nickname 
+                                                                                                        else (select profile
+                                                                                                               from member
+                                                                                                              where member_no = to_char(f.friend_owner)) end friend_profile
 		  from friend f
 		  join member m on(f.friend_accepted=m.member_no)
 		 where (friend_owner = #{friendOwner} or friend_accepted = #{friendOwner})
@@ -49,11 +54,15 @@
 		select count(*)
 		  from (
 				select friend_no, friend_owner, 
-				                                case when friend_owner = #{friendOwner} then m.nickname 
-				                                    else (select nickname
-				                                           from member
-				                                          where member_no = to_char(f.friend_owner)) end friend_nickname, 
-				                                                                    friend_accepted, friend_status
+                                case when friend_owner = #{friendOwner} then m.nickname 
+                                    else (select nickname
+                                           from member
+                                          where member_no = to_char(f.friend_owner)) end friend_nickname, 
+                                                                    friend_accepted, friend_status, 
+                                                                                                    case when friend_owner = #{friendOwner} then m.nickname 
+                                                                                                        else (select profile
+                                                                                                               from member
+                                                                                                              where member_no = to_char(f.friend_owner)) end friend_profile
 				  from friend f
 				  join member m on(f.friend_accepted=m.member_no)
 				 where (friend_owner = #{friendOwner} or friend_accepted = #{friendOwner})
@@ -78,7 +87,11 @@
                                     else (select nickname
                                            from member
                                           where member_no = to_char(f.friend_owner)) end friend_nickname, 
-                                                                    friend_accepted, friend_status
+                                                                    friend_accepted, friend_status,
+                                                                    								case when friend_owner = #{memberNo} then m.nickname 
+                                                                                                        else (select profile
+                                                                                                               from member
+                                                                                                              where member_no = to_char(f.friend_owner)) end friend_profile
 		  from friend f
 		  join member m on(f.friend_accepted=m.member_no)
 		 where (friend_owner = #{memberNo} or friend_accepted = #{memberNo})
@@ -96,7 +109,7 @@
 		 where member_no not in (select case when friend_owner = #{memberNo} then friend_accepted
 		                                    else friend_owner end friendNo
 		                          from friend
-		                         where (friend_owner = 2 or friend_accepted = #{memberNo}))
+		                         where (friend_owner = #{memberNo} or friend_accepted = #{memberNo}))
 		   and member_no not in (1, #{memberNo})
 		   and nickname like '%' || #{nickname} || '%'
 		 order
@@ -106,7 +119,7 @@
 	<select id="requestFriend"
 			parameterType="_int"
 			resultMap="friendResultSet">
-		select friend_no, friend_owner, nickname friend_nickname, friend_accepted, friend_status
+		select friend_no, friend_owner, m.nickname friend_nickname, friend_accepted, friend_status, m.profile friend_profile
 		  from friend f
 		  join member m on (member_no = friend_owner)
 		 where friend_accepted = #{friendAccepted}
@@ -139,5 +152,13 @@
 		     , 'N'
 		     )
 	</insert>
+	
+	<select id="visitFriend"
+			parameterType="_int"
+			resultMap="memberResultSet">
+		select *
+		  from member 
+		 where member_no = #{memberNo}
+	</select>
 	
 </mapper>

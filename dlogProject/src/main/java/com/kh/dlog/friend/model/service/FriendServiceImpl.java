@@ -65,5 +65,10 @@ public class FriendServiceImpl implements FriendService{
 		return fDao.insertFriend(sqlSession, f);
 	}
 
+	@Override
+	public Member visitFriend(int memberNo) {
+		return fDao.visitFriend(sqlSession, memberNo);
+	}
+
 	
 }

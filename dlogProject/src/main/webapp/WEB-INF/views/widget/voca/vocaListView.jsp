@@ -8,6 +8,35 @@
 <title>Dlog</title>
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16" href="resources/images/DlogLogo-title.png">
+<link href="resources/css/styles.css" rel="stylesheet" />
+
+<style>
+input[type="checkbox"]:after {
+  line-height: 1.5em;
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-top: -3px;
+  margin-left: -3px;
+  border: 1px solid #EAEAEA;
+  background: #fff;
+  line-height: 1.3; }
+
+input[type="checkbox"]:checked:after {
+  width: 20px;
+  height: 20px;
+  display: block;
+  content: "\f00c";
+  font-family: 'FontAwesome';
+  color: #7571f9;
+  font-weight: 100;
+  text-align: center; }
+
+modal-backdrop {
+    background-color: rgba(0,0,0,.0001) !important;
+}
+</style>
 </head>
 <body>
 

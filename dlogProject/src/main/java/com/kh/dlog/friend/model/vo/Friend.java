@@ -19,5 +19,6 @@ public class Friend {
 	private String friendNickname;
 	private int friendAccepted;
 	private String friendStatus;
+	private String friendProfile;
 	
 }

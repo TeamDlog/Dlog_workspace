@@ -74,5 +74,13 @@
 		  from notification
 		 where notification_no = #{notificationNo}
 	</update>
+	
+	<select id="findFriendOwnerNo" parameterType="_int" resultType="_int">
+		select 
+		       friend_owner
+		  from friend
+		 where friend_no = #{friendNo}
+	</select>
+	
 
 </mapper>

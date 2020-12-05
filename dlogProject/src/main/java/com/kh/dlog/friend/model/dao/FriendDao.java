@@ -52,4 +52,8 @@ public class FriendDao {
 		return sqlSession.insert("friendMapper.insertFriend",f);
 	}
 	
+	public Member visitFriend(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("friendMapper.visitFriend", memberNo);
+	}
+	
 }

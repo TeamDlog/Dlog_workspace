@@ -126,6 +126,7 @@
     
   	#boardList>tbody>tr:hover{cursor:pointer;}
 	.footer h5{font-weight:bold;}
+	a[href="serviceMain.fo"]{color:grey !important;}
 </style>
   <script>
         $(function(){

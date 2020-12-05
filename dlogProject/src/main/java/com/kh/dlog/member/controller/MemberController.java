@@ -68,6 +68,9 @@ public class MemberController {
 
 	public void widgetSessionUpdate(HttpSession session, int diaryMemberNo) {
 		
+		//단어장
+		Voca v = vService.randomList(diaryMemberNo);
+		
 		// 메모위젯 객체
 		Memo memoWidget = meService.selectMemoWidget(diaryMemberNo);
 		
@@ -102,6 +105,8 @@ public class MemberController {
 		session.setAttribute("timetableList", tlist);
 		// 메모 위젯 객체 세션에 보관
 		session.setAttribute("memoWidget", memoWidget);
+		//단어장
+		session.setAttribute("voca", v);
 	}
 	
 	@RequestMapping("mainPage.me")
@@ -242,7 +247,7 @@ public class MemberController {
 		String memberNo = mService.pwdSearch(m);
 		
 		if(memberNo == null) {
-			session.setAttribute("searchAlert", "비밀번호를 찾을 수 없습니다.");
+			session.setAttribute("searchAlert", "회원정보를 찾을 수 없습니다.");
 			return "mainpage/member/memberSearchForm";
 		}else {
 			model.addAttribute("memberNo", Integer.parseInt(memberNo));
@@ -279,9 +284,7 @@ public class MemberController {
 		Member loginUser = mService.loginMember(m);
 		ArrayList<Member> list = mService.selectMemberList();
 		
-		int mno = loginUser.getMemberNo();
-		
-		Voca v = vService.randomList(mno);
+		Voca v = vService.randomList(loginUser.getMemberNo());
 		
 		// friend session 넣기
 		int friendListCount = fService.selectFriendListCount(loginUser.getMemberNo());
@@ -721,24 +724,30 @@ public class MemberController {
 		}
 	 
 	 @RequestMapping(value="visitFriend.fr")
-	 public String vistiFriend(int diaryMemberNo, HttpSession session) {
+	 public String vistitFriend(int diaryMemberNo, HttpSession session) {
 
 		Member m = (Member)session.getAttribute("loginUser");
 		m.setDiaryMemberNo(diaryMemberNo);
 		session.setAttribute("loginUser", m);
-
+		
+		// 친구 session 만들기 (프로필용)
+		Member friendInfo = fService.visitFriend(m.getDiaryMemberNo());
+		session.setAttribute("friendInfo", friendInfo);
+		
 		widgetSessionUpdate(session, m.getDiaryMemberNo());
 
 		return "redirect:introList.my";
 	}
 
 	@RequestMapping(value="goToMyDiary.fr")
-	public String vistiFriend(String fno, HttpSession session) {
+	public String combackHome(String fno, HttpSession session) {
 
 		Member m = (Member)session.getAttribute("loginUser");
 		m.setDiaryMemberNo(m.getMemberNo());
 		session.setAttribute("loginUser", m);
 
+		session.removeAttribute("friendInfo");
+		
 		widgetSessionUpdate(session, m.getDiaryMemberNo());
 
 		if(fno != null) {

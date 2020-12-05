@@ -103,6 +103,7 @@
 		     , email
 		     , phone
 		     , nickname
+		     , profile
 		     , enroll_date
 		     , modify_date
 		     , status 
@@ -116,6 +117,7 @@
 		     , #{email}
 		     , #{phone}
 		     , #{nickname}
+		     , 'resources/images/default-profile-pic.jpg'
 		     , sysdate
 		     , sysdate
 		     , 'Y'
