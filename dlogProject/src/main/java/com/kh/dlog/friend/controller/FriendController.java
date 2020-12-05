@@ -37,8 +37,8 @@ public class FriendController {
 		List<Object> send = new ArrayList<>();
 		send.add(friendList);
 		send.add(pi2);
-		session.setAttribute("pi2",pi2);
 		session.setAttribute("friendList",friendList);
+		session.setAttribute("pi2",pi2);
 		return new Gson().toJson(send);
 		
 	}
@@ -86,6 +86,7 @@ public class FriendController {
 	public String acceptFriend(Friend f, HttpSession session) {
 		
 		int result = fService.acceptFriend(f);
+		
 		if(result > 0) {
 			// 친구 수락 알림
 			session.setAttribute("notification", nService.friendAcceptNotify(((Member)session.getAttribute("loginUser")).getNickname(), f.getFriendNo()));
