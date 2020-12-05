@@ -141,7 +141,8 @@
                                     </table>
                                     <br><br>
                                     <span>메모</span>
-                                    <textarea maxlength="50" placeholder="최대 50자" name="timetableContent" id="timetableContent" cols="100" rows="10" style="resize: none;" ></textarea>
+                                    <br>
+                                    <textarea maxlength="50" placeholder="최대 50자" name="timetableContent" id="timetableContent" cols="95" rows="10" style="resize: none;" ></textarea>
                                     <br><br>
                                     <a href="main.ti" style="float: right;" class="btn btn-danger">취소</a>
                                     <button type="submit" style="float: right; margin-right: 15px;" class="btn btn-success">등록</button>

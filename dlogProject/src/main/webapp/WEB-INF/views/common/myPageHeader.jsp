@@ -30,6 +30,7 @@
     	.backgroundColor div{color:${ ca.myColorFont };}
     	.backgroundColor h4{color:${ ca.myColorFont };}
     	.menubarColor li *{color:${ ca.myColorFont };}
+    	.menubarColor span *{color:${ ca.myColorFont };}
     	/* 로고색상 */
     	#logoColor{background:${ca.myColorLogo};}
 	</style>
@@ -340,7 +341,7 @@
             <div class="nk-sidebar menubarColor">           
                 <div class="nk-nav-scroll">
                     <ul class="metismenu" id="menu">
-                        <li class="nav-label">마이페이지</li>
+                        <li class="nav-label"><span>마이페이지</span></li>
                         <li>
                             <a class="has-arrow" href="infoList.my" aria-expanded="false">
                                 <i class="icon-user-following"></i><span class="nav-text">개인정보조회</span>

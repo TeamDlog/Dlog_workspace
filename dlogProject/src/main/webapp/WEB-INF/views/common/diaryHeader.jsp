@@ -35,6 +35,7 @@
     	/* 글자색상 */
     	.backgroundColor div{color:${ ca.myColorFont };}
     	.menubarColor li *{color:${ ca.myColorFont };}
+    	.menubarColor span *{color:${ ca.myColorFont };}
     	/* 로고색상 */
     	#logoColor{background:${ca.myColorLogo};}
     	
@@ -351,7 +352,7 @@
                             </a>
                         </li>
                         <!-- 메인메뉴 -->
-                        <li class="nav-label">메인메뉴</li>
+                        <li class="nav-label"><span>메인메뉴</span></li>
                         <li class="menuCalendar">
                             <a href="selectList.ca" aria-expanded="false">
                                 <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span>
@@ -378,7 +379,7 @@
                             </a>
                         </li>
                         <!-- 위젯메뉴 -->
-                        <li class="nav-label">위젯메뉴</li>
+                        <li class="nav-label"><span>위젯메뉴</span></li>
                         <li class="menuDday">
                             <a href="main.dd" aria-expanded="false">
                                 <i class="icon-clock menu-icon"></i><span class="nav-text">디데이</span>
