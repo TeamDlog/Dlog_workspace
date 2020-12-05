@@ -153,4 +153,12 @@
 		     )
 	</insert>
 	
+	<select id="visitFriend"
+			parameterType="_int"
+			resultMap="memberResultSet">
+		select *
+		  from member 
+		 where member_no = #{memberNo}
+	</select>
+	
 </mapper>

@@ -17,5 +17,6 @@ public interface FriendService {
 	int acceptFriend(Friend f);
 	int rejectFriend(Friend f);
 	int insertFriend(Friend f);
+	Member visitFriend(int memberNo);
 	
 }

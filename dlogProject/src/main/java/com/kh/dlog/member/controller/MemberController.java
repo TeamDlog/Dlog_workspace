@@ -705,7 +705,11 @@ public class MemberController {
 		Member m = (Member)session.getAttribute("loginUser");
 		m.setDiaryMemberNo(diaryMemberNo);
 		session.setAttribute("loginUser", m);
-
+		
+		// 친구 session 만들기 (프로필용)
+		Member friendInfo = fService.visitFriend(m.getDiaryMemberNo());
+		session.setAttribute("friendInfo", friendInfo);
+		
 		widgetSessionUpdate(session, m.getDiaryMemberNo());
 
 		return "redirect:introList.my";
@@ -718,6 +722,8 @@ public class MemberController {
 		m.setDiaryMemberNo(m.getMemberNo());
 		session.setAttribute("loginUser", m);
 
+		session.removeAttribute("friendInfo");
+		
 		widgetSessionUpdate(session, m.getDiaryMemberNo());
 
 		if(fno != null) {
