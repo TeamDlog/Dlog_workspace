@@ -49,6 +49,19 @@
 			<mapping path="/main.ca"/>
 			<mapping path="/main.dd"/>
 			<mapping path="/enrollForm.ti"/>
+			<mapping path="/list.di"/>
+			<mapping path="/enrollForm.di"/>
+			<mapping path="/updateForm.di"/>
+			<mapping path="/detail.di"/>
+			<mapping path="/introList.my"/>
+			<mapping path="/introListMn.my"/>
+			<mapping path="/introEnrollForm.my"/>
+			<mapping path="/infoList.my"/>
+			<mapping path="/infoUpdateForm.my"/>
+			<mapping path="/deleteMember.my"/>
+			<mapping path="/updatePwdForm.my"/>
+			
+			
 			
 			
 			<beans:bean class="com.kh.dlog.common.interceptor.LoginInterceptor" id="loginIntercept"/>
