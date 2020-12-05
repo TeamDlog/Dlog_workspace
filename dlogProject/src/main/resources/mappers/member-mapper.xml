@@ -201,7 +201,8 @@
 		      , email=#{email}
 		      , phone=#{phone}
 		      , profile=#{profile}  
-		  where member_No=#{memberNo} 
+		  where member_no=#{memberNo} 
+		    
 	</update>
 	
 	<select id="nicknameCheck2" parameterType="string" resultType ="_int">
@@ -234,17 +235,7 @@
 		   set member_pwd = #{memberPwd}
 		 where member_no = #{memberNo}
 	</update>
-	<select id="profile" parameterType="Member" resultMap="memberResultSet">
-	select
-			member_no
-	      , profile  
-		  , nickname
-	      , email
-	      , introduction_title
-	  from member
-	 where status='Y'
-	   and member_no=#{memberNo}
-	</select>
+
 	
 	
 

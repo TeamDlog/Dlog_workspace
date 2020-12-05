@@ -412,9 +412,14 @@ public class MemberController {
 	
 	
 	@RequestMapping("infoUpdate.my")
-	public String updateMember(Member m, HttpSession session, Model model, MultipartFile upfile) {
+	public String updateMember(String memberPwd, Member m, HttpSession session, Model model, MultipartFile upfile) {
 		
-		//System.out.println(m); 누락확인
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(bcryptPasswordEncoder.matches(memberPwd, loginUser.getMemberPwd())) {
+		
+		
 		
 		if(!upfile.getOriginalFilename().equals("")) {
 			
@@ -444,8 +449,12 @@ public class MemberController {
 			
 			model.addAttribute("errorMsg", "정보 변경 실패");
 			return "common/errorPage";
-		}
-		 
+		} 
+		
+	  }else {
+		  model.addAttribute("errorMsg", "비밀번호가 틀렸습니다.");
+			return "common/errorPage";
+	  }
 	}
 	//업로드용 
 	public String saveFile(MultipartFile upfile, HttpSession session) {
@@ -676,7 +685,7 @@ public class MemberController {
 			}else {
 				// 비밀번호 틀림!!
 				session.setAttribute("alertMsg", "비밀번호가 틀렸습니다.");
-				return "redirect:deleteForm.me"; 
+				return "redirect:deleteForm.my"; 
 			
 			}
 		

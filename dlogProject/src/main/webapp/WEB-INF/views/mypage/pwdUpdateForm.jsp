@@ -187,15 +187,15 @@
 				      			
 				      		}
 				
-						})//비밀번호 체크
+						});//비밀번호 체크
 						
-						var $pwdCompare = $("#updatePwd input[name=checkPwd]");
+						var $pwdCheck2 = $("#updatePwd input[name=checkPwd]");
 						
-						$pwdCompare.keyup(function(){
+						$pwdCheck2.keyup(function(){
 							
-							if($pwdCompare.val().length >= 8){
+							if($pwdCheck2.val().length >= 8){
 							
-				    			if($pwdCheck.val() != $pwdCompare.val()){
+				    			if($pwdCheck.val() != $pwdCheck2.val()){
 				    				
 				    				$("#checkPwd2").show();
 									$("#checkPwd2").css("color", "red").text("입력한 비밀번호가 일치하지 않습니다.");
@@ -215,7 +215,7 @@
 								
 							}
 							
-						})
+						});
 						
 						
 					

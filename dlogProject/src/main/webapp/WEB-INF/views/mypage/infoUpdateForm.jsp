@@ -150,11 +150,54 @@
                                      </tr>
                                     </table>
                                    <br><br>
-                                 <button type="submit" id="infoUpdateBtn" class="btn btn-success" disabled>확인</button>
-                                  
+                                 <button type="submit" id="infoUpdateBtn" class="btn btn-success" data-toggle="modal" data-target="#updateForm" disabled>확인</button>
+                                  <!-- 회원탈퇴 버튼 클릭시 보여질 Modal -->
+                               <div class="modal" id="updateForm">
+                                   <div class="modal-dialog">
+                                       <div class="modal-content">
+                                       
+                                           <!-- Modal Header -->
+                                           <div class="modal-header">
+                                           <h4 class="modal-title">회원탈퇴</h4>
+                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                           </div>
+                                           
+                                           <!-- Modal body -->
+                                           <div class="modal-body" align="center">
+                                           
+                                               <b>
+                                                               수정하시려면 비밀번호를 입력해주세요. <br>   
+                                                               
+                                               </b>
+
+                                               <form action="infoUpdate.my" method="post">
+                                               
+                                                 	  비밀번호 : 
+                                                   <input type="password" name="memberPwd" required>
+                                                   
+                                                   <button type="submit" class="btn btn-danger btn-sm" >탈퇴</button>
+                                                   <button type="button" id="cancle" class="btn btn-dark btn-sm" >취소</button>
+           			                      <script>
+           			                      $('#cancle').click(function(){
+           				                      $( '#updateForm' ).modal("hide");
+           			                    	  
+           			                      });
+           			                    	  
+           			                      </script>
+                                               </form>
+                                           </div>
+                                           
+                                       </div>
+                                   </div>
+                               </div>
+                               
                                 </form>
                                </div>
                                <br><br><br>
+                                
+                               
+                               
+                               
                                <script>
                            		function nicknameCheck2(){
                             		
