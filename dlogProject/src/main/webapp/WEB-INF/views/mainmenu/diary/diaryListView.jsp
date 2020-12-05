@@ -36,17 +36,7 @@ a {
                   <div class="card" style="width:900px; min-height:500px;">
                       <div class="card-body backgroundColor" >
                           <div class="table-responsive">
-                              <!-- 검색영역 -->
-                              <table align="right">
-                                  <tr>
-                                      <td width="60">
-                                          <select name="" id="" style="height: 30px; border: .1px solid lightgrey; border-radius: 4px;">
-                                              <option value="">5줄</option>
-                                              <option value="">10줄</option>
-                                          </select> 
-                                      </td>
-                                  </tr>
-                              </table>
+                              
                               <br><br>
 								
                               <!-- 목록 -->

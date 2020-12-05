@@ -21,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -508,21 +509,20 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("pfUpdateForm.my")
+	@RequestMapping("pfUpdate.my")
 	public String pfDeleteForm(Member m, HttpSession session, Model model) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		int result = mService.pfUpdateForm(m);
 		
-		if(result > 0) { 
-			
-			((Member)session.getAttribute("loginUser")).setProfile(m.getProfile());
-			session.setAttribute("alertMsg", "성공적으로 정보 변경되었습니다.");
+		if(result > 0) {
+			session.setAttribute("alertMsg", "프로필이 변경되었습니다..");
 			return "redirect:infoUpdateForm.my";
 		}else {
-			
-			model.addAttribute("errorMsg", "프로필 삭제 실패");
+			model.addAttribute("errorMsg", "프로필 변경이 실패되었습니다.");
 			return "common/errorPage";
-		} 
+		}
 		
 	  }
 	
@@ -659,24 +659,22 @@ public class MemberController {
 	 }
 	 */
 
-	 @RequestMapping("pwdCheck2.my")
-	 public boolean pwdCheck2(String memberPwd) {
-		 
-		 boolean check = false;
-		 
-		 String pw_chk = "^(?=.*[a-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\\\"+=])[a-z[0-9]$@$!%*?&`~'\\\"+=]{8,15}$";
-		 
-		 Pattern pSymbol = Pattern.compile(pw_chk);
-		 Matcher mSymbol = pSymbol.matcher(memberPwd);
-		 
-		 if(mSymbol.find()) {
-			 check = true;
-		 }
-			return check;
+	 @RequestMapping(value = "pwCheck2.my", method = RequestMethod.POST)
+		@ResponseBody
+		public boolean PwCheck2(String memberPwd) {		
 			
-		 
-	 }
-	
+		 	boolean check = false;	
+
+			String pw_chk = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\"+=])[A-Za-z[0-9]$@$!%*?&`~'\"+=]{8,10}$";
+					
+			Pattern pattern_symbol = Pattern.compile(pw_chk);		
+			Matcher matcher_symbol = pattern_symbol.matcher(memberPwd);		
+			
+			if(matcher_symbol.find()) {	
+				check = true;
+			}		
+			return check;
+		}
 	 
 	 
 	 @RequestMapping("deleteForm.my")

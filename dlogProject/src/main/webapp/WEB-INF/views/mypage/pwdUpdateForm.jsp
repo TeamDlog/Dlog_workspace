@@ -100,29 +100,30 @@
                       <br><br><br><br><br>
           
 					<script>
-					   //새 비밀번호 유효한지 확인
-					   
-					   var $pwdCheck1 = $("#updatePwd input[name=memberPwd]");
-					   
-				       $pwdCheck1.keyup(function pwdCheck1(memberPwd){
-							$.ajax({
-								type:"POST",
-								url: "pwdCheck2.my",
-								data : { memberPwd:memberPwd },
-								success:function(result){	
-									if(result == true){				
-										pwCheck.innerHTML = "유효성 체크 문제 없음"; 				
-									}else{				
-										pwCheck.innerHTML = "유효성 체크 범위 벗어남"; 
-									}
-								},
-								error:function(){
-		    						console.log("아이디 중복체크용 ajax 통신 실패");
-						    	}
-							});	
-							
-						});
+					//비밀번호 실시간 유효성 체크
+					var $pwdCheck1 = $("#updatePwd input[name=memberPwd]");
+					
+						function pwdCheck1(memberPwd){
+						$.ajax({
+							type:"POST",
+							url: "pwdCheck.my",
+							data : { memberPwd: memberPwd },
+							success:function(result){	
+								if(result == true){				
+									pwCheck.innerHTML = "유효성 체크 문제 없음"; 				
+								}else{				
+									pwCheck.innerHTML = "유효성 체크 범위 벗어남"; 
+								}
+							},
+					    	error:function(request,status){
+					    		alert("ajax 통신 실패");
+					    	}
+						})	
 						
+						};
+						
+				
+					
 						
 						
 						

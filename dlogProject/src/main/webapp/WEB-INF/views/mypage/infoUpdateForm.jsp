@@ -13,7 +13,7 @@
     border: solid 1px rgb(207, 202, 202);
     padding: 31px;
     width: 500px;
-    height: 600px;
+    height: 650px;
     border-radius: 50px;
 	}
 
@@ -80,11 +80,14 @@
                                      <table id="infoUpdateFormTable">
 	                                     <div class="card-body">
                                        		<div class="text-center">
-                                                 <img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px">
+                                                 <img alt="" class="rounded-circle mt-4" name="profile" src="${loginUser.profile }" width="90px">
                                              </div>
 	                                     </div>
 	                                     <tr>
-	                                     	<td colspan="3" style="width:170px;" align="center"><input type="button" class="btn btn-secondary btn-sm" onclick="loction.href='pfUpdateForm.my'" value="프로필 삭제"></td>
+	                                     	<td colspan="3" style="width:170px;" align="center"><input type="button" class="btn btn-secondary btn-sm" onclick="location.href='pfUpdate.my'" value="기존 이미지로 변경"></td>
+	                                     </tr>
+	                                     <tr>
+	                                     	<td colspan="3">&nbsp;</td>
 	                                     </tr>
                                         
                                        <tr>
@@ -227,6 +230,34 @@
                         				})
                             		}	
                             	}
+                            		//
+                            		function pfUpdate(){
+                            		
+                            		var $pfUpdate = $("#infoUpdateForm img [name=profile]");
+                            		
+                            			
+                            			$.ajax({
+                        					url:"pfUpdate.my",
+                        					data:{profile:$pfUpdate.val()},
+                        					success:function(result){
+                        						
+                        						if(result == 'success'){
+                                                    
+                                                	alert($pfUpdate.val() + "프로필이 변경되었습니다.");
+                                                	$pfUpdate.focus();
+                                                	
+                                                }else{
+                                                	alert("프로필 변경이 실패되습니다.");
+                                                	
+                                                }
+                        						
+                        					},error:function(){
+                        						console.log("프로필 ajax통신 실패");
+                        					}
+                        				})
+                            			
+                            	}	
+                            		
                             		//
                             	
                            		$('#sendPhoneNumber').click(function(){
