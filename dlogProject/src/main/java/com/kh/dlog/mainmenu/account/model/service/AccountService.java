@@ -8,7 +8,7 @@ import com.kh.dlog.mainmenu.account.model.vo.Account;
 public interface AccountService {
 	
 	
-	ArrayList<Account> selectList();
+	ArrayList<Account> selectList(int diaryMemberNo);
 	
 	int deleteAccount(int bno);
 	
