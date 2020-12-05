@@ -12,9 +12,9 @@ import com.kh.dlog.mainmenu.account.model.vo.Account;
 @Repository
 public class AccountDao {
 	
-	public ArrayList<Account> selectList(SqlSessionTemplate sqlSession){
+	public ArrayList<Account> selectList(SqlSessionTemplate sqlSession, int diaryMemberNo){
 		
-		return (ArrayList)sqlSession.selectList("accountMapper.selectList");
+		return (ArrayList)sqlSession.selectList("accountMapper.selectList", diaryMemberNo);
 	}
 	
 	public int deleteAccount(SqlSessionTemplate sqlSession, int bno) {

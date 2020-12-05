@@ -35,6 +35,7 @@
     	/* 글자색상 */
     	.backgroundColor div{color:${ ca.myColorFont };}
     	.menubarColor li *{color:${ ca.myColorFont };}
+    	.menubarColor span *{color:${ ca.myColorFont };}
     	/* 로고색상 */
     	#logoColor{background:${ca.myColorLogo};}
     	
@@ -106,7 +107,7 @@
                     <div class="header-right">
                         <ul class="clearfix">
                             <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-							        <i class="fas fa-user-friends" id="friend_icon"></i>
+							        <i class="fas fa-user-friends" id="friend_icon" style="color:grey"></i>
 							        <span class="badge gradient-7 badge-pill badge-primary"></span>
 							    </a>
 							    <div class="drop-down fadeIn dropdown-menu" id="friend_list" style="padding: 0px;">
@@ -208,7 +209,7 @@
 							    </div>
 							</li>
                             <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell-outline"></i>
+                                    <i class="mdi mdi-bell-outline" style="color:grey"></i>
                                     <span class="badge badge-pill gradient-2 badge-primary" id="notificationCount"></span>
                                 </a>
                                 <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication" id="notification_list"  style="max-height: 500px; overflow: auto;">
@@ -326,9 +327,6 @@
                                             </li>
                                             
                                             <hr class="my-2">
-                                            <li>
-                                                <a href="page-lock.html"><i class="icon-lock"></i> <span>스크린 잠금</span></a>
-                                            </li>
                                             <li><a href="logout.me"><i class="icon-key"></i> <span>로그아웃</span></a></li>
                                         </ul>
                                     </div>
@@ -354,7 +352,7 @@
                             </a>
                         </li>
                         <!-- 메인메뉴 -->
-                        <li class="nav-label">메인메뉴</li>
+                        <li class="nav-label"><span>메인메뉴</span></li>
                         <li class="menuCalendar">
                             <a href="selectList.ca" aria-expanded="false">
                                 <i class="icon-calender menu-icon"></i><span class="nav-text">캘린더</span>
@@ -381,7 +379,7 @@
                             </a>
                         </li>
                         <!-- 위젯메뉴 -->
-                        <li class="nav-label">위젯메뉴</li>
+                        <li class="nav-label"><span>위젯메뉴</span></li>
                         <li class="menuDday">
                             <a href="main.dd" aria-expanded="false">
                                 <i class="icon-clock menu-icon"></i><span class="nav-text">디데이</span>

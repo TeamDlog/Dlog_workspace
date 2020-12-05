@@ -451,7 +451,7 @@
 	                                <button id="deleteTimetable" type="button" style="float: right;  display: none; margin-right: 15px;" class="btn btn-danger">삭제</button>
 	                                <button id="deleteTimetableSubmit" type="submit" style="float: right; display: none;" class="btn btn-danger">삭제</button>
 	                                <c:if test="${ !empty timetableList }">
-	                                	<button id="resetTimetable"type="button" style="float: right; margin-right: 15px" class="btn btn-danger">초기화</button>
+	                                	<button id="resetTimetable"type="button" style="float: right; margin-right: 15px" class="btn btn-secondary">초기화</button>
 									</c:if>	                                
 	                                <a id="insertTimetable" href="enrollForm.ti" style="float: right; margin-right: 15px;" class="btn btn-success">등록</a>
                                 </c:if>

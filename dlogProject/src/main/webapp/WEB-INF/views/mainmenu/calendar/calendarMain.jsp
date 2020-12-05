@@ -309,7 +309,7 @@
             <h3 style="color:rgb(94, 94, 94); padding-left: 15px; ">캘린더</h3>
         </div>
         <!-- row -->
-        <div class="container-fluid" style="margin-top:15px;">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px;">

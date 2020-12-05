@@ -28,7 +28,7 @@ public class VocaController {
 	public String vocaList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model, HttpSession session) {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		int mno = loginUser.getMemberNo();
+		int mno = loginUser.getDiaryMemberNo();
 		
 		int listCount = vService.selectListCount(mno);
 		
@@ -97,7 +97,7 @@ public class VocaController {
 	public void randomVoca(HttpSession session) {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		int mno = loginUser.getMemberNo();
+		int mno = loginUser.getDiaryMemberNo();
 		
 		Voca v = vService.randomList(mno);
 		

@@ -37,10 +37,10 @@
                         
                         <form action="" method="post" id="update_form">
                        		<input type="hidden" name="memoNo" value="${ m.memoNo }">
-	                        <div align="center" style="width:450px; margin: auto; margin-top:100px;">
+	                        <div align="center" style="width:450px; margin: auto; margin-top:100px; background:transparent;">
 	                            <input type="text" name="memoTitle" value="${ m.memoTitle }" style="width:450px; height:40px; padding:10px;" required><br><br>
 	                            <textarea name="memoContent" style="height:270px; width:450px; padding:10px; resize:none" required>${ m.memoContent }</textarea>
-		                        <div align="right"  style="margin-top:20px;">
+		                        <div align="right"  style="margin-top:20px; background:transparent;">
 			                        <button type="submit" class="btn btn-success" style="margin-right:5px;" onclick="modifyMemo();">수정</button>
 			                        <button type="button" class="btn btn-secondary" onclick="deleteMemo();">삭제</button>
 		                        </div>

@@ -558,8 +558,8 @@ public class MemberController {
 	 @RequestMapping("introInsert.my")
 	 public String introInsert(Member m, HttpSession session, Model model) {
 		 
-		 System.out.println(m.getIntroductionTitle());
-		 System.out.println(m.getIntroductionContent());
+		 //System.out.println(m.getIntroductionTitle());
+		 //System.out.println(m.getIntroductionContent());
 		 
 		 int result = mService.introInsert(m);
 			

@@ -37,10 +37,10 @@
 
 	                        <form action="insert.mo" method="post">
 	                        	<input type="hidden" name="memoWriter" value="${ loginUser.diaryMemberNo }">
-		                        <div align="center" style="width:450px; margin:auto; margin-top:100px;">
+		                        <div align="center" style="width:450px; margin:auto; margin-top:100px; background:transparent;">
 		                            <input type="text" name="memoTitle" placeholder="제목을 입력해주세요" style="width:450px; height:40px; padding:10px;" required><br><br>
 		                            <textarea name="memoContent" placeholder="내용을 입력해주세요" style="height:270px; width:450px; padding:10px; resize:none" required></textarea>
-			                        <div align="right"  style="margin-top:20px;">
+			                        <div align="right"  style="margin-top:20px; background:transparent;">
 				                        <button type="submit" class="btn btn-success">저장</button>
 			                        </div>
 		                        </div>

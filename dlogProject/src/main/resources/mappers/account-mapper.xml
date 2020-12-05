@@ -14,9 +14,9 @@
 		<result column="status" property="status" />		
 	</resultMap>
 	
-	<select id="selectList" resultMap="accountResultSet">
+	<select id="selectList" parameterType="_int" resultMap="accountResultSet">
 		select
-		        account_no
+		          account_no
 		        , account_writer
 		        , account_Item
 		        , to_char(account_Date, 'YYYY-MM-DD') account_Date
@@ -27,6 +27,7 @@
 		        , account_Division
 		    from account
 		    where status='Y'
+		      and account_writer = ${diaryMemberNo}
 		    order 
 		        by account_no desc
 	</select>

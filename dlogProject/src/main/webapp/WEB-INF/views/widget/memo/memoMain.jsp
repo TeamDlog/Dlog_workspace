@@ -30,7 +30,7 @@
         </div>
         <!-- row -->
         <br>
-        <div class="container-fluid" style="margin-top:20px;">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card backgroundColor" style="width:900px; min-height:500px;">

@@ -79,12 +79,12 @@
 	                            <!-- 페이징 -->
 	                            <table align="center">
 	                                <tr>
-	                                    <td width="120">총 게시글 수 <span id="listCount"></span>개</td>
-	                                    <td width="610">
+	                                    <td width="125">총 게시글 수&emsp;<span id="listCount"></span> 개</td>
+	                                    <td width="600">
 	                                        <ul class="pagination justify-content-center">
 	                                        </ul>
 	                                    </td>
-	                                    <td width="120" align="right">
+	                                    <td width="125" align="right">
 	                                    	<c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo }">
 	                                       		<button class="btn btn-success" onclick="location.href='enrollForm.fn';">글쓰기</button>
 	                                        </c:if>
@@ -105,7 +105,7 @@
 		$(function(){
 	 		$("#listArea>tbody").on("click", "tr", function(){
 					if($(this).find("td:eq(1)").next().val() == 'Y' || $(this).find("td:eq(1)").prev().val() == '${loginUser.memberNo}'){
-	 				location.href="detail.fn?fno=" + $(this).find("td:eq(0)").text();
+	 				location.href="detail.fn?fno=" + $(this).find("td:eq(0)").next().val();
 					}else{
 						alert("비공개 글 입니다.");
 					}
@@ -182,7 +182,8 @@
 						var list = "";
 						for(i in result.list){
 		                	list += "<tr>" +
-				                        "<td>" + result.list[i].freenoteNo + "</td>" +
+		                				"<td>" + result.list[i].rownum + "</td>" +
+				                        "<input type='hidden' value='" + result.list[i].freenoteNo + "'>" +
 				                        "<input type='hidden' value='" + result.list[i].memberNo + "'>" +
 				                        "<td class='freenoteTitle'>" + result.list[i].freenoteTitle + "&nbsp;";
 				            if(result.list[i].freenotePrivacy == 'N'){
