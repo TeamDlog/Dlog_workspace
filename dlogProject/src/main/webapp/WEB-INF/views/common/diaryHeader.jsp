@@ -128,7 +128,7 @@
 									                 <c:forEach var="f" items="${ friendList }" varStatus="status">
 										                 <li class="friend_list">
 										                      <div class="friend_list_images">
-										                          <img src="resources/profiles/lunyang.jpeg" class="cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">
+										                          <img src="${ f.friendProfile }" class="cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">
 										                      </div>
 										                      <div class="friend_list_nickname">
 										                          <div class="notification-heading friend_list_nick cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">${ f.friendNickname }</div>

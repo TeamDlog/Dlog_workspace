@@ -34,8 +34,8 @@ public class FriendController {
 		List<Object> send = new ArrayList<>();
 		send.add(friendList);
 		send.add(pi2);
-		session.setAttribute("pi2",pi2);
 		session.setAttribute("friendList",friendList);
+		session.setAttribute("pi2",pi2);
 		return new Gson().toJson(send);
 		
 	}
@@ -80,9 +80,10 @@ public class FriendController {
 	
 	@ResponseBody
 	@RequestMapping(value="accept.fr", produces="text/html; charset=utf-8")
-	public String acceptFriend(Friend f) {
+	public String acceptFriend(Friend f, HttpSession session) {
 		
 		int result = fService.acceptFriend(f);
+		
 		if(result > 0) {
 			return "승낙 성공";
 		}else {
