@@ -30,13 +30,11 @@ public class ReportController {
 	@RequestMapping("adminReportList.ro")
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
 		
-		int listCount = rService.selectListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 		
-		ArrayList<Report> list = rService.selectList(pi);
+		ArrayList<Report> list = rService.selectList();
 		
-		model.addAttribute("pi", pi);
+		
 		model.addAttribute("list",list);
 		
 		return "admin/adminReportList";

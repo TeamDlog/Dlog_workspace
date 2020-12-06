@@ -27,8 +27,8 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public ArrayList<Report> selectList(PageInfo pi) {
-		return rDao.selectList(sqlSession, pi);
+	public ArrayList<Report> selectList() {
+		return rDao.selectList(sqlSession);
 	}
 	
 	@Override

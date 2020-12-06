@@ -68,7 +68,7 @@
 	                        <form action="update.fn" method="post">
 	                        	<input type="hidden" name="freenoteNo" value="${ fn.freenoteNo }">
 	                            <div align="center">
-	                                <input type="text" name="freenoteTitle" placeholder="제목을 작성해주세요" value="${ fn.freenoteTitle }" required>
+	                                <input type="text" name="freenoteTitle" placeholder="제목을 작성해주세요" value="${ fn.freenoteTitle }" required maxlength="20">
 	                            </div>
 	                            <div class="card-body" style="padding-top: 15px;">
 	                                <textarea class="summernote" name="freenoteContent">
@@ -77,7 +77,7 @@
 	                            </div>
 	                            <div class="card-body" style="padding-top: 0px; padding-bottom: 0;">
 	                                <label for="category1"><b>카테고리</b>&emsp;</label>
-	                                <input list="category" name="freenoteCategory" value="${ fn.freenoteCategory }" style="width: 160px;" required>
+	                                <input list="category" name="freenoteCategory" value="${ fn.freenoteCategory }" style="width: 160px;" required maxlength="7">
 	                                <datalist id="category">
 	                                    <c:forEach var="c" items="${ cateList }" >
                                         	<option value="${ c }">${ c }</option>

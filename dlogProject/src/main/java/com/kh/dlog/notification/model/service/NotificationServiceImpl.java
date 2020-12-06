@@ -56,7 +56,7 @@ public class NotificationServiceImpl implements NotificationService {
 	@Override
 	public Notification friendRequestNotify(String loginUserNickname, int friendAccepted) {
 		Notification n = new Notification();
-		n.setNotificationContent(loginUserNickname + "님이 친구 요청하셨습니다.");
+		n.setNotificationContent(loginUserNickname + "님이 친구 요청을 하셨습니다.");
 		n.setNotificationCategory(3);
 		n.setMemberNo(friendAccepted);
 		nDao.insertNotification(sqlSession, n);
@@ -66,7 +66,7 @@ public class NotificationServiceImpl implements NotificationService {
 	@Override
 	public Notification friendAcceptNotify(String loginUserNickname, int friendNo) {
 		Notification n = new Notification();
-		n.setNotificationContent(loginUserNickname + "님이 친구 수락하셨습니다.");
+		n.setNotificationContent(loginUserNickname + "님이 친구 수락을 하셨습니다.");
 		n.setNotificationCategory(4);
 		n.setMemberNo(findFriendOwnerNo(friendNo));
 		nDao.insertNotification(sqlSession, n);

@@ -47,10 +47,10 @@
                           
      					var value="";
      					$.each(friendList, function(i, obj){
-     						value += "<li class='friend_list'>" + 
+     						value += "<li class='friend_list list_will_disapper" + obj.friendNo + "'>" + 
 										"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
 										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
-										"<div class='friend_list_delete'>" + "<button class='friend_delete_DB osageu_ml-23 cursor_to_pointer' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
+										"<div class='friend_list_delete'>" + "<button class='friend_delete_DB osageu_ml-23 cursor_to_pointer' style='outline:0;' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
 									"</li>";
      					})
      					$(".friend_list_ul").append(value);
@@ -145,10 +145,10 @@
                           
      					var value="";
      					$.each(friendList[0], function(i, obj){
-      						value += "<li class='friend_list'>" + 
+      						value += "<li class='friend_list list_will_disapper" + obj.friendNo + "'>" + 
 										"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
 										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
-										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
+										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' style='outline:0;' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
 									"</li>";
       					})
       					$(".friend_list_ul").append(value);
@@ -263,9 +263,17 @@
       			url:"insert.fr",
       			data:{
       				friendAccepted:index,
-      				friendOwner:${loginUser.memberNo}
+      				friendOwner:${loginUser.memberNo},
+					loginUserNickname:'${loginUser.nickname}'
       			},
       			success:function(result){
+      				
+      				// 수락 알림
+      				if(socket && result.n != null){
+						var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+						socket.send(socketMsg);
+					}
+      				
       				alert("친구 요청을 보냈습니다.");
       				$(".will_disapper"+index).remove();
       				

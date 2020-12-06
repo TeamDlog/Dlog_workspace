@@ -107,7 +107,7 @@
                     <div class="header-right">
                         <ul class="clearfix">
                             <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-							        <i class="fas fa-user-friends" id="friend_icon"></i>
+							        <i class="fas fa-user-friends" id="friend_icon" style="color:grey"></i>
 							        <span class="badge gradient-7 badge-pill badge-primary"></span>
 							    </a>
 							    <div class="drop-down fadeIn dropdown-menu" id="friend_list" style="padding: 0px;">
@@ -135,7 +135,7 @@
 										                          <div class="notification-heading friend_list_nick cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">${ f.friendNickname }</div>
 										                      </div>
 										                      <div class="friend_list_delete">
-										                          <button class="friend_delete_DB osageu_ml-23" onclick="deleteFriend(${f.friendNo});">삭제</button>
+										                          <button class="friend_delete_DB osageu_ml-23" style="outline:0;" onclick="deleteFriend(${f.friendNo});">삭제</button>
 										                      </div>
 										                 </li>
 									                 </c:forEach>

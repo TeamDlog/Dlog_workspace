@@ -56,7 +56,7 @@
           <div class="row">
               <div class="col-12">
                   <div class="card" style="width:900px;">
-                      <div class="card-body" >
+                      <div class="card-body backgroundColor" >
                           
                       <!-- 여기다가 작성 -->
                           <div class="introEnroll"> 

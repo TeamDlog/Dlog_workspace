@@ -50,12 +50,12 @@
 	                                        <div id="showUrl1" class="showurl"></div>
 	                                    </div>
 	                                    <div class="photo_insertForm_date photo_insertFom_choice">
-	                                        <div class="photo_enroll_info">날짜 선택</div>
+	                                        <div class="photo_enroll_info" style="background:rgb(132,200,185); color:white;">날짜 선택</div>
 	                                        <input type="date" name="list[0].photoDate" class="photo_enroll_date" onchange="changeColor(0);" required>
 	                                    </div>
 	                                    <div class="photo_insertForm_content photo_insertFom_choice">
-	                                        <div class="photo_enroll_info">내용 작성</div>
-	                                        <input type="text" name="list[0].photoContent" placeholder = "내용을 입력해주세요" class="photo_enroll_content" maxlength="30" required>
+	                                        <div class="photo_enroll_info" style="background:rgb(132,200,185); color:white;">내용 작성</div>
+	                                        <input type="text" name="list[0].photoContent" placeholder = "내용을 입력해주세요" class="photo_enroll_content" maxlength="25" required>
 	                                    </div>
 	                                 </div>
                             	 </div>
@@ -111,8 +111,10 @@
 		
 		// frame 제거
 		removeFrame = function(){
-			$(".photo_outer").children().last().remove();
-			frameCount--;
+			if(frameCount != 0){
+				$(".photo_outer").children().last().remove();
+				frameCount--;
+			}
 		}
 
 		// frame 초기화

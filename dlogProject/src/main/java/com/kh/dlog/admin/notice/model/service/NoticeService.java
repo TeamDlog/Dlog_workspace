@@ -9,7 +9,7 @@ public interface NoticeService {
 		// 1. 공지사항 리스트 조회용 서비스
 		int selectListCount();	
 		
-		ArrayList<Notice> selectList(PageInfo pi);
+		ArrayList<Notice> selectList();
 		
 		// 2. 공지사항 상세조회용 서비스
 		Notice selectNotice(int bno);

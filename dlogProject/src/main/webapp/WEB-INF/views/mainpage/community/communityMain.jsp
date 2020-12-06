@@ -199,7 +199,7 @@
     					$("#pagingArea").html(paging);
     					
     				}else{
-    					$("#listArea").html('조회된 결과가 없습니다.');
+    					$("#listArea").html('<br><br>조회된 결과가 없습니다.');
     				}
     				
     			}, error:function(){

@@ -25,8 +25,8 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public ArrayList<Notice> selectList(PageInfo pi) {
-		return nDao.selectList(sqlSession, pi);
+	public ArrayList<Notice> selectList() {
+		return nDao.selectList(sqlSession);
 	}
 
 	@Override

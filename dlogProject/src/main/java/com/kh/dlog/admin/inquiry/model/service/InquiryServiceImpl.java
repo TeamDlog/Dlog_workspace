@@ -40,8 +40,8 @@ public class InquiryServiceImpl implements InquiryService{
 	}
 
 	@Override
-	public ArrayList<Inquiry> selectList(PageInfo pi) {
-		return iDao.selectList(sqlSession, pi);
+	public ArrayList<Inquiry> selectList() {
+		return iDao.selectList(sqlSession);
 	}
 
 	@Override

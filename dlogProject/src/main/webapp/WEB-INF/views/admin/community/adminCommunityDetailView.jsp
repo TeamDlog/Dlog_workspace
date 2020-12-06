@@ -69,8 +69,8 @@
                             <div id="titleArea">
                                 <table>
                                     <tr>
-                                        <td width="400" style="font-size: 20px;">${ fn.freenoteTitle }</td>
-                                        <td width="500" align="right">
+                                        <td width="650" style="font-size: 20px;">${ fn.freenoteTitle }</td>
+                                        <td width="250" align="right">
 											<button class="btn btn-secondary btn-sm" onclick="history.back();">취소</button>
 	                           			 	<button class="btn btn-primary btn-sm" id="deleteBtn">삭제</button>
 										</td>
