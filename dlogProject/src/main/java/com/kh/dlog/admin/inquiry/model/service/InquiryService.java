@@ -13,7 +13,7 @@ public interface InquiryService {
 	// 1. 1:1문의  리스트 조회용 서비스
 	int selectListCount();	
 	
-	ArrayList<Inquiry> selectList(PageInfo pi);
+	ArrayList<Inquiry> selectList();
 	
 	// 2. 1:1문의 상세조회용 서비스
 	Inquiry selectInquiry(int bno);

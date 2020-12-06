@@ -13,7 +13,7 @@ public interface FaqService {
 		// 1. 게시판 리스트 조회용 서비스
 		int selectListCount();	
 		ArrayList<Faq> serviceMain();
-		ArrayList<Faq> selectList(PageInfo pi);
+		ArrayList<Faq> selectList();
 		
 		// 2. 게시판 상세조회용 서비스
 		int increaseCount(int bno);

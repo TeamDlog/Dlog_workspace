@@ -103,14 +103,12 @@ public class InquiryController {
 		//알림서비스
 		session.setAttribute("notification", nService.inquiryEmailNotify(i.getInquiryWriter()));
 		
-		int listCount = iService.selectListCount();
+	
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
-		
-		ArrayList<Inquiry> list = iService.selectList(pi);
+		ArrayList<Inquiry> list = iService.selectList();
 		
 				
-		model.addAttribute("pi", pi);
+		
 		model.addAttribute("list",list);
 		
 		return "admin/adminInquiryList";
@@ -119,13 +117,11 @@ public class InquiryController {
 	@RequestMapping("adminInquiryList.io")
 	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
 		
-		int listCount = iService.selectListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 		
-		ArrayList<Inquiry> list = iService.selectList(pi);
+		ArrayList<Inquiry> list = iService.selectList();
 		
-		model.addAttribute("pi", pi);
+		
 		model.addAttribute("list",list);
 		
 		return "admin/adminInquiryList";

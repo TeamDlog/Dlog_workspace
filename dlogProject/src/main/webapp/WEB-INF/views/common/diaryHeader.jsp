@@ -135,7 +135,7 @@
 										                          <div class="notification-heading friend_list_nick cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">${ f.friendNickname }</div>
 										                      </div>
 										                      <div class="friend_list_delete">
-										                          <button class="friend_delete_DB osageu_ml-23" onclick="deleteFriend(${f.friendNo});">삭제</button>
+										                          <button class="friend_delete_DB osageu_ml-23" style="outline:0;" onclick="deleteFriend(${f.friendNo});">삭제</button>
 										                      </div>
 										                 </li>
 									                 </c:forEach>

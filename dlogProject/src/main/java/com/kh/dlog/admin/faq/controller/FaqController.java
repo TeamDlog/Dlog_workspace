@@ -80,13 +80,11 @@ public class FaqController {
 	@RequestMapping("adminFaqList.fo")
 	public String adminSelectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
 		
-		int listCount = fService.selectListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		
-		ArrayList<Faq> list = fService.selectList(pi);
+		ArrayList<Faq> list = fService.selectList();
 		
-		model.addAttribute("pi", pi);
+		
 		model.addAttribute("list",list);
 		
 		return "admin/adminFaqList";

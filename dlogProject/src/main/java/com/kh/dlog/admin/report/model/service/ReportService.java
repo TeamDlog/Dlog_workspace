@@ -12,7 +12,7 @@ public interface ReportService {
 		// 1. 신고  리스트 조회용 서비스
 		int selectListCount();	
 		
-		ArrayList<Report> selectList(PageInfo pi);
+		ArrayList<Report> selectList();
 		
 		// 2. 신고 상세조회용 서비스
 		Report selectReport(int bno);

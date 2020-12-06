@@ -166,38 +166,41 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                    <form action="https://script.google.com/macros/s/AKfycbyisfe3KmAnGanCnb9ZINuseLs_SZRY4sGifnPIog/exec" id="contactForm" name="sentMessage" novalidate="novalidate">
+                    <form action="https://script.google.com/macros/s/AKfycbyisfe3KmAnGanCnb9ZINuseLs_SZRY4sGifnPIog/exec" class="gform" method="POST" data-email="dhwkdtjr123@naver.com">
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                 <label>Name</label>
-                                <input class="form-control" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name." />
+                                <input class="form-control" name="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name." />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                 <label>Email Address</label>
-                                <input class="form-control" id="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address." />
+                                <input class="form-control" name="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address." />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                 <label>Phone Number</label>
-                                <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number." />
+                                <input class="form-control" name="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number." />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                 <label>Message</label>
-                                <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
+                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <br />
-                        <div id="success"></div>
-                        <div class="form-group"><button class="btn btn-primary" id="sendMessageButton" type="submit" style="height: 50px; font-size: 20px;">&emsp;Send&emsp;</button></div>
+                        <div class="form-group"><button class="btn btn-primary" id="sendMessageButton" style="height: 50px; font-size: 20px;">&emsp;Send&emsp;</button></div>
+                        <div style="display:none" class="thankyou_message">
+							<!-- You can customize the thankyou message by editing the code below -->
+							<h4> 연락해주셔서 감사합니다! 빠른 시일내에 답변을 드리겠습니다.</h4>
+						</div>
                     </form>
                 </div>
             </div>
@@ -410,6 +413,16 @@
         </div>
     </div>
     
+    <script data-cfasync="false" type="text/javascript"
+		src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+		
+	<script>
+		$(".form-control").keyup(function(){
+			$("#sendMessageButton").attr("disabled",false);
+			$(".thankyou_message").css("display","none");
+		})
+	</script>
+	
     <jsp:include page="../common/mainFooter.jsp" />
 </body>
 </html>

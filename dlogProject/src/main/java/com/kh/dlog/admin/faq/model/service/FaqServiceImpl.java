@@ -25,8 +25,8 @@ public class FaqServiceImpl implements FaqService{
 	}
 
 	@Override
-	public ArrayList<Faq> selectList(PageInfo pi) {
-		return fDao.selectList(sqlSession, pi);
+	public ArrayList<Faq> selectList() {
+		return fDao.selectList(sqlSession);
 	}
 	@Override
 	public ArrayList<Faq> serviceMain() {

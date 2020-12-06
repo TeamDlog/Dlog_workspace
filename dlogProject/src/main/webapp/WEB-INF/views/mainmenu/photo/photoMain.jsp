@@ -154,14 +154,18 @@
 					$(".removeBox").css("display","none");
 				}
 			})
-	
+			
+			$(".removeBox").click(function(){
+				$(".photo_main").attr("data-toggle","");
+			})
+			
 			$(".photo_main_photo>img").click(function(){
 	
 				if($(".deleteButton").html()=="확인"){
-					if($(this).prev().attr("checked")){
-						$(this).prev().attr("checked",false);
+					if($(this).prev().prop("checked")){
+						$(this).prev().prop("checked",false);
 					}else{
-						$(this).prev().attr("checked",true);
+						$(this).prev().prop("checked",true);
 					}
 				}
 	
