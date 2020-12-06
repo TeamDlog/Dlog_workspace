@@ -107,7 +107,7 @@
                     <div class="header-right">
                         <ul class="clearfix">
                             <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-							        <i class="fas fa-user-friends" id="friend_icon" style="color:grey"></i>
+							        <i class="fas fa-user-friends" id="friend_icon"></i>
 							        <span class="badge gradient-7 badge-pill badge-primary"></span>
 							    </a>
 							    <div class="drop-down fadeIn dropdown-menu" id="friend_list" style="padding: 0px;">
@@ -127,15 +127,15 @@
 							            		<input type="hidden" name="diaryMemberNo" id="diaryMemberNo" value="">
 									            <ul class="friend_list_ul">
 									                 <c:forEach var="f" items="${ friendList }" varStatus="status">
-										                 <li class="friend_list">
+										                 <li class="friend_list list_will_disapper${ f.friendNo }">
 										                      <div class="friend_list_images">
 										                          <img src="${ f.friendProfile }" class="cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">
 										                      </div>
 										                      <div class="friend_list_nickname">
 										                          <div class="notification-heading friend_list_nick cursor_to_pointer" onclick="visitFriend(${f.friendOwner},${f.friendAccepted });">${ f.friendNickname }</div>
 										                      </div>
-										                      <div class="friend_list_delete" align="right">
-										                          <button class="friend_delete_DB" onclick="deleteFriend(${f.friendNo});">삭제</button>
+										                      <div class="friend_list_delete">
+										                          <button class="friend_delete_DB osageu_ml-23" onclick="deleteFriend(${f.friendNo});">삭제</button>
 										                      </div>
 										                 </li>
 									                 </c:forEach>
@@ -143,38 +143,6 @@
 								            </form>
 							            </div>
 
-							            <div class="bootstrap-pagination" align="center">
-							            	<input type="hidden" value="" id="this_page_friend_currentPage">
-							            	<c:if test="${ friendList ne null }">
-							             		<input type="hidden" value="${ friendList[0].friendOwner }" id="friend_owner">
-							            	</c:if>
-							                <nav>
-							                    <ul class="pagination justify-content-center friend_pagination">
-							                    	<c:if test="${ !empty friendList }">
-														<li class="page-item pre-page-moving-li">
-															<a class="page-link page-moving pre-page-moving hovered">&lt;</a>
-														</li>
-													</c:if>
-													<c:forEach var="p" begin="${ pi2.startPage }" end="${ pi2.endPage }">
-														<li class="page-item page-num"><a class="page-link" onclick="pageMove(${p});">${ p }</a></li>
-													</c:forEach>
-													<c:if test="${ !empty friendList }">
-														<c:choose>
-															<c:when test="${ friendList.size() <= 5}">
-																<li class="page-item next-page-moving-li disabled">
-																	<a class="page-link page-moving next-page-moving hovered">&gt;</a>
-																</li>
-															</c:when>
-															<c:otherwise>
-																<li class="page-item next-page-moving-li">
-																	<a class="page-link page-moving next-page-moving hovered">&gt;</a>
-																</li>
-															</c:otherwise>
-														</c:choose>
-													</c:if>
-							                    </ul>
-							                </nav>
-							            </div>
 							        </div>
 
 							        <div class="dropdown-content-body" id="friend_request_outer">

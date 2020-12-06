@@ -31,25 +31,22 @@ public class FriendController {
 	
 	@ResponseBody
 	@RequestMapping(value="selectList.fr", produces="application/json; charset=utf-8")
-	public String selectFriendList(int currentPage, int friendOwner, Model model, HttpSession session) {
+	public String selectFriendList(int friendOwner, Model model, HttpSession session) {
 		
-		int friendListCount = fService.selectFriendListCount(friendOwner);
-		PageInfo pi2 = Pagination.getPageInfo(friendListCount, currentPage, 3, 5);
-		ArrayList<Friend> friendList = fService.selectFriendList(friendOwner, pi2);
-		List<Object> send = new ArrayList<>();
-		send.add(friendList);
-		send.add(pi2);
+		ArrayList<Friend> friendList = fService.selectFriendList(friendOwner);
 		session.setAttribute("friendList",friendList);
-		session.setAttribute("pi2",pi2);
-		return new Gson().toJson(send);
+		return new Gson().toJson(friendList);
 		
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="delete.fr", produces="text/html; charset=utf-8")
-	public String deleteFriend(int friendNo) {
+	public String deleteFriend(int friendNo, HttpSession session) {
 		
 		int result = fService.deleteFriend(friendNo);
+		Member m = (Member)session.getAttribute("loginUser");
+		ArrayList<Friend> friendList = fService.selectFriendList(m.getMemberNo());
+		session.setAttribute("friendList",friendList);
 		if(result > 0) {
 			return "삭제 성공";
 		}else {

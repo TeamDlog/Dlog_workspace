@@ -288,9 +288,7 @@ public class MemberController {
 		Voca v = vService.randomList(loginUser.getMemberNo());
 		
 		// friend session 넣기
-		int friendListCount = fService.selectFriendListCount(loginUser.getMemberNo());
-		PageInfo pi2 = Pagination.getPageInfo(friendListCount, currentPage, 3, 5);
-		ArrayList<Friend> friendList = fService.selectFriendList(loginUser.getMemberNo(), pi2);
+		ArrayList<Friend> friendList = fService.selectFriendList(loginUser.getMemberNo());
 		
 		// request friendList
 		ArrayList<Friend> requestFriend = fService.requestFriend(loginUser.getMemberNo());
@@ -328,8 +326,7 @@ public class MemberController {
 				// diaryMemberNo 추가한 로그인유저 객체 세션에 보관
 				session.setAttribute("loginUser", loginUser);
 				
-				// friend, memoWidget
-				session.setAttribute("pi2",pi2);
+				// friend session
 				session.setAttribute("friendList",friendList);
 				session.setAttribute("requestFriend", requestFriend);
 				

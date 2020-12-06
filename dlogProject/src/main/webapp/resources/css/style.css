@@ -488,9 +488,6 @@ input:checked + .slider:before {
   	width: 150px;
   	padding-top: 12px;
 }
-.friend_list_delete{
-	margin-left:17px;
-}
 .friend_request_images{
 	width:55px;
 	height:100%;

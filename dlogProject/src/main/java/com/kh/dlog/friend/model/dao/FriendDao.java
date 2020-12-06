@@ -17,11 +17,8 @@ public class FriendDao {
 		return sqlSession.selectOne("friendMapper.selectFriendListCount", friendOwner);
 	}
 	
-	public ArrayList<Friend> selectFriendList(SqlSessionTemplate sqlSession, int friendOwner, PageInfo pi){
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-		int limit = pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		return (ArrayList)sqlSession.selectList("friendMapper.selectFriendList", friendOwner, rowBounds);
+	public ArrayList<Friend> selectFriendList(SqlSessionTemplate sqlSession, int friendOwner){
+		return (ArrayList)sqlSession.selectList("friendMapper.selectFriendList", friendOwner);
 	}
 	
 	public int deleteFriend(SqlSessionTemplate sqlSession, int friendNo) {

@@ -9,7 +9,7 @@ import com.kh.dlog.member.model.vo.Member;
 public interface FriendService {
 
 	int selectFriendListCount(int friendOwner);
-	ArrayList<Friend> selectFriendList(int friendOwner, PageInfo pi);
+	ArrayList<Friend> selectFriendList(int friendOwner);
 	int deleteFriend(int friendNo);
 	ArrayList<Friend> searchFriend(Member m);
 	ArrayList<Member> findFriend(Member m);

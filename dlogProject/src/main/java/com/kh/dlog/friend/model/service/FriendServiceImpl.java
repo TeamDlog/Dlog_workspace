@@ -26,8 +26,8 @@ public class FriendServiceImpl implements FriendService{
 	}
 	
 	@Override
-	public ArrayList<Friend> selectFriendList(int friendOwner, PageInfo pi) {
-		return fDao.selectFriendList(sqlSession, friendOwner, pi);
+	public ArrayList<Friend> selectFriendList(int friendOwner) {
+		return fDao.selectFriendList(sqlSession, friendOwner);
 	}
 
 	@Override

@@ -46,7 +46,7 @@
 	                                </div>
 	                            	<div id="calendar_enroll_event">
 	                                	<div>시작 시간 : <input class="cal_time cal_time_begin" type="time" name="calendarBeginTime" required></div>
-	                                	<div>종료 시간 : <input class="cal_time cal_time_end" type="time" name="calendarEndTime" required></div>
+	                                	<div>종료 시간 : <input class="cal_time cal_time_end" type="time" name="calendarEndTime" onchange="confirmDate3();" disabled required></div>
 	                                	<div>하루 종일 : <input id="allDay" type="checkbox"></div>
 	                                	<div>제목 : <input type="text" name="calendarTitle" placeholder="제목을 입력해주세요" maxlength="8" required></div>
 	                                	<br>
@@ -80,6 +80,7 @@
             	if($(this).prop("checked")==true){
             		$(".cal_time_begin").val("00:00");
             		$(".cal_time_end").val("00:00");
+            		$(".cal_time").attr("disabled",false);
             	}else{
             		$(".cal_time").attr("disabled",false);
             		$(".cal_time_begin").val("");
@@ -99,8 +100,24 @@
             	$("#calendarEndDate").attr("disabled",false);
             })
             
-            // 시작, 종료일 조건
+            $(".cal_time_begin").change(function(){
+            	$(".cal_time_end").attr("disabled",false);
+            })
+            
+            // 날짜, 시간 조건
             confirmDate = function(){
+            	
+            	var bt = $(".cal_time_begin").val();
+            	var et = $(".cal_time_end").val();
+            	
+            	var date1 = new Date(1970, 1, 1, bt.substring(0,2), bt.substring(3,5), 0);
+            	var date2 = new Date(1970, 1, 1, et.substring(0,2), et.substring(3,5), 0);
+            	
+            	if((date2-date1) < 0 ){
+            		alert("종료 시간은 시작 시간보다 커야합니다.");
+            		return false;
+            	}
+            	
             	if(parse($("#calendarEndDate").val()).getMonth() != parse($("#calendarBeginDate").val()).getMonth()){
 	            	alert("시작과 끝은 같은 달이어야 합니다.");
 	            	return false;
@@ -126,6 +143,20 @@
             	}else if(parse($("#calendarEndDate").val()).getDate() - parse($("#calendarBeginDate").val()).getDate() > 9){
 	            	alert("일정은 최대 10일까지 등록 가능합니다.");
 	            	$("#calendarEndDate").val("");
+            	}
+            }
+            
+            // 시작, 종료일 조건
+            confirmDate3 = function(){
+            	var bt = $(".cal_time_begin").val();
+            	var et = $(".cal_time_end").val();
+            	
+            	var date1 = new Date(1970, 1, 1, bt.substring(0,2), bt.substring(3,5), 0);
+            	var date2 = new Date(1970, 1, 1, et.substring(0,2), et.substring(3,5), 0);
+            	
+            	if((date2-date1) < 0 ){
+            		alert("종료 시간은 시작 시간보다 커야합니다.");
+            		$(".cal_time_end").val("");
             	}
             }
             
