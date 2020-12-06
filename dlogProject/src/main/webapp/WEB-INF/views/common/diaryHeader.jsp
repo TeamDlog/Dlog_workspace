@@ -123,7 +123,7 @@
 							                </div>
 							            </div>
 							            <div class="friend_list_height">
-							            	<form id="goToFriend" action="visitFriend.fr" method="post">
+							            	<form id="goToFriend" action="visitFriend.fr" method="post" onSubmit="return false;">
 							            		<input type="hidden" name="diaryMemberNo" id="diaryMemberNo" value="">
 									            <ul class="friend_list_ul">
 									                 <c:forEach var="f" items="${ friendList }" varStatus="status">

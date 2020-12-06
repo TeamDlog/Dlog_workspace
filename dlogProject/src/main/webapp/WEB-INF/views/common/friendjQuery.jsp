@@ -283,7 +283,9 @@
 				send = accept;
 			}
 			$("#diaryMemberNo").val(send);
+			$("#goToFriend").attr("onSubmit","");
 			$("#goToFriend").submit();
+			
 		}
 				
 		
