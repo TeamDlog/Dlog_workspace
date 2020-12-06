@@ -285,15 +285,15 @@ public class MemberController {
 		Member loginUser = mService.loginMember(m);
 		ArrayList<Member> list = mService.selectMemberList();
 		
-		Voca v = vService.randomList(loginUser.getMemberNo());
-		
-		// friend session 넣기
-		ArrayList<Friend> friendList = fService.selectFriendList(loginUser.getMemberNo());
-		
-		// request friendList
-		ArrayList<Friend> requestFriend = fService.requestFriend(loginUser.getMemberNo());
-		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
+			
+			Voca v = vService.randomList(loginUser.getMemberNo());
+			
+			// friend session 넣기
+			ArrayList<Friend> friendList = fService.selectFriendList(loginUser.getMemberNo());
+			
+			// request friendList
+			ArrayList<Friend> requestFriend = fService.requestFriend(loginUser.getMemberNo());
 			
 			if(loginUser.getMemberNo() != 1) {
 				
