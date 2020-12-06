@@ -23,6 +23,9 @@
             border-radius: 30px;
             float: right;
             }
+        .toggleBG:hover{
+        	cursor:pointer;
+        }
         .toggleFG{
             background: #FFFFFF; 
             width: 15px;
@@ -31,12 +34,19 @@
              border-radius: 15px; 
              position: relative; 
              left: 0px;}
+        .toggleFG:hover{
+        	cursor:pointer;
+        }
         #myColor input[type=color]{
             border: none;
             madding:0px;
             margin:0px;
             width: 100px;
             height: 30px;
+        }
+        
+        #myColor input[type=color]:hover{
+        	cursor:pointer;
         }
         
     	
