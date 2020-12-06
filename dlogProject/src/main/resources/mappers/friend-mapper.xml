@@ -44,6 +44,7 @@
 		  join member m on(f.friend_accepted=m.member_no)
 		 where (friend_owner = #{friendOwner} or friend_accepted = #{friendOwner})
 		   and friend_status = 'Y'
+		   and m.status = 'Y'
 		 order 
 		    by friend_no
 	</select>
@@ -67,6 +68,7 @@
 				  join member m on(f.friend_accepted=m.member_no)
 				 where (friend_owner = #{friendOwner} or friend_accepted = #{friendOwner})
 				   and friend_status = 'Y'
+				   and m.status = 'Y'
 				 order 
 				    by friend_no)
 	</select>
@@ -96,6 +98,7 @@
 		  join member m on(f.friend_accepted=m.member_no)
 		 where (friend_owner = #{memberNo} or friend_accepted = #{memberNo})
 		   and friend_status = 'Y'
+		   and m.status = 'Y'
 		 order 
 		    by friend_no)
 	 where friend_nickname like '%'|| #{nickname} ||'%'
@@ -125,6 +128,7 @@
 		  join member m on (member_no = friend_owner)
 		 where friend_accepted = #{friendAccepted}
 		   and f.friend_status = 'N'
+		   and m.status = 'Y'
 	</select>
 	
 	<update id="acceptFriend"
