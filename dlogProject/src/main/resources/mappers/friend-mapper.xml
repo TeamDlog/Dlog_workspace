@@ -112,6 +112,7 @@
 		                         where (friend_owner = #{memberNo} or friend_accepted = #{memberNo}))
 		   and member_no not in (1, #{memberNo})
 		   and nickname like '%' || #{nickname} || '%'
+		   and status = 'Y'
 		 order
 		    by member_no
 	</select>

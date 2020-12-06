@@ -47,7 +47,7 @@
                           
      					var value="";
      					$.each(friendList, function(i, obj){
-     						value += "<li class='friend_list'>" + 
+     						value += "<li class='friend_list list_will_disapper" + obj.friendNo + "'>" + 
 										"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
 										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
 										"<div class='friend_list_delete'>" + "<button class='friend_delete_DB osageu_ml-23 cursor_to_pointer' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
@@ -145,7 +145,7 @@
                           
      					var value="";
      					$.each(friendList[0], function(i, obj){
-      						value += "<li class='friend_list'>" + 
+      						value += "<li class='friend_list list_will_disapper" + obj.friendNo + "'>" + 
 										"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
 										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
 										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
