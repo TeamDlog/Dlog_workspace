@@ -18,13 +18,10 @@ public class ReportDao {
 		return sqlSession.selectOne("reportMapper.selectListCount");
 	}
 	
-	public ArrayList<Report> selectList(SqlSessionTemplate sqlSession, PageInfo pi){
-		int offset = (pi.getCurrentPage() - 1)* pi.getBoardLimit();
-		int limit = pi.getBoardLimit();
+	public ArrayList<Report> selectList(SqlSessionTemplate sqlSession){
 		
-		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("reportMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("reportMapper.selectList");
 	}
 	
 	public Report selectReport(SqlSessionTemplate sqlSession, int bno) {

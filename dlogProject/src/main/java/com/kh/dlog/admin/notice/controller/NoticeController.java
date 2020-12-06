@@ -69,13 +69,10 @@ public class NoticeController {
 	@RequestMapping("adminNoticeList.no")
 	public String adminSelectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
 		
-		int listCount = nService.selectListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		
-		ArrayList<Notice> list = nService.selectList(pi);
+		ArrayList<Notice> list = nService.selectList();
 		
-		model.addAttribute("pi", pi);
 		model.addAttribute("list",list);
 		
 		return "admin/adminNoticeList";

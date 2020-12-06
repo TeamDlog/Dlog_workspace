@@ -21,13 +21,10 @@ public class FaqDao {
 		return (ArrayList)sqlSession.selectList("faqMapper.serviceMain");
 	}
 	
-	public ArrayList<Faq> selectList(SqlSessionTemplate sqlSession, PageInfo pi){
-		int offset = (pi.getCurrentPage() - 1)* pi.getBoardLimit();
-		int limit = pi.getBoardLimit();
+	public ArrayList<Faq> selectList(SqlSessionTemplate sqlSession){
 		
-		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("faqMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("faqMapper.selectList");
 	}
 	public int increaseCount(SqlSessionTemplate sqlSession, int bno) {
 		return sqlSession.update("faqMapper.increaseCount", bno);

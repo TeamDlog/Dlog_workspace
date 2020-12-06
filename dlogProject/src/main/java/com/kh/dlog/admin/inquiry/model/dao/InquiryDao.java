@@ -16,13 +16,10 @@ public class InquiryDao {
 		return sqlSession.selectOne("inquiryMapper.selectListCount");
 	}
 	
-	public ArrayList<Inquiry> selectList(SqlSessionTemplate sqlSession, PageInfo pi){
-		int offset = (pi.getCurrentPage() - 1)* pi.getBoardLimit();
-		int limit = pi.getBoardLimit();
+	public ArrayList<Inquiry> selectList(SqlSessionTemplate sqlSession){
+	
 		
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		return (ArrayList)sqlSession.selectList("inquiryMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("inquiryMapper.selectList");
 	}
 	
 	public Inquiry selectInquiry(SqlSessionTemplate sqlSession, int bno) {
