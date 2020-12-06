@@ -47,14 +47,14 @@
                              <div >
                                  <input type="text" id="title" name="diaryTitle" style="width:680px; height: 35px; border: .5px solid lightgrey; border-radius: 4px; margin-left:30px; " placeholder="&nbsp;제목을 입력해주세요" value="${dn.diaryTitle}" required>
                              </div>
-                             <div class="card-body">
+                             <div class="card-body"  >
                                  <textarea class="summernote" name="diaryContent" required>
                                  	${dn.diaryContent }
                                  </textarea>
                              </div>
                          <div align="right">
-                             <button type="submit" class="btn btn-primary btn-sm">등록</button>
-                             <button onclick="history.back();" class="btn btn-dark btn-sm">취소</button>
+                             <button type="submit" class="btn btn-success btn-sm">등록</button>
+                              <a href="list.di" class="btn btn-secondary btn-sm">취소</a>
                          </div>
                          </form>
                                                        

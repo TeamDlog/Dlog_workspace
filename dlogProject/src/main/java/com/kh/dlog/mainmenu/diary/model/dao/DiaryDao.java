@@ -12,12 +12,12 @@ import com.kh.dlog.mainmenu.diary.model.vo.Diary;
 @Repository
 public class DiaryDao {
 
-	public int selectListCount(SqlSessionTemplate sqlSession) {
+	public int selectListCount(SqlSessionTemplate sqlSession,int diaryMemberNo) {
 		
-		return sqlSession.selectOne("diaryMapper.selectListCount");
+		return sqlSession.selectOne("diaryMapper.selectListCount", diaryMemberNo);
 	}
 	
-	public ArrayList<Diary> selectList(SqlSessionTemplate sqlSession, PageInfo pi){
+	public ArrayList<Diary> selectList(SqlSessionTemplate sqlSession, PageInfo pi, int diaryMemberNo){
 	
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		
@@ -25,7 +25,7 @@ public class DiaryDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("diaryMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("diaryMapper.selectList",diaryMemberNo, rowBounds);
 	}
 	
 	public int insertDiary(SqlSessionTemplate sqlSession, Diary d) {

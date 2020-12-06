@@ -46,16 +46,16 @@
                          <input type="hidden" name="diaryWriter" value="${loginUser.memberNo }">
 	                            
                         	 <div>
-                                 <input type="text" name="diaryTitle" style="width:680px; height: 35px; border: .5px solid lightgrey; border-radius: 4px; margin-left:30px; " placeholder="&nbsp;제목을 입력해주세요" required>
+                                 <input type="text" name="diaryTitle" style="width:680px; height: 35px; border: .5px solid lightgrey; border-radius: 4px; margin-left:30px; " placeholder="&nbsp;제목을 입력해주세요" required >
                              </div>
                              <div class="card-body" style="width:88%">
                                  <textarea class="summernote" name="diaryContent" required>
                                  </textarea>
                              </div>
                          <div align="right">
-                             <button type="submit" class="btn btn-success btn-sm"  onclick="insert(this.form)">등록</button>
-                             <button onclick="history.back();" class="btn btn-secondary btn-sm">취소</button>
-                         </div>
+                             <button class="btn btn-success btn-sm"  onclick="insert(this.form)">등록</button>
+                             <a href="list.di" class="btn btn-secondary btn-sm">취소</a>
+                          </div>
                          </form>
                         
                      </div>

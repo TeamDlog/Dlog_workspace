@@ -76,7 +76,7 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                        	<td colspan="3"><p id="pwCheck" style="font-size:0.6em;"></p></td>
+                                        	<td colspan="3"><div id="pwCheck" style="font-size:1em;"></div></td>
                                         </tr>
                                         <tr>
                                             <td style="font-size:12px;"><br>비밀번호 확인 : &nbsp;&nbsp;&nbsp; </td>
@@ -84,7 +84,7 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                        	<td colspan="3" id="checkPwd2"><div id="checkPwd2" style="font-size:0.6em;"></div></td>
+                                        	<td colspan="3" id="checkPwd2"><div id="checkPwd2" style="font-size:1em;"></div></td>
                                         </tr>
                                         <tr align="center">
                                             <td colspan="3">
@@ -101,26 +101,29 @@
           
 					<script>
 					//비밀번호 실시간 유효성 체크
+					
 					var $pwdCheck1 = $("#updatePwd input[name=memberPwd]");
 					
-						function pwdCheck1(memberPwd){
-						$.ajax({
-							type:"POST",
-							url: "pwdCheck.my",
-							data : { memberPwd: memberPwd },
-							success:function(result){	
-								if(result == true){				
-									pwCheck.innerHTML = "유효성 체크 문제 없음"; 				
-								}else{				
-									pwCheck.innerHTML = "유효성 체크 범위 벗어남"; 
-								}
-							},
-					    	error:function(request,status){
-					    		alert("ajax 통신 실패");
-					    	}
-						})	
-						
-						};
+					$pwdCheck1.keyup(function(){
+    				 $.ajax({
+	                     type:"POST",
+	                     url: "pwdCheck2.my",
+	                     data : { "memberPwd":$pwdCheck1.val()},
+	                     success:function(result){   
+	                        if(result == true){            
+	                        	$("#pwCheck").show();
+								$("#pwCheck").css("color", "green").text("유효한 비밀번호입니다.");
+								$("#updatePwdBtn").removeAttr("disabled");           
+	                        }else{            
+	                        	$("#pwCheck").show();
+								$("#pwCheck").css("color", "red").text("유효하지 않는 비밀번호입니다.");
+	                        }
+	                     },
+	                      error:function(request,status){
+	                         alert("ajax 통신 실패");
+	                      }
+	                  })   
+					});	
 						
 				
 					

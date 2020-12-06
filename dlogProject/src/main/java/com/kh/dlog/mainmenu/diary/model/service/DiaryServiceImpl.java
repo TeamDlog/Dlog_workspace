@@ -20,15 +20,15 @@ public class DiaryServiceImpl implements DiaryService{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int selectListCount() {
+	public int selectListCount(int diaryMemberNo) {
 		
-		return dDao.selectListCount(sqlSession);
+		return dDao.selectListCount(sqlSession, diaryMemberNo);
 	}
 	
 
 	@Override
-	public ArrayList<Diary> selectList(PageInfo pi) {
-		return dDao.selectList(sqlSession, pi);
+	public ArrayList<Diary> selectList(PageInfo pi, int diaryMemberNo) {
+		return dDao.selectList(sqlSession, pi, diaryMemberNo);
 	}
 
 	@Override

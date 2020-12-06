@@ -84,8 +84,8 @@
                                  <hr>
                  
                                  <div align="right" >
-                                     <a onclick="location.href='delete.di?dno=${dn.diaryNo}'" class="btn btn-danger btn-sm">삭제</a>
                                      <a onclick="location.href='updateForm.di?dno=${dn.diaryNo}'" class="btn btn-success btn-sm">수정</a>
+                                     <a onclick="location.href='delete.di?dno=${dn.diaryNo}'" class="btn btn-danger btn-sm">삭제</a>
                                      <a href="list.di" class="btn btn-secondary btn-sm">목록</a>
                                  </div>
                                  

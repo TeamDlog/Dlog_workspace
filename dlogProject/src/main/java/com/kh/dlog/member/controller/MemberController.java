@@ -660,7 +660,7 @@ public class MemberController {
 	 }
 	 */
 
-	 @RequestMapping(value = "pwCheck2.my", method = RequestMethod.POST)
+	 @RequestMapping("pwdCheck2.my")
 		@ResponseBody
 		public boolean PwCheck2(String memberPwd) {		
 			

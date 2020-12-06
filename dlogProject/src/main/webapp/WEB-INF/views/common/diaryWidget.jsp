@@ -32,9 +32,12 @@
 								<p class="text-muted" style="font-weight:bolder;">${friendInfo.introductionTitle }</p>
                         	</c:otherwise>
                         </c:choose>
-                        <c:if test="${ introductionTitle == null}">
-                        <p class="text-muted" style="font-weight:bolder;">저장된 소개글이 없습니다.</p>
+                        <c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo and loginUser.introductionTitle == null}">
+                        <p class="text-muted" style="font-weight:bolder;">저장된 소개글이 <br>없습니다.</p>
                         </c:if>
+                       <c:if test="${ loginUser.memberNo ne loginUser.diaryMemberNo and friendInfo.introductionTitle == null}">
+                        <p class="text-muted" style="font-weight:bolder;">저장된 소개글이 <br>없습니다.</p>
+                        </c:if> 
                     </div>
                 </div>
             </div>

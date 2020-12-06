@@ -7,8 +7,8 @@ import com.kh.dlog.mainmenu.diary.model.vo.Diary;
 
 public interface DiaryService {
 	
-	int selectListCount();
-	ArrayList<Diary> selectList(PageInfo pi);
+	int selectListCount(int diaryMemberNo);
+	ArrayList<Diary> selectList(PageInfo pi,int diaryMemberNo);
 	
 	int insertDiary(Diary d);
 	

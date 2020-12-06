@@ -14,6 +14,7 @@ import com.kh.dlog.common.model.vo.PageInfo;
 import com.kh.dlog.common.template.Pagination;
 import com.kh.dlog.mainmenu.diary.model.service.DiaryService;
 import com.kh.dlog.mainmenu.diary.model.vo.Diary;
+import com.kh.dlog.member.model.vo.Member;
 
 
 @Controller
@@ -23,13 +24,17 @@ public class DiaryController {
 	private DiaryService dService;
 	
 	@RequestMapping("list.di")
-	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
+	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model, HttpSession session) {
 		
-		int listCount = dService.selectListCount();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int diaryMemberNo = loginUser.getDiaryMemberNo();
+		
+		int listCount = dService.selectListCount(diaryMemberNo);
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 10);
 		
-		ArrayList<Diary> list = dService.selectList(pi);
+		ArrayList<Diary> list = dService.selectList(pi, diaryMemberNo);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);

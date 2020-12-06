@@ -12,18 +12,18 @@
 	</resultMap>
 
 	<select id="selectListCount" parameterType="_int" resultType="_int">
-		select
-		        count(*)
-		  from  diary
-		 where diary_status = 'Y'
-	</select>
+      select
+              count(*)
+        from  diary
+       where diary_status = 'Y'
+         and diary_writer = ${diaryMemberNo}
+   </select>
 	
 	<select id="selectList" parameterType="_int" resultMap="diaryResultSet">
 	select
 	        diary_no
 	      , diary_title
 	      , diary_date
-	     
 	  from diary 
 	 where diary_status='Y'
 	   and diary_writer = ${diaryMemberNo}

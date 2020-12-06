@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Dlog</title>
+
 <style>
 a {
 	cursor:pointer;
@@ -88,12 +89,12 @@ a {
 							                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 						               		</c:when>
 						               		<c:otherwise>
-							                    <li class="page-item"><a class="page-link" href="selectList.ph?currentPage=${ pi.currentPage-1 }">Previous</a></li>
+							                    <li class="page-item"><a class="page-link" href="list.di?currentPage=${ pi.currentPage-1 }">Previous</a></li>
 						               		</c:otherwise>
 						                   </c:choose>
 	
 						                   <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-						                   	<li class="page-item"><a class="page-link page-number" href="selectList.ph?currentPage=${ p }">${ p }</a></li>
+						                   	<li class="page-item"><a class="page-link page-number" href="list.di?currentPage=${ p }">${ p }</a></li>
 						                   </c:forEach>
 	
 						                   <c:choose>
@@ -101,7 +102,7 @@ a {
 							                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
 						               		</c:when>
 						               		<c:otherwise>
-						                   		<li class="page-item"><a class="page-link" href="selectList.ph?currentPage=${ pi.currentPage+1 }">Next</a></li>
+						                   		<li class="page-item"><a class="page-link" href="list.di?currentPage=${ pi.currentPage+1 }">Next</a></li>
 						               		</c:otherwise>
 						                   </c:choose>
                                           </ul>
@@ -163,7 +164,17 @@ a {
 			 	location.href="detail.di?dno="+ dno;    	
 		     });
 			
-		</script>
+			$(function(){
+				$(".page-link").each(function(){
+					if($(this).text()==${ pi.currentPage }){
+						$(this).css({"background":"rgb(132,200,185)", "color":"white"});
+					}
+				});
+			})
+			
+			
+			
+  </script>
 
 </body>
 </html>
