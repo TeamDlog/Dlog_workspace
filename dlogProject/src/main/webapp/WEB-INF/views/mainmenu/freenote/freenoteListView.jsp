@@ -79,12 +79,12 @@
 	                            <!-- 페이징 -->
 	                            <table align="center">
 	                                <tr>
-	                                    <td width="125">총 게시글 수&emsp;<span id="listCount"></span> 개</td>
-	                                    <td width="600">
+	                                    <td width="140">총 게시글 수&emsp;<span id="listCount"></span> 개</td>
+	                                    <td width="570">
 	                                        <ul class="pagination justify-content-center">
 	                                        </ul>
 	                                    </td>
-	                                    <td width="125" align="right">
+	                                    <td width="140" align="right">
 	                                    	<c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo }">
 	                                       		<button class="btn btn-success" onclick="location.href='enrollForm.fn';">글쓰기</button>
 	                                        </c:if>
@@ -176,7 +176,7 @@
 						}
 					}
 					$("#boardLimitArea").html(boardLimit);
-					$("#listCount").text(result.list.length);
+					$("#listCount").text(result.pi.listCount);
 					
 					if(result.list.length>0){
 						var list = "";
