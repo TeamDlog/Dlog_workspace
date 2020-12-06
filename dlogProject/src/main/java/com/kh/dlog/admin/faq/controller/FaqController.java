@@ -32,13 +32,16 @@ public class FaqController {
 	}
 	
 	@RequestMapping("list.fo")
-	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
+	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String condition, String keyword,Model model) {
 		
-		int listCount = fService.selectListCount();
+		condition="";
+		keyword="";
+		
+		int listCount = fService.searchListCount(condition, keyword);
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		
-		ArrayList<Faq> list = fService.selectList(pi);
+		ArrayList<Faq> list = fService.searchList(pi, condition, keyword);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("list",list);
@@ -67,6 +70,8 @@ public class FaqController {
 		
 		ArrayList<Faq> list = fService.searchList(pi, condition, keyword);
 		
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("conditon",condition);
 		model.addAttribute("pi", pi);
 		model.addAttribute("list",list);
 		

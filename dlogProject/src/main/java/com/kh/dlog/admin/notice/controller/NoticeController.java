@@ -26,13 +26,14 @@ public class NoticeController {
 	private NoticeService nService;
 	
 	@RequestMapping("list.no")
-	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model model) {
-		
-		int listCount = nService.selectListCount();
+	public String selectList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,String condition, String keyword, Model model) {
+		condition="";
+		keyword="";
+		int listCount = nService.searchListCount(condition, keyword);
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		
-		ArrayList<Notice> list = nService.selectList(pi);
+		ArrayList<Notice> list = nService.searchList(pi, condition, keyword);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("list",list);
@@ -58,6 +59,8 @@ public class NoticeController {
 		
 		ArrayList<Notice> list = nService.searchList(pi, condition, keyword);
 		
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("conditon",condition);
 		model.addAttribute("pi", pi);
 		model.addAttribute("list",list);
 		
