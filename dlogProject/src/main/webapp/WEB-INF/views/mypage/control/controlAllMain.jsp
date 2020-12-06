@@ -472,8 +472,8 @@
 				
 			}else if('${ca.privacyDiary}' == 'N'){
 				
-				$("div.privacyCheck").css('background', '#CCCCCC');
-				$("button.privacyCheck").css("left","0px");  
+				$("div.diaryCheck").css('background', '#CCCCCC');
+				$("button.diaryCheck").css("left","0px");  
 				
 			}
 		    
