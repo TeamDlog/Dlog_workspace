@@ -190,7 +190,7 @@ public class MemberController {
 		
 	}
 	
-	/*
+	
 	@ResponseBody
 	@RequestMapping(value="sendSMS.me")
 	public String sendSMS(String phoneNumber) {
@@ -221,7 +221,7 @@ public class MemberController {
 	        return numStr;
 		
 	}
-	*/
+	
 	
 	
 	@RequestMapping("idSearch.me")

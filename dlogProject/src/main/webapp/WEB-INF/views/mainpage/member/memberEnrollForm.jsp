@@ -161,7 +161,7 @@
                         <input type="text" class="form-control" id="inputCertifiedNumber" name="inputCertifiedNumber" required placeholder="인증번호를 입력하세요" style="width: 77%; float: left; margin-right: 10px;">
                         <button id="checkBtn" type="button" class="btn btn-secondary">인증확인</button>
                     </div>
-                      <button id="enrollBtn" type="submit" class="btn" >회원가입</button>
+                      <button id="enrollBtn" type="submit" class="btn" disabled>회원가입</button>
                 </form>
 
                 <p>계정이 있습니까? <a href="loginForm.me">로그인</a>하세요</p>
@@ -191,7 +191,7 @@
         							
         							$("#checkResult").show();
         							$("#checkResult").css("color", "red").text("중복된 아이디가 존재합니다. 다시 입력해주세요");
-        							
+        							$("#enrollBtn").attr("disabled", true);
         							
         						}
         						
@@ -203,7 +203,7 @@
         			}else{
         				
         				$("#checkResult").hide();
-        				
+        				$("#enrollBtn").attr("disabled", true);
         				
         			}
         			
@@ -224,13 +224,13 @@
                                     
                                 	$("#checkPwdResult").show();
             						$("#checkPwdResult").css("color", "red").text("비밀번호가 유효하지 않습니다.다시 입력해 주세요.");
-            						
+            						$("#enrollBtn").attr("disabled", true);
                                     
                                 }else{
                                 	
                                 	$("#checkPwdResult").show();
             						$("#checkPwdResult").css("color", "green").text("유효한 비밀번호입니다.");
-            					
+            						$("#enrollForm input[name=comparePwd]").removeAttr("disabled");
                                 	
                                 }
         						
@@ -242,7 +242,7 @@
               		}else{
               			
               			$("#checkPwdResult").hide();
-        		
+        				$("#enrollBtn").attr("disabled", true);
               			
               		}
 
@@ -258,7 +258,7 @@
 	        				
 	        				$("#comparePwdResult").show();
 							$("#comparePwdResult").css("color", "red").text("입력한 비밀번호가 일치하지 않습니다.다시 입력해 주세요.");
-						
+							$("#enrollBtn").attr("disabled", true);
 	        				
 	        			}else{
 	        				
@@ -270,7 +270,7 @@
         			}else{
         				
         				$("#comparePwdResult").hide();
-        				
+        				$("#enrollBtn").attr("disabled", true);
         				
         			}
         			
@@ -326,14 +326,14 @@
                                     alert(
                                         '휴대폰 인증이 정상적으로 완료되었습니다.'
                                     );
-                         
+                                    $("#enrollBtn").removeAttr("disabled")
 
                                 }else{
                                 	
                                 	alert(
                                             '인증번호가 올바르지 않습니다.'
                                     );
-                                	
+                                	$("#enrollBtn").attr("disabled", true);
                                 	$('#phoneNumber').focus();
                                     
                                 }
