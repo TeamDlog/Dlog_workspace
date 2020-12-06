@@ -206,6 +206,7 @@
             <div id="dateArea" style="text-align: right;">
                 ${ fn.createDate }
             </div>
+            <br>
             <div id="contentArea" style="min-height: 500px;">
 				${ fn.freenoteContent }
             </div>

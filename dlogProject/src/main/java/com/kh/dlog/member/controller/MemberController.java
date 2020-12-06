@@ -198,7 +198,7 @@ public class MemberController {
 		Random rand  = new Random();
         String numStr = "";
         for(int i=0; i<6; i++) {
-            String ran = Integer.toString(rand.nextInt(10));
+            String ran = Integer.toString(rand.nextInt(10)); 
             numStr+=ran;
         }
 	        
