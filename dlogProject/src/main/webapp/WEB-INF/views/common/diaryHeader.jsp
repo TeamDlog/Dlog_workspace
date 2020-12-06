@@ -107,7 +107,7 @@
                     <div class="header-right">
                         <ul class="clearfix">
                             <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-							        <i class="fas fa-user-friends" id="friend_icon"></i>
+							        <i class="fas fa-user-friends" id="friend_icon" style="color:grey"></i>
 							        <span class="badge gradient-7 badge-pill badge-primary"></span>
 							    </a>
 							    <div class="drop-down fadeIn dropdown-menu" id="friend_list" style="padding: 0px;">

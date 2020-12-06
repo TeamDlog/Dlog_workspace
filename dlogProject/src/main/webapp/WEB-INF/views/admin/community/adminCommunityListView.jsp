@@ -33,7 +33,12 @@
                 <div class="col-12">
                     <div class="card" style="width:900px;">
                         <div class="card-body">
-                            <h4 class="card-title">게시글 목록</h4>
+	                        <table>
+	                        	<tr>
+	                        		<td width="600px;"><h4 class="card-title">게시글 목록</h4></td>
+	                        		<td align="right" width="230px;"><input class="btn btn-primary btn-sm" type="button" value="삭제" onclick="confirmDelete();"></td>
+	                        	</tr>
+	                        </table>
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover zero-configuration" id="listTable" style="table-layout:fixed;">
                                     <thead>
@@ -63,9 +68,7 @@
                                     	</c:forEach>
                                     </tbody>
                                 </table>
-                               	<div align="right" style="margin-top: 5px; padding-right:16px;">
-	                                <input class="btn btn-primary" type="button" value="삭제" onclick="confirmDelete();">
-                               	</div>
+                               	
                                	<br>
                             </div>
                             <script>

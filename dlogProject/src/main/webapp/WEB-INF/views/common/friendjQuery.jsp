@@ -263,9 +263,17 @@
       			url:"insert.fr",
       			data:{
       				friendAccepted:index,
-      				friendOwner:${loginUser.memberNo}
+      				friendOwner:${loginUser.memberNo},
+					loginUserNickname:'${loginUser.nickname}'
       			},
       			success:function(result){
+      				
+      				// 수락 알림
+      				if(socket && result.n != null){
+						var socketMsg = result.n.memberNo + "," + result.n.notificationContent;
+						socket.send(socketMsg);
+					}
+      				
       				alert("친구 요청을 보냈습니다.");
       				$(".will_disapper"+index).remove();
       				
