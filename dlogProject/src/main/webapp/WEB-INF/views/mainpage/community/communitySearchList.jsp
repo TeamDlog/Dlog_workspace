@@ -89,7 +89,7 @@
             <table>
                 <tr>
                     <td width="900">
-                        "${ sc.keyword }"에 대한 검색 결과 입니다. (${ pi.listCount }건)
+                        "${ sc.keyword }"에 대한 검색 결과 입니다. (<span id="listCount"></span>건)
                     </td>
                     <td>
                         <select name="sort" id="sortOpt">
@@ -143,7 +143,7 @@
     		$contentLoadTriggered = false;
 	
     		$(window).scroll(function(){
-	    		if ($(window).scrollTop() >= ($(document).height() - $(window).height()) && $contentLoadTriggered == false){
+	    		if ($(window).scrollTop() >= ($(document).height() - $(window).height())*0.99 && $contentLoadTriggered == false){
 	    			$contentLoadTriggered = true;
 	    			count++;
 	    			loadList(count);
@@ -161,7 +161,7 @@
 	    			sort:'${sc.sort}',
 	    			currentPage:cPage
     			}, success:function(result){
-    				
+    				$("#listCount").text(result.pi.listCount);
     				if(result.list.length > 0){
     					var listCard = "";
     					for(var i in result.list){

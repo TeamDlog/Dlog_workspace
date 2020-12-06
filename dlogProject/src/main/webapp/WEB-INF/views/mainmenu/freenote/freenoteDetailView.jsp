@@ -75,8 +75,8 @@
                             <div id="titleArea">
                                 <table>
                                     <tr>
-                                        <td width="400" style="font-size: 20px;">[${ fn.freenoteCategory }] ${ fn.freenoteTitle }</td>
-                                        <td width="500" align="right">
+                                        <td width="650" style="font-size: 20px;">[${ fn.freenoteCategory }] ${ fn.freenoteTitle }</td>
+                                        <td width="250" align="right">
                                             ${fn.createDate}
                                         <c:if test="${ fn.freenoteWriter eq loginUser.nickname }">
                                             &nbsp;|&nbsp;
