@@ -50,7 +50,7 @@
      						value += "<li class='friend_list list_will_disapper" + obj.friendNo + "'>" + 
 										"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
 										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
-										"<div class='friend_list_delete'>" + "<button class='friend_delete_DB osageu_ml-23 cursor_to_pointer' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
+										"<div class='friend_list_delete'>" + "<button class='friend_delete_DB osageu_ml-23 cursor_to_pointer' style='outline:0;' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
 									"</li>";
      					})
      					$(".friend_list_ul").append(value);
@@ -148,7 +148,7 @@
       						value += "<li class='friend_list list_will_disapper" + obj.friendNo + "'>" + 
 										"<div class='friend_list_images'>" + "<img src='" + obj.friendProfile + "' class='cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + "</div>" + 
 										"<div class='friend_list_nickname'>" + "<div class='notification-heading friend_list_nick cursor_to_pointer' onclick='visitFriend(" + obj.friendAccepted + "," + obj.friendOwner + ");'>" + obj.friendNickname + "</div>" + "</div>" + 
-										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
+										"<div class='friend_list_delete' align='right'>" + "<button class='friend_delete_DB' style='outline:0;' onclick='deleteFriend(" + obj.friendNo + ");'>삭제</button>" + "</div>" + 
 									"</li>";
       					})
       					$(".friend_list_ul").append(value);
