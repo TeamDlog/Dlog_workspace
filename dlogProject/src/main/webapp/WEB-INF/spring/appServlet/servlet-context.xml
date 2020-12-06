@@ -87,7 +87,12 @@
 			<mapping path="/selectList.mo"/>
 			<mapping path="/widgetNtoY.mo"/>
 			<mapping path="/widgetAlltoN.mo"/>
-
+			<mapping path="/list.vo"/>
+			<mapping path="/enroll.vo"/>
+			<mapping path="/delete.vo"/>
+			<mapping path="/search.vo"/>
+			<mapping path="/random.vo"/>
+	
 			
 			<beans:bean class="com.kh.dlog.common.interceptor.LoginInterceptor" id="loginIntercept"/>
 		</interceptor>
@@ -95,6 +100,7 @@
 			<!-- 관리자만 이용가능한 기능 -->
 			<mapping path="/adminList.co"/>
 			<mapping path="/adminDetail.co"/>
+			<mapping path="/adminMember.me"/>
 			
 			
 			
