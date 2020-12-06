@@ -26,6 +26,7 @@
 	     
 	  from diary 
 	 where diary_status='Y'
+	   and diary_writer = ${diaryMemberNo}
 	 order
 	    by diary_no desc
       
