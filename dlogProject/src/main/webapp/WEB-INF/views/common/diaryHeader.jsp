@@ -155,22 +155,22 @@
 							            	</div>
 							            </div>
 							            <div class="friend_request_height">
-							             <ul class="friend_request_ul">
-							             	<c:forEach var="rf" items="${ requestFriend }">
-								                <li class="friend_request will_disapper${ rf.friendNo }">
-								                      <div class="friend_request_images">
-								                          <img src="resources/images/avatar/2.jpg">
-								                      </div>
-								                      <div class="friend_request_nickname">
-								                          <div class="notification-heading">${ rf.friendNickname }</div>
-								                      </div>
-								                      <div class="friend_request_yesorno" align="right">
-								                          <img src="resources/images/checked.png" onclick="acceptFriend(${rf.friendNo})" width="25" height="25" class="accept_friend_icon">
-								                          <img src="resources/images/close.png" onclick="rejectFriend(${rf.friendNo})" width="20" height="20">
-								                      </div>
-								                 </li>
-							                 </c:forEach>
-							             </ul>
+								            <ul class="friend_request_ul">
+								             	<c:forEach var="rf" items="${ requestFriend }">
+									                <li class="friend_request will_disapper${ rf.friendNo }">
+									                      <div class="friend_request_images">
+									                          <img src="resources/images/avatar/2.jpg">
+									                      </div>
+									                      <div class="friend_request_nickname">
+									                          <div class="notification-heading">${ rf.friendNickname }</div>
+									                      </div>
+									                      <div class="friend_request_yesorno" align="right">
+									                          <img src="resources/images/checked.png" onclick="acceptFriend(${rf.friendNo})" width="25" height="25" class="accept_friend_icon">
+									                          <img src="resources/images/close.png" onclick="rejectFriend(${rf.friendNo})" width="20" height="20">
+									                      </div>
+									                 </li>
+								                 </c:forEach>
+								            </ul>
 							            </div>
 
 							        </div>

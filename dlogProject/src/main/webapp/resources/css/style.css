@@ -383,6 +383,7 @@ input:checked + .slider:before {
 .friend_request{
   padding: 0px !important;
   height: 50px;
+  width:100%;
 }
 .friend_request>div{
   float:left;
@@ -437,24 +438,25 @@ input:checked + .slider:before {
   margin-bottom: 30px;
   box-shadow: 1px 1px 1px lightgray inset;
   border: 1px solid lightgray;
+  position:relative;
 }
 .friend_request_search div{
 	float:left;
 }
 #frs_left{
 	width:235px;
-	height:90%;
-	position:relative;
+	height:100%;
 }
 #frs_left input{
+	height:90%;
 	position:absolute;
-	left:2px;
 }
 #frs_right{
 	width:41px;
 	height:100%;
 	background:rgb(132,200,185);
-	position:relative;
+	position:absolute;
+	left:85.5%
 }
 #frs_right:hover{
 	cursor:pointer;
@@ -472,8 +474,8 @@ input:checked + .slider:before {
 	height:20px;
 	color:white;
 	position:absolute;
-	left:15px;
-	top:10px;
+	left:32%;
+	top:28%;
 }
 #friend_modal{
 	left:400px;
