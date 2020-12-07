@@ -51,9 +51,11 @@ public class MemoController {
 	public String deleteMemo(String[] checkArr, HttpSession session) {
 		int[] intNums = Arrays.stream(checkArr).mapToInt(Integer::parseInt).toArray();
 		int result = mService.deleteMemo(intNums);
+		Member mem = (Member)session.getAttribute("loginUser");
+		Memo memoWidget = mService.selectMemoWidget(mem.getDiaryMemberNo());
 		if(result > 0) {
 			session.setAttribute("alertMsg", "삭제 성공!!");
-			session.removeAttribute("memoWidget");
+			session.setAttribute("memoWidget",memoWidget);
 			return "redirect:selectList.mo";
 		}else {
 			session.setAttribute("alertMsg", "삭제 실패..");
