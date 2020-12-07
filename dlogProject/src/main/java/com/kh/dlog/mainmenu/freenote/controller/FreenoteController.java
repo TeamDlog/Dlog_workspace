@@ -75,10 +75,8 @@ public class FreenoteController {
 
 		if(result>0) {
 			if(fn.getFreenotePrivacy().equals("Y")) {
-				ArrayList flist = nService.selectFriendList(((Member)session.getAttribute("loginUser")).getMemberNo());
-				Notification n = nService.friendNewPostNotify(((Member)session.getAttribute("loginUser")).getMemberNo(), ((Member)session.getAttribute("loginUser")).getNickname());
-				session.setAttribute("notification", n);
-				session.setAttribute("flist", flist);
+				session.setAttribute("notification", nService.friendNewPostNotify(((Member)session.getAttribute("loginUser")).getMemberNo(), ((Member)session.getAttribute("loginUser")).getNickname()));
+				session.setAttribute("flist", nService.selectFriendList(((Member)session.getAttribute("loginUser")).getMemberNo()));
 			}
 			session.setAttribute("alertMsg", "성공적으로 등록되었습니다.");
 			return "redirect:list.fn";

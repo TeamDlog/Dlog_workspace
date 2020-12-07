@@ -435,9 +435,10 @@ public class MemberController {
 		if(!upfile.getOriginalFilename().equals("")) {
 			
 			if(m.getProfile() != null) {
-				
-				String removeFilePath = session.getServletContext().getRealPath(m.getProfile());//그파일의 물리적경로
-				new File(removeFilePath).delete();
+				if(!(m.getProfile().equals("resources/profiles/bugbug2.jpg") || m.getProfile().equals("resources/images/default-profile-pic.jpg"))) {
+					String removeFilePath = session.getServletContext().getRealPath(m.getProfile());//그파일의 물리적경로
+					new File(removeFilePath).delete();
+				}
 			}
 			
 			String changeName = saveFile(upfile, session); //
