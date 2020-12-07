@@ -44,7 +44,7 @@
 	                            <table>
 	                                <tr>
 	                                    <td width="700">
-                                            <input type="text" name="keyword" style="width: 200px; height: 30px; border: .1px solid lightgrey; border-radius: 4px; padding-left:5px;">
+                                            <input type="text" name="keyword" style="width: 200px; height: 30px; border: .1px solid lightgrey; border-radius: 4px; padding-left:5px;" autocomplete="off">
                                             <button type="button" class="btn btn-secondary btn-sm" id="searchBtn"><i class="fa fa-search"></i></button>
 	                                    </td>
 	                                    <td width="100" align="right">

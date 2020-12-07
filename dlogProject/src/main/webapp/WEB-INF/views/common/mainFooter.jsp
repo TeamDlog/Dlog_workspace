@@ -98,7 +98,7 @@
 		
 		    ws.onmessage = function (event) {
 		        //console.log("ReceiveMessage: ", event.data+'\n');
-		        $("#toastr-success-bottom-right").click();
+		        $("#toastr-success-top-right").click();
 		        $(".toast-title").text("새로운 알림");
 	    		$(".toast-message").text(event.data);
 		    };

@@ -70,7 +70,7 @@
         </div>
     </nav>
     
-	<input type="hidden" class="btn btn-success m-b-10 m-l-5 socketAlert" id="toastr-success-bottom-right">
+	<input type="hidden" class="btn btn-success m-b-10 m-l-5 socketAlert" id="toastr-success-top-right">
 
 </body>
 </html>

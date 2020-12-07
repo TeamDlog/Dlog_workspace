@@ -61,17 +61,17 @@ public class ReportController {
 		// 알림서비스
 		session.setAttribute("notification", nService.reportCheckNotify(r.getReportWriterNo()));
 		
-		int listCount = rService.selectListCount();
+//		int listCount = rService.selectListCount();
+//		
+//		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+//		
+//		ArrayList<Report> list = rService.selectList(pi);
+//		
+//				
+//		model.addAttribute("pi", pi);
+//		model.addAttribute("list",list);
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
-		
-		ArrayList<Report> list = rService.selectList(pi);
-		
-				
-		model.addAttribute("pi", pi);
-		model.addAttribute("list",list);
-		
-		return "admin/adminReportList";
+		return "redirect:adminReportList.ro";
 	}
 	
 	@RequestMapping("adminReportDelete.ro")
