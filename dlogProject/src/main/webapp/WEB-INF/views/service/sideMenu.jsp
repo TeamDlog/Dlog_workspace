@@ -127,6 +127,7 @@
   	#boardList>tbody>tr:hover{cursor:pointer;}
 	.footer h5{font-weight:bold;}
 	a[href="serviceMain.fo"]{color:grey !important;}
+	.toast-success{ background:rgb(136, 136, 136);}
 </style>
   <script>
         $(function(){
