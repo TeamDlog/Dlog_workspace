@@ -80,7 +80,7 @@
                                      <table id="infoUpdateFormTable">
 	                                     <div class="card-body">
                                        		<div class="text-center">
-                                                 <img alt="" class="rounded-circle mt-4" name="profile" src="${loginUser.profile }" width="90px">
+                                                 <img alt="" class="rounded-circle mt-4" name="profile" src="${loginUser.profile }" width="90px" height="90px">
                                              </div>
 	                                     </div>
 	                                     <tr>

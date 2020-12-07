@@ -22,12 +22,12 @@
 
                     	<c:choose>
                     		<c:when test="${empty friendInfo}">
-                        		<img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px">
+                        		<img alt="" class="rounded-circle mt-4" src="${loginUser.profile }" width="90px" height="90px">
 		                        <h4 class="card-widget__title text-dark mt-3" style="font-size:18px; font-weight:bolder;">${loginUser.nickname }</h4>
 		                        <p class="text-muted" style="font-weight:bolder;">${loginUser.introductionTitle }</p>
                         	</c:when>
                      	 <c:otherwise>
-                        		<img alt="" class="rounded-circle mt-4" src="${friendInfo.profile }" width="90px">
+                        		<img alt="" class="rounded-circle mt-4" src="${friendInfo.profile }" width="90px" height="90px">
 		                        <h4 class="card-widget__title text-dark mt-3" style="font-size:18px; font-weight:bolder;">${friendInfo.nickname }</h4>
 								<p class="text-muted" style="font-weight:bolder;">${friendInfo.introductionTitle }</p>
                         	</c:otherwise>
