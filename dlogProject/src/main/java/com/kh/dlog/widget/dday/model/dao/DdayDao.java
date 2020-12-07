@@ -47,6 +47,7 @@ public class DdayDao {
 			result = result * sqlSession.update("ddayMapper.widgetDday", ddayNo);
 		}
 		
+		/*
 		for(int i=1; i <= 3; i++) {
 			if(i == 1) {
 				result = result + sqlSession.update("ddayMapper.widgetDday1", ddayNo1);
@@ -56,6 +57,16 @@ public class DdayDao {
 				result = result + sqlSession.update("ddayMapper.widgetDday3", ddayNo3);
 			}
 			
+		}
+		*/
+		if(!ddayNo1.equals("")) {
+			result = result * sqlSession.update("ddayMapper.widgetDday1", ddayNo1);
+		}
+		if(!ddayNo2.equals("")) {
+			result = result * sqlSession.update("ddayMapper.widgetDday1", ddayNo2);	
+		}
+		if(!ddayNo3.equals("")) {
+			result = result * sqlSession.update("ddayMapper.widgetDday1", ddayNo3);
 		}
 		return result;
 		
