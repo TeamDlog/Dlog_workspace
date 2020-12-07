@@ -467,7 +467,6 @@
                 Content body end
             ***********************************-->  
  
-        </div>
         <!--**********************************
             Main wrapper end
         ***********************************-->
@@ -477,12 +476,12 @@
         <!--**********************************
             Widget area start
         ***********************************-->
-        <jsp:include page="../../common/diaryWidget.jsp"/>
+        
         
     <!--**********************************
         Widget area end
     ***********************************-->
-    <jsp:include page="../../common/diaryFooter.jsp"/>
+    
     <script>
        	$(function(){
        		
@@ -527,7 +526,8 @@
        		});
        	})
       </script>
-	
+	<jsp:include page="../../common/diaryWidget.jsp"/>
+	<jsp:include page="../../common/diaryFooter.jsp"/>
 </body>
 
 </html>

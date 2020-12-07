@@ -188,12 +188,10 @@
                 	<button style="display:none;" type="submit" id="widgetCheckListBtn"></button>
                 </form>
                 <!-- #/ container -->
-            </div>  
             <!--**********************************
                 Content body end
             ***********************************-->  
             
-        </div>
         <!--**********************************
             Main wrapper end
         ***********************************-->
