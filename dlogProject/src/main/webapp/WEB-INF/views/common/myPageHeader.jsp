@@ -296,7 +296,7 @@
                             </script>
                             <li class="icons dropdown">
                                 <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                                    <img src="resources/images/default-profile-pic.jpg" height="40" width="40" alt="">
+                                    <img src="${loginUser.profile }" height="40" width="40" alt="">
                                 </div>
                                 <div class="drop-down dropdown-profile   dropdown-menu">
                                     <div class="dropdown-content-body">
