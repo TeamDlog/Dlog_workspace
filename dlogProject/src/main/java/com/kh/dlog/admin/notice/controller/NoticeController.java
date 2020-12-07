@@ -60,7 +60,7 @@ public class NoticeController {
 		ArrayList<Notice> list = nService.searchList(pi, condition, keyword);
 		
 		model.addAttribute("keyword",keyword);
-		model.addAttribute("conditon",condition);
+		model.addAttribute("condition",condition);
 		model.addAttribute("pi", pi);
 		model.addAttribute("list",list);
 		

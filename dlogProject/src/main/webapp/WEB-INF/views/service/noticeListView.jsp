@@ -67,12 +67,12 @@
 		                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 		                    </c:when>
 		                    <c:otherwise>
-		                    	<li class="page-item"><a class="page-link" href="searchlist.no?currentPage=${pi.currentPage-1}&condition=${condtion}&keyword=${keyword}">Previous</a></li>
+		                    	<li class="page-item"><a class="page-link" href="searchlist.no?currentPage=${pi.currentPage-1}&condition=${condition}&keyword=${keyword}">Previous</a></li>
 		                    </c:otherwise>
 		                    </c:choose>
 		                    
 		                    <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
-		                    	<li class="page-item"><a class="page-link" href="searchlist.no?currentPage=${p}&condition=${condtion}&keyword=${keyword}">${p}</a></li>
+		                    	<li class="page-item"><a class="page-link" href="searchlist.no?currentPage=${p}&condition=${condition}&keyword=${keyword}">${p}</a></li>
 		                  	</c:forEach>
 		                    
 		                    <c:choose>
@@ -80,7 +80,7 @@
 		                    	<li class="page-item disabled"><a class="page-link" href="#">next</a></li>
 		                    </c:when>
 		                    <c:otherwise>
-		                    	<li class="page-item"><a class="page-link" href="searchlist.no?currentPage=${pi.currentPage+1 }&condition=${condtion}&keyword=${keyword}">Next</a></li>
+		                    	<li class="page-item"><a class="page-link" href="searchlist.no?currentPage=${pi.currentPage+1 }&condition=${condition}&keyword=${keyword}">Next</a></li>
 		                    </c:otherwise>
 		                    </c:choose>
 		                </ul>
