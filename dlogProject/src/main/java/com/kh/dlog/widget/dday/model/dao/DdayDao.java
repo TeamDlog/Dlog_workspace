@@ -43,22 +43,20 @@ public class DdayDao {
 		String ddayNo1 = wc.getWidgetCheck1();
 		String ddayNo2 = wc.getWidgetCheck2();
 		String ddayNo3 = wc.getWidgetCheck3();
-		
 		for(String ddayNo : dlist) {
 			result = result * sqlSession.update("ddayMapper.widgetDday", ddayNo);
 		}
 		
-		for(int i=1; i <= wc.getWidgetCount(); i++) {
-			if(i ==1 ) {
-				result = result * sqlSession.update("ddayMapper.widgetDday1", ddayNo1);
+		for(int i=1; i <= 3; i++) {
+			if(i == 1) {
+				result = result + sqlSession.update("ddayMapper.widgetDday1", ddayNo1);
 			}else if(i == 2) {
-				result = result * sqlSession.update("ddayMapper.widgetDday2", ddayNo2);
+				result = result + sqlSession.update("ddayMapper.widgetDday2", ddayNo2);
 			}else if(i == 3) {
-				result = result * sqlSession.update("ddayMapper.widgetDday3", ddayNo3);
+				result = result + sqlSession.update("ddayMapper.widgetDday3", ddayNo3);
 			}
 			
 		}
-		
 		return result;
 		
 	}

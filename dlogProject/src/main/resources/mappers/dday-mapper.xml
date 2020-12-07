@@ -70,7 +70,7 @@
 		       dday
 		   set
 		       DDAY_WIDGET = 'Y'
-		 where dday_no = #{ddayNo}
+		 where dday_no = #{ddayNo1}
 	</update>
 	
 	<update id="widgetDday2" parameterType="string">
@@ -78,7 +78,7 @@
 		       dday
 		   set
 		       DDAY_WIDGET = 'Y'
-		 where dday_no = #{ddayNo}
+		 where dday_no = #{ddayNo2}
 	</update>
 	
 	<update id="widgetDday3" parameterType="string">
@@ -86,7 +86,7 @@
 		       dday
 		   set
 		       DDAY_WIDGET = 'Y'
-		 where dday_no = #{ddayNo}
+		 where dday_no = #{ddayNo3}
 	</update>
 	
 	<update id="widgetDday" parameterType="string">
@@ -94,7 +94,7 @@
 		       dday
 		   set
 		       DDAY_WIDGET = 'N'
-		 where dday_no = #{ddayNo}
+		 where dday_no = ${ddayNo}
 	</update>
 	
 </mapper>

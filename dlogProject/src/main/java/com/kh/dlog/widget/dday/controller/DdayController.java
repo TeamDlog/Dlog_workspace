@@ -101,31 +101,27 @@ public class DdayController {
 	
 	@RequestMapping("widgetCheck.dd")
 	public String widgetCheck(WidgetCheck wc, String[] dlist, HttpSession session) {
-		if(session.getAttribute("loginUser") != null) {
-			if(wc.getWidgetCount() != 0) {
-				int result = dService.widgetDday(wc, dlist);
-				if(result > 0) {
-					session.setAttribute("alertMsg", "위젯 설정 완료!");
-					return "redirect:main.dd";
-				}else {
-					session.setAttribute("alertMsg", "위젯 등록 실패..");
-					return "redirect:main.dd";
-				}
+		
+		if(wc.getWidgetCount() != 0) {
+			int result = dService.widgetDday(wc, dlist);
+			if(result > 0) {
+				session.setAttribute("alertMsg", "위젯 설정 완료!");
+				return "redirect:main.dd";
 			}else {
-				int result = dService.widgetDday(wc, dlist);
-				if(result > 0) {
-					session.setAttribute("alertMsg", "모든 위젯이 해제되었습니다.");
-					return "redirect:main.dd";
-				}else {
-					session.setAttribute("alertMsg", "위젯 등록 실패..");
-					return "redirect:main.dd";
-				}
+				session.setAttribute("alertMsg", "위젯 등록 실패..");
+				return "redirect:main.dd";
 			}
-			
 		}else {
-			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
-			return "redirect:/";
+			int result = dService.widgetDday(wc, dlist);
+			if(result > 0) {
+				session.setAttribute("alertMsg", "모든 위젯이 해제되었습니다.");
+				return "redirect:main.dd";
+			}else {
+				session.setAttribute("alertMsg", "위젯 등록 실패..");
+				return "redirect:main.dd";
+			}
 		}
+			
 	}
 	
 }
