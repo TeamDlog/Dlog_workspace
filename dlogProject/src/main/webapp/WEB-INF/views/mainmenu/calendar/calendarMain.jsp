@@ -124,8 +124,6 @@
 		var cal = $("#calendar tr").not($("#calendar_main_head")).not($("#calendar_day"));
 		// 날짜 css
 		cal.children().children().css("height","25%");
-		cal.children().css("height","120px");
-		$("#calendar_day td").css("border","1px solid lightgray");
 		cal.each(function(){
 			$(this).css({"border-bottom":"1px solid lightgray"})
 		})
@@ -140,6 +138,8 @@
 				}
 			}
 			$(this).children().css({"padding":"5px"});
+			$(this).css({"height":"100px"});
+			/* $(this).addClass("width120px"); */
 		})
 		
 		var mm = today.getMonth()+1;
@@ -314,7 +314,7 @@
                     <div class="card backgroundColor" style="width:900px;">
                         <div class="card-body" style="border-radius:10px;">
 	                        <div id="calendar_main">
-								<table id="calendar" class="calendar2" style="width:100%; height:700px;">
+								<table id="calendar" class="calendar2" style="width:840px; height:700px;">
 									<tr style="height:100px;" id="calendar_main_head">
 										<td colspan="2" id="calendar_main_head_left">
 											<button onclick="prevCalendar()">＜</button>
@@ -330,13 +330,13 @@
 										</td>
 									</tr>
 								    <tr id="calendar_day">
-								        <td align="center" style="color:#f55656;">SUN</td>
-								        <td align="center">MON</td>
-								        <td align="center">TUE</td>
-								        <td align="center">WED</td>
-								        <td align="center">THU</td>
-								        <td align="center">FRI</td>
-								        <td align="center" style="color:#596cf7;">SAT</td>
+								        <td>SUN</td>
+								        <td>MON</td>
+								        <td>TUE</td>
+								        <td>WED</td>
+								        <td>THU</td>
+								        <td>FRI</td>
+								        <td>SAT</td>
 								    </tr> 
 								</table>
 								<script>

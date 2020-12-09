@@ -49,8 +49,8 @@
 	                                        <input type="file" name="upfiles" id="ex_file1" onchange="loadImg(this,1); loadUrl(1);" required>
 	                                        <div id="showUrl1" class="showurl"></div>
 	                                    </div>
-	                                    <div class="photo_insertForm_date photo_insertFom_choice">
-	                                        <div class="photo_enroll_info" style="background:rgb(132,200,185); color:white;">날짜 선택</div>
+	                                    <div class="photo_insertForm_date photo_insertFom_choice" style="height:8%;">
+	                                        <div class="photo_enroll_info" style="background:rgb(132,200,185); color:white; height:40px;">날짜 선택</div>
 	                                        <input type="date" name="list[0].photoDate" class="photo_enroll_date" onchange="changeColor(0);" required>
 	                                    </div>
 	                                    <div class="photo_insertForm_content photo_insertFom_choice">

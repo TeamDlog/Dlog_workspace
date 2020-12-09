@@ -92,6 +92,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 	color:gray;
 	font-size:20px;
 	outline:0px;
+	height:95%;
 }
 .photo_enroll_info{
   background: rgb(132,200,185);
@@ -570,13 +571,23 @@ input:checked + .slider:before {
 	font-weight:900;
 	font-size:18px;
 }
+#calendar_day td{
+	text-align:center;
+	border:1px solid lightgray;
+}
+#calendar_day td:nth-child(1){
+	color:#f55656;
+}
+#calendar_day td:nth-child(7){
+	color:#596cf7;
+}
+
 .calendar2{
 	border-collapse:collapse;
 }
 .calendar2 td{
 	width:14.28%;
 }
-
 .calendar_event{
 	opacity:0.8;
 }
