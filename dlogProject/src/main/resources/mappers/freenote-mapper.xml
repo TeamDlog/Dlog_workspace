@@ -78,6 +78,7 @@
 		       distinct freenote_category
 		  from freenote
 		 where member_no = #{mno}
+		  and status = 'Y'
 		 order
 		    by freenote_category
 	</select>
