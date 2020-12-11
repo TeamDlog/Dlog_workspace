@@ -108,7 +108,7 @@ modal-backdrop {
 	                                            <c:otherwise>
 		                                            <c:forEach var="vo" items="${ list }" varStatus="status">
 			                                            <tr style="height: 40px;">
-			                                                <td>${ (pi.listCount - status.index)-((pi.currentPage-1)*10) }</td>
+			                                                <td>${ (pi.listCount - status.index) - ((pi.currentPage - 1)*15) }</td>
 			                                                <td>${ vo.vocaWord }</td>
 			                                                <td>${ vo.vocaMean }</td>
 			                                                <c:choose>
