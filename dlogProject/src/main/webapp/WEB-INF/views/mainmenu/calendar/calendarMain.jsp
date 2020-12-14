@@ -61,9 +61,7 @@
          
         var row = null;
         row = tbCalendar.insertRow();
-        //테이블에 새로운 열 삽입//즉, 초기화
         var cnt = 0;// count, 셀의 갯수를 세어주는 역할
-        // 1일이 시작되는 칸을 맞추어 줌
         
        	var cell = null;//열 한칸한칸 계속 만들어주는 역할
        	
@@ -82,31 +80,17 @@
         // 달력 출력
         for (i=1; i<=lastDate.getDate(); i++) { 
         	//1일부터 마지막 일까지 돌림
-            cell = row.insertCell();//열 한칸한칸 계속 만들어주는 역할
-           	//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
+            cell = row.insertCell();
             cell.innerHTML = "<div>" + i + "</div>" + 
             				 "<div></div>" +
             				 "<div></div>" +
             				 "<div></div>" ;
             cnt = cnt + 1;//열의 갯수를 계속 다음으로 위치하게 해주는 역할
             
-        	if (cnt % 7 == 1) {// 일요일 계산
-        		
-        	}    
-        	
-            if (cnt%7 == 0){// 1주일이 7일 이므로 토요일 구하기 
-            	//월화수목금토일을 7로 나눴을때 나머지가 0이면 cnt가 7번째에 위치함을 의미한다
+            if (cnt%7 == 0){
                 row = calendar.insertRow();
-                //토요일 다음에 올 셀을 추가
             }
             
-            /* //오늘의 날짜에 노란색 칠하기
-            if (today.getFullYear() == date.getFullYear()
-            	&& today.getMonth() == date.getMonth()
-            	&& i == date.getDate()) {
-            	//달력에 있는 년,달과 내 컴퓨터의 로컬 년,달이 같고, 일이 오늘의 일과 같으면
-            	cell.bgColor = "#FAF58C";//셀의 배경색을 노랑으로 
-            } */
 		}
         
         // 뒷자리 채우기
@@ -122,6 +106,7 @@
        	}
         
 		var cal = $("#calendar tr").not($("#calendar_main_head")).not($("#calendar_day"));
+		
 		// 날짜 css
 		cal.children().children().css("height","25%");
 		cal.each(function(){
@@ -144,6 +129,7 @@
 		
 		var mm = today.getMonth()+1;
 		var date = new Date(today.getFullYear(), mm, 0)
+		
 		// td에 실제 날짜 넣기
 		cal.children().each(function(index){
 			if (index >= beginEmptyCount && index < date.getDate()+beginEmptyCount){

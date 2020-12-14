@@ -80,11 +80,9 @@
 		frameNum = $(".photo_insertForm").length;
 	
 		$(function(){
-	
 			// [+],[-] 버튼에 클릭 모양 추가
 			$("#addFrame").hover().css("cursor","pointer");
 			$("#removeFrame").hover().css("cursor","pointer");
-	
 		})
 
 		// frame 추가
@@ -96,7 +94,6 @@
 				$(".photo_insertForm").after(frame);
 				frameCount++;
 			}
-	
 			$('.photo_insertForm').eq(frameCount).children().eq(2).children('input').attr('id', 'ex_file'+(frameCount+1));
 			$('.photo_insertForm').eq(frameCount).children().eq(2).children('label').attr('for', 'ex_file'+(frameCount+1));
 			$('.photo_insertForm').eq(frameCount).children().eq(2).children('input').attr('onchange', 'loadImg(this,'+(frameCount+1)+'); loadUrl('+(frameCount+1)+');');

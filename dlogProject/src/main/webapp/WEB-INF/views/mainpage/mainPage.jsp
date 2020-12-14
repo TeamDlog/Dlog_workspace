@@ -165,7 +165,7 @@
             <!-- Contact Section Form-->
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
+                
                     <form action="https://script.google.com/macros/s/AKfycbyisfe3KmAnGanCnb9ZINuseLs_SZRY4sGifnPIog/exec" class="gform" method="POST" data-email="dhwkdtjr123@naver.com">
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls mb-0 pb-2">
@@ -204,6 +204,9 @@
                     </form>
                 </div>
             </div>
+            <script data-cfasync="false" type="text/javascript"
+				src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js">
+            </script>
         </div>
     </section>
     

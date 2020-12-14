@@ -44,6 +44,7 @@
 						        	<input type="hidden" id="friendVisiting" value="hi">
 						        </c:otherwise>
 					        </c:choose>
+					        
                         	<form action = "delete.ph" method="post" id="photo_form">
 	                            <c:forEach var="p" items="${ list }" varStatus="status">
 		                            <div class="photo_main portfolio-item">
@@ -61,6 +62,7 @@
 		                            </div>
 	                            </c:forEach>
 							</form>
+							
 							<c:if test = "${ !empty list }">
 	                         	<div class="bootstrap-pagination" align="center">
 	                                <nav>
@@ -133,6 +135,7 @@
 	</div>
 
 	<script>
+	
 		// 게시글 삭제
 		$(function(){
 			$(".removeBox").css("display","none");
@@ -189,8 +192,8 @@
     $(function(){
 
 		$(".photo_main_photo>img").hover().css("cursor","pointer");
+		
 		var countPhoto = 0;
-
 		// 확대해서 보기
 		$(".photo_main_photo>img").click(function(){
 			if($(".deleteButton").html()=="삭제" || $("#friendVisiting").val() == 'hi'){
@@ -217,7 +220,7 @@
 				$(".photo_main_photo").attr("data-toggle","");
 			}
 			
- 	})
+ 		})
     		
     		
 	 	// 페이지 이동
@@ -247,6 +250,7 @@
 			})
 	
 		})
+		
 	</script>
             
     <!--**********************************
