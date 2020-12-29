@@ -13,7 +13,7 @@
     border: solid 1px rgb(207, 202, 202);
     padding: 31px;
     width: 500px;
-    height: 650px;
+    height: 700px;
     border-radius: 50px;
 	}
 
@@ -37,6 +37,7 @@
     font-size:10px;
 
 	}
+	
 </style>
 </head>
 
@@ -109,7 +110,7 @@
                                        </tr>
                                        <tr>
                                          <td> 별명  </td>
-                                         <td><input style="width:180px;" type="text"  name="nickname" id="nickname" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" value="${loginUser.nickname }"></td>
+                                         <td><input class="form-control " style="width:180px; height:auto;" type="text"  name="nickname" id="nickname" maxlength="12" placeholder="&nbsp;&nbsp;3~10자 (한글, 영문자, 숫자)" value="${loginUser.nickname }"></td>
                                          <td>&nbsp;<button type="button" onclick="nicknameCheck2();" class="btn btn-secondary btn-sm">중복확인</button></td>
                                          </tr>
                                        <tr>
@@ -117,14 +118,14 @@
                                        </tr>
                                      	 <tr>
                                            <td> 이메일  </td>
-                                           <td colspan="2"><input style="width:180px;" type="email" name="email" placeholder="&nbsp;&nbsp;이메일을 입력해주세요." required value="${loginUser.email }"></td>
+                                           <td colspan="2"><input class="form-control"  style="width:180px; height:auto;" type="email" name="email" placeholder="&nbsp;&nbsp;이메일을 입력해주세요." required value="${loginUser.email }"></td>
                                        </tr>
                                        <tr>
                                          <td colspan="3">&nbsp;</td>
                                        </tr>
                                        <tr>
                                          <td>전화번호 </td> 
-                                 		 <td><input id="phoneNumber" name="phone" style="width:180px;" type="text" maxlength="13" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." value="${loginUser.phone }"></td>
+                                 		 <td><input class="form-control"  id="phoneNumber" name="phone" style="width:180px; height:auto;" type="text" maxlength="13" placeholder="&nbsp;&nbsp;전화번호를 입력해주세요." value="${loginUser.phone }"></td>
                                          <td>&nbsp;<button type="button" id="sendPhoneNumber" class="btn btn-secondary btn-sm">인증요청</button></td>
                                        </tr>
                                        <tr>
@@ -132,7 +133,7 @@
                                        </tr>
                                        <tr>
                                          <td>인증번호 입력 &nbsp;&nbsp;</td>
-                                         <td><input type="text" id="inputCertifiedNumber" name="inputCertifiedNumber" placeholder="인증번호를 입력하세요" style="width: 180px;" ></td>
+                                         <td><input class="form-control"  type="text" style="width:180px; height:auto;" id="inputCertifiedNumber" name="inputCertifiedNumber" placeholder="인증번호를 입력하세요" style="width: 180px;" ></td>
                                       	 <td>&nbsp;<button id="checkBtn" type="button" class="btn btn-secondary btn-sm">인증확인</button></td>
                                       </tr>
                                       <tr>

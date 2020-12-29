@@ -21,7 +21,7 @@
          padding:20px;
       }
       #line{
-         border:gray 2px dashed;
+         border:gray 1px dashed;
       }
       #btn{
           margin-left:90%;

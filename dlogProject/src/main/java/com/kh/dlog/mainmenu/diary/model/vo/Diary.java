@@ -20,6 +20,7 @@ public class Diary {
 	private String diaryContent;
 	private Date diaryDate;
 	private String diaryStatus;
+	private int diaryCount;
 	
 	
 	

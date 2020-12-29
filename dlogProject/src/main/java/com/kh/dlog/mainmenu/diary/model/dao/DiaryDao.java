@@ -32,12 +32,16 @@ public class DiaryDao {
 		return sqlSession.insert("diaryMapper.insertDiary", d);
 	}
 	
+	public int increaseCount(SqlSessionTemplate sqlSession, int dno) {
+		return sqlSession.update("diaryMapper.increaseCount", dno);
+	}
+	
 	public Diary detailDiary(SqlSessionTemplate sqlSession, int dno) {
 		return sqlSession.selectOne("diaryMapper.detailDiary", dno);
 	}
 	
 	public int deleteDiary(SqlSessionTemplate sqlSession, int dno) {
-		return sqlSession.update("diaryMapper.delteDiary", dno);
+		return sqlSession.update("diaryMapper.deleteDiary", dno);
 	}
 
 	public int updateDiary(SqlSessionTemplate sqlSession, Diary dn) {

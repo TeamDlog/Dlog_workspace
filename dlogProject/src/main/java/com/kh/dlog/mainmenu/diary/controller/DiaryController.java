@@ -9,12 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.dlog.common.model.vo.PageInfo;
 import com.kh.dlog.common.template.Pagination;
 import com.kh.dlog.mainmenu.diary.model.service.DiaryService;
 import com.kh.dlog.mainmenu.diary.model.vo.Diary;
 import com.kh.dlog.member.model.vo.Member;
+import com.kh.dlog.widget.voca.model.vo.Voca;
 
 
 @Controller
@@ -42,6 +44,7 @@ public class DiaryController {
 		return "mainmenu/diary/diaryListView";
 	}
 	
+	
 	 @RequestMapping("enrollForm.di")
 	public String enrollForm() {
 		return "mainmenu/diary/diaryEnrollForm";
@@ -65,13 +68,22 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("detail.di")
-	public String detailDiary(int dno, Model model) {
+	public ModelAndView detailDiary(int dno, ModelAndView mv) {
 		
+		int result = dService.increaseCount(dno);
 		
-		Diary dn = dService.detailDiary(dno);
+		if(result > 0 ) {
+			
+			Diary dn = dService.detailDiary(dno);
+			
+			mv.addObject("dn", dn).setViewName("mainmenu/diary/diaryDetailView");
+			
+		}else {
+			mv.addObject("errorMsg", "유효한 게시글이 아니거나 삭제된 게시글입니다.");
+			mv.setViewName("common/errorPage");
+		}
 		
-		model.addAttribute("dn", dn);
-		return "mainmenu/diary/diaryDetailView";
+		return mv;
 		
 	}
 	

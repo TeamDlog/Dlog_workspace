@@ -6,11 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Dlog</title>
-<style>
-	.card-body{
-	 width:94%;
-	}
-</style>
+
 </head>
 <body>
 
@@ -47,7 +43,7 @@
                              <div >
                                  <input type="text" id="title" name="diaryTitle" style="width:680px; height: 35px; border: .5px solid lightgrey; border-radius: 4px; margin-left:30px; " placeholder="&nbsp;제목을 입력해주세요" value="${dn.diaryTitle}" required>
                              </div>
-                             <div class="card-body"  >
+                             <div class="card-body" style="width:88%" >
                                  <textarea class="summernote" name="diaryContent" required>
                                  	${dn.diaryContent }
                                  </textarea>

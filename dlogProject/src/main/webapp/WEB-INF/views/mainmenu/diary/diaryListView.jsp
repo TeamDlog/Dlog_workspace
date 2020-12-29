@@ -37,42 +37,49 @@ a {
                   <div class="card" style="width:900px; min-height:500px;">
                       <div class="card-body backgroundColor" >
                           <div class="table-responsive">
-                              
-                              <br><br>
+                             <!--  검색  -->
+                             
+                             <br><br>
+                             
 								
                               <!-- 목록 -->
                               
                               <table class="table table-hover" id="list"> 
                                   <thead align="center">
                                       <tr>
+                                          <th>&nbsp;&nbsp;</th>
                                           <th>글번호</th>
                                           <th width="500px">글제목</th>
+                                          <th>조회수</th>
                                           <th>작성일</th>
-                                          <th>&nbsp;&nbsp;</th>
-                                      </tr>
+                                        </tr>
                                   </thead>
                                   <tbody align="center">
-                                  	  <c:forEach var="d" items="${ list }">
-	                                      <tr>
-	                                          <td >${ d.diaryNo }</td>
-	                                          <td>${ d.diaryTitle }</td>
-	                                          <td>${ d.diaryDate }</td>
-	                                          <c:if test="${ loginUser.memberNo eq loginUser.diaryMemberNo }">
-	                                          <td><a onclick="diaryUpdate(this); event.stopImmediatePropagation();">수정</a>&nbsp;&nbsp;
-												  <a onclick="diaryDelete(this); event.stopImmediatePropagation();">삭제</a></td>
-											</c:if>  
-	                                      </tr>
-                                      </c:forEach>
-                                      <c:if test="${ empty list }">
+                                  	 <c:if test="${ empty list }">
                                       	<td colspan="4">조회된 글이 없습니다.</td>
                                       </c:if>
+                                  	  <c:forEach var="d" items="${ list }">
+	                                      <tr>
+	                                    	  <c:choose>
+                                              <c:when test="${ loginUser.memberNo == loginUser.diaryMemberNo }">
+	                                         <td><input type="checkbox" id="diaryNo" name="diaryNo" value="${ d.diaryNo }" onclick="event.stopPropagation();" value="${ d.diaryNo }"  style="width: 15px; height: 15px;" ></td>
+	                                          </c:when>
+                                              	<c:otherwise>
+                                            	</c:otherwise>
+                                              </c:choose>  
+                                              <td class="dno">${ d.diaryNo }</td>
+	                                          <td>${ d.diaryTitle }</td>
+	                                          <td>${ d.diaryCount }</td>
+	                                          <td>${ d.diaryDate }</td>
+	                                      </tr>
+                                      </c:forEach>
+                                      
                                   </tbody>
                               </table>
                                       
                             	<script>
 	                           	$("#list>tbody>tr").click(function(){
-	           				    	var dno = $(this).children().eq(0).text();
-	           					 	location.href="detail.di?dno="+ $(this).children().eq(0).text();    	
+	                           		location.href="detail.di?dno="+ $(this).children(".dno").text(); 		
 	           				     });
 	           					</script>
                               <br>
@@ -80,11 +87,10 @@ a {
                               <table align="center">
                              <c:if test = "${ !empty list }">
                             	  <tr>
-                                      <td width="100" align="center"></td>
+                                      <td width="1100" align="center"></td>
                                       <td width="600">
                                           <ul class="pagination justify-content-center">
-                                          
-                                          <c:choose>
+                                           <c:choose>
 						               		<c:when test="${ pi.currentPage eq 1 }">
 							                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 						               		</c:when>
@@ -108,14 +114,16 @@ a {
                                           </ul>
                                       </td>
                                       <td>
-                                      <div width="300" align="right" style="margin-left:75%;">
-                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">글쓰기</button>
-                                      </div>
+                                      <div align="right" style="width:300px;">
+                             				<button class="btn btn-success btn-sm" onclick="location.href='enrollForm.di';">글쓰기</button>
+                            				 <a id="checkDelete" type="button"  class="btn btn-secondary btn-sm">삭제</a>
+                         				</div>
                                       </c:if>
                                        <c:if  test = "${ empty list and loginUser.memberNo eq loginUser.diaryMemberNo  }">
-	                                     <div width="300" align="right" style="margin-left:75%;">
-	                                          <button class="btn btn-success" onclick="location.href='enrollForm.di';">글쓰기</button>
-	                                      </div>
+	                                      <div align="right" style="width:300px;">
+                             				<button class="btn btn-success btn-sm" onclick="location.href='enrollForm.di';">글쓰기</button>
+                            				 <a id="checkDelete" type="button" class="btn btn-secondary btn-sm">삭제</a>
+                         				 </div>
 	                                   </c:if>
                                       </td>
                                     </tr>
@@ -136,28 +144,21 @@ a {
 	<jsp:include page="../../common/diaryFooter.jsp" />
 	
 	<script>
-    	
-			const diaryUpdate = function(e){
-			   var answer = confirm("수정하시겠습니까 ?");
-			   if(answer){
-			    console.log(e.parentNode)
-			   var dno = e.parentNode.parentNode.childNodes[1].textContent;
-			   location.href="updateForm.di?dno="+dno;
-			    }else{
-			      return;
-			    }
-			    	};
-			    		
-			const diaryDelete =  function(e){
-			    var answer = confirm("삭제하시겠습니까 ?");
-			    if(answer){
-			       var dno = e.parentNode.parentNode.childNodes[1].textContent;
-			           // 삭제 진행
-			       location.href="delete.di?dno="+dno;
-			     }else{
-				return;
-			     }
-			    };
+			$("#checkDelete").click(function(){
+        		var dno = [];
+        		$("input[name=diaryNo]:checked").each(function(){
+        			dno.push($(this).val());
+        			console.log(dno);
+        		});
+        	
+        		if(dno.length != 0){
+        			if(confirm("정말로 삭제하시겠습니까?")){
+        				location.href="delete.di?dno=" + dno;
+        			}
+        		}else{
+        			alert("선택된 게시글이 없습니다.");
+        		}
+        	});
 			    
 			$(".table table-hover>tbody>tr").click(function(){
 		    	var dno = $(this).children(".dno"); // 아래
@@ -168,11 +169,35 @@ a {
 				$(".page-link").each(function(){
 					if($(this).text()==${ pi.currentPage }){
 						$(this).css({"background":"rgb(132,200,185)", "color":"white"});
-					}
+					};
 				});
-			})
+			});
 			
-			
+			<!--
+			//체크박스 선택시
+         	const Delete = function(){
+         		var check_length = document.getElementsByName("diaryNo").length;
+                var check_cnt = 0;
+                var dno = "";
+                for(var i=0; i<check_length; i++){
+                   if(document.getElementsByName("diaryNo")[i].checked==true){
+                      check_cnt++;
+                      if(check_cnt==1){
+                    	  dno = document.getElementsByName("diaryNo")[i].parentNode.nextSibling.nextSibling.textContent;
+                      }else{
+                     	  dno += ","+document.getElementsByName("diaryNo")[i].parentNode.nextSibling.nextSibling.textContent;
+                      }
+                   }
+                }
+                console.log(dno);
+                if(check_cnt == 0){
+                   alert("삭제할 게시글을 선택해 주세요 !");
+                }else{
+                   location.href= "delete.di?dno="+dno;
+                }
+         		
+         	};
+			-->
 			
   </script>
 

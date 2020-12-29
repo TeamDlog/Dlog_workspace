@@ -8,21 +8,23 @@
 		<result column="diary_title" property="diaryTitle" />
 		<result column="diary_content" property="diaryContent" />
 		<result column="diary_date" property="diaryDate" />
-		<result column="diary_status" property="diaryStatus" />		
+		<result column="diary_status" property="diaryStatus" />	
+		<result column="diary_count" property="diaryCount" />	
 	</resultMap>
 
 	<select id="selectListCount" parameterType="_int" resultType="_int">
       select
               count(*)
         from  diary
-       where diary_status = 'Y'
-         and diary_writer = ${diaryMemberNo}
+       where  diary_status = 'Y'
+         and  diary_writer = ${diaryMemberNo}
    </select>
 	
 	<select id="selectList" parameterType="_int" resultMap="diaryResultSet">
 	select
 	        diary_no
 	      , diary_title
+	      , diary_count
 	      , diary_date
 	  from diary 
 	 where diary_status='Y'
@@ -49,6 +51,14 @@
 		    )
 	</insert>
 	
+	<update id="increaseCount" parameterType="_int">
+	update 
+			diary
+		set diary_count = diary_count+1
+	  where diary_no = #{dno}
+	    and diary_status = 'Y' 		
+	</update>
+	
 	<select id="detailDiary" parameterType="_int" resultMap="diaryResultSet">
 	select
 			diary_no
@@ -60,7 +70,7 @@
         and diary_status='Y' 
 	</select>
 	
-	<update id="delteDiary" parameterType="_int">
+	<update id="deleteDiary" parameterType="_int">
 	update
 			diary
 	   set diary_status = 'N'

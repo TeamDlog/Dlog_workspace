@@ -10,7 +10,7 @@
 	#detailTop>p{ margin-left: 20px;}
 	
 	.detailTable{border-collapse: separate;border-spacing: 0 50px;}
-	.detailTable img{margin-right: 50px;}
+	
 	.detailTable tr:last-child{
 	    width: 60%;
 	    height: 150px;

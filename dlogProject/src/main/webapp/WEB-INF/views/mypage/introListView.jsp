@@ -20,7 +20,7 @@
             padding:20px;
          }
         #line{
-        border:gray 2px dashed;
+        border:gray 1px dashed;
         width:832px;
         line-height: 30px;
      }
